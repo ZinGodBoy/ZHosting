@@ -139,10 +139,12 @@
     if(!button)return;
     button.disabled=busy;
     if(busy){
-      button.dataset.originalText=button.innerHTML;
-      button.innerHTML=label+' <span class="login-spinner"></span>';
+      button.dataset.originalText=button.textContent||"";
+      button.replaceChildren();
+      button.append(document.createTextNode(label+" "));
+      const spinner=document.createElement("span");spinner.className="login-spinner";button.appendChild(spinner);
     }else if(button.dataset.originalText){
-      button.innerHTML=button.dataset.originalText;
+      button.replaceChildren(document.createTextNode(button.dataset.originalText));
     }
   };
 
