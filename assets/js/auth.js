@@ -203,10 +203,10 @@
     setBusy(registerForm,true,"Đang tạo tài khoản");
     try{
       const users=getUsers();
-      const password=createPasswordRecord?await createPasswordRecord(password):null;
+      const passwordRecord=await createPasswordRecord(password);
       users.push({
         id:crypto.randomUUID?.()||String(Date.now()),
-        name,email,password,
+        name,email,password:passwordRecord,
         createdAt:new Date().toISOString(),
         lastLogin:new Date().toISOString()
       });
