@@ -2,8 +2,8 @@
 
 This repository currently contains a **frontend demo authentication flow**.
 
-- No password is stored in localStorage.
-- The demo validates account existence only in the browser.
+- The demo stores only a client-side SHA-256 password hash in localStorage; this is still NOT production authentication.
+- Authentication and authorization are performed entirely in the browser for demo purposes.
 - Profile data is stored locally in the browser.
 - There is no real email verification.
 - There is no production session, database, password hashing or server-side authorization yet.
