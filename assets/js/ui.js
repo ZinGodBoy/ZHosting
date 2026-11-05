@@ -111,6 +111,18 @@
   };
   setupLogout();
 
+  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      const input=document.querySelector(button.dataset.togglePassword);
+      if(!input)return;
+      const visible=input.type==="text";
+      input.type=visible?"password":"text";
+      button.textContent=visible?"◉":"○";
+      button.setAttribute("aria-label",visible?"Hiện mật khẩu":"Ẩn mật khẩu");
+      input.focus();
+    });
+  });
+
   const setupInputs=()=>{
     document.querySelectorAll("input,textarea").forEach(input=>{
       if(!input.id)return;
