@@ -206,3 +206,140 @@ input:focus-visible,button:focus-visible,a:focus-visible{
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
   .zui-spotlight{display:none}
 }
+
+/* =========================================================
+   V4 PREMIUM MOTION + AUTH / DASHBOARD POLISH
+   ========================================================= */
+
+.auth-page{
+  overflow-y:auto!important;
+  overflow-x:hidden;
+  min-height:100svh;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(67,217,255,.07),transparent 28%),
+    radial-gradient(circle at 90% 90%,rgba(92,124,255,.08),transparent 30%),
+    var(--bg);
+}
+
+.auth-page .auth-bg span{
+  animation:zuiOrbFloat 9s ease-in-out infinite;
+}
+.auth-page .auth-bg span:nth-child(2){animation-delay:-3s;animation-duration:11s}
+.auth-page .auth-bg span:nth-child(3){animation-delay:-6s;animation-duration:8s}
+@keyframes zuiOrbFloat{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(18px,-14px,0) scale(1.045)}
+}
+
+.auth-card::after{animation:zuiRingSpin 15s linear infinite}
+@keyframes zuiRingSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.auth-card .eyebrow{
+  animation:zuiLetterGlow 3s ease-in-out infinite;
+}
+@keyframes zuiLetterGlow{
+  50%{text-shadow:0 0 18px rgba(67,217,255,.22)}
+}
+
+.auth-card .lead{animation:zuiTextIn .7s var(--ease) .25s both}
+.auth-card form>label{animation:zuiFieldIn .5s var(--ease) both}
+.auth-card form>label:nth-of-type(1){animation-delay:.12s}
+.auth-card form>label:nth-of-type(2){animation-delay:.18s}
+.auth-card .auth-meta{animation:zuiFieldIn .5s var(--ease) .24s both}
+.auth-card .auth-submit{animation:zuiFieldIn .5s var(--ease) .30s both}
+.auth-card .login-hint,.auth-card .auth-divider,.auth-card>.btn-ghost{
+  animation:zuiFieldIn .5s var(--ease) .36s both
+}
+@keyframes zuiTextIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes zuiFieldIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.caps-warning::after{
+  content:"CAPS LOCK đang bật";
+  position:absolute;right:2px;bottom:-17px;color:#ffd166;
+  font:700 8px var(--font-body);letter-spacing:.04em;
+  animation:zuiCapsBlink 1.3s ease-in-out infinite;
+}
+@keyframes zuiCapsBlink{50%{opacity:.42}}
+
+.password-toggle{
+  transition:transform .2s var(--ease),color .2s ease,background .2s ease;
+}
+.password-toggle:hover{transform:translateY(-50%) scale(1.08);background:rgba(67,217,255,.05)}
+.password-toggle:active{transform:translateY(-50%) scale(.92)}
+
+.form-note.error{animation:zuiErrorIn .3s var(--ease-spring)}
+.form-note.success{animation:zuiSuccessIn .35s var(--ease-spring)}
+@keyframes zuiErrorIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+@keyframes zuiSuccessIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+.dashboard-page{
+  background:
+    radial-gradient(circle at 75% 0,rgba(67,217,255,.08),transparent 30%),
+    radial-gradient(circle at 10% 75%,rgba(92,124,255,.05),transparent 28%),
+    var(--bg);
+}
+.dashboard-page .dash-header{
+  animation:zuiHeaderIn .6s var(--ease-spring) both;
+}
+@keyframes zuiHeaderIn{
+  from{opacity:0;transform:translateY(-12px)}
+  to{opacity:1;transform:none}
+}
+
+.dashboard-page .dash-welcome{
+  animation:zuiWelcomeIn .75s var(--ease-spring) .08s both;
+}
+@keyframes zuiWelcomeIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:none}
+}
+
+.dashboard-page .dash-card:nth-child(1){--card-delay:.04s}
+.dashboard-page .dash-card:nth-child(2){--card-delay:.10s}
+.dashboard-page .dash-card:nth-child(3){--card-delay:.16s}
+.dashboard-page .dash-card{
+  animation:zuiDashCard .65s var(--ease-spring) var(--card-delay) both;
+}
+@keyframes zuiDashCard{
+  from{opacity:0;transform:translateY(20px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+
+.dashboard-page .profile-grid>div{
+  transition:background .25s ease,transform .25s var(--ease);
+}
+.dashboard-page .profile-grid>div:hover{
+  background:#0b1827;transform:translateY(-2px);
+}
+
+.dashboard-page .modal[aria-hidden="false"]{
+  animation:zuiModalBackdrop .25s ease both;
+}
+@keyframes zuiModalBackdrop{from{backdrop-filter:blur(0)}to{backdrop-filter:blur(10px)}}
+
+.btn-primary::after{
+  content:"";
+  position:absolute;top:-120%;left:-25%;width:25%;height:340%;
+  transform:rotate(22deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);
+  transition:left .8s var(--ease);
+}
+.btn-primary:hover::after{left:125%}
+
+.nav-links>a,.nav-account>*{
+  animation:zuiNavIn .5s var(--ease) both;
+}
+.nav-links>a:nth-child(1){animation-delay:.03s}.nav-links>a:nth-child(2){animation-delay:.06s}
+.nav-links>a:nth-child(3){animation-delay:.09s}.nav-links>a:nth-child(4){animation-delay:.12s}
+.nav-links>a:nth-child(5){animation-delay:.15s}.nav-links>a:nth-child(6){animation-delay:.18s}
+@keyframes zuiNavIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+.zui-form-ready .auth-submit{
+  box-shadow:0 12px 38px rgba(67,217,255,.2),0 0 0 1px rgba(67,217,255,.08),inset 0 1px rgba(255,255,255,.36);
+}
+
+@media(max-width:760px){
+  .nav-links>a,.nav-account>*{animation:none}
+}
