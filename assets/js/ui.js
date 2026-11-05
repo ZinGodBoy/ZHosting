@@ -46,6 +46,10 @@
       obs.observe(el);
     });
   };
+  document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.panel,.status-main,.status-list").forEach(el=>{
+    el.dataset.zuiReveal=el.dataset.zuiReveal||"up";
+    el.classList.add("zui-glow-line");
+  });
   reveal();
 
   const progress=document.querySelector(".zui-progress");
@@ -77,11 +81,6 @@
     });
   });
 
-  document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.panel,.status-main,.status-list").forEach(el=>{
-    el.dataset.zuiReveal=el.dataset.zuiReveal||"up";
-    el.classList.add("zui-glow-line");
-  });
-
   const tiltOK=()=>window.matchMedia("(pointer:fine) and (min-width:900px)").matches;
   document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.status-main").forEach(el=>{
     if(!tiltOK())return;
@@ -105,7 +104,8 @@
       e.preventDefault();e.stopImmediatePropagation();btn.dataset.zuiBound="1";
       root.classList.add("zui-page-lock");screen.classList.add("active");
       localStorage.removeItem("zhosting_session_v1");
-      setTimeout(()=>{location.href=btn.closest("header")?"../auth/login.html":"auth/login.html"},620);
+      const loginPath=location.pathname.includes("/dashboard/")?"../auth/login.html":location.pathname.includes("/auth/")?"login.html":"auth/login.html";
+      setTimeout(()=>{location.href=loginPath},620);
     },true));
   };
   setupLogout();
