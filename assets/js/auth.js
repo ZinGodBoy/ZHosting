@@ -4,6 +4,8 @@
   const USERS_KEY="zhosting_users_v1";
   const SESSION_KEY="zhosting_session_v1";
   const TEMP_SESSION_KEY="zhosting_temp_session_v1";
+  const GUARD_KEY="zhosting_login_guard_v1";
+  const PBKDF2_ITERATIONS=600000;
 
   const getUsers=()=>{
     try{return JSON.parse(localStorage.getItem(USERS_KEY)||"[]")}catch{return[]}
@@ -12,16 +14,39 @@
 
   const getSession=()=>{
     try{
-      return JSON.parse(
-        localStorage.getItem(SESSION_KEY) ||
-        sessionStorage.getItem(TEMP_SESSION_KEY) ||
-        "null"
-      );
+      const local=JSON.parse(localStorage.getItem(SESSION_KEY)||"null");
+      const temporary=JSON.parse(sessionStorage.getItem(TEMP_SESSION_KEY)||"null");
+      const session=local||temporary;
+      if(!session)return null;
+
+      const now=Date.now();
+      const absoluteMax=8*60*60*1000;
+      const idleMax=30*60*1000;
+      if(!session.issuedAt||now-session.issuedAt>absoluteMax||now-(session.lastActivity||session.issuedAt)>idleMax){
+        clearSession();
+        return null;
+      }
+      return session;
     }catch{return null}
   };
 
+  const touchSession=()=>{
+    const session=getSession();
+    if(!session)return null;
+    session.lastActivity=Date.now();
+    const value=JSON.stringify(session);
+    if(localStorage.getItem(SESSION_KEY))localStorage.setItem(SESSION_KEY,value);
+    else sessionStorage.setItem(TEMP_SESSION_KEY,value);
+    return session;
+  };
+
   const saveSession=(email,remember=true)=>{
-    const value=JSON.stringify({email,createdAt:Date.now()});
+    const value=JSON.stringify({
+      id:crypto.randomUUID?.()||String(Date.now()),
+      email,
+      issuedAt:Date.now(),
+      lastActivity:Date.now()
+    });
     localStorage.removeItem(SESSION_KEY);
     sessionStorage.removeItem(TEMP_SESSION_KEY);
     (remember?localStorage:sessionStorage).setItem(
@@ -34,14 +59,73 @@
     sessionStorage.removeItem(TEMP_SESSION_KEY);
   };
 
-  const hash=async value=>{
-    const data=new TextEncoder().encode(value);
-    const buffer=await crypto.subtle.digest("SHA-256",data);
-    return [...new Uint8Array(buffer)]
-      .map(byte=>byte.toString(16).padStart(2,"0")).join("");
+  const bufferToBase64=buffer=>{
+    let binary="";
+    const bytes=new Uint8Array(buffer);
+    for(let i=0;i<bytes.byteLength;i+=1)binary+=String.fromCharCode(bytes[i]);
+    return btoa(binary);
   };
 
-  const getByEmail=email=>getUsers().find(user=>user.email===email);
+  const base64ToBuffer=value=>{
+    const binary=atob(value);
+    const bytes=new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i+=1)bytes[i]=binary.charCodeAt(i);
+    return bytes;
+  };
+
+  const derivePasswordHash=async(password,saltBytes,iterations=PBKDF2_ITERATIONS)=>{
+    const material=await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(password),
+      {name:"PBKDF2"},
+      false,
+      ["deriveBits"]
+    );
+    const bits=await crypto.subtle.deriveBits(
+      {
+        name:"PBKDF2",
+        salt:saltBytes,
+        iterations,
+        hash:"SHA-256"
+      },
+      material,
+      256
+    );
+    return bufferToBase64(bits);
+  };
+
+  const createPasswordRecord=async password=>{
+    const salt=crypto.getRandomValues(new Uint8Array(16));
+    return {
+      algorithm:"PBKDF2-SHA256",
+      iterations:PBKDF2_ITERATIONS,
+      salt:bufferToBase64(salt),
+      hash:await derivePasswordHash(password,salt)
+    };
+  };
+
+  const verifyPassword=async(password,user)=>{
+    if(user.password?.hash&&user.password?.salt){
+      const salt=base64ToBuffer(user.password.salt);
+      const hash=await derivePasswordHash(
+        password,
+        salt,
+        Number(user.password.iterations)||PBKDF2_ITERATIONS
+      );
+      return hash===user.password.hash;
+    }
+
+    // Legacy SHA-256 migration for accounts created by the previous demo.
+    if(user.passwordHash){
+      const oldData=new TextEncoder().encode(password);
+      const oldBuffer=await crypto.subtle.digest("SHA-256",oldData);
+      const oldHash=[...new Uint8Array(oldBuffer)]
+        .map(b=>b.toString(16).padStart(2,"0")).join("");
+      return oldHash===user.passwordHash;
+    }
+
+    return false;
+  };
 
   const setMessage=(id,text,type="")=>{
     const element=document.getElementById(id);
@@ -62,62 +146,79 @@
     }
   };
 
-  const focusFirstInvalid=form=>{
+  const getGuard=()=>{
+    try{return JSON.parse(sessionStorage.getItem(GUARD_KEY)||'{"fails":0,"lockedUntil":0}')}catch{return{fails:0,lockedUntil:0}}
+  };
+  const setGuard=guard=>sessionStorage.setItem(GUARD_KEY,JSON.stringify(guard));
+  const resetGuard=()=>sessionStorage.removeItem(GUARD_KEY);
+
+  const checkLoginGuard=()=>{
+    const guard=getGuard();
+    if(guard.lockedUntil>Date.now()){
+      return Math.ceil((guard.lockedUntil-Date.now())/1000);
+    }
+    if(guard.lockedUntil)resetGuard();
+    return 0;
+  };
+
+  const registerFailure=()=>{
+    const guard=getGuard();
+    guard.fails+=1;
+    if(guard.fails>=5){
+      guard.lockedUntil=Date.now()+30000;
+      guard.fails=0;
+    }
+    setGuard(guard);
+  };
+
+  const focusInvalid=form=>{
     const invalid=form?.querySelector(":invalid");
     invalid?.focus();
     invalid?.animate(
-      [{transform:"translateX(0)"},{transform:"translateX(-4px)"},{transform:"translateX(4px)"},{transform:"translateX(0)"}],
+      [
+        {transform:"translateX(0)"},
+        {transform:"translateX(-4px)"},
+        {transform:"translateX(4px)"},
+        {transform:"translateX(0)"}
+      ],
       {duration:240,easing:"ease-out"}
     );
-  };
-
-  const validateRegister=()=>{
-    const name=document.querySelector("#registerName")?.value.trim()||"";
-    const email=document.querySelector("#registerEmail")?.value.trim().toLowerCase()||"";
-    const password=document.querySelector("#registerPassword")?.value||"";
-    const confirm=document.querySelector("#registerConfirm")?.value||"";
-    if(name.length<2)return "Họ và tên cần có ít nhất 2 ký tự.";
-    if(!/^\S+@\S+\.\S+$/.test(email))return "Email chưa đúng định dạng.";
-    if(password.length<8)return "Mật khẩu cần ít nhất 8 ký tự.";
-    if(password!==confirm)return "Mật khẩu xác nhận chưa khớp.";
-    if(getByEmail(email))return "Email này đã được đăng ký.";
-    return "";
   };
 
   const registerForm=document.querySelector("#registerForm");
   registerForm?.addEventListener("submit",async event=>{
     event.preventDefault();
-    const error=validateRegister();
-    if(error){
-      setMessage("registerMessage",error,"error");
-      focusFirstInvalid(registerForm);
-      return;
-    }
+
+    const name=document.querySelector("#registerName")?.value.trim()||"";
+    const email=document.querySelector("#registerEmail")?.value.trim().toLowerCase()||"";
+    const password=document.querySelector("#registerPassword")?.value||"";
+    const confirm=document.querySelector("#registerConfirm")?.value||"";
+
+    if(name.length<2)return setMessage("registerMessage","Họ và tên cần có ít nhất 2 ký tự.","error");
+    if(!/^\S+@\S+\.\S+$/.test(email))return setMessage("registerMessage","Email chưa đúng định dạng.","error");
+    if(password.length<8)return setMessage("registerMessage","Mật khẩu cần ít nhất 8 ký tự.","error");
+    if(password!==confirm)return setMessage("registerMessage","Mật khẩu xác nhận chưa khớp.","error");
+    if(getUsers().some(user=>user.email===email))return setMessage("registerMessage","Email này đã được đăng ký.","error");
 
     setBusy(registerForm,true,"Đang tạo tài khoản");
     try{
-      const name=document.querySelector("#registerName").value.trim();
-      const email=document.querySelector("#registerEmail").value.trim().toLowerCase();
-      const password=document.querySelector("#registerPassword").value;
       const users=getUsers();
-
+      const password=createPasswordRecord?await createPasswordRecord(password):null;
       users.push({
         id:crypto.randomUUID?.()||String(Date.now()),
-        name,email,
-        passwordHash:await hash(password),
+        name,email,password,
         createdAt:new Date().toISOString(),
         lastLogin:new Date().toISOString()
       });
-
       saveUsers(users);
       saveSession(email,true);
       setMessage("registerMessage","Tài khoản đã được tạo. Đang mở Control Center...","success");
       window.ZUI?.toast("Đăng ký thành công","Tài khoản ZHosting đã sẵn sàng.","success");
-      setTimeout(()=>{location.href="../dashboard/index.html"},520);
+      setTimeout(()=>location.href="../dashboard/index.html",520);
     }catch(error){
       console.error(error);
-      setMessage("registerMessage","Không thể tạo tài khoản trên trình duyệt này.","error");
       setBusy(registerForm,false);
+      setMessage("registerMessage","Không thể tạo tài khoản trên trình duyệt này.","error");
     }
   });
 
@@ -125,82 +226,68 @@
   loginForm?.addEventListener("submit",async event=>{
     event.preventDefault();
 
+    const lockSeconds=checkLoginGuard();
+    if(lockSeconds>0){
+      setMessage("loginMessage","Thử quá nhiều lần. Hãy đợi "+lockSeconds+" giây.","error");
+      window.ZUI?.toast("Tạm khóa đăng nhập","Bảo vệ demo đang giới hạn thử lại.","error");
+      return;
+    }
+
     const email=document.querySelector("#loginEmail")?.value.trim().toLowerCase()||"";
     const password=document.querySelector("#loginPassword")?.value||"";
     const remember=!!document.querySelector("#rememberMe")?.checked;
 
     if(!/^\S+@\S+\.\S+$/.test(email)||!password){
       setMessage("loginMessage","Vui lòng nhập email và mật khẩu.","error");
-      focusFirstInvalid(loginForm);
-      return;
-    }
-
-    const user=getByEmail(email);
-    if(!user){
-      setMessage("loginMessage","Không tìm thấy tài khoản. Hãy đăng ký trước.","error");
-      window.ZUI?.toast("Đăng nhập thất bại","Tài khoản chưa tồn tại.","error");
-      loginForm.classList.remove("auth-error");
-      void loginForm.offsetWidth;
-      loginForm.classList.add("auth-error");
+      focusInvalid(loginForm);
       return;
     }
 
     setBusy(loginForm,true,"Đang xác thực");
-    const passwordHash=await hash(password);
 
-    if(passwordHash!==user.passwordHash){
+    try{
+      const users=getUsers();
+      const user=users.find(item=>item.email===email);
+
+      if(!user){
+        registerFailure();
+        setBusy(loginForm,false);
+        setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
+        window.ZUI?.toast("Đăng nhập thất bại","Thông tin xác thực không chính xác.","error");
+        return;
+      }
+
+      const valid=await verifyPassword(password,user);
+      if(!valid){
+        registerFailure();
+        setBusy(loginForm,false);
+        setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
+        window.ZUI?.toast("Đăng nhập thất bại","Thông tin xác thực không chính xác.","error");
+        loginForm.classList.remove("auth-error");
+        void loginForm.offsetWidth;
+        loginForm.classList.add("auth-error");
+        return;
+      }
+
+      // Upgrade old SHA-256 demo accounts to salted PBKDF2 on successful login.
+      if(user.passwordHash&&!user.password){
+        user.password=await createPasswordRecord(password);
+        delete user.passwordHash;
+      }
+
+      user.lastLogin=new Date().toISOString();
+      saveUsers(users);
+      saveSession(user.email,remember);
+      resetGuard();
+
+      setMessage("loginMessage","Đăng nhập thành công. Đang mở Control Center...","success");
+      window.ZUI?.toast("Chào mừng trở lại",user.name||"Đăng nhập thành công.","success");
+      setTimeout(()=>location.href="../dashboard/index.html",420);
+    }catch(error){
+      console.error(error);
       setBusy(loginForm,false);
-      setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
-      window.ZUI?.toast("Sai thông tin","Email hoặc mật khẩu không chính xác.","error");
-      loginForm.classList.remove("auth-error");
-      void loginForm.offsetWidth;
-      loginForm.classList.add("auth-error");
-      return;
+      setMessage("loginMessage","Không thể xác thực lúc này. Hãy thử lại.","error");
     }
-
-    user.lastLogin=new Date().toISOString();
-    saveUsers(getUsers().map(item=>item.email===user.email?user:item));
-    saveSession(user.email,remember);
-
-    setMessage("loginMessage","Đăng nhập thành công. Đang mở Control Center...","success");
-    window.ZUI?.toast("Chào mừng trở lại",user.name||"Đăng nhập thành công.","success");
-    setTimeout(()=>{location.href="../dashboard/index.html"},420);
-  });
-
-  document.querySelector("#passwordToggle")?.addEventListener("click",()=>{
-    const input=document.querySelector("#loginPassword");
-    const button=document.querySelector("#passwordToggle");
-    if(!input||!button)return;
-    const visible=input.type==="text";
-    input.type=visible?"password":"text";
-    button.textContent=visible?"◉":"○";
-    button.setAttribute("aria-label",visible?"Hiện mật khẩu":"Ẩn mật khẩu");
-    input.focus();
-  });
-
-  document.querySelector("#forgotLink")?.addEventListener("click",event=>{
-    event.preventDefault();
-    setMessage("loginMessage","Demo frontend: đặt lại mật khẩu cần backend và email service thật.","error");
-    window.ZUI?.toast("Tính năng demo","Reset password chưa kết nối backend.","error");
-  });
-
-  ["#loginEmail","#loginPassword","#registerName","#registerEmail","#registerPassword","#registerConfirm"].forEach(selector=>{
-    document.querySelector(selector)?.addEventListener("keydown",event=>{
-      if(event.key==="Enter"){
-        const form=event.target.form;
-        if(form)form.requestSubmit();
-      }
-    });
-  });
-
-  document.querySelectorAll("input[type='password']").forEach(input=>{
-    input.addEventListener("keydown",event=>{
-      if(event.getModifierState?.("CapsLock")){
-        input.closest("label")?.classList.add("caps-warning");
-      }else{
-        input.closest("label")?.classList.remove("caps-warning");
-      }
-    });
   });
 
   window.ZAuth={
@@ -210,9 +297,10 @@
     getUsers,
     saveUsers,
     getSession,
-    getByEmail,
+    touchSession,
     saveSession,
     clearSession,
+    verifyPassword,
     logout:()=>{
       clearSession();
       const path=location.pathname.includes("/dashboard/")?"../auth/login.html":
