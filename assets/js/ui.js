@@ -64,7 +64,9 @@
     let stack=document.querySelector(".zui-toast-stack");
     if(!stack){stack=document.createElement("div");stack.className="zui-toast-stack";root.appendChild(stack)}
     const el=document.createElement("div");el.className="zui-toast "+type;
-    el.innerHTML="<b>"+title+"</b><span>"+message+"</span>";stack.appendChild(el);
+    const heading=document.createElement("b");heading.textContent=title;
+    const body=document.createElement("span");body.textContent=message;
+    el.append(heading,body);stack.appendChild(el);
     setTimeout(()=>el.remove(),3700);
   };
   window.ZUI={toast};
@@ -97,8 +99,11 @@
     if(!nodes.length)return;
     const screen=document.createElement("div");
     screen.className="zui-logout-screen";
-    screen.innerHTML='<div class="zui-logout-card"><div class="zui-logout-orb">Z</div><strong>Đang đăng xuất</strong><span>Đang kết thúc phiên ZHosting...</span></div>';
-    root.appendChild(screen);
+    const card=document.createElement("div");card.className="zui-logout-card";
+    const orb=document.createElement("div");orb.className="zui-logout-orb";orb.textContent="Z";
+    const title=document.createElement("strong");title.textContent="Đang đăng xuất";
+    const subtitle=document.createElement("span");subtitle.textContent="Đang kết thúc phiên ZHosting...";
+    card.append(orb,title,subtitle);screen.appendChild(card);root.appendChild(screen);
     nodes.forEach(btn=>btn.addEventListener("click",e=>{
       if(btn.dataset.zuiBound==="1")return;
       e.preventDefault();e.stopImmediatePropagation();btn.dataset.zuiBound="1";
@@ -122,6 +127,29 @@
       input.focus();
     });
   });
+
+  const setupSessionGuard=()=>{
+    if(!window.ZAuth?.getSession)return;
+    const activity=()=>window.ZAuth.touchSession?.();
+    ["pointerdown","keydown","scroll","touchstart"].forEach(type=>addEventListener(type,activity,{passive:true}));
+    const check=()=>{
+      const session=window.ZAuth.getSession?.();
+      if(session)return;
+      if(location.pathname.includes("/dashboard/")){
+        window.ZAuth.clearSession?.();
+        location.replace("../auth/login.html");
+      }
+    };
+    check();
+    setInterval(check,30000);
+    document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
+    addEventListener("storage",event=>{
+      if(event.key==="zhosting_session_v1"&&!event.newValue){
+        if(location.pathname.includes("/dashboard/"))window.ZAuth.logout?.();
+      }
+    });
+  };
+  setupSessionGuard();
 
   const setupInputs=()=>{
     document.querySelectorAll("input,textarea").forEach(input=>{
