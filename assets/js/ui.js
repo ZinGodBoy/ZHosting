@@ -171,7 +171,7 @@
   const strengthInput=document.querySelector("#registerPassword");
   if(strengthInput){
     const meter=document.createElement("div");meter.className="zui-password-strength";meter.dataset.level="0";
-    meter.innerHTML="<span></span><span></span><span></span><span></span>";
+    for(let i=0;i<4;i+=1)meter.appendChild(document.createElement("span"));
     strengthInput.closest("label")?.appendChild(meter);
     strengthInput.addEventListener("input",()=>{
       const v=strengthInput.value;let score=0;
