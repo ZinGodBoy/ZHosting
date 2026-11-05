@@ -24,3 +24,15 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
 /* ===== LIVE STATUS DEMO ===== */
 const liveValues={latency:18,nodes:12};
 setInterval(()=>{const latency=Math.round(16+Math.random()*8);const el=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));if(el)el.textContent=latency+'ms'},4000);
+
+/* ===== V3 COUNTER ENGINE ===== */
+const counters=document.querySelectorAll('[data-counter]');
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target,target=parseFloat(el.dataset.counter),duration=1100,start=performance.now();
+    const tick=now=>{const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);el.textContent=target%1?((target*ease).toFixed(2)):Math.round(target*ease);if(p<1)requestAnimationFrame(tick)};
+    requestAnimationFrame(tick);counterObserver.unobserve(el);
+  });
+},{threshold:.5});
+counters.forEach(el=>counterObserver.observe(el));
