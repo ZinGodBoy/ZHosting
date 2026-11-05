@@ -20,3 +20,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.addEventListener('c
 document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('details').forEach(other=>{if(other!==d)other.open=false})}));
 
 window.addEventListener('load',()=>document.body.classList.add('ready'));
+
+/* ===== LIVE STATUS DEMO ===== */
+const liveValues={latency:18,nodes:12};
+setInterval(()=>{const latency=Math.round(16+Math.random()*8);const el=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));if(el)el.textContent=latency+'ms'},4000);
