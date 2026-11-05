@@ -36,3 +36,6 @@ const counterObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 counters.forEach(el=>counterObserver.observe(el));
+
+/* ===== ACCOUNT-AWARE NAV ===== */
+(()=>{const account=document.querySelector('#navAccount');if(!account)return;try{const s=JSON.parse(localStorage.getItem('zhosting_session_v1')||'null'),users=JSON.parse(localStorage.getItem('zhosting_users_v1')||'[]'),u=s&&users.find(x=>x.email===s.email);if(!u)return;const first=(u.name||'Z').trim().charAt(0).toUpperCase();account.classList.add('logged-in');account.innerHTML='<a class="account-link" href="dashboard/index.html"><span class="account-avatar">'+first+'</span><span>'+((u.name||'Tài khoản').split(' ')[0])+'</span></a><a class="logout-link" href="#" id="navLogout">Đăng xuất</a>';document.querySelector('#navLogout')?.addEventListener('click',e=>{e.preventDefault();localStorage.removeItem('zhosting_session_v1');location.reload()})}catch(e){console.warn('ZHosting account nav unavailable',e)}})();
