@@ -268,6 +268,70 @@
   if(progressBar)progressBar.style.width=Math.max(25,percentage)+"%";
   if(progressText)progressText.textContent=Math.max(25,percentage)+"%";
 
+  const renderActivity=()=>{
+    const list=$("#activityList");
+    if(!list)return;
+    const items=[
+      {label:"Đăng nhập tài khoản",meta:formatDate(user.lastLogin),status:"Success"},
+      {label:"Phiên hiện tại được tạo",meta:formatDate(session.issuedAt),status:"Active"},
+      {label:"Bảo mật mật khẩu",meta:"PBKDF2 protected",status:"Protected"},
+      {label:"Thiết bị truy cập",meta:deviceName(),status:"Detected"}
+    ];
+    list.replaceChildren();
+    items.forEach((item,index)=>{
+      const row=document.createElement("div");
+      row.className="activity-row";
+      const marker=document.createElement("span");
+      marker.className="activity-marker"+(index===0?" active":"");
+      const content=document.createElement("div");
+      const title=document.createElement("b"); title.textContent=item.label;
+      const meta=document.createElement("small"); meta.textContent=item.meta;
+      content.append(title,meta);
+      const status=document.createElement("strong"); status.textContent=item.status;
+      row.append(marker,content,status);
+      list.appendChild(row);
+    });
+  };
+  renderActivity();
+
+  const openProfileFromQuick=()=>openModal();
+  $("#quickEditProfile")?.addEventListener("click",openProfileFromQuick);
+  $("#quickRefreshSession")?.addEventListener("click",()=>$("#refreshSession")?.click());
+
+  $("#exportAccount")?.addEventListener("click",()=>{
+    const safeUser={
+      name:user.name||"",
+      email:user.email||"",
+      avatarStyle:user.avatarStyle||"initial",
+      createdAt:user.createdAt||null,
+      lastLogin:user.lastLogin||null
+    };
+    const payload={
+      product:"ZHosting",
+      exportedAt:new Date().toISOString(),
+      account:safeUser,
+      session:{
+        type:localStorage.getItem(window.ZAuth.SESSION_KEY)?"persistent":"temporary",
+        issuedAt:session.issuedAt||null,
+        lastActivity:session.lastActivity||null,
+        device:deviceName()
+      }
+    };
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement("a");
+    link.href=url; link.download="zhosting-account-data.json";
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    window.ZUI?.toast("Đã xuất dữ liệu","Bản sao tài khoản đã được tải xuống.","success");
+  });
+
+  ["#quickLogout","#dangerLogout"].forEach(selector=>{
+    $(selector)?.addEventListener("click",()=>{
+      window.ZAuth.logout();
+    });
+  });
+
   const observeVisibility=()=>{
     document.querySelectorAll(".account-grid .panel").forEach((panel,index)=>{
       panel.style.setProperty("--account-delay",Math.min(index*70,280)+"ms");
