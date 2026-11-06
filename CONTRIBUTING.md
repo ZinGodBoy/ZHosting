@@ -111,3 +111,14 @@ Reviewer nên ưu tiên:
 ## 9. Scope
 
 ZHosting hiện là frontend prototype. Pull request không nên mô tả các tính năng demo như production backend khi chưa có server-side implementation.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
