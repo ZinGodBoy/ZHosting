@@ -200,6 +200,44 @@
     $("#inbox")?.scrollIntoView({behavior:"smooth",block:"center"});
   });
 
+  $("#markAllRead")?.addEventListener("click",()=>{
+    list?.querySelectorAll(".mail-item.unread").forEach(item=>item.click());
+    if(mailCount)mailCount.textContent="0";
+    window.ZUI?.toast("Đã cập nhật","Tất cả thông báo đã được đánh dấu đã đọc.","success");
+  });
+
+  const passwordModal=$("#passwordModal");
+  const openPasswordModal=()=>{
+    passwordModal?.setAttribute("aria-hidden","false");
+    $("#passwordForm")?.reset();
+    $("#currentPassword")?.focus();
+  };
+  const closePasswordModal=()=>passwordModal?.setAttribute("aria-hidden","true");
+  $("#quickPassword")?.addEventListener("click",openPasswordModal);
+  $("#closePasswordModal")?.addEventListener("click",closePasswordModal);
+  passwordModal?.addEventListener("click",event=>{if(event.target===passwordModal)closePasswordModal()});
+
+  $("#passwordForm")?.addEventListener("submit",async event=>{
+    event.preventDefault();
+    const current=$("#currentPassword")?.value||"";
+    const next=$("#newPassword")?.value||"";
+    const confirm=$("#confirmPassword")?.value||"";
+    const message=$("#passwordMessage");
+    if(next.length<8){if(message){message.textContent="Mật khẩu mới cần ít nhất 8 ký tự.";message.className="form-note error";}return;}
+    if(next!==confirm){if(message){message.textContent="Mật khẩu xác nhận chưa khớp.";message.className="form-note error";}return;}
+    const result=await window.ZAuth?.changePassword?.(user.email,current,next);
+    if(!result?.ok){
+      const text=result?.reason==="invalid-current"?"Mật khẩu hiện tại không đúng.":"Không thể cập nhật mật khẩu.";
+      if(message){message.textContent=text;message.className="form-note error";}
+      return;
+    }
+    if(message){message.textContent="Đổi mật khẩu thành công.";message.className="form-note success";}
+    updateSecurity();
+    syncOverview();
+    window.ZUI?.toast("Bảo mật đã cập nhật","Mật khẩu mới đã được lưu an toàn.","success");
+    setTimeout(closePasswordModal,700);
+  });
+
   const modal=$("#profileModal");
   const openModal=()=>{
     if(!modal)return;
