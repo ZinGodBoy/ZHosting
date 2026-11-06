@@ -12,6 +12,29 @@
   };
   const saveUsers=users=>localStorage.setItem(USERS_KEY,JSON.stringify(users));
 
+  const getDeviceInfo=()=>{
+    const ua=navigator.userAgent||"";
+    const mobile=/Android|iPhone|iPad|iPod/i.test(ua);
+    const browser=/Edg\//.test(ua)?"Edge":/Chrome\//.test(ua)?"Chrome":/Firefox\//.test(ua)?"Firefox":/Safari\//.test(ua)?"Safari":"Browser";
+    return {device:mobile?"Mobile":"Desktop",browser};
+  };
+
+  const recordLogin=async user=>{
+    const now=new Date().toISOString();
+    const device=getDeviceInfo();
+    user.lastLogin=now;
+    user.loginCount=Number(user.loginCount||0)+1;
+    user.loginHistory=Array.isArray(user.loginHistory)?user.loginHistory:[];
+    user.loginHistory.unshift({
+      id:crypto.randomUUID?.()||String(Date.now()),
+      at:now,
+      success:true,
+      device:device.device,
+      browser:device.browser
+    });
+    user.loginHistory=user.loginHistory.slice(0,30);
+  };
+
   const getSession=()=>{
     try{
       const local=JSON.parse(localStorage.getItem(SESSION_KEY)||"null");
@@ -210,7 +233,11 @@
         id:crypto.randomUUID?.()||String(Date.now()),
         name,email,password:passwordRecord,
         createdAt:new Date().toISOString(),
-        lastLogin:new Date().toISOString()
+        lastLogin:null,
+        role:users.length===0?"admin":"user",
+        status:"active",
+        loginCount:0,
+        loginHistory:[]
       });
       saveUsers(users);
       saveSession(email,true);
@@ -271,13 +298,20 @@
         return;
       }
 
+      if(user.status==="locked"){
+        setBusy(loginForm,false);
+        setMessage("loginMessage","Tài khoản đang bị khóa. Vui lòng liên hệ quản trị viên.","error");
+        window.ZUI?.toast("Tài khoản bị khóa","Không thể đăng nhập tài khoản này.","error");
+        return;
+      }
+
       // Upgrade old SHA-256 demo accounts to salted PBKDF2 on successful login.
       if(user.passwordHash&&!user.password){
         user.password=await createPasswordRecord(password);
         delete user.passwordHash;
       }
 
-      user.lastLogin=new Date().toISOString();
+      await recordLogin(user);
       saveUsers(users);
       saveSession(user.email,remember);
       resetGuard();
@@ -317,6 +351,10 @@
     clearSession,
     verifyPassword,
     changePassword,
+    isAdmin:email=>{
+      const target=getUsers().find(user=>user.email===email);
+      return target?.role==="admin";
+    },
     logout:()=>{
       clearSession();
       const path=location.pathname.includes("/dashboard/")?"../auth/login.html":
