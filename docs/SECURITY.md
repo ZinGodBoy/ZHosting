@@ -1,11 +1,44 @@
 # Security Notes
 
-This repository currently contains a **frontend demo authentication flow**.
+This document is a concise security overview for the current ZHosting frontend prototype.
 
-- The demo stores only a client-side SHA-256 password hash in localStorage; this is still NOT production authentication.
-- Authentication and authorization are performed entirely in the browser for demo purposes.
-- Profile data is stored locally in the browser.
-- There is no real email verification.
-- There is no production session, database, password hashing or server-side authorization yet.
+## Current implementation
 
-Before accepting real customers, replace the demo with Clerk, Better Auth or another production authentication provider, use HTTPS, server-side sessions, rate limiting, email verification and a real database. Never store plaintext passwords in browser storage.
+- Content Security Policy metadata.
+- Referrer Policy.
+- PBKDF2-HMAC-SHA-256 password records with per-user random salt for new demo accounts.
+- Automatic migration from the legacy SHA-256 demo format after successful login.
+- Session idle timeout and absolute timeout.
+- Client-side login throttling.
+- Safe DOM construction for dynamic account and notification UI.
+- CodeQL workflow.
+- Static security audit.
+
+## Important limitation
+
+Authentication and authorization are still performed in the browser for demonstration purposes.
+
+Browser storage is **not a trusted security boundary**. A malicious script running in the same origin may access client-side state.
+
+Do not store production:
+
+- passwords,
+- access tokens,
+- API keys,
+- payment information,
+- private customer data.
+
+## Production requirements
+
+Before real customer accounts are supported, move authentication and authorization to a backend with:
+
+- server-side sessions,
+- HttpOnly + Secure + SameSite cookies,
+- server-side authorization,
+- rate limiting,
+- password reset and email verification,
+- MFA where appropriate,
+- audit logging,
+- database-backed identity and permissions.
+
+See [SECURITY.md](../SECURITY.md) and [AUTHENTICATION.md](AUTHENTICATION.md) for the complete security model.
