@@ -118,3 +118,8 @@ Cần bổ sung:
 ## Password visibility control — 2026-11-06
 
 Login/Register sử dụng control hiển thị mật khẩu dùng chung với icon mắt, nhãn `Hiện`/`Ẩn`, `aria-controls`, `aria-label`, `title` và giữ focus sau khi đổi kiểu input. Logic được bind tập trung trong `assets/js/ui.js`.
+
+
+## Admin navigation — 2026-11-06
+
+Account Center có thể hiển thị entry `Admin Center` dựa trên role của user hiện tại. Đây chỉ là UX guard phía client; quyền quản trị thực tế phải được kiểm tra lại ở backend trước mọi thao tác nhạy cảm.
