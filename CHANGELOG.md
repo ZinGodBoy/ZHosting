@@ -64,3 +64,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Admin Center — 2026-11-06
+
+- Thêm khu vực Admin User Management.
+- Hiển thị danh sách tài khoản theo role và status.
+- Theo dõi login count, lần đăng nhập gần nhất và metadata thiết bị/trình duyệt ở mức demo.
+- Hỗ trợ lọc, tìm kiếm, xem chi tiết, khóa/mở khóa và thu hồi phiên.
+- Không hiển thị mật khẩu người dùng.
+- Admin Center chỉ là frontend demo khi dữ liệu còn nằm trong browser storage; production cần backend, database và RBAC server-side.
