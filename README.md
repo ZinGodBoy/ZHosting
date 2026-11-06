@@ -242,3 +242,14 @@ Repository hiện **chưa công bố một open-source license chính thức**. 
 Built with HTML, CSS, JavaScript and a lot of iteration.
 
 **ZHosting — Built for creators, communities & businesses.**
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
