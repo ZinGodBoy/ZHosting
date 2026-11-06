@@ -270,3 +270,10 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 - Admin Center có entry trực tiếp từ Account Center khi role là `admin`.
 - Entry chỉ hiển thị cho admin và không hiển thị cho user thường.
 - Điều hướng vẫn tuân theo guard phía Admin Center; frontend demo không thay thế RBAC server-side.
+
+
+## Admin navigation fix — 2026-11-06
+
+- Account Center now binds `Admin Center` navigation from the authenticated user role.
+- The entry is hidden for non-admin accounts and active admin accounts are routed to `/admin/`.
+- Navigation remains client-side UX only; sensitive authorization must still be enforced server-side in production.
