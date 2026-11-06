@@ -49,6 +49,12 @@
     set("#dashAvatar",initial);
     set("#profileAvatar",initial);
     set("#menuAvatar",initial);
+    const avatarNodes=["#dashAvatar","#profileAvatar","#menuAvatar"].map(selector=>$(selector)).filter(Boolean);
+    avatarNodes.forEach(node=>{
+      node.classList.remove("avatar-cyan","avatar-blue");
+      if(user.avatarStyle==="cyan")node.classList.add("avatar-cyan");
+      if(user.avatarStyle==="blue")node.classList.add("avatar-blue");
+    });
     set("#menuName",user.name);
     set("#menuEmail",user.email);
     set("#profileHeadline",user.name);
