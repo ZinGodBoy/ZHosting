@@ -463,3 +463,39 @@
 .account-page .zui-grain{
   pointer-events:none;
 }
+
+/* ===== ACCOUNT CENTER FINAL RENDER FIX V12 ===== */
+body.account-page.zui-page{
+  opacity:1!important;
+  animation:none!important;
+  transform:none!important;
+}
+body.account-page [data-zui-reveal],
+body.account-page [data-zui-reveal].zui-visible,
+body.account-page .reveal{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+}
+body.account-page .zui-glow-line{
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.account-page .dashboard-shell{
+  opacity:1!important;
+  visibility:visible!important;
+  display:block!important;
+}
+body.account-page .dashboard-shell > section,
+body.account-page .dashboard-shell > .dash-welcome,
+body.account-page .dashboard-shell > .account-danger{
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.account-page .panel,
+body.account-page .dash-card{
+  opacity:1!important;
+  visibility:visible!important;
+}
