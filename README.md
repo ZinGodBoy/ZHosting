@@ -263,3 +263,10 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 - Hỗ trợ cờ thu hồi phiên và khóa tài khoản ở client demo.
 - Không hiển thị hoặc lưu mật khẩu dạng plaintext.
 - Đây vẫn là cơ chế frontend/localStorage; production cần backend, database và RBAC server-side.
+
+
+## Admin Center — 2026-11-06
+
+- Admin Center có entry trực tiếp từ Account Center khi role là `admin`.
+- Entry chỉ hiển thị cho admin và không hiển thị cho user thường.
+- Điều hướng vẫn tuân theo guard phía Admin Center; frontend demo không thay thế RBAC server-side.
