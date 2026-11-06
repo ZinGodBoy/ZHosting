@@ -554,3 +554,9 @@ body.account-page .dash-card{
 .palette-results{padding:8px;max-height:420px;overflow:auto}.palette-results button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px;border:0;border-radius:10px;background:transparent;color:#fff;text-align:left;cursor:pointer}.palette-results button:hover,.palette-results button.active{background:rgba(67,217,255,.07)}.palette-results b{font-size:10px}.palette-results small{color:#647c91;font-size:8px}
 @media(max-width:900px){.workspace-links{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:520px){.workspace-links{grid-template-columns:repeat(2,1fr)}.workspace-tools-head{align-items:flex-start}.shortcut-key{display:none}}
+
+
+/* ===== Admin Center entry ===== */
+.admin-menu-item{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--cyan)!important;background:rgba(67,217,255,.035)}
+.admin-menu-item:hover{border-color:rgba(67,217,255,.24);background:rgba(67,217,255,.07)}
+.admin-menu-item[hidden]{display:none}
