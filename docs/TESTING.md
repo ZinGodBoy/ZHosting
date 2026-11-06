@@ -1,0 +1,124 @@
+# ZHosting Testing Guide
+
+## 1. Test strategy
+
+ZHosting dùng ba lớp:
+
+```text
+Static checks
+     ↓
+Browser functional checks
+     ↓
+Security checks
+```
+
+## 2. Smoke test
+
+### Public
+
+- [ ] Homepage render.
+- [ ] Navigation.
+- [ ] Mobile menu.
+- [ ] Smooth scrolling.
+- [ ] Pricing toggle.
+- [ ] Config Builder.
+- [ ] Network Map.
+- [ ] FAQ search.
+- [ ] Contact CTA.
+- [ ] 404.
+
+### Auth
+
+- [ ] Register valid account.
+- [ ] Reject invalid email.
+- [ ] Reject short password.
+- [ ] Reject mismatched password.
+- [ ] Login valid account.
+- [ ] Reject wrong password.
+- [ ] Password reveal.
+- [ ] Remember session.
+- [ ] Temporary session.
+- [ ] Logout.
+
+### Dashboard
+
+- [ ] Auth guard.
+- [ ] Profile information.
+- [ ] Edit profile.
+- [ ] Inbox rendering.
+- [ ] Modal.
+- [ ] Logout.
+
+## 3. Security checks
+
+CI chạy:
+
+```text
+CodeQL
+Static security audit
+```
+
+Static audit kiểm tra các pattern nguy hiểm như:
+
+- Inline event handlers.
+- `javascript:` URLs.
+- `eval()`.
+- `new Function()`.
+- `document.write()`.
+- External script injection.
+- Unsafe browser storage patterns.
+
+## 4. Responsive test
+
+Kiểm tra ít nhất:
+
+| Viewport | Priority |
+|---|---|
+| 1440px | High |
+| 1280px | High |
+| 1024px | High |
+| 768px | High |
+| 480px | Critical |
+| 360px | Critical |
+
+## 5. Accessibility
+
+- Tab through interactive elements.
+- Check focus ring.
+- Test form labels.
+- Check button names.
+- Check reduced motion.
+- Test keyboard-only navigation.
+
+## 6. Regression checklist
+
+Sau mỗi thay đổi auth:
+
+- [ ] Register.
+- [ ] Login.
+- [ ] Session.
+- [ ] Dashboard.
+- [ ] Logout.
+- [ ] Navbar account state.
+
+Sau mỗi thay đổi CSS:
+
+- [ ] Desktop.
+- [ ] Mobile.
+- [ ] Auth pages.
+- [ ] Dashboard.
+- [ ] 404.
+
+## 7. Browser console
+
+Production candidate không nên có:
+
+- Uncaught exceptions.
+- Failed JS imports.
+- Failed CSS imports.
+- CSP violation không giải thích được.
+- Repeated network errors.
+
+## 8. Limitation
+
+Browser testing không thể chứng minh backend security vì repository hiện chưa có backend production.
