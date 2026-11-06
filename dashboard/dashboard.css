@@ -424,3 +424,42 @@
   .account-grid>.preferences-panel,
   .account-extra-grid>.panel{min-height:0}
 }
+
+/* ===== ACCOUNT EMERGENCY VISIBILITY FIX V11 =====
+   Account content must never depend on the global reveal observer.
+*/
+.account-page{
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.account-page .dashboard-shell{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  transform:none!important;
+}
+.account-page .dashboard-shell > *,
+.account-page .dash-welcome,
+.account-page .dash-grid,
+.account-page .dash-card,
+.account-page .account-grid,
+.account-page .account-grid > .panel,
+.account-page .account-extra-grid,
+.account-page .account-extra-grid > .panel,
+.account-page .account-danger{
+  visibility:visible!important;
+  opacity:1!important;
+  transform:none!important;
+}
+.account-page .dash-card,
+.account-page .panel{
+  animation:none;
+}
+.account-page .dashboard-shell{
+  position:relative;
+  z-index:2;
+}
+.account-page .zui-grid,
+.account-page .zui-grain{
+  pointer-events:none;
+}
