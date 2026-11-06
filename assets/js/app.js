@@ -18,6 +18,107 @@ document.querySelectorAll('.price-card .btn,.service-card a').forEach(a=>a.addEv
 
 document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.addEventListener('click',()=>toast('Đang mở ứng dụng email...')));
 document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('details').forEach(other=>{if(other!==d)other.open=false})}));
+/* ===== V5 CONFIG BUILDER ===== */
+(()=>{
+  const serviceButtons=[...document.querySelectorAll('.config-option')];
+  const ram=document.querySelector('#ramRange'),cpu=document.querySelector('#cpuRange');
+  const ramValue=document.querySelector('#ramValue'),cpuValue=document.querySelector('#cpuValue');
+  const summaryRam=document.querySelector('#summaryRam'),summaryCpu=document.querySelector('#summaryCpu');
+  const summaryAddons=document.querySelector('#summaryAddons'),total=document.querySelector('#configTotal');
+  const title=document.querySelector('#configTitle'),description=document.querySelector('#configDescription');
+  const contact=document.querySelector('#configContact'),reset=document.querySelector('#configReset');
+  const addons=[...document.querySelectorAll('.config-check input[data-price]')];
+  if(!serviceButtons.length)return;
+
+  const services={
+    minecraft:{name:'Minecraft Hosting',desc:'Cấu hình cân bằng cho server cộng đồng.'},
+    web:{name:'Web Hosting',desc:'Tối ưu cho portfolio, landing page và website doanh nghiệp.'},
+    vps:{name:'VPS Server',desc:'Tài nguyên riêng cho API, database và ứng dụng cần quyền kiểm soát.'}
+  };
+  let service=serviceButtons.find(x=>x.classList.contains('active'))?.dataset.service||'minecraft';
+
+  const calc=()=>{
+    const active=serviceButtons.find(x=>x.dataset.service===service);
+    const base=Number(active?.dataset.base||39);
+    const ramNum=Number(ram?.value||4);
+    const cpuNum=Number(cpu?.value||2);
+    const ramExtra=Math.max(0,Math.ceil((ramNum-4)/4))*12;
+    const cpuExtra=Math.max(0,cpuNum-2)*7;
+    const addonTotal=addons.filter(x=>x.checked).reduce((sum,x)=>sum+Number(x.dataset.price||0),0);
+    const result=base+ramExtra+cpuExtra+addonTotal;
+
+    if(ramValue)ramValue.value=ramNum+' GB',ramValue.textContent=ramNum+' GB';
+    if(cpuValue)cpuValue.value=cpuNum+' vCPU',cpuValue.textContent=cpuNum+' vCPU';
+    if(summaryRam)summaryRam.textContent=ramNum+' GB';
+    if(summaryCpu)summaryCpu.textContent=cpuNum+' vCPU';
+    if(summaryAddons)summaryAddons.textContent=String(addons.filter(x=>x.checked).length);
+    if(total)total.textContent=result+'K';
+    if(title)title.textContent=services[service].name;
+    if(description)description.textContent=services[service].desc;
+    document.body.classList.remove('config-active');void document.body.offsetWidth;document.body.classList.add('config-active');
+  };
+
+  serviceButtons.forEach(button=>button.addEventListener('click',()=>{
+    serviceButtons.forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
+    service=button.dataset.service;
+    calc();
+  }));
+  ram?.addEventListener('input',calc);cpu?.addEventListener('input',calc);addons.forEach(x=>x.addEventListener('change',calc));
+
+  reset?.addEventListener('click',()=>{
+    service='minecraft';
+    serviceButtons.forEach(item=>item.classList.toggle('active',item.dataset.service===service));
+    if(ram)ram.value='4';
+    if(cpu)cpu.value='2';
+    addons.forEach(x=>x.checked=false);
+    calc();
+    window.ZUI?.toast('Đã đặt lại','Cấu hình đã trở về mức cơ bản.','success');
+  });
+
+  contact?.addEventListener('click',()=>{
+    const config='ZHosting '+services[service].name+' · '+(ram?.value||4)+'GB RAM · '+(cpu?.value||2)+' vCPU · '+addons.filter(x=>x.checked).map(x=>x.closest('.config-check')?.querySelector('b')?.textContent||'Addon').join(', ');
+    const subject=encodeURIComponent('Tư vấn cấu hình ZHosting');
+    const body=encodeURIComponent('Xin tư vấn cấu hình:\n'+config);
+    location.href='mailto:contact@zhosting.vn?subject='+subject+'&body='+body;
+  });
+
+  calc();
+})();
+
+/* ===== FAQ SEARCH ===== */
+(()=>{
+  const input=document.querySelector('#faqSearch');
+  const items=[...document.querySelectorAll('.faq-list details')];
+  if(!input||!items.length)return;
+  let empty=document.querySelector('.faq-no-results');
+  if(!empty){empty=document.createElement('div');empty.className='faq-no-results';empty.textContent='Không tìm thấy câu hỏi phù hợp.';empty.hidden=true;input.closest('.section-head')?.parentElement?.querySelector('.faq-list')?.appendChild(empty)}
+  const run=()=>{
+    const q=input.value.trim().toLowerCase();
+    let found=0;
+    items.forEach(item=>{
+      const match=!q||item.textContent.toLowerCase().includes(q);
+      item.classList.toggle('faq-hidden',!match);
+      if(match)found++;
+    });
+    empty.hidden=found!==0;
+  };
+  input.addEventListener('input',run);
+})();
+
+/* ===== KEYBOARD QUICK ACTIONS ===== */
+document.addEventListener('keydown',event=>{
+  if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){
+    const config=document.querySelector('#config');
+    if(config&&!document.querySelector('#loginForm')){
+      event.preventDefault();
+      document.querySelector('#faqSearch')?.blur();
+      document.querySelector('#ramRange')?.focus();
+      config.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+});
+
 
 window.addEventListener('load',()=>document.body.classList.add('ready'));
 
