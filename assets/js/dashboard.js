@@ -203,12 +203,6 @@
     $("#inbox")?.scrollIntoView({behavior:"smooth",block:"center"});
   });
 
-  $("#markAllRead")?.addEventListener("click",()=>{
-    list?.querySelectorAll(".mail-item.unread").forEach(item=>item.click());
-    if(mailCount)mailCount.textContent="0";
-    window.ZUI?.toast("Đã cập nhật","Tất cả thông báo đã được đánh dấu đã đọc.","success");
-  });
-
   const passwordModal=$("#passwordModal");
   const openPasswordModal=()=>{
     passwordModal?.setAttribute("aria-hidden","false");
@@ -237,7 +231,7 @@
     if(message){message.textContent="Đổi mật khẩu thành công.";message.className="form-note success";}
     updateSecurity();
     syncOverview();
-  syncCommandCenter();
+    syncCommandCenter();
     window.ZUI?.toast("Bảo mật đã cập nhật","Mật khẩu mới đã được lưu an toàn.","success");
     setTimeout(closePasswordModal,700);
   });
@@ -399,11 +393,21 @@
   };
   const syncCommandCenter=()=>{
     const health=Math.max(25,percentage);
+    const passwordOk=Boolean(user.password?.hash&&user.password?.salt);
+    const unread=list?.querySelectorAll(".mail-item.unread").length||0;
     set("#commandProfile",health+"%");
-    set("#commandSecurity",user.password?.hash&&user.password?.salt?"GOOD":"REVIEW");
-    set("#commandSecurityScore",user.password?.hash&&user.password?.salt?"GOOD":"REVIEW");
-    set("#commandInbox",list?.querySelectorAll(".mail-item.unread").length||0);
+    set("#commandSecurityStatus",passwordOk?"GOOD":"REVIEW");
+    set("#commandSecurityScore",passwordOk?"GOOD":"REVIEW");
+    set("#commandInbox",unread);
     set("#commandSession","ACTIVE");
+    set("#insightProfile",health+"%");
+    set("#insightSecurity",passwordOk?"GOOD":"REVIEW");
+    set("#insightSecurityText",passwordOk?"PBKDF2 protected":"Cần kiểm tra credential");
+    set("#insightDevice",deviceName());
+    set("#insightSessionTime",formatDate(session.lastActivity));
+    set("#insightInbox",unread);
+    const bar=$("#insightProfileBar");
+    if(bar)bar.style.width=health+"%";
   };
 
   const syncOverview=()=>{
@@ -415,6 +419,7 @@
     if(bar)bar.style.width=health+"%";
   };
   syncOverview();
+  syncCommandCenter();
 
   $("#commandEdit")?.addEventListener("click",openModal);
   $("#commandSecurity")?.addEventListener("click",()=>$("#security")?.scrollIntoView({behavior:"smooth",block:"center"}));
