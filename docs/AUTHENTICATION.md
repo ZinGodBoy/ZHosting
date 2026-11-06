@@ -1,0 +1,115 @@
+# ZHosting Authentication
+
+## 1. Phạm vi
+
+Authentication hiện tại là **frontend demo**.
+
+Mục tiêu của implementation:
+
+- Trình diễn UX login/register.
+- Thực hành browser storage.
+- Trình diễn password derivation.
+- Trình diễn session lifecycle.
+
+Không phải hệ thống identity production.
+
+## 2. Register flow
+
+```text
+Register
+   ↓
+Validate input
+   ↓
+Generate random salt
+   ↓
+PBKDF2-HMAC-SHA-256
+   ↓
+Store demo user record
+   ↓
+Create session
+   ↓
+Dashboard
+```
+
+## 3. Password record
+
+Demo user mới có dạng khái niệm:
+
+```json
+{
+  "algorithm": "PBKDF2-SHA256",
+  "iterations": 600000,
+  "salt": "<random>",
+  "hash": "<derived>"
+}
+```
+
+Password plaintext không được lưu vào user record mới.
+
+## 4. Migration
+
+Các account cũ có field `passwordHash` từ implementation trước sẽ:
+
+1. Verify bằng legacy format.
+2. Nếu thành công, derive PBKDF2 record mới.
+3. Xóa legacy `passwordHash`.
+4. Lưu user record mới.
+
+## 5. Session
+
+Demo session gồm:
+
+- ID.
+- Email.
+- issuedAt.
+- lastActivity.
+
+Có:
+
+- Idle timeout.
+- Absolute timeout.
+- Tab/session handling.
+- Logout.
+- Session guard.
+
+## 6. Login throttling
+
+Frontend demo giới hạn số lần login sai trong session của browser.
+
+Đây chỉ là defense-in-depth.
+
+Nó **không thay thế server-side rate limiting**.
+
+## 7. Dashboard authorization
+
+Dashboard kiểm tra session trước khi render dữ liệu.
+
+Tuy nhiên vì validation nằm trong browser, người dùng vẫn có thể sửa client state.
+
+Do đó đây không phải server-side authorization.
+
+## 8. Production migration
+
+Production nên chuyển sang:
+
+```text
+Browser
+  ↓ HTTPS
+Backend Auth
+  ↓
+Server-side Session
+  ↓
+HttpOnly + Secure + SameSite cookie
+  ↓
+Database
+```
+
+Cần bổ sung:
+
+- Email verification.
+- Password reset.
+- MFA.
+- Rate limiting.
+- Account lock policy.
+- Audit log.
+- Server-side authorization.
