@@ -4,5 +4,84 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/styles.css">
-<link rel="stylesheet" href="../assets/css/ui.css"><link rel="stylesheet" href="dashboard.css"></head><body class="dashboard-page"><header class="dash-header"><a class="brand" href="../index.html"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><div class="dash-user"><span id="dashAvatar">Z</span><div><b id="dashName">User</b><small id="dashEmail">—</small></div><button class="btn btn-ghost" id="logoutBtn">Đăng xuất</button></div></header><main class="dashboard-shell"><div class="dash-welcome"><div><span class="eyebrow">CONTROL CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><span class="account-badge"><i></i> Account active</span></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="dashboard-columns"><article class="panel"><div class="panel-head"><div><span class="eyebrow">PROFILE</span><h2>Thông tin tài khoản</h2></div><button class="text-btn" id="editProfile">Chỉnh sửa</button></div><div class="profile-grid"><div><small>Họ và tên</small><b id="profileName">—</b></div><div><small>Email</small><b id="profileEmail">—</b></div><div><small>Trạng thái</small><b class="green">Đã xác thực demo</b></div><div><small>Tham gia</small><b id="profileDate">—</b></div></div></article><article class="panel inbox-panel" id="inbox"><div class="panel-head"><div><span class="eyebrow">INBOX</span><h2>Thông báo</h2></div><span class="mail-pill">2 mới</span></div><div id="mailList"></div></article></section></main><div class="modal" id="profileModal" aria-hidden="true"><div class="modal-box"><button class="modal-close" id="closeModal" aria-label="Đóng">×</button><span class="eyebrow">EDIT PROFILE</span><h2>Cập nhật hồ sơ</h2><form id="profileForm"><label>Họ và tên<input id="editName" required></label><button class="btn btn-primary full">Lưu thay đổi</button><p class="form-note" id="profileMessage"></p></form></div></div><script src="../assets/js/auth.js"></script><script src="../assets/js/dashboard.js"></script>
+<link rel="stylesheet" href="../assets/css/ui.css"><link rel="stylesheet" href="dashboard.css"></head><body class="dashboard-page"><header class="dash-header"><a class="brand" href="../index.html"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><div class="dash-user">
+  <button class="account-chip" id="accountMenuBtn" type="button" aria-expanded="false">
+    <span id="dashAvatar">Z</span>
+    <div><b id="dashName">User</b><small id="dashEmail">—</small></div>
+    <i>⌄</i>
+  </button>
+  <div class="account-menu" id="accountMenu" hidden>
+    <div class="account-menu-head"><span id="menuAvatar">Z</span><div><b id="menuName">Tài khoản</b><small id="menuEmail">—</small></div></div>
+    <button type="button" class="account-menu-item" id="focusProfile">Hồ sơ tài khoản</button>
+    <button type="button" class="account-menu-item" id="focusSecurity">Bảo mật</button>
+    <button type="button" class="account-menu-item" id="copyEmail">Sao chép email</button>
+    <div class="account-menu-divider"></div>
+    <button type="button" class="account-menu-item danger" id="logoutBtn">Đăng xuất</button>
+  </div>
+</div></header><main class="dashboard-shell"><div class="dash-welcome"><div><span class="eyebrow">CONTROL CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><span class="account-badge"><i></i> Account active</span></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
+  <article class="panel account-profile-panel" id="profile">
+    <div class="panel-head"><div><span class="eyebrow">ACCOUNT PROFILE</span><h2>Hồ sơ tài khoản</h2></div><button class="text-btn" id="editProfile">Chỉnh sửa</button></div>
+    <div class="profile-hero">
+      <div class="profile-avatar" id="profileAvatar">Z</div>
+      <div><strong id="profileHeadline">Tài khoản ZHosting</strong><span id="profileSubline">Member · Demo account</span></div>
+      <span class="profile-status"><i></i> Active</span>
+    </div>
+    <div class="profile-grid">
+      <div><small>Họ và tên</small><b id="profileName">—</b></div>
+      <div><small>Email</small><b id="profileEmail">—</b></div>
+      <div><small>Tham gia</small><b id="profileDate">—</b></div>
+      <div><small>Đăng nhập gần nhất</small><b id="profileLastLogin">—</b></div>
+    </div>
+    <div class="profile-progress"><div><span>Hoàn thiện hồ sơ</span><b id="profileProgressText">75%</b></div><i><em id="profileProgressBar"></em></i></div>
+  </article>
+
+  <article class="panel inbox-panel" id="inbox">
+    <div class="panel-head"><div><span class="eyebrow">INBOX</span><h2>Thông báo</h2></div><span class="mail-pill">2 mới</span></div>
+    <div id="mailList"></div>
+  </article>
+
+  <article class="panel security-panel" id="security">
+    <div class="panel-head"><div><span class="eyebrow">SECURITY</span><h2>Bảo mật tài khoản</h2></div><span class="security-score" id="securityScore">GOOD</span></div>
+    <div class="security-list">
+      <div><span><i class="security-icon good">✓</i><div><b>Mật khẩu</b><small id="passwordSecurity">PBKDF2 protected</small></div></span><strong>OK</strong></div>
+      <div><span><i class="security-icon good">✓</i><div><b>Phiên đăng nhập</b><small>Idle + absolute timeout</small></div></span><strong>OK</strong></div>
+      <div><span><i class="security-icon">◌</i><div><b>Xác thực email</b><small>Chưa kết nối backend</small></div></span><strong>DEMO</strong></div>
+      <div><span><i class="security-icon">◌</i><div><b>MFA</b><small>Sẵn sàng mở rộng khi có backend</small></div></span><strong>SOON</strong></div>
+    </div>
+  </article>
+
+  <article class="panel session-panel" id="sessionPanel">
+    <div class="panel-head"><div><span class="eyebrow">CURRENT SESSION</span><h2>Phiên hiện tại</h2></div><button class="text-btn" id="refreshSession">Làm mới</button></div>
+    <div class="session-grid">
+      <div><small>Loại phiên</small><b id="sessionType">Persistent</b></div>
+      <div><small>Bắt đầu</small><b id="sessionStarted">—</b></div>
+      <div><small>Hoạt động gần nhất</small><b id="sessionActivity">—</b></div>
+      <div><small>Thiết bị</small><b id="sessionDevice">Browser</b></div>
+    </div>
+  </article>
+
+  <article class="panel preferences-panel" id="preferences">
+    <div class="panel-head"><div><span class="eyebrow">PREFERENCES</span><h2>Tùy chọn</h2></div></div>
+    <div class="preference-list">
+      <label class="preference-row"><span><b>Animation</b><small>Giữ hiệu ứng chuyển động của dashboard</small></span><input type="checkbox" id="prefMotion" checked></label>
+      <label class="preference-row"><span><b>Thông báo demo</b><small>Hiển thị toast khi có thao tác tài khoản</small></span><input type="checkbox" id="prefToast" checked></label>
+      <label class="preference-row"><span><b>Giao diện compact</b><small>Thu gọn khoảng cách trong dashboard</small></span><input type="checkbox" id="prefCompact"></label>
+    </div>
+  </article>
+</section></main><div class="modal" id="profileModal" aria-hidden="true"><div class="modal-box">
+  <button class="modal-close" id="closeModal" aria-label="Đóng">×</button>
+  <span class="eyebrow">EDIT PROFILE</span><h2>Cập nhật hồ sơ</h2>
+  <form id="profileForm">
+    <label>Họ và tên<input id="editName" required maxlength="80" autocomplete="name"></label>
+    <label>Avatar
+      <select id="avatarStyle">
+        <option value="initial">Chữ cái</option>
+        <option value="cyan">Cyan</option>
+        <option value="blue">Blue</option>
+      </select>
+    </label>
+    <button class="btn btn-primary full" type="submit">Lưu thay đổi</button>
+    <p class="form-note" id="profileMessage"></p>
+  </form>
+</div></div><script src="../assets/js/auth.js"></script><script src="../assets/js/dashboard.js"></script>
 <script src="../assets/js/ui.js"></script></body></html>
