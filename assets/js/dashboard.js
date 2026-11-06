@@ -299,6 +299,23 @@
     $(selector)?.addEventListener("change",savePrefs);
   });
 
+  $("#resetPrefs")?.addEventListener("click",()=>{
+    localStorage.removeItem("zhosting_prefs_v1");
+    syncPrefs();
+    window.ZUI?.toast("Đã khôi phục","Tùy chọn đã trở về mặc định.","success");
+  });
+
+  $("#refreshAccount")?.addEventListener("click",()=>{
+    const fresh=window.ZAuth?.touchSession?.();
+    if(fresh){
+      Object.assign(session,fresh);
+      updateSessionView();
+      renderActivity();
+      syncProfile();
+      window.ZUI?.toast("Account refreshed","Dữ liệu tài khoản và phiên đã được làm mới.","success");
+    }
+  });
+
   const progressBar=$("#profileProgressBar");
   const progressText=$("#profileProgressText");
   const completeness=[user.name,user.email,user.createdAt,user.lastLogin].filter(Boolean).length;
