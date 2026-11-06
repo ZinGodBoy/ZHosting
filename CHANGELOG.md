@@ -74,3 +74,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Hỗ trợ lọc, tìm kiếm, xem chi tiết, khóa/mở khóa và thu hồi phiên.
 - Không hiển thị mật khẩu người dùng.
 - Admin Center chỉ là frontend demo khi dữ liệu còn nằm trong browser storage; production cần backend, database và RBAC server-side.
+
+
+### Admin navigation — 2026-11-06
+
+- Thêm nút `Admin Center` trong account menu.
+- Chỉ render entry khi tài khoản hiện tại có role `admin`.
+- Đồng bộ style với Account Center và responsive layout.
