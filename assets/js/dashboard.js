@@ -340,3 +340,53 @@
   };
   observeVisibility();
 })();
+
+/* Account Center polish v8: keeps existing auth/data logic and adds safe UI behavior. */
+(function(){
+  const center=document.getElementById("accountCenter");
+  if(!center) return;
+  const reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const syncMotion=()=>{
+    const motion=document.getElementById("prefMotion");
+    document.body.classList.toggle("reduce-ui-motion",reduced || (motion && !motion.checked));
+  };
+  document.getElementById("prefMotion")?.addEventListener("change",syncMotion);
+  syncMotion();
+
+  // Prevent accidental horizontal overflow from long account values.
+  document.querySelectorAll(".profile-grid b,.session-grid b").forEach(el=>{
+    el.title=el.textContent.trim();
+  });
+
+  // Smooth anchor navigation inside the account center.
+  document.querySelectorAll('a[href^="#"],button[data-scroll-target]').forEach(el=>{
+    el.addEventListener("click",()=>{
+      const id=el.getAttribute("data-scroll-target") || el.getAttribute("href")?.slice(1);
+      if(!id) return;
+      const target=document.getElementById(id);
+      if(target) target.scrollIntoView({behavior:document.body.classList.contains("reduce-ui-motion")?"auto":"smooth",block:"start"});
+    });
+  });
+
+  // Close account menu when clicking outside or pressing Escape.
+  const menu=document.getElementById("accountMenu"), btn=document.getElementById("accountMenuBtn");
+  const closeMenu=()=>{
+    if(menu && !menu.hidden){menu.hidden=true;btn?.setAttribute("aria-expanded","false");}
+  };
+  document.addEventListener("click",e=>{
+    if(menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+  });
+  document.addEventListener("keydown",e=>{if(e.key==="Escape") closeMenu();});
+
+  // Keep the header visually compact while scrolling.
+  let ticking=false;
+  const onScroll=()=>{
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      document.querySelector(".dash-header")?.classList.toggle("is-scrolled",window.scrollY>8);
+      ticking=false;
+    });
+  };
+  window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+})();
