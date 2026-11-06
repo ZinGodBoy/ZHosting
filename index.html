@@ -16,6 +16,13 @@
 </head>
 <body>
   <div class="noise"></div>
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="announcement-live"><i></i> ZHosting Network</span>
+      <span>Hạ tầng demo đang hoạt động bình thường</span>
+      <a href="#status">Xem trạng thái →</a>
+    </div>
+  </div>
   <header class="header" id="top">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="ZHosting">
@@ -71,6 +78,14 @@
         </div>
       </div>
       <div class="hero-grid-lines"></div>
+    </section>
+    <section class="trust-ribbon">
+      <div class="container trust-ribbon-grid">
+        <div><span class="trust-icon">01</span><div><b>NVMe Performance</b><small>Ưu tiên tốc độ I/O</small></div></div>
+        <div><span class="trust-icon">02</span><div><b>Security First</b><small>CSP · Audit · CodeQL</small></div></div>
+        <div><span class="trust-icon">03</span><div><b>24/7 Monitoring</b><small>Theo dõi hạ tầng liên tục</small></div></div>
+        <div><span class="trust-icon">04</span><div><b>Easy to Scale</b><small>Nâng cấp theo nhu cầu</small></div></div>
+      </div>
     </section>
 
     <section class="section" id="services">
@@ -247,14 +262,50 @@
     </section>
 
     <section class="cta-section" id="contact">
-      <div class="container cta">
-        <div><span class="eyebrow">READY WHEN YOU ARE</span><h2>Bắt đầu dự án của bạn<br><span class="gradient-text">ngay hôm nay.</span></h2><p>Hãy cho chúng tôi biết bạn đang cần server, hosting hay một website mới.</p></div>
-        <div class="cta-actions"><a class="btn btn-primary" href="mailto:contact@zhosting.vn">Liên hệ ngay →</a><a class="btn btn-ghost" href="https://discord.com" target="_blank" rel="noreferrer">Discord</a></div>
+      <div class="container contact-shell">
+        <div class="contact-copy">
+          <span class="eyebrow">LET'S BUILD</span>
+          <h2>Bắt đầu dự án của bạn<br><span class="gradient-text">ngay hôm nay.</span></h2>
+          <p>Gửi nhanh nhu cầu của bạn. ZHosting sẽ tạo một email brief sẵn sàng để tiếp tục trao đổi.</p>
+          <div class="contact-points">
+            <span><i></i> Tư vấn cấu hình</span>
+            <span><i></i> Gợi ý gói phù hợp</span>
+            <span><i></i> Hỗ trợ triển khai</span>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-ghost" href="https://discord.com" target="_blank" rel="noreferrer">Discord</a>
+            <a class="contact-direct" href="mailto:contact@zhosting.vn">contact@zhosting.vn</a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-form-head"><span>PROJECT BRIEF</span><small>~ 60 giây</small></div>
+          <label>Họ và tên<input id="contactName" name="name" autocomplete="name" required maxlength="80" placeholder="Nguyễn Văn A"></label>
+          <label>Email<input id="contactEmail" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="you@example.com"></label>
+          <label>Dịch vụ
+            <select id="contactService" name="service">
+              <option value="Minecraft Hosting">Minecraft Hosting</option>
+              <option value="Web Hosting">Web Hosting</option>
+              <option value="VPS / Server">VPS / Server</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Khác">Khác</option>
+            </select>
+          </label>
+          <label>Nhu cầu<input id="contactBudget" name="budget" maxlength="120" placeholder="Ví dụ: server 20–50 người"></label>
+          <label>Mô tả ngắn<textarea id="contactMessage" name="message" rows="4" maxlength="800" placeholder="Bạn đang cần triển khai hệ thống như thế nào?"></textarea></label>
+          <button class="btn btn-primary full" type="submit">Tạo email brief <span>→</span></button>
+          <p class="contact-note" id="contactNote" role="status">Không gửi dữ liệu lên server. Form chỉ tạo email từ trình duyệt.</p>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#top"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><p>© 2026 ZHosting. Built for creators, communities & businesses.</p><div><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#contact">Liên hệ</a><a href="#config">Cấu hình</a></div></div></footer>
+  <footer class="footer">
+  <div class="container footer-inner">
+    <a class="brand" href="#top"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a>
+    <p>© 2026 ZHosting. Built for creators, communities & businesses.</p>
+    <div class="footer-links"><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#contact">Liên hệ</a><a href="#config">Cấu hình</a><a href="SECURITY.md">Security</a></div>
+  </div>
+</footer>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/ui.js"></script>
 </body>
