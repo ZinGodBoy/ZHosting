@@ -106,6 +106,68 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
   input.addEventListener('input',run);
 })();
 
+/* ===== V6 PROFESSIONAL CONTACT FLOW ===== */
+(()=>{
+  const form=document.querySelector('#contactForm');
+  if(!form)return;
+  const name=document.querySelector('#contactName');
+  const email=document.querySelector('#contactEmail');
+  const note=document.querySelector('#contactNote');
+  const validate=()=>{
+    let ok=true;
+    [name,email].forEach(input=>{
+      if(!input)return;
+      const valid=input.value.trim()!=="" && (input.type!=="email" || input.validity.valid);
+      input.classList.toggle("zui-input-invalid",!valid);
+      input.classList.toggle("zui-input-valid",valid);
+      if(!valid)ok=false;
+    });
+    return ok;
+  };
+  [name,email].forEach(input=>input?.addEventListener("input",validate));
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!validate()){
+      note.textContent="Hãy kiểm tra họ tên và email trước khi tiếp tục.";
+      note.style.color="#ff8e9e";
+      window.ZUI?.toast("Thiếu thông tin","Vui lòng kiểm tra các trường bắt buộc.","error");
+      return;
+    }
+    const data={
+      name:name.value.trim(),
+      email:email.value.trim(),
+      service:document.querySelector('#contactService')?.value||"Khác",
+      budget:document.querySelector('#contactBudget')?.value.trim()||"Chưa nêu",
+      message:document.querySelector('#contactMessage')?.value.trim()||"Chưa nêu"
+    };
+    const subject=encodeURIComponent("[ZHosting] Tư vấn · "+data.service);
+    const body=encodeURIComponent(
+      "Xin chào ZHosting,\n\n"+
+      "Họ và tên: "+data.name+"\n"+
+      "Email: "+data.email+"\n"+
+      "Dịch vụ: "+data.service+"\n"+
+      "Nhu cầu: "+data.budget+"\n"+
+      "Mô tả: "+data.message+"\n\n"+
+      "Gửi từ ZHosting Project Brief."
+    );
+    note.textContent="Đang mở ứng dụng email...";
+    note.style.color="";
+    window.ZUI?.toast("Đã tạo project brief","Đang mở ứng dụng email của bạn.","success");
+    setTimeout(()=>{location.href="mailto:contact@zhosting.vn?subject="+subject+"&body="+body},220);
+  });
+})();
+
+/* ===== V6 HERO TERMINAL MICRO ANIMATION ===== */
+(()=>{
+  const terminal=document.querySelector('.terminal');
+  const ok=terminal?.querySelector('.ok');
+  if(!terminal||!ok)return;
+  setInterval(()=>{
+    ok.style.opacity="0.55";
+    setTimeout(()=>{ok.style.opacity="1"},450);
+  },3200);
+})();
+
 /* ===== KEYBOARD QUICK ACTIONS ===== */
 document.addEventListener('keydown',event=>{
   if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){
