@@ -162,6 +162,7 @@
 
   const list=$("#mailList");
   const mailCount=$("#mailCount");
+  const mailPill=$("#mailPill");
   const renderMessages=()=>{
     if(!list)return;
     list.replaceChildren();
@@ -188,11 +189,13 @@
         dot.remove();
         const unread=[...list.querySelectorAll(".mail-item.unread")].length;
         if(mailCount)mailCount.textContent=String(unread);
+        if(mailPill)mailPill.textContent=unread?`${unread} mới`:"Đã đọc";
         window.ZUI?.toast("Đã đánh dấu","Thông báo đã được đọc.","success");
       });
       list.appendChild(item);
     });
     if(mailCount)mailCount.textContent=String(messages.length);
+    if(mailPill)mailPill.textContent=`${messages.length} mới`;
   };
   renderMessages();
 
@@ -234,6 +237,7 @@
     if(message){message.textContent="Đổi mật khẩu thành công.";message.className="form-note success";}
     updateSecurity();
     syncOverview();
+  syncCommandCenter();
     window.ZUI?.toast("Bảo mật đã cập nhật","Mật khẩu mới đã được lưu an toàn.","success");
     setTimeout(closePasswordModal,700);
   });
@@ -393,6 +397,15 @@
       panel.dataset.zuiReveal=panel.dataset.zuiReveal||"up";
     });
   };
+  const syncCommandCenter=()=>{
+    const health=Math.max(25,percentage);
+    set("#commandProfile",health+"%");
+    set("#commandSecurity",user.password?.hash&&user.password?.salt?"GOOD":"REVIEW");
+    set("#commandSecurityScore",user.password?.hash&&user.password?.salt?"GOOD":"REVIEW");
+    set("#commandInbox",list?.querySelectorAll(".mail-item.unread").length||0);
+    set("#commandSession","ACTIVE");
+  };
+
   const syncOverview=()=>{
     const health=Math.max(25,percentage);
     set("#overviewHealth",health+"%");
@@ -402,6 +415,22 @@
     if(bar)bar.style.width=health+"%";
   };
   syncOverview();
+
+  $("#commandEdit")?.addEventListener("click",openModal);
+  $("#commandSecurity")?.addEventListener("click",()=>$("#security")?.scrollIntoView({behavior:"smooth",block:"center"}));
+  $("#commandPassword")?.addEventListener("click",openPasswordModal);
+  $("#toolCopyEmail")?.addEventListener("click",()=>$("#copyEmail")?.click());
+  $("#toolExport")?.addEventListener("click",()=>$("#exportAccount")?.click());
+  $("#toolRefresh")?.addEventListener("click",()=>$("#refreshAccount")?.click());
+
+  $("#markAllRead")?.addEventListener("click",()=>{
+    list?.querySelectorAll(".mail-item.unread").forEach(item=>item.classList.remove("unread"));
+    list?.querySelectorAll(".mail-unread").forEach(dot=>dot.remove());
+    if(mailCount)mailCount.textContent="0";
+    if(mailPill)mailPill.textContent="Đã đọc";
+    syncCommandCenter();
+    window.ZUI?.toast("Inbox đã cập nhật","Tất cả thông báo đã được đánh dấu đã đọc.","success");
+  });
 
   observeVisibility();
 })();
