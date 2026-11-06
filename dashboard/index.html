@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; form-action 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests">
-<meta name="referrer" content="strict-origin-when-cross-origin"><meta name="description" content="ZHosting Dashboard"><title>Dashboard — ZHosting</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="referrer" content="strict-origin-when-cross-origin"><meta name="description" content="ZHosting Dashboard"><title>Account Center — ZHosting</title><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/styles.css">
-<link rel="stylesheet" href="../assets/css/ui.css"><link rel="stylesheet" href="dashboard.css"></head><body class="dashboard-page"><header class="dash-header"><a class="brand" href="../index.html"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><div class="dash-user">
+<link rel="stylesheet" href="../assets/css/ui.css"><link rel="stylesheet" href="dashboard.css"></head><body class="dashboard-page account-page"><header class="dash-header"><a class="brand" href="../index.html"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><div class="dash-user">
   <button class="account-chip" id="accountMenuBtn" type="button" aria-expanded="false">
     <span id="dashAvatar">Z</span>
     <div><b id="dashName">User</b><small id="dashEmail">—</small></div>
@@ -18,7 +18,7 @@
     <div class="account-menu-divider"></div>
     <button type="button" class="account-menu-item danger" id="logoutBtn">Đăng xuất</button>
   </div>
-</div></header><main class="dashboard-shell"><div class="dash-welcome"><div><span class="eyebrow">CONTROL CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><span class="account-badge"><i></i> Account active</span></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
+</div></header><main class="dashboard-shell" id="accountCenter"><div class="dash-welcome"><div><span class="eyebrow">ACCOUNT CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><span class="account-badge"><i></i> Account active</span></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
   <article class="panel account-profile-panel" id="profile">
     <div class="panel-head"><div><span class="eyebrow">ACCOUNT PROFILE</span><h2>Hồ sơ tài khoản</h2></div><button class="text-btn" id="editProfile">Chỉnh sửa</button></div>
     <div class="profile-hero">
