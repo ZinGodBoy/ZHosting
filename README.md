@@ -253,3 +253,13 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Admin account audit — 2026-11-06
+
+- Chuẩn hóa metadata tài khoản: role, status, loginCount và loginHistory.
+- Ghi nhận lần đăng nhập thành công cùng thiết bị/trình duyệt ở mức demo cục bộ.
+- Tài khoản đầu tiên trong demo được đánh dấu `admin` nếu chưa có admin.
+- Hỗ trợ cờ thu hồi phiên và khóa tài khoản ở client demo.
+- Không hiển thị hoặc lưu mật khẩu dạng plaintext.
+- Đây vẫn là cơ chế frontend/localStorage; production cần backend, database và RBAC server-side.
