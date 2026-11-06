@@ -8,7 +8,19 @@
   const PBKDF2_ITERATIONS=600000;
 
   const getUsers=()=>{
-    try{return JSON.parse(localStorage.getItem(USERS_KEY)||"[]")}catch{return[]}
+    try{
+      const users=JSON.parse(localStorage.getItem(USERS_KEY)||"[]");
+      let changed=false;
+      users.forEach(user=>{
+        if(!user.role){user.role="user";changed=true;}
+        if(!user.status){user.status="active";changed=true;}
+        if(!Array.isArray(user.loginHistory)){user.loginHistory=[];changed=true;}
+        if(typeof user.loginCount!=="number"){user.loginCount=user.lastLogin?1:0;changed=true;}
+      });
+      if(users.length&&!users.some(user=>user.role==="admin")){users[0].role="admin";changed=true;}
+      if(changed)saveUsers(users);
+      return users;
+    }catch{return[]}
   };
   const saveUsers=users=>localStorage.setItem(USERS_KEY,JSON.stringify(users));
 
@@ -45,6 +57,10 @@
       const now=Date.now();
       const absoluteMax=8*60*60*1000;
       const idleMax=30*60*1000;
+      const user=getUsers().find(item=>item.email===session.email);
+      const revokedAt=Date.parse(user?.sessionRevokedAt||"")||0;
+      if(revokedAt && Number(session.issuedAt||0)<=revokedAt){clearSession();return null;}
+      if(user?.status==="locked"){clearSession();return null;}
       if(!session.issuedAt||now-session.issuedAt>absoluteMax||now-(session.lastActivity||session.issuedAt)>idleMax){
         clearSession();
         return null;
@@ -237,7 +253,8 @@
         role:users.length===0?"admin":"user",
         status:"active",
         loginCount:0,
-        loginHistory:[]
+        loginHistory:[],
+        sessionRevokedAt:null
       });
       saveUsers(users);
       saveSession(email,true);
