@@ -113,3 +113,8 @@ Cần bổ sung:
 - Account lock policy.
 - Audit log.
 - Server-side authorization.
+
+
+## Password visibility control — 2026-11-06
+
+Login/Register sử dụng control hiển thị mật khẩu dùng chung với icon mắt, nhãn `Hiện`/`Ẩn`, `aria-controls`, `aria-label`, `title` và giữ focus sau khi đổi kiểu input. Logic được bind tập trung trong `assets/js/ui.js`.
