@@ -81,3 +81,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm nút `Admin Center` trong account menu.
 - Chỉ render entry khi tài khoản hiện tại có role `admin`.
 - Đồng bộ style với Account Center và responsive layout.
+
+
+### Admin navigation fix — 2026-11-06
+
+- Sửa liên kết Admin Center chưa được bind từ Account Center.
+- Admin active được điều hướng trực tiếp sang Admin Center.
+- User thường tiếp tục không nhìn thấy entry quản trị.
