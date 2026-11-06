@@ -144,3 +144,11 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [x] Revoke session, không cho admin tự revoke phiên của mình.
 - [x] Password privacy: không render password/hash/salt.
 - [x] Admin controller tải sau auth.js bằng `defer`.
+
+
+### Admin UX regression — 2026-11-06
+
+- [x] Keyboard focus ring trên control Admin Center.
+- [x] Toolbar giữ vị trí khi cuộn trên desktop.
+- [x] Hover stats có fallback reduced-motion.
+- [x] Mobile toolbar chuyển thành layout dọc.
