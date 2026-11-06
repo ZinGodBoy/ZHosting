@@ -292,6 +292,19 @@
     }
   });
 
+  const changePassword=async(email,currentPassword,newPassword)=>{
+    const users=getUsers();
+    const target=users.find(item=>item.email===email);
+    if(!target)return {ok:false,reason:"not-found"};
+    const valid=await verifyPassword(currentPassword,target);
+    if(!valid)return {ok:false,reason:"invalid-current"};
+    if(typeof newPassword!=="string"||newPassword.length<8)return {ok:false,reason:"weak"};
+    target.password=await createPasswordRecord(newPassword);
+    delete target.passwordHash;
+    saveUsers(users);
+    return {ok:true};
+  };
+
   window.ZAuth={
     USERS_KEY,
     SESSION_KEY,
@@ -303,6 +316,7 @@
     saveSession,
     clearSession,
     verifyPassword,
+    changePassword,
     logout:()=>{
       clearSession();
       const path=location.pathname.includes("/dashboard/")?"../auth/login.html":
