@@ -88,8 +88,9 @@
     <div class="quick-actions">
       <button type="button" class="quick-action" id="quickEditProfile"><span>01</span><div><b>Chỉnh sửa hồ sơ</b><small>Cập nhật tên và avatar</small></div><i>→</i></button>
       <button type="button" class="quick-action" id="quickRefreshSession"><span>02</span><div><b>Làm mới phiên</b><small>Cập nhật trạng thái session</small></div><i>→</i></button>
-      <button type="button" class="quick-action" id="exportAccount"><span>03</span><div><b>Xuất dữ liệu</b><small>Tải bản sao thông tin tài khoản</small></div><i>→</i></button>
-      <button type="button" class="quick-action danger-action" id="quickLogout"><span>04</span><div><b>Đăng xuất</b><small>Kết thúc phiên hiện tại</small></div><i>→</i></button>
+      <button type="button" class="quick-action" id="quickPassword"><span>03</span><div><b>Đổi mật khẩu</b><small>Cập nhật mật khẩu bảo vệ</small></div><i>→</i></button>
+      <button type="button" class="quick-action" id="exportAccount"><span>04</span><div><b>Xuất dữ liệu</b><small>Tải bản sao thông tin tài khoản</small></div><i>→</i></button>
+      <button type="button" class="quick-action danger-action" id="quickLogout"><span>05</span><div><b>Đăng xuất</b><small>Kết thúc phiên hiện tại</small></div><i>→</i></button>
     </div>
   </article>
 </section>
@@ -111,6 +112,18 @@
     </label>
     <button class="btn btn-primary full" type="submit">Lưu thay đổi</button>
     <p class="form-note" id="profileMessage"></p>
+  </form>
+</div></div>
+<div class="modal" id="passwordModal" aria-hidden="true"><div class="modal-box">
+  <button class="modal-close" id="closePasswordModal" aria-label="Đóng">×</button>
+  <span class="eyebrow">SECURITY</span><h2>Đổi mật khẩu</h2>
+  <p class="modal-copy">Mật khẩu mới sẽ được bảo vệ bằng PBKDF2-SHA256 trong bộ nhớ demo.</p>
+  <form id="passwordForm">
+    <label>Mật khẩu hiện tại<input id="currentPassword" type="password" required minlength="8" autocomplete="current-password"></label>
+    <label>Mật khẩu mới<input id="newPassword" type="password" required minlength="8" autocomplete="new-password"></label>
+    <label>Xác nhận mật khẩu<input id="confirmPassword" type="password" required minlength="8" autocomplete="new-password"></label>
+    <button class="btn btn-primary full" type="submit">Cập nhật mật khẩu</button>
+    <p class="form-note" id="passwordMessage"></p>
   </form>
 </div></div><script src="../assets/js/auth.js"></script><script src="../assets/js/dashboard.js"></script>
 <script src="../assets/js/ui.js"></script></body></html>
