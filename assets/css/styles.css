@@ -91,3 +91,6 @@ summary{display:flex;justify-content:space-between;align-items:center;gap:20px}s
 @media(prefers-reduced-motion:reduce){
   .password-toggle{transition:none}
 }
+
+/* PASSWORD VISIBILITY FINAL */
+.password-toggle{gap:5px;min-width:42px;padding:6px 8px}.password-toggle-label{font:700 8px Inter,sans-serif;letter-spacing:.01em}.password-toggle.is-visible .password-toggle-label{color:var(--cyan)}.password-toggle .password-eye-icon{width:18px;height:18px}.password-toggle .password-eye-icon svg{width:18px;height:18px}@media(max-width:480px){.password-toggle{min-width:40px}.password-toggle-label{font-size:7px}}
