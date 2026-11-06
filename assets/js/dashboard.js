@@ -69,6 +69,16 @@
     set("#sessionDevice",deviceName());
   };
 
+  const syncAdminEntry=()=>{
+    const link=$("#adminCenterLink");
+    if(!link)return;
+    link.hidden=user.role!=="admin";
+    link.addEventListener("click",event=>{
+      event.preventDefault();
+      location.href="../admin/index.html";
+    });
+  };
+
   const updateSecurity=()=>{
     const score=$("#securityScore");
     const passwordOk=Boolean(user.password?.hash&&user.password?.salt);
@@ -104,6 +114,7 @@
   };
 
   syncProfile();
+  syncAdminEntry();
   updateSessionView();
   updateSecurity();
   syncPrefs();
