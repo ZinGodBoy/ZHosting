@@ -117,7 +117,7 @@
   <div class="support-actions">
     <button type="button" class="tool-button" id="toolCopyEmail"><b>Sao chép email</b><small>Copy địa chỉ tài khoản</small></button>
     <button type="button" class="tool-button" id="toolExport"> <b>Xuất JSON</b><small>Tải dữ liệu an toàn</small></button>
-    <button type="button" class="tool-button" id="toolRefresh"><b>Làm mới</b><small>Đồng bộ session</small></button>
+    <button type="button" class="tool-button" id="toolRefresh"><b>Làm mới</b><small>Đồng bộ session</small></button><button type="button" class="tool-button" id="toolTop"><b>Về đầu trang</b><small>Đi tới Account Center</small></button>
   </div>
 </section>
 <section class="panel account-danger" id="accountDanger">
@@ -151,5 +151,19 @@
     <button class="btn btn-primary full" type="submit">Cập nhật mật khẩu</button>
     <p class="form-note" id="passwordMessage"></p>
   </form>
-</div></div><script src="../assets/js/auth.js"></script><script src="../assets/js/dashboard.js"></script>
+</div></div>
+<div class="command-palette" id="commandPalette" aria-hidden="true">
+  <div class="palette-backdrop" data-close-palette></div>
+  <div class="palette-box" role="dialog" aria-modal="true" aria-label="Account command palette">
+    <div class="palette-search"><span>⌕</span><input id="paletteInput" type="search" autocomplete="off" placeholder="Tìm thao tác..."><kbd>ESC</kbd></div>
+    <div class="palette-results" id="paletteResults">
+      <button type="button" data-command="profile"><b>Chỉnh sửa hồ sơ</b><small>Account Profile</small></button>
+      <button type="button" data-command="security"><b>Kiểm tra bảo mật</b><small>Security</small></button>
+      <button type="button" data-command="password"><b>Đổi mật khẩu</b><small>Security</small></button>
+      <button type="button" data-command="inbox"><b>Mở Inbox</b><small>Notifications</small></button>
+      <button type="button" data-command="refresh"><b>Làm mới session</b><small>Session</small></button>
+      <button type="button" data-command="export"><b>Xuất dữ liệu</b><small>Account Tools</small></button>
+    </div>
+  </div>
+</div><script src="../assets/js/auth.js"></script><script src="../assets/js/dashboard.js"></script>
 <script src="../assets/js/ui.js"></script></body></html>
