@@ -385,3 +385,42 @@
 @media(max-width:430px){
   .overview-grid{grid-template-columns:1fr}
 }
+
+/* Account visual balance */
+.account-profile-panel{
+  position:relative;
+}
+.account-profile-panel:after{
+  content:"";
+  display:block;
+  height:1px;
+  margin-top:18px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
+}
+.account-grid{
+  align-items:stretch;
+}
+.account-grid>.panel{
+  align-self:stretch;
+}
+.account-grid>.inbox-panel,
+.account-grid>.security-panel{
+  min-height:248px;
+}
+.account-grid>.session-panel,
+.account-grid>.preferences-panel{
+  min-height:190px;
+}
+.account-extra-grid{
+  margin-top:18px;
+}
+.account-extra-grid>.panel{
+  min-height:230px;
+}
+@media(max-width:980px){
+  .account-grid>.inbox-panel,
+  .account-grid>.security-panel,
+  .account-grid>.session-panel,
+  .account-grid>.preferences-panel,
+  .account-extra-grid>.panel{min-height:0}
+}
