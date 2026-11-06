@@ -94,3 +94,11 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Admin UX — 2026-11-06
+
+- [x] Admin Center entry trong Account Center.
+- [x] Role-aware navigation cho tài khoản admin.
+- [ ] Server-side RBAC cho Admin Center.
+- [ ] Persistent admin audit log trên backend.
