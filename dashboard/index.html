@@ -18,7 +18,25 @@
     <div class="account-menu-divider"></div>
     <button type="button" class="account-menu-item danger" id="logoutBtn">Đăng xuất</button>
   </div>
-</div></header><main class="dashboard-shell" id="accountCenter"><div class="dash-welcome"><div><span class="eyebrow">ACCOUNT CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><div class="account-head-actions"><button type="button" class="btn btn-ghost account-refresh" id="refreshAccount">↻ Làm mới</button><span class="account-badge"><i></i> Account active</span></div></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
+</div></header><main class="dashboard-shell" id="accountCenter"><div class="dash-welcome"><div><span class="eyebrow">ACCOUNT CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><div class="account-head-actions"><button type="button" class="btn btn-ghost account-refresh" id="refreshAccount">↻ Làm mới</button><span class="account-badge"><i></i> Account active</span></div></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-command panel" aria-label="Account command center">
+  <div class="command-main">
+    <span class="eyebrow">ACCOUNT COMMAND CENTER</span>
+    <h2>Kiểm soát tài khoản trong một nơi.</h2>
+    <p>Theo dõi hồ sơ, bảo mật, phiên đăng nhập và các thao tác quan trọng mà không cần rời khỏi Account Center.</p>
+  </div>
+  <div class="command-actions">
+    <button type="button" class="btn btn-primary" id="commandEdit">Chỉnh sửa hồ sơ</button>
+    <button type="button" class="btn btn-ghost" id="commandSecurity">Kiểm tra bảo mật</button>
+    <button type="button" class="btn btn-ghost" id="commandPassword">Đổi mật khẩu</button>
+  </div>
+  <div class="command-metrics">
+    <div><span>PROFILE</span><b id="commandProfile">—</b><small>Hoàn thiện</small></div>
+    <div><span>SECURITY</span><b id="commandSecurityScore">—</b><small>Trạng thái</small></div>
+    <div><span>SESSION</span><b id="commandSession">ACTIVE</b><small>Phiên hiện tại</small></div>
+    <div><span>INBOX</span><b id="commandInbox">—</b><small>Chưa đọc</small></div>
+  </div>
+</section>
+<section class="account-grid">
   <article class="panel account-profile-panel" id="profile">
     <div class="panel-head"><div><span class="eyebrow">ACCOUNT PROFILE</span><h2>Hồ sơ tài khoản</h2></div><button class="text-btn" id="editProfile">Chỉnh sửa</button></div>
     <div class="profile-hero">
@@ -45,7 +63,7 @@
   </article>
 
   <article class="panel inbox-panel" id="inbox">
-    <div class="panel-head"><div><span class="eyebrow">INBOX</span><h2>Thông báo</h2></div><span class="mail-pill">2 mới</span></div>
+    <div class="panel-head"><div><span class="eyebrow">INBOX</span><h2>Thông báo</h2></div><div class="panel-head-actions"><span class="mail-pill" id="mailPill">2 mới</span><button type="button" class="text-btn" id="markAllRead">Đọc tất cả</button></div></div>
     <div id="mailList"></div>
   </article>
 
@@ -93,6 +111,14 @@
       <button type="button" class="quick-action danger-action" id="quickLogout"><span>05</span><div><b>Đăng xuất</b><small>Kết thúc phiên hiện tại</small></div><i>→</i></button>
     </div>
   </article>
+</section>
+<section class="panel account-support">
+  <div><span class="eyebrow">ACCOUNT TOOLS</span><h2>Công cụ tài khoản</h2><p>Thao tác nhanh cho dữ liệu và phiên làm việc hiện tại.</p></div>
+  <div class="support-actions">
+    <button type="button" class="tool-button" id="toolCopyEmail"><b>Sao chép email</b><small>Copy địa chỉ tài khoản</small></button>
+    <button type="button" class="tool-button" id="toolExport"> <b>Xuất JSON</b><small>Tải dữ liệu an toàn</small></button>
+    <button type="button" class="tool-button" id="toolRefresh"><b>Làm mới</b><small>Đồng bộ session</small></button>
+  </div>
 </section>
 <section class="panel account-danger" id="accountDanger">
   <div><span class="eyebrow">ACCOUNT CONTROL</span><h2>Khu vực kiểm soát tài khoản</h2><p>Đây là tài khoản demo frontend. Dữ liệu được lưu cục bộ trên trình duyệt và không nên dùng cho thông tin nhạy cảm.</p></div>
