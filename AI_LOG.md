@@ -89,3 +89,14 @@ Vì vậy, AI không thay thế:
 ## 7. Kết luận
 
 AI giúp tăng tốc quá trình xây dựng ZHosting, nhưng chất lượng cuối cùng phụ thuộc vào việc **đọc hiểu, kiểm thử, kiểm chứng và chịu trách nhiệm của người phát triển**.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
