@@ -338,6 +338,16 @@
       panel.dataset.zuiReveal=panel.dataset.zuiReveal||"up";
     });
   };
+  const syncOverview=()=>{
+    const health=Math.max(25,percentage);
+    set("#overviewHealth",health+"%");
+    set("#overviewSession","1");
+    set("#overviewSecurity",user.password?.hash&&user.password?.salt?"Good":"Review");
+    const bar=$("#overviewHealthBar");
+    if(bar)bar.style.width=health+"%";
+  };
+  syncOverview();
+
   observeVisibility();
 })();
 
