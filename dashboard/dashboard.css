@@ -104,3 +104,7 @@
   .profile-status{margin-left:64px;margin-top:-6px}
   .session-grid{grid-template-columns:1fr}
 }
+
+.profile-avatar.avatar-cyan,.dash-user .account-chip>span.avatar-cyan,.account-menu-head>span.avatar-cyan{background:linear-gradient(135deg,var(--cyan),#2aa9d0)}
+.profile-avatar.avatar-blue,.dash-user .account-chip>span.avatar-blue,.account-menu-head>span.avatar-blue{background:linear-gradient(135deg,var(--blue),#7d8dff)}
+.dashboard-page.reduce-ui-motion *, .dashboard-page.reduce-ui-motion *::before, .dashboard-page.reduce-ui-motion *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
