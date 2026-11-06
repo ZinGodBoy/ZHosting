@@ -122,3 +122,14 @@ Production candidate không nên có:
 ## 8. Limitation
 
 Browser testing không thể chứng minh backend security vì repository hiện chưa có backend production.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
