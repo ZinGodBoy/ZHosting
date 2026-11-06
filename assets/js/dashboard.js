@@ -489,3 +489,48 @@
   };
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
 })();
+
+/* Account Center Navigator v15 */
+(function(){
+  const center=document.getElementById("accountCenter");
+  if(!center)return;
+  const $=s=>document.querySelector(s);
+  const search=$("#accountSearch"), links=[...document.querySelectorAll("#workspaceLinks [data-target]")], empty=$("#searchEmpty");
+  const scrollTo=id=>document.getElementById(id)?.scrollIntoView({behavior:document.body.classList.contains("reduce-ui-motion")?"auto":"smooth",block:"center"});
+  links.forEach(btn=>btn.addEventListener("click",()=>scrollTo(btn.dataset.target)));
+  const filter=()=>{
+    const q=(search?.value||"").trim().toLowerCase();
+    let visible=0;
+    links.forEach(btn=>{
+      const match=!q || btn.textContent.toLowerCase().includes(q);
+      btn.hidden=!match;if(match)visible++;
+    });
+    if(empty)empty.hidden=visible!==0;
+  };
+  search?.addEventListener("input",filter);
+  $("#clearAccountSearch")?.addEventListener("click",()=>{if(search){search.value="";search.focus();filter()}});
+  $("#toolTop")?.addEventListener("click",()=>window.scrollTo({top:0,behavior:document.body.classList.contains("reduce-ui-motion")?"auto":"smooth"}));
+
+  const palette=$("#commandPalette"), paletteInput=$("#paletteInput"), paletteResults=$("#paletteResults");
+  const openPalette=()=>{palette?.setAttribute("aria-hidden","false");if(paletteInput){paletteInput.value="";paletteInput.focus()}};
+  const closePalette=()=>palette?.setAttribute("aria-hidden","true");
+  $("#openCommandPalette")?.addEventListener("click",openPalette);
+  palette?.querySelector("[data-close-palette]")?.addEventListener("click",closePalette);
+  document.addEventListener("keydown",event=>{
+    if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();openPalette()}
+    if(event.key==="Escape")closePalette();
+  });
+  const commands={
+    profile:()=>scrollTo("profile"),
+    security:()=>scrollTo("security"),
+    password:()=>document.getElementById("commandPassword")?.click(),
+    inbox:()=>scrollTo("inbox"),
+    refresh:()=>document.getElementById("refreshSession")?.click(),
+    export:()=>document.getElementById("exportAccount")?.click()
+  };
+  paletteResults?.querySelectorAll("[data-command]").forEach(btn=>btn.addEventListener("click",()=>{commands[btn.dataset.command]?.();closePalette()}));
+  paletteInput?.addEventListener("input",()=>{
+    const q=paletteInput.value.trim().toLowerCase();
+    paletteResults?.querySelectorAll("[data-command]").forEach(btn=>btn.hidden=Boolean(q&&!btn.textContent.toLowerCase().includes(q)));
+  });
+})();
