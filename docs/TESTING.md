@@ -133,3 +133,14 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Admin Center — 2026-11-06
+
+- [x] Admin guard: chỉ admin active được vào.
+- [x] User search và filter role/status.
+- [x] User details và login history.
+- [x] Lock/unlock user, không cho admin tự khóa.
+- [x] Revoke session, không cho admin tự revoke phiên của mình.
+- [x] Password privacy: không render password/hash/salt.
+- [x] Admin controller tải sau auth.js bằng `defer`.
