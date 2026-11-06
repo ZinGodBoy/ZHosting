@@ -60,3 +60,14 @@ Kiểm tra trước:
 ## ⚠️ Production
 
 Không gửi password thật, API key, access token, payment information hoặc dữ liệu khách hàng khi yêu cầu hỗ trợ.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
