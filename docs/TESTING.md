@@ -152,3 +152,12 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [x] Toolbar giữ vị trí khi cuộn trên desktop.
 - [x] Hover stats có fallback reduced-motion.
 - [x] Mobile toolbar chuyển thành layout dọc.
+
+
+### Admin hardening — 2026-11-06
+
+- [x] Normalize role/status/login metadata trước khi render.
+- [x] Không dùng HTML động cho dữ liệu user.
+- [x] Empty login history state.
+- [x] Disabled state cho self-lock/self-revoke.
+- [x] Mobile login history không tràn ngang.
