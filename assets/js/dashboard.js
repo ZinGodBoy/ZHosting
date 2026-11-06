@@ -38,6 +38,17 @@
     return "Browser";
   };
 
+  const syncAdminEntry=()=>{
+    const link=document.querySelector("#adminCenterLink");
+    if(!link)return;
+    const isAdmin=user.role==="admin"&&user.status==="active";
+    link.hidden=!isAdmin;
+    if(isAdmin&&!link.dataset.bound){
+      link.dataset.bound="1";
+      link.addEventListener("click",()=>{ window.location.href="../admin/index.html"; });
+    }
+  };
+
   const syncProfile=()=>{
     set("#dashName",user.name);
     set("#dashEmail",user.email);
@@ -113,6 +124,7 @@
     if(prefs.toast)window.ZUI?.toast("Đã lưu tùy chọn","Preferences đã được cập nhật.","success");
   };
 
+  syncAdminEntry();
   syncProfile();
   syncAdminEntry();
   updateSessionView();
