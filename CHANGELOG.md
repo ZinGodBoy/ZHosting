@@ -53,3 +53,14 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Responsive mobile navigation.
 
 > Phiên bản hiện tại vẫn là prototype/frontend demo; production backend chưa được triển khai.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
