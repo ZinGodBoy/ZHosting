@@ -83,3 +83,14 @@ Roadmap này mô tả hướng phát triển từ website prototype thành hosti
 ## Guiding principle
 
 Không gọi một tính năng là “production” cho đến khi phần backend, security, monitoring và failure handling tương ứng đã tồn tại.
+
+
+## Account Center — 2026-11-06
+
+- Account Command Center.
+- Account Insights.
+- Workspace Navigator với tìm kiếm khu vực.
+- Command Palette với phím tắt Ctrl/Cmd + K.
+- Account Tools và Quick Actions.
+- Responsive/mobile và reduced-motion support.
+- Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
