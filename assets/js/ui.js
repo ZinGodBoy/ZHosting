@@ -116,17 +116,40 @@
   };
   setupLogout();
 
-  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+  const eyeIcon=(visible)=>{
+    const span=document.createElement("span");
+    span.className="password-eye-icon";
+    span.setAttribute("aria-hidden","true");
+    span.innerHTML=visible
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 3 18 18"/><path d="M10.6 6.2A10.8 10.8 0 0 1 12 6c6.1 0 9.5 6 9.5 6a18.7 18.7 0 0 1-3.2 3.8"/><path d="M6.7 6.7C3.9 8.5 2.5 12 2.5 12s3.4 6 9.5 6c1.5 0 2.8-.3 4-.8"/><path d="M9.9 9.9a2.5 2.5 0 0 0 3.5 3.5"/></svg>';
+    return span;
+  };
+  const bindPasswordToggle=(button,input)=>{
+    if(!button||!input||button.dataset.passwordBound==="1")return;
+    button.dataset.passwordBound="1";
+    button.setAttribute("aria-controls",input.id);
+    const render=visible=>{
+      button.replaceChildren(eyeIcon(visible));
+      button.classList.toggle("is-visible",visible);
+      button.setAttribute("aria-label",visible?"Ẩn mật khẩu":"Hiện mật khẩu");
+      button.setAttribute("title",visible?"Ẩn mật khẩu":"Hiện mật khẩu");
+    };
+    render(false);
     button.addEventListener("click",()=>{
-      const input=document.querySelector(button.dataset.togglePassword);
-      if(!input)return;
       const visible=input.type==="text";
       input.type=visible?"password":"text";
-      button.textContent=visible?"◉":"○";
-      button.setAttribute("aria-label",visible?"Hiện mật khẩu":"Ẩn mật khẩu");
-      input.focus();
+      render(!visible);
+      input.focus({preventScroll:true});
     });
+  };
+  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+    const input=document.querySelector(button.dataset.togglePassword);
+    bindPasswordToggle(button,input);
   });
+  const loginPassword=document.querySelector("#loginPassword");
+  const loginToggle=document.querySelector("#passwordToggle");
+  bindPasswordToggle(loginToggle,loginPassword);
 
   const setupSessionGuard=()=>{
     if(!window.ZAuth?.getSession)return;
