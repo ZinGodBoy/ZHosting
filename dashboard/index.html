@@ -68,7 +68,26 @@
       <label class="preference-row"><span><b>Giao diện compact</b><small>Thu gọn khoảng cách trong dashboard</small></span><input type="checkbox" id="prefCompact"></label>
     </div>
   </article>
-</section></main><div class="modal" id="profileModal" aria-hidden="true"><div class="modal-box">
+<section class="account-extra-grid">
+  <article class="panel activity-panel" id="activity">
+    <div class="panel-head"><div><span class="eyebrow">ACCOUNT ACTIVITY</span><h2>Hoạt động gần đây</h2></div><span class="mail-pill">LIVE</span></div>
+    <div class="activity-list" id="activityList"></div>
+  </article>
+  <article class="panel quick-panel">
+    <div class="panel-head"><div><span class="eyebrow">QUICK ACTIONS</span><h2>Thao tác nhanh</h2></div></div>
+    <div class="quick-actions">
+      <button type="button" class="quick-action" id="quickEditProfile"><span>01</span><div><b>Chỉnh sửa hồ sơ</b><small>Cập nhật tên và avatar</small></div><i>→</i></button>
+      <button type="button" class="quick-action" id="quickRefreshSession"><span>02</span><div><b>Làm mới phiên</b><small>Cập nhật trạng thái session</small></div><i>→</i></button>
+      <button type="button" class="quick-action" id="exportAccount"><span>03</span><div><b>Xuất dữ liệu</b><small>Tải bản sao thông tin tài khoản</small></div><i>→</i></button>
+      <button type="button" class="quick-action danger-action" id="quickLogout"><span>04</span><div><b>Đăng xuất</b><small>Kết thúc phiên hiện tại</small></div><i>→</i></button>
+    </div>
+  </article>
+</section>
+<section class="panel account-danger" id="accountDanger">
+  <div><span class="eyebrow">ACCOUNT CONTROL</span><h2>Khu vực kiểm soát tài khoản</h2><p>Đây là tài khoản demo frontend. Dữ liệu được lưu cục bộ trên trình duyệt và không nên dùng cho thông tin nhạy cảm.</p></div>
+  <button type="button" class="btn btn-ghost" id="dangerLogout">Đăng xuất ngay</button>
+</section>
+</main><div class="modal" id="profileModal" aria-hidden="true"><div class="modal-box">
   <button class="modal-close" id="closeModal" aria-label="Đóng">×</button>
   <span class="eyebrow">EDIT PROFILE</span><h2>Cập nhật hồ sơ</h2>
   <form id="profileForm">
