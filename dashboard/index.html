@@ -18,7 +18,7 @@
     <div class="account-menu-divider"></div>
     <button type="button" class="account-menu-item danger" id="logoutBtn">Đăng xuất</button>
   </div>
-</div></header><main class="dashboard-shell" id="accountCenter"><div class="dash-welcome"><div><span class="eyebrow">ACCOUNT CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><span class="account-badge"><i></i> Account active</span></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
+</div></header><main class="dashboard-shell" id="accountCenter"><div class="dash-welcome"><div><span class="eyebrow">ACCOUNT CENTER</span><h1>Xin chào, <span class="gradient-text" id="welcomeName">bạn</span>.</h1><p>Quản lý tài khoản, dịch vụ và thông báo của bạn.</p></div><div class="account-head-actions"><button type="button" class="btn btn-ghost account-refresh" id="refreshAccount">↻ Làm mới</button><span class="account-badge"><i></i> Account active</span></div></div><section class="dash-grid"><article class="dash-card"><span class="dash-label">DỊCH VỤ</span><strong>3</strong><p>Dịch vụ đang quản lý</p><a href="../index.html#pricing">Xem gói →</a></article><article class="dash-card"><span class="dash-label">HỆ THỐNG</span><strong>99.99%</strong><p>Uptime mục tiêu</p><a href="../index.html#status">System status →</a></article><article class="dash-card"><span class="dash-label">THÔNG BÁO</span><strong id="mailCount">2</strong><p>Thông báo chưa đọc</p><button class="text-btn" id="openInbox">Mở hộp thư →</button></article></section><section class="account-grid">
   <article class="panel account-profile-panel" id="profile">
     <div class="panel-head"><div><span class="eyebrow">ACCOUNT PROFILE</span><h2>Hồ sơ tài khoản</h2></div><button class="text-btn" id="editProfile">Chỉnh sửa</button></div>
     <div class="profile-hero">
@@ -70,7 +70,7 @@
   </article>
 
   <article class="panel preferences-panel" id="preferences">
-    <div class="panel-head"><div><span class="eyebrow">PREFERENCES</span><h2>Tùy chọn</h2></div></div>
+    <div class="panel-head"><div><span class="eyebrow">PREFERENCES</span><h2>Tùy chọn</h2></div><button type="button" class="text-btn" id="resetPrefs">Khôi phục mặc định</button></div>
     <div class="preference-list">
       <label class="preference-row"><span><b>Animation</b><small>Giữ hiệu ứng chuyển động của dashboard</small></span><input type="checkbox" id="prefMotion" checked></label>
       <label class="preference-row"><span><b>Thông báo demo</b><small>Hiển thị toast khi có thao tác tài khoản</small></span><input type="checkbox" id="prefToast" checked></label>
