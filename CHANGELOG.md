@@ -88,3 +88,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Sửa liên kết Admin Center chưa được bind từ Account Center.
 - Admin active được điều hướng trực tiếp sang Admin Center.
 - User thường tiếp tục không nhìn thấy entry quản trị.
+
+
+### Admin hardening — 2026-11-06
+
+- Chuẩn hóa dữ liệu user trước khi render.
+- Render tên/email bằng DOM text thay vì HTML động.
+- Cải thiện empty state, mobile history và disabled action state.
+- Refresh Admin Center tải lại dữ liệu mới nhất từ browser storage.
