@@ -25,6 +25,7 @@
       <nav class="nav-links" id="navLinks"><a class="nav-home" href="#top">Trang chủ</a>
         <a href="#services">Dịch vụ</a>
         <a href="#pricing">Bảng giá</a>
+        <a href="#config">Cấu hình</a>
         <a href="#status">Trạng thái</a><a href="#why">Ưu điểm</a>
         <a href="#faq">FAQ</a>
         <span class="nav-account" id="navAccount"><a href="auth/login.html">Đăng nhập</a><a class="nav-cta" href="auth/register.html">Tạo tài khoản</a></span>
@@ -41,6 +42,7 @@
           <p class="hero-desc">Giải pháp Minecraft Hosting, Web Hosting, VPS và phát triển website cho cá nhân, cộng đồng và doanh nghiệp.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#pricing">Xem gói dịch vụ <span>→</span></a>
+            <a class="btn btn-ghost" href="#config">Tự cấu hình <span>⌘K</span></a>
             <a class="btn btn-ghost" href="#contact">Tư vấn miễn phí</a>
           </div>
           <div class="trust-row">
@@ -121,6 +123,72 @@
     </section>
 
 
+
+    <section class="section config-section" id="config">
+      <div class="container">
+        <div class="section-head centered reveal">
+          <span class="eyebrow">CONFIG BUILDER</span>
+          <h2>Tự chọn cấu hình.<br><span class="gradient-text">ZHosting tính giúp bạn.</span></h2>
+          <p>Chọn loại dịch vụ, tài nguyên và tiện ích. Giá bên dưới là giá minh họa cho giao diện demo.</p>
+        </div>
+        <div class="config-layout">
+          <div class="config-panel reveal" data-zui-reveal="left">
+            <div class="config-step"><span>01</span><div><b>Dịch vụ</b><small>Chọn nền tảng bạn cần.</small></div></div>
+            <div class="config-options" role="group" aria-label="Loại dịch vụ">
+              <button class="config-option active" type="button" data-service="minecraft" data-base="39"><span>MC</span><b>Minecraft</b><small>Từ 39K/tháng</small></button>
+              <button class="config-option" type="button" data-service="web" data-base="59"><span>WEB</span><b>Web Hosting</b><small>Từ 59K/tháng</small></button>
+              <button class="config-option" type="button" data-service="vps" data-base="199"><span>VPS</span><b>VPS Server</b><small>Từ 199K/tháng</small></button>
+            </div>
+
+            <div class="config-step"><span>02</span><div><b>Tài nguyên</b><small>Điều chỉnh theo nhu cầu.</small></div></div>
+            <div class="config-slider-row">
+              <label for="ramRange">RAM <strong><output id="ramValue">4 GB</output></strong></label>
+              <input id="ramRange" type="range" min="2" max="32" step="2" value="4">
+              <div class="range-meta"><span>2 GB</span><span>32 GB</span></div>
+            </div>
+            <div class="config-slider-row">
+              <label for="cpuRange">CPU <strong><output id="cpuValue">2 vCPU</output></strong></label>
+              <input id="cpuRange" type="range" min="1" max="16" step="1" value="2">
+              <div class="range-meta"><span>1 vCPU</span><span>16 vCPU</span></div>
+            </div>
+
+            <div class="config-step"><span>03</span><div><b>Tiện ích</b><small>Thêm lớp bảo vệ và vận hành.</small></div></div>
+            <div class="config-addons">
+              <label class="config-check"><input type="checkbox" data-addon="backup" data-price="20"><span><b>Backup tự động</b><small>Snapshot định kỳ</small></span><strong>+20K</strong></label>
+              <label class="config-check"><input type="checkbox" data-addon="support" data-price="30"><span><b>Priority Support</b><small>Ưu tiên xử lý ticket</small></span><strong>+30K</strong></label>
+              <label class="config-check"><input type="checkbox" data-addon="security" data-price="25"><span><b>Security Pack</b><small>Hardening cơ bản</small></span><strong>+25K</strong></label>
+            </div>
+          </div>
+
+          <aside class="config-result reveal" data-zui-reveal="right">
+            <div class="config-result-top"><span class="eyebrow">YOUR CONFIGURATION</span><span class="config-live"><i></i> READY</span></div>
+            <h3 id="configTitle">Minecraft Hosting</h3>
+            <p id="configDescription">Cấu hình cân bằng cho server cộng đồng.</p>
+            <div class="config-summary">
+              <div><span>RAM</span><b id="summaryRam">4 GB</b></div>
+              <div><span>CPU</span><b id="summaryCpu">2 vCPU</b></div>
+              <div><span>ADD-ONS</span><b id="summaryAddons">0</b></div>
+            </div>
+            <div class="config-price"><small>Tạm tính</small><strong id="configTotal">39K</strong><span>/tháng</span></div>
+            <button class="btn btn-primary full" id="configContact" type="button">Nhận tư vấn cấu hình <span>→</span></button>
+            <button class="config-reset" id="configReset" type="button">Đặt lại cấu hình</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section network-section">
+      <div class="container">
+        <div class="section-head reveal"><div><span class="eyebrow">NETWORK MAP</span><h2>Những node đang<br><span class="gradient-text">sẵn sàng.</span></h2></div><p>Mô phỏng trạng thái các vùng hạ tầng. Giao diện có thể kết nối API monitoring thật trong bước triển khai backend.</p></div>
+        <div class="node-grid zui-stagger">
+          <article class="node-card reveal" data-node="hanoi"><div class="node-top"><span class="node-ping"></span><b>HN-01</b><span class="node-status">ONLINE</span></div><h3>Hà Nội</h3><p>Core / Edge Node</p><div class="node-meter"><i style="width:38%"></i></div><small>Load <b>38%</b> · 14ms</small></article>
+          <article class="node-card reveal" data-node="hcm"><div class="node-top"><span class="node-ping"></span><b>HCM-02</b><span class="node-status">ONLINE</span></div><h3>TP. Hồ Chí Minh</h3><p>Game / Web Node</p><div class="node-meter"><i style="width:52%"></i></div><small>Load <b>52%</b> · 18ms</small></article>
+          <article class="node-card reveal" data-node="singapore"><div class="node-top"><span class="node-ping"></span><b>SG-01</b><span class="node-status">ONLINE</span></div><h3>Singapore</h3><p>International Edge</p><div class="node-meter"><i style="width:29%"></i></div><small>Load <b>29%</b> · 32ms</small></article>
+          <article class="node-card reveal" data-node="tokyo"><div class="node-top"><span class="node-ping"></span><b>JP-01</b><span class="node-status">STANDBY</span></div><h3>Tokyo</h3><p>Expansion Node</p><div class="node-meter"><i style="width:17%"></i></div><small>Load <b>17%</b> · 58ms</small></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section live-section" id="status">
       <div class="container">
         <div class="section-head reveal"><div><span class="eyebrow">LIVE INFRASTRUCTURE</span><h2>Hạ tầng đang<br><span class="gradient-text">hoạt động.</span></h2></div><p>Theo dõi mô phỏng tình trạng dịch vụ theo thời gian thực. Giao diện sẵn sàng kết nối API status page sau này.</p></div>
@@ -168,7 +236,7 @@
 
     <section class="section faq-section" id="faq">
       <div class="container faq-wrap">
-        <div class="section-head reveal"><span class="eyebrow">FAQ</span><h2>Câu hỏi thường gặp.</h2></div>
+        <div class="section-head reveal"><div><span class="eyebrow">FAQ</span><h2>Câu hỏi thường gặp.</h2></div><div class="faq-search"><input id="faqSearch" type="search" placeholder="Tìm câu hỏi..." aria-label="Tìm câu hỏi"><span>⌕</span></div></div>
         <div class="faq-list">
           <details class="reveal"><summary>ZHosting có hỗ trợ server Minecraft không?</summary><p>Có. Website được thiết kế cho Minecraft Hosting và có thể mở rộng các cấu hình cho server nhỏ đến cộng đồng lớn.</p></details>
           <details class="reveal"><summary>Có thể nâng RAM sau khi mua không?</summary><p>Có. Cấu hình có thể được nâng theo nhu cầu nếu gói và hạ tầng hỗ trợ.</p></details>
@@ -186,7 +254,7 @@
     </section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#top"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><p>© 2026 ZHosting. Built for creators, communities & businesses.</p><div><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#contact">Liên hệ</a></div></div></footer>
+  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#top"><span class="brand-mark">Z</span><span>Z<span class="accent">Hosting</span></span></a><p>© 2026 ZHosting. Built for creators, communities & businesses.</p><div><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#contact">Liên hệ</a><a href="#config">Cấu hình</a></div></div></footer>
   <script src="assets/js/app.js"></script>
   <script src="assets/js/ui.js"></script>
 </body>
