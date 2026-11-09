@@ -131,6 +131,10 @@
     button.setAttribute("aria-controls",input.id);
     const render=visible=>{
       button.replaceChildren(eyeIcon(visible));
+      const label=document.createElement("span");
+      label.className="password-toggle-label";
+      label.textContent=visible?"Ẩn":"Hiện";
+      button.appendChild(label);
       button.classList.toggle("is-visible",visible);
       button.setAttribute("aria-label",visible?"Ẩn mật khẩu":"Hiện mật khẩu");
       button.setAttribute("title",visible?"Ẩn mật khẩu":"Hiện mật khẩu");
@@ -142,8 +146,7 @@
       render(!visible);
       input.focus({preventScroll:true});
     });
-  };
-  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+  };\n  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
     const input=document.querySelector(button.dataset.togglePassword);
     bindPasswordToggle(button,input);
   });
