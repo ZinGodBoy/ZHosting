@@ -154,3 +154,8 @@ nếu backend monitoring chưa tồn tại.
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Home Command Launch — 2026-11-09
+
+Command Launch sử dụng card dạng glass panel, số thứ tự nhỏ, accent cyan, hover lift và responsive 4→2→1 cột. Animation có fallback reduced-motion.
