@@ -7,3 +7,40 @@
 .admin-commandbar button:hover{border-color:#00adb54d;color:#8de9ee;background:#00adb50b}
 .admin-commandbar time{display:grid;place-items:center;color:#76e8ec;min-width:72px}
 @media(max-width:650px){.admin-commandbar{display:grid;grid-template-columns:1fr 1fr}.admin-commandbar span{grid-column:1/-1}.admin-commandbar button,.admin-commandbar time{width:100%}}
+
+/* V1.4 readability pass */
+.admin-page{font-size:14px}
+.head-actions a,.head-actions button{font-size:12px}
+.head-actions b{font-size:11px}
+.hero small,.panel-title small,.history>small,.stats small{font-size:10px}
+.hero p{font-size:14px;line-height:1.7}
+.hero aside span{font-size:12px}
+.stats strong{font-size:34px}
+.toolbar input,.toolbar select,.toolbar button{font-size:12px}
+.panel-title h2{font-size:23px}
+.panel-title>span{font-size:11px}
+th{font-size:10px}
+td{font-size:12px}
+.user b{font-size:12px}
+.user span{font-size:10px}
+.badge{font-size:9px}
+.view{font-size:11px}
+.profile b{font-size:13px}
+.profile span{font-size:11px}
+.profile em{font-size:9px}
+.grid small{font-size:9px}
+.grid b{font-size:11px}
+.privacy b{font-size:11px}
+.privacy span{font-size:10px;line-height:1.5}
+.actions button{font-size:11px}
+.history-row b{font-size:10px}
+.history-row span,.history-row time{font-size:9px}
+.empty,.no-history{font-size:12px}
+.admin-commandbar span{font-size:10px}
+.admin-commandbar button,.admin-commandbar time{font-size:10px}
+@media(max-width:650px){
+ .hero p{font-size:13px}
+ .stats strong{font-size:31px}
+ td{font-size:11px}
+ .toolbar input,.toolbar select,.toolbar button{font-size:11px}
+}
