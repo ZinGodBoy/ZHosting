@@ -226,3 +226,154 @@ counters.forEach(el=>counterObserver.observe(el));
 
 /* ===== COMMAND LAUNCH MICRO-UI ===== */
 (()=>{const clock=document.querySelector('#launchClock');if(!clock)return;const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})};tick();setInterval(tick,1000);})();
+
+
+/* ===== ZHOSTING V1.4 COMMAND PALETTE + NAV HARDENING ===== */
+(()=> {
+  const account = document.querySelector('#navAccount');
+  const readSession = () => {
+    try {
+      return JSON.parse(localStorage.getItem('zhosting_session_v1') || sessionStorage.getItem('zhosting_temp_session_v1') || 'null');
+    } catch { return null; }
+  };
+  const readUsers = () => {
+    try { return JSON.parse(localStorage.getItem('zhosting_users_v1') || '[]'); }
+    catch { return []; }
+  };
+
+  const currentSession = readSession();
+  const currentUser = currentSession && readUsers().find(user => user.email === currentSession.email);
+
+  if (account && currentUser) {
+    const existingAdmin = account.querySelector('[data-admin-link]');
+    if (currentUser.role === 'admin' && !existingAdmin) {
+      const admin = document.createElement('a');
+      admin.href = 'admin/index.html';
+      admin.className = 'admin-nav-link';
+      admin.dataset.adminLink = 'true';
+      admin.textContent = 'Admin Center';
+      account.insertBefore(admin, account.querySelector('.logout-link'));
+    }
+
+    const logout = account.querySelector('#navLogout');
+    logout?.addEventListener('click', event => {
+      event.preventDefault();
+      try {
+        localStorage.removeItem('zhosting_session_v1');
+        sessionStorage.removeItem('zhosting_temp_session_v1');
+      } finally {
+        location.href = 'auth/login.html?logout=1';
+      }
+    });
+  }
+
+  const palette = document.createElement('div');
+  palette.className = 'zhost-command-palette';
+  palette.hidden = true;
+  palette.setAttribute('aria-hidden', 'true');
+  palette.innerHTML = [
+    '<div class="zhost-palette-backdrop" data-palette-close></div>',
+    '<div class="zhost-palette-dialog" role="dialog" aria-modal="true" aria-labelledby="zhostPaletteTitle">',
+    '<div class="zhost-palette-head"><div><span class="eyebrow">ZHOSTING COMMAND</span><h2 id="zhostPaletteTitle">Đi đâu tiếp?</h2></div><button type="button" class="zhost-palette-close" data-palette-close aria-label="Đóng">Esc</button></div>',
+    '<input class="zhost-palette-input" type="search" placeholder="Tìm dịch vụ, cấu hình, trạng thái..." autocomplete="off" aria-label="Tìm nhanh">',
+    '<div class="zhost-palette-results"></div>',
+    '<div class="zhost-palette-foot"><span>↑↓ chọn</span><span>Enter mở</span><span>Esc đóng</span></div>',
+    '</div>'
+  ].join('');
+  document.body.appendChild(palette);
+
+  const input = palette.querySelector('.zhost-palette-input');
+  const results = palette.querySelector('.zhost-palette-results');
+  const actions = [
+    {label:'Dịch vụ',meta:'Khám phá các dịch vụ ZHosting',href:'#services'},
+    {label:'Bảng giá',meta:'So sánh gói và chu kỳ thanh toán',href:'#pricing'},
+    {label:'Config Builder',meta:'Tự chọn RAM, CPU và add-on',href:'#config'},
+    {label:'Live Status',meta:'Xem trạng thái hạ tầng demo',href:'#status'},
+    {label:'FAQ',meta:'Tìm câu hỏi thường gặp',href:'#faq'},
+    {label:'Liên hệ',meta:'Tạo project brief',href:'#contact'},
+    {label:'Account Center',meta:'Mở khu vực tài khoản',href:'dashboard/index.html'}
+  ];
+  if (currentUser?.role === 'admin') {
+    actions.push({label:'Admin Center',meta:'Quản lý tài khoản và audit demo',href:'admin/index.html'});
+  }
+
+  let active = 0;
+  const openPalette = () => {
+    palette.hidden = false;
+    palette.setAttribute('aria-hidden','false');
+    document.body.classList.add('palette-open');
+    input.value = '';
+    render('');
+    requestAnimationFrame(() => input.focus());
+  };
+  const closePalette = () => {
+    palette.hidden = true;
+    palette.setAttribute('aria-hidden','true');
+    document.body.classList.remove('palette-open');
+  };
+  const visibleActions = () => [...results.querySelectorAll('[data-palette-index]')];
+  const render = query => {
+    const q = query.trim().toLowerCase();
+    const filtered = actions.filter(item => (item.label+' '+item.meta).toLowerCase().includes(q));
+    results.replaceChildren();
+    filtered.forEach((item,index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'zhost-palette-item' + (index === 0 ? ' active' : '');
+      button.dataset.paletteIndex = String(index);
+      const title = document.createElement('strong');
+      title.textContent = item.label;
+      const meta = document.createElement('small');
+      meta.textContent = item.meta;
+      button.append(title, meta);
+      button.addEventListener('click', () => {
+        closePalette();
+        if (item.href.startsWith('#')) {
+          const target = document.querySelector(item.href);
+          target?.scrollIntoView({behavior:'smooth',block:'start'});
+        } else {
+          location.href = item.href;
+        }
+      });
+      results.appendChild(button);
+    });
+    active = 0;
+  };
+
+  document.querySelectorAll('[data-command-open]').forEach(button => button.addEventListener('click', openPalette));
+  palette.querySelectorAll('[data-palette-close]').forEach(button => button.addEventListener('click', closePalette));
+  input.addEventListener('input', () => render(input.value));
+  input.addEventListener('keydown', event => {
+    const items = visibleActions();
+    if (event.key === 'ArrowDown' && items.length) {
+      event.preventDefault();
+      active = (active + 1) % items.length;
+    }
+    if (event.key === 'ArrowUp' && items.length) {
+      event.preventDefault();
+      active = (active - 1 + items.length) % items.length;
+    }
+    if ((event.key === 'Enter' || event.key === 'ArrowDown' || event.key === 'ArrowUp') && items.length) {
+      items.forEach((item,index) => item.classList.toggle('active',index === active));
+      items[active]?.scrollIntoView({block:'nearest'});
+      if (event.key === 'Enter') items[active]?.click();
+    }
+  });
+
+  document.addEventListener('keydown', event => {
+    const target = event.target;
+    const typing = target && (target.matches('input, textarea, select') || target.isContentEditable);
+    if (event.key === 'Escape' && !palette.hidden) {
+      closePalette();
+      return;
+    }
+    if (!typing && event.key === '/') {
+      event.preventDefault();
+      openPalette();
+    }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openPalette();
+    }
+  });
+})();
