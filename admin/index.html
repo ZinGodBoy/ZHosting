@@ -7,6 +7,27 @@
 @media(prefers-reduced-motion:reduce){.admin-page .stats article{transition:none}.admin-page .stats article:hover{transform:none}}
 </style></head><body class="admin-page"><header><a href="../index.html" class="brand">Z<span>Hosting</span></a><div class="head-actions"><b>● ADMIN</b><a href="../dashboard/index.html">Account</a><button id="logout">Đăng xuất</button></div></header><main><section class="hero"><div><small>ADMIN USER MANAGEMENT</small><h1>Quản lý người dùng.</h1><p>Theo dõi tài khoản, trạng thái và lịch sử đăng nhập an toàn.</p></div><aside><b>🔐 Privacy first</b><span>Mật khẩu không thể được xem.</span></aside></section><section class="stats"><article><small>TỔNG TÀI KHOẢN</small><strong id="total">0</strong></article><article><small>ACTIVE</small><strong id="active">0</strong></article><article><small>ADMIN</small><strong id="admins">0</strong></article><article><small>LOGIN EVENTS</small><strong id="logins">0</strong></article><article><small>LOCKED</small><strong id="locked">0</strong></article></section>
 <section class="analytics-grid">
+  <article class="panel analytics-card">
+    <div class="panel-title"><div><small>USER GROWTH</small><h2>Tăng trưởng tài khoản</h2></div><span>30 ngày</span></div>
+    <div id="userGrowth" class="growth-chart" aria-label="Biểu đồ tăng trưởng tài khoản 30 ngày"></div>
+  </article>
+  <article class="panel analytics-card">
+    <div class="panel-title"><div><small>LOGIN HEALTH</small><h2>Chất lượng đăng nhập</h2></div><span id="loginHealthRate">0%</span></div>
+    <div class="health-metrics">
+      <div><strong id="loginSuccess">0</strong><span>Thành công</span></div>
+      <div><strong id="loginFailed">0</strong><span>Thất bại</span></div>
+    </div>
+    <div class="health-bar"><i id="loginHealthBar"></i></div>
+  </article>
+  <article class="panel analytics-card">
+    <div class="panel-title"><div><small>DEVICE MIX</small><h2>Thiết bị & trình duyệt</h2></div></div>
+    <div id="deviceMix" class="device-mix"></div>
+  </article>
+  <article class="panel analytics-card analytics-wide">
+    <div class="panel-title"><div><small>SECURITY AUDIT</small><h2>Audit log</h2></div><span id="auditCount">0 events</span></div>
+    <div id="auditFeed" class="activity-feed"></div>
+  </article>
+</section>
   <article class="panel analytics-card analytics-wide">
     <div class="panel-title"><div><small>LOGIN ANALYTICS</small><h2>Hoạt động đăng nhập</h2></div><span id="loginRange">7 ngày</span></div>
     <div id="loginChart" class="bar-chart" aria-label="Biểu đồ đăng nhập 7 ngày"></div>
