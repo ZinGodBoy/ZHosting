@@ -161,3 +161,13 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [x] Empty login history state.
 - [x] Disabled state cho self-lock/self-revoke.
 - [x] Mobile login history không tràn ngang.
+
+
+### Admin Analytics Expansion — 2026-11-09
+
+- [x] User Growth 30 ngày hiển thị từ createdAt.
+- [x] Login Health tính success/failure từ audit events.
+- [x] Device & Browser Mix không dùng dữ liệu giả.
+- [x] Security Audit Log hiển thị event gần đây.
+- [x] Không render password/hash/salt.
+- [ ] Production audit phải được chuyển sang backend/server-side.
