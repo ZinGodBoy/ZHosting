@@ -105,3 +105,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm live network clock.
 - Thêm hover/glow motion và responsive mobile.
 - Có reduced-motion fallback.
+
+
+### Live infrastructure customization — 2026-11-09
+
+- Thêm micro telemetry cho các node HN/HCM/SG/JP.
+- Load và latency mô phỏng thay đổi định kỳ để giao diện sống động hơn.
+- Timestamp `UPDATED` được đồng bộ theo thời gian trình duyệt.
+- Thêm transition mượt cho node meter và ping.
