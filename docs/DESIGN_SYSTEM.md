@@ -159,3 +159,8 @@ nếu backend monitoring chưa tồn tại.
 ## Home Command Launch — 2026-11-09
 
 Command Launch sử dụng card dạng glass panel, số thứ tự nhỏ, accent cyan, hover lift và responsive 4→2→1 cột. Animation có fallback reduced-motion.
+
+
+## Live telemetry motion — 2026-11-09
+
+Network Map dùng transition cho meter và ping. Dữ liệu hiện tại là demo client-side; khi kết nối backend cần thay bằng nguồn monitoring thật và không trình bày dữ liệu mô phỏng như số liệu production.
