@@ -75,6 +75,39 @@ const render=()=>{
 };
 
 const save=()=>auth.saveUsers(users);
+
+const analytics=()=>{
+ const normalized=users.map(normalize);
+ const now=Date.now(), day=86400000;
+ const days=Array.from({length:7},(_,i)=>{const d=new Date(now-(6-i)*day);return {key:d.toISOString().slice(0,10),label:d.toLocaleDateString("vi-VN",{weekday:"short"}).replace(".","")};});
+ const chart=$("loginChart");chart?.replaceChildren();
+ const counts=days.map(d=>normalized.reduce((n,u)=>n+u.loginHistory.filter(x=>x.success!==false&&String(x.at||"").slice(0,10)===d.key).length,0));
+ const max=Math.max(1,...counts);
+ days.forEach((d,i)=>{
+  const item=document.createElement("div");item.className="bar-item";
+  const value=document.createElement("b");value.textContent=String(counts[i]);
+  const track=document.createElement("div");track.className="bar-track";
+  const fill=document.createElement("i");fill.style.height=Math.max(8,(counts[i]/max)*100)+"%";track.append(fill);
+  const label=document.createElement("span");label.textContent=d.label;
+  item.append(value,track,label);chart?.append(item);
+ });
+ text("userDonutTotal",normalized.length);text("mixActive",normalized.filter(u=>u.status==="active").length);text("mixLocked",normalized.filter(u=>u.status==="locked").length);text("mixAdmins",normalized.filter(u=>u.role==="admin").length);
+ const active=normalized.filter(u=>u.status==="active").length,locked=normalized.length-active;
+ const activePct=normalized.length?active/normalized.length*100:0;
+ const donut=$("userDonut");if(donut)donut.style.setProperty("--active",activePct+"%");
+ text("activeSessions",session?1:0);text("sessionUser",me.name||me.email);const last=me.loginHistory?.[0];text("sessionDevice",last?(last.device||"Browser")+" · "+(last.browser||"Browser"):"Phiên quản trị hiện tại");
+ const events=[];
+ normalized.forEach(u=>u.loginHistory.slice(0,8).forEach(x=>events.push({at:x.at,user:u.name||u.email,ok:x.success!==false,device:x.device||"Browser",browser:x.browser||"Browser"})));
+ events.sort((a,b)=>new Date(b.at)-new Date(a.at));
+ const feed=$("activityFeed");feed?.replaceChildren();text("activityCount",events.length+" events");
+ if(!events.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có hoạt động gần đây.";feed?.append(e);}
+ events.slice(0,8).forEach(e=>{
+  const row=document.createElement("div");row.className="activity-row";
+  const dot=document.createElement("i");dot.className=e.ok?"dot":"dot fail";
+  const wrap=document.createElement("div");const b=document.createElement("b");b.textContent=e.ok?"Đăng nhập thành công":"Đăng nhập thất bại";const s=document.createElement("span");s.textContent=e.user+" · "+e.device+" · "+e.browser;wrap.append(b,s);
+  const t=document.createElement("time");t.textContent=fmt(e.at);row.append(dot,wrap,t);feed?.append(row);
+ });
+};
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();});
@@ -119,4 +152,5 @@ $("revoke")?.addEventListener("click",()=>{
  save();show(u.id);
 });
 render();
+analytics();
 })();
