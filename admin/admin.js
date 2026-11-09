@@ -27,7 +27,7 @@ const stats=()=>{
  text("total",users.length);
  text("active",users.filter(u=>normalize(u).status==="active").length);
  text("admins",users.filter(u=>normalize(u).role==="admin").length);
- text("logins",users.reduce((n,u)=>n+normalize(u).loginCount,0));
+ text("logins",users.reduce((n,u)=>n+normalize(u).loginCount,0));\n text("locked",users.filter(u=>normalize(u).status==="locked").length);
 };
 
 const show=raw=>{
@@ -81,6 +81,21 @@ $("role")?.addEventListener("change",render);
 $("refresh")?.addEventListener("click",()=>{window.location.reload();});
 $("close")?.addEventListener("click",()=>show(null));
 $("logout")?.addEventListener("click",()=>auth.logout?.());
+$("exportUsers")?.addEventListener("click",()=>{
+ const rows=[["id","name","email","role","status","createdAt","lastLogin","loginCount","lastDevice","lastBrowser"]];
+ users.map(normalize).forEach(u=>{
+  const last=u.loginHistory[0]||{};
+  rows.push([u.id,u.name,u.email,u.role,u.status,u.createdAt||"",u.lastLogin||"",u.loginCount,last.device||"",last.browser||""]);
+ });
+ const csv=rows.map(row=>row.map(value=>{
+  const text=String(value??"").replace(/"/g,'""');
+  return '"' + text + '"';
+ }).join(",")).join("\\n");
+ const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"});
+ const url=URL.createObjectURL(blob);const link=document.createElement("a");
+ link.href=url;link.download="zhosting-users-"+new Date().toISOString().slice(0,10)+".csv";
+ link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
 $("lock")?.addEventListener("click",()=>{
  const u=users.find(x=>x.id===selectedId);
  if(!u||u.email===me.email)return;
