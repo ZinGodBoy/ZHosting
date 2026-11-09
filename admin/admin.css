@@ -63,3 +63,31 @@ td{font-size:12px}
 @media(max-width:1050px){.analytics-grid{grid-template-columns:1fr 1fr}.analytics-wide{grid-column:1/-1}}
 @media(max-width:650px){.analytics-grid{grid-template-columns:1fr}.analytics-wide{grid-column:auto}.donut-wrap{justify-content:center;flex-wrap:wrap}.bar-chart{gap:5px;padding-left:12px;padding-right:12px}.activity-row{grid-template-columns:7px 1fr}.activity-row time{grid-column:2}}
 @media(prefers-reduced-motion:reduce){.bar-track i{box-shadow:none}}
+
+
+/* V1.4 analytics expansion */
+.growth-chart{height:190px;display:flex;align-items:flex-end;gap:4px;padding:18px 19px 20px;border-top:1px solid #ffffff06}
+.growth-chart i{flex:1;min-width:3px;height:4%;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#56e8ed,#477dff);opacity:.9;transition:height .25s ease,transform .2s ease}
+.growth-chart i:hover{transform:translateY(-3px);opacity:1}
+.health-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 19px 13px}
+.health-metrics div{padding:14px;border:1px solid #ffffff09;border-radius:11px;background:#ffffff04}
+.health-metrics strong{display:block;font:700 27px "Space Grotesk"}
+.health-metrics span{display:block;margin-top:3px;color:#718198;font-size:10px}
+.health-bar{height:7px;margin:0 19px 21px;border-radius:99px;background:#ffffff08;overflow:hidden}
+.health-bar i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ff7373,#4ee3e8);transition:width .3s ease}
+.device-mix{display:grid;gap:12px;padding:5px 19px 22px}
+.device-row{display:grid;grid-template-columns:minmax(100px,.8fr) 1.4fr 30px;gap:9px;align-items:center}
+.device-row span{font-size:10px;color:#9aabbd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.device-row b{font-size:10px;color:#dce7f2;text-align:right}
+.device-track{height:7px;border-radius:99px;background:#ffffff08;overflow:hidden}
+.device-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#477dff,#56e8ed)}
+@media(max-width:650px){
+ .growth-chart{height:150px;padding-left:12px;padding-right:12px}
+ .health-metrics{padding-left:12px;padding-right:12px}
+ .health-bar{margin-left:12px;margin-right:12px}
+ .device-mix{padding-left:12px;padding-right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .growth-chart i,.health-bar i{transition:none}
+ .growth-chart i:hover{transform:none}
+}
