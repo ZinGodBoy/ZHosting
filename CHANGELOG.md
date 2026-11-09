@@ -96,3 +96,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Render tên/email bằng DOM text thay vì HTML động.
 - Cải thiện empty state, mobile history và disabled action state.
 - Refresh Admin Center tải lại dữ liệu mới nhất từ browser storage.
+
+
+### Home Command Launch — 2026-11-09
+
+- Thêm **ZHosting Command** section trên trang chủ.
+- Quick links tới Account Center, Config Builder, Live Status và Project Brief.
+- Thêm live network clock.
+- Thêm hover/glow motion và responsive mobile.
+- Có reduced-motion fallback.
