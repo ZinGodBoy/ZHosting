@@ -113,3 +113,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Load và latency mô phỏng thay đổi định kỳ để giao diện sống động hơn.
 - Timestamp `UPDATED` được đồng bộ theo thời gian trình duyệt.
 - Thêm transition mượt cho node meter và ping.
+
+
+## Admin Center v1.4 — 2026-11-09
+
+- Bổ sung thống kê tài khoản bị khóa.
+- Thêm xuất CSV metadata tài khoản phục vụ audit demo.
+- CSV chỉ chứa metadata an toàn: ID, tên, email, role, status, thời gian và thiết bị đăng nhập gần nhất.
+- Không xuất password, password hash, salt hoặc credential secret.
+- Admin Center tiếp tục dùng localStorage trong prototype; production cần backend/database/RBAC server-side.
