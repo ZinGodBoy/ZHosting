@@ -277,3 +277,8 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 - Account Center now binds `Admin Center` navigation from the authenticated user role.
 - The entry is hidden for non-admin accounts and active admin accounts are routed to `/admin/`.
 - Navigation remains client-side UX only; sensitive authorization must still be enforced server-side in production.
+
+
+## Home Command Launch — 2026-11-09
+
+Trang chủ được mở rộng thêm khu vực **ZHosting Command** với các lối tắt tới Account Center, Config Builder, Live Status và Project Brief. Khu vực này dùng card tương tác, live clock và reduced-motion fallback.
