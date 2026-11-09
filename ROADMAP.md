@@ -102,3 +102,12 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - [x] Role-aware navigation cho tài khoản admin.
 - [ ] Server-side RBAC cho Admin Center.
 - [ ] Persistent admin audit log trên backend.
+
+
+## Home Customization — 2026-11-09
+
+- [x] ZHosting Command Launch section.
+- [x] Quick navigation cards.
+- [x] Live clock micro-interaction.
+- [x] Responsive/reduced-motion support.
+- [ ] Connect launch metrics to real backend telemetry.
