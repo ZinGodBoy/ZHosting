@@ -6,6 +6,7 @@
   const TEMP_SESSION_KEY="zhosting_temp_session_v1";
   const GUARD_KEY="zhosting_login_guard_v1";
   const PBKDF2_ITERATIONS=600000;
+  const AUDIT_KEY="zhosting_audit_v1";
 
   const getUsers=()=>{
     try{
@@ -23,6 +24,20 @@
     }catch{return[]}
   };
   const saveUsers=users=>localStorage.setItem(USERS_KEY,JSON.stringify(users));
+  const getAudit=()=>{
+    try{return JSON.parse(localStorage.getItem(AUDIT_KEY)||"[]");}catch{return[]}
+  };
+  const saveAudit=events=>localStorage.setItem(AUDIT_KEY,JSON.stringify(events.slice(0,200)));
+  const recordAudit=(type,meta={})=>{
+    const events=getAudit();
+    events.unshift({
+      id:crypto.randomUUID?.()||String(Date.now()),
+      at:new Date().toISOString(),
+      type,
+      ...meta
+    });
+    saveAudit(events);
+  };
 
   const getDeviceInfo=()=>{
     const ua=navigator.userAgent||"";
@@ -257,6 +272,7 @@
         sessionRevokedAt:null
       });
       saveUsers(users);
+      recordAudit("register",{userId:users[users.length-1].id,email,name,device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       saveSession(email,true);
       setMessage("registerMessage","Tài khoản đã được tạo. Đang mở Control Center...","success");
       window.ZUI?.toast("Đăng ký thành công","Tài khoản ZHosting đã sẵn sàng.","success");
@@ -296,6 +312,7 @@
       const user=users.find(item=>item.email===email);
 
       if(!user){
+        recordAudit("login_failed",{email,device:getDeviceInfo().device,browser:getDeviceInfo().browser,reason:"unknown-account"});
         registerFailure();
         setBusy(loginForm,false);
         setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
@@ -305,6 +322,7 @@
 
       const valid=await verifyPassword(password,user);
       if(!valid){
+        recordAudit("login_failed",{email,device:getDeviceInfo().device,browser:getDeviceInfo().browser,reason:"invalid-password"});
         registerFailure();
         setBusy(loginForm,false);
         setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
@@ -329,6 +347,7 @@
       }
 
       await recordLogin(user);
+      recordAudit("login_success",{userId:user.id,email:user.email,name:user.name,device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       saveUsers(users);
       saveSession(user.email,remember);
       resetGuard();
@@ -362,6 +381,8 @@
     TEMP_SESSION_KEY,
     getUsers,
     saveUsers,
+    getAudit,
+    recordAudit,
     getSession,
     touchSession,
     saveSession,
