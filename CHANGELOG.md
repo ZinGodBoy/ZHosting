@@ -122,3 +122,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - CSV chỉ chứa metadata an toàn: ID, tên, email, role, status, thời gian và thiết bị đăng nhập gần nhất.
 - Không xuất password, password hash, salt hoặc credential secret.
 - Admin Center tiếp tục dùng localStorage trong prototype; production cần backend/database/RBAC server-side.
+
+
+### Admin Command Center — 2026-11-09
+
+- Thêm Admin Command Bar cho thao tác nhanh.
+- Quick action tìm user, lọc tài khoản bị khóa và reset bộ lọc.
+- Thêm đồng hồ realtime trong Admin Center.
+- Responsive command bar cho mobile.
