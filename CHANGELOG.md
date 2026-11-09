@@ -140,3 +140,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm Recent Activity feed từ login history.
 - Responsive và hỗ trợ reduced-motion.
 - Dữ liệu analytics lấy từ localStorage prototype; không giả lập số liệu ngoài dữ liệu tài khoản hiện có.
+
+
+### Admin Analytics Expansion — 2026-11-09
+
+- Thêm biểu đồ tăng trưởng tài khoản 30 ngày dựa trên createdAt.
+- Thêm Login Health với số lần đăng nhập thành công/thất bại và tỷ lệ thành công.
+- Thêm Device & Browser Mix dựa trên audit/login metadata hiện có.
+- Thêm Security Audit Log cho các event đăng ký, đăng nhập thành công và đăng nhập thất bại.
+- Audit không lưu hoặc hiển thị mật khẩu, password hash hay salt.
+- Các số liệu vẫn là dữ liệu client-side của prototype; không giả lập số liệu.
