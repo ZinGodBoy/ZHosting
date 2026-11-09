@@ -92,23 +92,90 @@ const analytics=()=>{
   item.append(value,track,label);chart?.append(item);
  });
  text("userDonutTotal",normalized.length);text("mixActive",normalized.filter(u=>u.status==="active").length);text("mixLocked",normalized.filter(u=>u.status==="locked").length);text("mixAdmins",normalized.filter(u=>u.role==="admin").length);
- const active=normalized.filter(u=>u.status==="active").length,locked=normalized.length-active;
+ const active=normalized.filter(u=>u.status==="active").length;
  const activePct=normalized.length?active/normalized.length*100:0;
  const donut=$("userDonut");if(donut)donut.style.setProperty("--active",activePct+"%");
- text("activeSessions",session?1:0);text("sessionUser",me.name||me.email);const last=me.loginHistory?.[0];text("sessionDevice",last?(last.device||"Browser")+" · "+(last.browser||"Browser"):"Phiên quản trị hiện tại");
- const events=[];
- normalized.forEach(u=>u.loginHistory.slice(0,8).forEach(x=>events.push({at:x.at,user:u.name||u.email,ok:x.success!==false,device:x.device||"Browser",browser:x.browser||"Browser"})));
- events.sort((a,b)=>new Date(b.at)-new Date(a.at));
- const feed=$("activityFeed");feed?.replaceChildren();text("activityCount",events.length+" events");
- if(!events.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có hoạt động gần đây.";feed?.append(e);}
- events.slice(0,8).forEach(e=>{
+ text("activeSessions",session?1:0);text("sessionUser",me.name||me.email);
+ const last=me.loginHistory?.[0];text("sessionDevice",last?(last.device||"Browser")+" · "+(last.browser||"Browser"):"Phiên quản trị hiện tại");
+
+ const audit=auth.getAudit?.()||[];
+ const success=audit.filter(x=>x.type==="login_success");
+ const failed=audit.filter(x=>x.type==="login_failed");
+ const totalAttempts=success.length+failed.length;
+ const rate=totalAttempts?Math.round(success.length/totalAttempts*100):0;
+ text("loginSuccess",success.length);text("loginFailed",failed.length);text("loginHealthRate",rate+"%");
+ const health=$("loginHealthBar");if(health)health.style.width=rate+"%";
+
+ const growth=$("userGrowth");growth?.replaceChildren();
+ const growthDays=Array.from({length:30},(_,i)=>new Date(now-(29-i)*day));
+ const growthCounts=growthDays.map(d=>{
+   const key=d.toISOString().slice(0,10);
+   return normalized.filter(u=>String(u.createdAt||"").slice(0,10)<=key).length;
+ });
+ const growthMax=Math.max(1,...growthCounts);
+ growthDays.forEach((d,i)=>{
+   const bar=document.createElement("i");
+   bar.title=d.toLocaleDateString("vi-VN")+" · "+growthCounts[i]+" users";
+   bar.style.height=Math.max(4,(growthCounts[i]/growthMax)*100)+"%";
+   growth?.append(bar);
+ });
+
+ const deviceCounts={};
+ success.forEach(x=>{
+   const key=(x.device||"Browser")+" · "+(x.browser||"Browser");
+   deviceCounts[key]=(deviceCounts[key]||0)+1;
+ });
+ if(!success.length){
+   normalized.forEach(u=>u.loginHistory.filter(x=>x.success!==false).forEach(x=>{
+     const key=(x.device||"Browser")+" · "+(x.browser||"Browser");
+     deviceCounts[key]=(deviceCounts[key]||0)+1;
+   }));
+ }
+ const deviceMix=$("deviceMix");deviceMix?.replaceChildren();
+ const deviceEntries=Object.entries(deviceCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ const deviceMax=Math.max(1,...deviceEntries.map(x=>x[1]));
+ if(!deviceEntries.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có dữ liệu thiết bị.";deviceMix?.append(e);}
+ deviceEntries.forEach(([name,count])=>{
+   const row=document.createElement("div");row.className="device-row";
+   const label=document.createElement("span");label.textContent=name;
+   const track=document.createElement("div");track.className="device-track";
+   const fill=document.createElement("i");fill.style.width=(count/deviceMax*100)+"%";track.append(fill);
+   const value=document.createElement("b");value.textContent=String(count);
+   row.append(label,track,value);deviceMix?.append(row);
+ });
+
+ const recent= audit.slice().sort((a,b)=>new Date(b.at)-new Date(a.at));
+ const feed=$("activityFeed");feed?.replaceChildren();
+ const activity=[];
+ normalized.forEach(u=>u.loginHistory.slice(0,8).forEach(x=>activity.push({at:x.at,user:u.name||u.email,ok:x.success!==false,device:x.device||"Browser",browser:x.browser||"Browser"})));
+ activity.sort((a,b)=>new Date(b.at)-new Date(a.at));
+ text("activityCount",activity.length+" events");
+ if(!activity.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có hoạt động gần đây.";feed?.append(e);}
+ activity.slice(0,8).forEach(e=>{
   const row=document.createElement("div");row.className="activity-row";
   const dot=document.createElement("i");dot.className=e.ok?"dot":"dot fail";
   const wrap=document.createElement("div");const b=document.createElement("b");b.textContent=e.ok?"Đăng nhập thành công":"Đăng nhập thất bại";const s=document.createElement("span");s.textContent=e.user+" · "+e.device+" · "+e.browser;wrap.append(b,s);
   const t=document.createElement("time");t.textContent=fmt(e.at);row.append(dot,wrap,t);feed?.append(row);
  });
-};
-const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
+
+ const auditFeed=$("auditFeed");auditFeed?.replaceChildren();text("auditCount",recent.length+" events");
+ const auditLabel={
+   login_success:"Đăng nhập thành công",
+   login_failed:"Đăng nhập thất bại",
+   register:"Tạo tài khoản"
+ };
+ if(!recent.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có audit event.";auditFeed?.append(e);}
+ recent.slice(0,10).forEach(e=>{
+   const row=document.createElement("div");row.className="activity-row";
+   const dot=document.createElement("i");dot.className=e.type==="login_failed"?"dot fail":"dot";
+   const wrap=document.createElement("div");
+   const b=document.createElement("b");b.textContent=auditLabel[e.type]||e.type;
+   const s=document.createElement("span");s.textContent=(e.name||e.email||"Unknown")+" · "+(e.device||"Browser")+" · "+(e.browser||"Browser");
+   wrap.append(b,s);
+   const t=document.createElement("time");t.textContent=fmt(e.at);
+   row.append(dot,wrap,t);auditFeed?.append(row);
+ });
+};const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();});
 $("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();}});
