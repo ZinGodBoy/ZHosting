@@ -282,3 +282,8 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 ## Home Command Launch — 2026-11-09
 
 Trang chủ được mở rộng thêm khu vực **ZHosting Command** với các lối tắt tới Account Center, Config Builder, Live Status và Project Brief. Khu vực này dùng card tương tác, live clock và reduced-motion fallback.
+
+
+## Live Infrastructure UI — 2026-11-09
+
+Trang chủ có thêm lớp micro-telemetry mô phỏng cho Network Map: load, latency và timestamp được cập nhật định kỳ phía trình duyệt. Đây là dữ liệu demo, chưa phải monitoring thật.
