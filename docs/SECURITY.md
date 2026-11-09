@@ -42,3 +42,16 @@ Before real customer accounts are supported, move authentication and authorizati
 - database-backed identity and permissions.
 
 See [SECURITY.md](../SECURITY.md) and [AUTHENTICATION.md](AUTHENTICATION.md) for the complete security model.
+
+
+## Admin audit telemetry
+
+Admin Center có audit telemetry phía client cho prototype:
+
+- register
+- login_success
+- login_failed
+
+Audit chỉ lưu metadata cần cho giao diện quản trị demo như thời gian, email/user ID, thiết bị và trình duyệt. Không ghi password, password hash hoặc salt.
+
+> localStorage vẫn không phải security boundary. Audit log client-side có thể bị sửa/xóa bởi người có quyền trên trình duyệt. Production cần audit log server-side, append-only hoặc tamper-resistant, cùng RBAC ở backend.
