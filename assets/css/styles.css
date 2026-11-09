@@ -119,3 +119,10 @@ summary{display:flex;justify-content:space-between;align-items:center;gap:20px}s
 @media(max-width:1000px){.launch-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.launch-head{display:block}.launch-status{width:max-content;margin-top:18px}.launch-grid{grid-template-columns:1fr}.launch-card{min-height:175px}}
 @media(prefers-reduced-motion:reduce){.launch-status i{animation:none}.launch-card,.launch-card:before,.launch-arrow{transition:none}.launch-card:hover{transform:none}}
+
+
+/* ===== V7 LIVE NODE MICRO-DASH ===== */
+.node-card .node-meter i{transition:width .9s cubic-bezier(.2,.75,.25,1)}
+.node-card .node-ping{transition:transform .3s ease,box-shadow .3s ease}
+.node-card:hover .node-ping{transform:scale(1.25);box-shadow:0 0 18px rgba(85,230,165,.8)}
+.status-main-top>span:last-child{font-variant-numeric:tabular-nums}
