@@ -202,3 +202,7 @@ counters.forEach(el=>counterObserver.observe(el));
 
 /* ===== ACCOUNT-AWARE NAV ===== */
 (()=>{const account=document.querySelector('#navAccount');if(!account)return;try{const s=(()=>{try{return JSON.parse(localStorage.getItem('zhosting_session_v1')||sessionStorage.getItem('zhosting_temp_session_v1')||'null')}catch{return null}})(),users=JSON.parse(localStorage.getItem('zhosting_users_v1')||'[]'),u=s&&users.find(x=>x.email===s.email);if(!u)return;const first=(u.name||'Z').trim().charAt(0).toUpperCase();account.classList.add('logged-in');account.replaceChildren();const link=document.createElement('a');link.className='account-link';link.href='dashboard/index.html';const avatar=document.createElement('span');avatar.className='account-avatar';avatar.textContent=first;const name=document.createElement('span');name.textContent=((u.name||'Tài khoản').split(' ')[0]);link.append(avatar,name);const logout=document.createElement('a');logout.className='logout-link';logout.href='#';logout.id='navLogout';logout.textContent='Đăng xuất';account.append(link,logout);}catch(e){console.warn('ZHosting account nav unavailable',e)}})();
+
+
+/* ===== COMMAND LAUNCH MICRO-UI ===== */
+(()=>{const clock=document.querySelector('#launchClock');if(!clock)return;const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})};tick();setInterval(tick,1000);})();
