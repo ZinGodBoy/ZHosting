@@ -130,3 +130,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Quick action tìm user, lọc tài khoản bị khóa và reset bộ lọc.
 - Thêm đồng hồ realtime trong Admin Center.
 - Responsive command bar cho mobile.
+
+
+### Admin Analytics Dashboard — 2026-11-09
+
+- Thêm biểu đồ hoạt động đăng nhập 7 ngày.
+- Thêm biểu đồ phân bổ Active/Locked.
+- Thêm Session Monitor cho phiên quản trị hiện tại.
+- Thêm Recent Activity feed từ login history.
+- Responsive và hỗ trợ reduced-motion.
+- Dữ liệu analytics lấy từ localStorage prototype; không giả lập số liệu ngoài dữ liệu tài khoản hiện có.
