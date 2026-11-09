@@ -75,6 +75,16 @@ const render=()=>{
 };
 
 const save=()=>auth.saveUsers(users);
+const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
+setInterval(updateClock,1000);updateClock();
+$("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();});
+$("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();}});
+$("clearFilters")?.addEventListener("click",()=>{
+ if($("search"))$("search").value="";
+ if($("status"))$("status").value="all";
+ if($("role"))$("role").value="all";
+ render();
+});
 $("search")?.addEventListener("input",render);
 $("status")?.addEventListener("change",render);
 $("role")?.addEventListener("change",render);
