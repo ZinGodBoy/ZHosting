@@ -13,8 +13,8 @@ if(reduced||lowMemory||lowCpu||saveData||slowNetwork)body?.classList.add("zperf-
 if(lowMemory||lowCpu||saveData||slowNetwork)root.classList.add("zperf-constrained");
 if(reduced)body?.classList.add("zperf-reduced");
 if(saveData||slowNetwork)body?.classList.add("zperf-data-saver");
-let raf=0;
-const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;root.style.setProperty("--z-viewport-height",window.innerHeight+"px")})};
+let raf=0,lastViewportHeight=0;
+const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
 window.addEventListener("resize",syncViewport,{passive:true});syncViewport();
 let scrollRaf=0;
 let lastScrollState=false;
