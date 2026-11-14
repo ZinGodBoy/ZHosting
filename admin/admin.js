@@ -164,6 +164,7 @@ const analytics=()=>{
    login_success:"Đăng nhập thành công",
    login_failed:"Đăng nhập thất bại",
    register:"Tạo tài khoản",
+   logout:"Đăng xuất",
    admin_lock:"Admin khóa tài khoản",
    admin_unlock:"Admin mở khóa tài khoản",
    admin_revoke_session:"Admin thu hồi phiên"
