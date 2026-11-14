@@ -187,22 +187,24 @@
   };
   setupSessionGuard();
 
-  const setupInputs=()=>{
-    document.querySelectorAll("input,textarea").forEach(input=>{
-      if(!input.id)return;
-      const validate=()=>{
-        if(input.required&&input.value.trim()===""){input.classList.remove("zui-input-valid");return}
-        if(input.type==="email"){
-          input.classList.toggle("zui-input-valid",input.validity.valid);
-          input.classList.toggle("zui-input-invalid",!input.validity.valid&&input.value.length>2);
-        }else if(input.type!=="password"){
-          input.classList.add("zui-input-valid");input.classList.remove("zui-input-invalid");
-        }
-      };
-      input.addEventListener("input",validate);input.addEventListener("blur",validate);
-    });
+  const validateInput=input=>{
+    if(!input?.id)return;
+    if(input.required&&input.value.trim()===""){input.classList.remove("zui-input-valid");return}
+    if(input.type==="email"){
+      input.classList.toggle("zui-input-valid",input.validity.valid);
+      input.classList.toggle("zui-input-invalid",!input.validity.valid&&input.value.length>2);
+    }else if(input.type!=="password"){
+      input.classList.add("zui-input-valid");input.classList.remove("zui-input-invalid");
+    }
   };
-  setupInputs();
+  document.addEventListener("input",event=>{
+    const input=event.target.closest?.("input,textarea");
+    if(input)validateInput(input);
+  },{passive:true});
+  document.addEventListener("blur",event=>{
+    const input=event.target.closest?.("input,textarea");
+    if(input)validateInput(input);
+  },true);
 
   const strengthInput=document.querySelector("#registerPassword");
   if(strengthInput){
