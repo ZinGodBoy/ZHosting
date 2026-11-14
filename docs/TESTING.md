@@ -337,3 +337,8 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify theme panel opens/closes with mouse and keyboard.
 - Verify RGB values map correctly to HEX and update the accent/background immediately.
 - Verify presets, reset, local persistence, mobile layout, and reduced-motion behavior.
+
+
+## v1.4.13 — Theme Tool Test Notes
+- Verify solid/gradient switching, secondary color, gradient angle, presets and reset.
+- Verify reload persistence and mobile/reduced-motion behavior.
