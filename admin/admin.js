@@ -162,9 +162,23 @@ const save=()=>auth.saveUsers(users);
 
 const analytics=()=>{
  const normalized=users.map(normalize),now=Date.now(),day=86400000;
+ const history=normalized.flatMap(u=>u.loginHistory);
  const days=Array.from({length:7},(_,i)=>{const d=new Date(now-(6-i)*day);return{key:d.toISOString().slice(0,10),label:d.toLocaleDateString("vi-VN",{weekday:"short"}).replace(".","")};});
+ const loginByDay=new Map();
+ const createdByDay=new Map();
+ const deviceCounts={};
+ history.forEach(x=>{
+   const key=String(x.at||"").slice(0,10);
+   if(x.success!==false)loginByDay.set(key,(loginByDay.get(key)||0)+1);
+   const deviceKey=(x.device||"Browser")+" · "+(x.browser||"Browser");
+   deviceCounts[deviceKey]=(deviceCounts[deviceKey]||0)+1;
+ });
+ normalized.forEach(u=>{
+   const key=String(u.createdAt||"").slice(0,10);
+   if(key)createdByDay.set(key,(createdByDay.get(key)||0)+1);
+ });
  const chart=$("loginChart");chart?.replaceChildren();
- const counts=days.map(d=>normalized.reduce((n,u)=>n+u.loginHistory.filter(x=>x.success!==false&&String(x.at||"").slice(0,10)===d.key).length,0));
+ const counts=days.map(d=>loginByDay.get(d.key)||0);
  const max=Math.max(1,...counts);
  days.forEach((d,i)=>{
    const item=document.createElement("div");item.className="bar-item";
@@ -190,14 +204,15 @@ const analytics=()=>{
 
  const growth=$("userGrowth");growth?.replaceChildren();
  const growthDays=Array.from({length:30},(_,i)=>new Date(now-(29-i)*day));
- const growthCounts=growthDays.map(d=>normalized.filter(u=>String(u.createdAt||"").slice(0,10)<=d.toISOString().slice(0,10)).length);
+ let runningCreated=normalized.filter(u=>timeValue(u.createdAt)<=growthDays[0].getTime()+day-1).length;
+ const growthCounts=growthDays.map(d=>{
+   const key=d.toISOString().slice(0,10);
+   runningCreated+=createdByDay.get(key)||0;
+   return runningCreated;
+ });
  const growthMax=Math.max(1,...growthCounts);
  growthDays.forEach((d,i)=>{const bar=document.createElement("i");bar.title=d.toLocaleDateString("vi-VN")+" · "+growthCounts[i]+" users";bar.style.height=Math.max(4,growthCounts[i]/growthMax*100)+"%";bar.style.animationDelay=(i*18)+"ms";growth?.append(bar);});
 
- const deviceCounts={};
- [...success,...normalized.flatMap(u=>u.loginHistory)].forEach(x=>{
-   const key=(x.device||"Browser")+" · "+(x.browser||"Browser");deviceCounts[key]=(deviceCounts[key]||0)+1;
- });
  const deviceMix=$("deviceMix");deviceMix?.replaceChildren();
  const deviceEntries=Object.entries(deviceCounts).sort((a,b)=>b[1]-a[1]).slice(0,5),deviceMax=Math.max(1,...deviceEntries.map(x=>x[1]));
  if(!deviceEntries.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có dữ liệu thiết bị.";deviceMix?.append(e);}
