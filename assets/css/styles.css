@@ -1140,3 +1140,57 @@ body.zperf-lite .noise{display:none!important}
 body.zperf-lite .server-card{transform:none!important;box-shadow:none!important}
 body.zperf-constrained .hero-grid-lines{display:none!important}
 body.zperf-constrained .orb{display:none!important}
+
+
+/* ===== BRAND PALETTE CONSOLIDATION v1.7.9 ===== */
+/* Keep utility/footer surfaces on the original blue/cyan identity; preserve third-party brand colors. */
+.footer{
+  border-top-color:color-mix(in srgb,var(--cyan,#43d9ff) 16%,var(--line));
+}
+.footer:before{
+  background:linear-gradient(90deg,transparent,var(--cyan,#43d9ff),var(--blue,#5c7cff),transparent);
+}
+.footer-column a:hover,.footer-column a:focus-visible{
+  color:var(--cyan,#43d9ff);
+}
+.footer-column a:after{
+  background:var(--cyan,#43d9ff);
+}
+.footer-contact-inner{
+  border-color:color-mix(in srgb,var(--cyan,#43d9ff) 17%,var(--line));
+  background:linear-gradient(135deg,rgba(67,217,255,.045),rgba(92,124,255,.025) 48%,rgba(4,7,13,.24));
+}
+.footer-contact-link:hover,.footer-contact-link:focus-visible{
+  border-color:color-mix(in srgb,var(--cyan,#43d9ff) 38%,var(--line));
+  background:color-mix(in srgb,var(--cyan,#43d9ff) 7%,transparent);
+}
+.footer-contact-link:focus-visible{
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan,#43d9ff) 18%,transparent);
+}
+.footer-contact-link i{
+  color:#7f93a8;
+}
+.footer-contact-link:hover i,.footer-contact-link:focus-visible i{
+  color:var(--cyan,#43d9ff);
+}
+.footer-contact-inner:after{
+  background:linear-gradient(180deg,var(--cyan,#43d9ff),var(--blue,#5c7cff));
+}
+.support-bubble{
+  background:rgba(8,16,28,.92);
+  box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 24px rgba(67,217,255,.1);
+}
+.support-bubble-label{
+  border-color:rgba(67,217,255,.16);
+  background:rgba(7,16,27,.96);
+  color:#eef6ff;
+}
+@media(max-width:900px){
+  .support-bubble{background:rgba(8,16,28,.96)}
+}
+@media(prefers-reduced-motion:reduce){
+  .footer-column a:after,.footer-contact-link,.support-bubble,.support-bubble-label{transition:none!important}
+}
+body.zperf-lite .support-bubble{
+  box-shadow:none!important;
+}
