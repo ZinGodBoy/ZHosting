@@ -105,3 +105,8 @@ AI giúp tăng tốc quá trình xây dựng ZHosting, nhưng chất lượng cu
 ## 2026-11-14 — Admin Center Motion Suite
 
 Tiếp tục nâng cấp Admin Center với spotlight theo con trỏ, tilt card, ripple, animated counters, chart stagger, scanline, border flow, header shrink, detail-panel state và reduced-motion fallback.
+
+
+## 2026-11-14 — Admin Device Gate
+
+Thêm trusted-device layer cho Admin Center: IndexedDB + non-extractable ECDSA private key, public-key fingerprint binding, hidden admin navigation trên thiết bị không được tin cậy, route guard và audit event. Đồng thời loại bỏ auto-promote tài khoản đầu tiên thành admin.
