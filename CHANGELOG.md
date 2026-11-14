@@ -328,3 +328,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Debounce cả Global Search của Admin Center để tránh render liên tục khi nhập nhanh.
 - Harden Homepage anchor navigation, tránh selector lỗi làm gián đoạn click handler.
 - Làm adaptive performance runtime idempotent, tránh bind resize/visibility listener hai lần nếu script bị nạp lại.
+
+## Regression hardening — 2026-11-14
+
+- Loại bỏ cơ chế tự cấp admin cho tài khoản đăng ký đầu tiên.
+- Xóa script performance.js bị nhúng trùng trên trang 404.
+- Làm timer kiểm tra session và đồng hồ Admin Center lifecycle-safe: dừng khi tab nền và cleanup khi rời trang.
+- Harden anchor navigation để href="#" hoặc selector không hợp lệ không gây JavaScript exception.
