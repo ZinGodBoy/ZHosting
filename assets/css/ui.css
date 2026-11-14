@@ -612,3 +612,6 @@ input,select,textarea,button{font-family:var(--font-ui)}
 [hidden]{display:none!important}
 button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.62}
 @media(prefers-reduced-motion:reduce){.zui-ripple-wave,.zui-spotlight,.zui-tilt{animation:none!important;transition:none!important;transform:none!important}}
+
+/* ===== VISUAL REFRESH UI TOKENS v1.4.4 ===== */
+:root{--focus-ring:0 0 0 3px rgba(167,139,250,.18);--danger:#fb7185;--warning:#fbbf24}
