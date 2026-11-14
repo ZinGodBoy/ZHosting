@@ -168,3 +168,16 @@ body.theme-customized .ztheme-panel label,
 body.theme-customized .ztheme-panel button{
   color:var(--z-text);
 }
+
+/* Performance fallback: remove expensive transparency effects on constrained devices. */
+body.zperf-lite .ztheme-trigger,
+body.zperf-lite .ztheme-panel,
+body.zperf-constrained .ztheme-trigger,
+body.zperf-constrained .ztheme-panel{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  box-shadow:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .ztheme-trigger{transform:none!important}
+}
