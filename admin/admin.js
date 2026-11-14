@@ -397,9 +397,23 @@ $("revoke")?.addEventListener("click",()=>{
 render();analytics();
 })();
 
-/* ===== ADMIN RUNTIME QUALITY v1.4.1 ===== */
+/* ===== ADMIN RUNTIME QUALITY v1.8.1 ===== */
 (()=>{
-  const refreshOnReturn=()=>{try{refreshAdminUserCache?.();render?.();analytics?.()}catch{}};
+  let usersSnapshot="";
+  const readUsersSnapshot=()=>{
+    try{return localStorage.getItem("zhosting_users_v1")||""}catch{return ""}
+  };
+  usersSnapshot=readUsersSnapshot();
+  const refreshOnReturn=()=>{
+    try{
+      const next=readUsersSnapshot();
+      if(next===usersSnapshot)return;
+      usersSnapshot=next;
+      refreshAdminUserCache?.();
+      render?.();
+      analytics?.();
+    }catch{}
+  };
   window.addEventListener("pageshow",refreshOnReturn,{passive:true});
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshOnReturn()},{passive:true});
 })();
