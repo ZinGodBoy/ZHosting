@@ -75,6 +75,8 @@ const show=raw=>{
  text("id",u.id);text("userRole",u.role);text("created",fmt(u.createdAt));text("last",fmt(u.lastLogin));text("loginCount",u.loginCount);
  const last=u.loginHistory[0];
  text("device",last?(last.device||"Browser")+" · "+(last.browser||"Browser"):"—");
+ text("ip",last?.ip||"Chưa có dữ liệu");
+ text("emailDetail",u.email||"—");
 
  const history=$("history");history.replaceChildren();
  if(!u.loginHistory.length){
@@ -85,7 +87,7 @@ const show=raw=>{
      const dot=document.createElement("i");dot.className=item.success===false?"dot fail":"dot";
      const wrap=document.createElement("div");
      const b=document.createElement("b");b.textContent=item.success===false?"Đăng nhập thất bại":"Đăng nhập thành công";
-     const s=document.createElement("span");s.textContent=(item.device||"Browser")+" · "+(item.browser||"Browser");wrap.append(b,s);
+     const s=document.createElement("span");s.textContent=(item.device||"Browser")+" · "+(item.browser||"Browser")+" · IP: "+(item.ip||"chưa có");wrap.append(b,s);
      const time=document.createElement("time");time.textContent=fmt(item.at);row.append(dot,wrap,time);history.append(row);
    });
  }
@@ -189,7 +191,7 @@ const analytics=()=>{
    const row=document.createElement("div");row.className="activity-row";
    const dot=document.createElement("i");dot.className=e.ok?"dot":"dot fail";
    const wrap=document.createElement("div"),b=document.createElement("b"),s=document.createElement("span"),t=document.createElement("time");
-   b.textContent=e.ok?"Đăng nhập thành công":"Đăng nhập thất bại";s.textContent=e.user+" · "+e.device+" · "+e.browser;t.textContent=fmt(e.at);
+   b.textContent=e.ok?"Đăng nhập thành công":"Đăng nhập thất bại";s.textContent=e.user+" · "+e.device+" · "+e.browser+" · IP: "+(e.ip||"chưa có");t.textContent=fmt(e.at);
    wrap.append(b,s);row.append(dot,wrap,t);feed?.append(row);
  });
 
@@ -200,7 +202,7 @@ const analytics=()=>{
    const row=document.createElement("div");row.className="activity-row";
    const dot=document.createElement("i");dot.className=e.type==="login_failed"?"dot fail":"dot";
    const wrap=document.createElement("div"),b=document.createElement("b"),s=document.createElement("span"),t=document.createElement("time");
-   b.textContent=labels[e.type]||e.type;s.textContent=(e.name||e.email||"Unknown")+" · "+(e.device||"Browser")+" · "+(e.browser||"Browser");t.textContent=fmt(e.at);
+   b.textContent=labels[e.type]||e.type;s.textContent=(e.name||e.email||"Unknown")+" · "+(e.device||"Browser")+" · "+(e.browser||"Browser")+" · IP: "+(e.ip||"chưa có");t.textContent=fmt(e.at);
    wrap.append(b,s);row.append(dot,wrap,t);auditFeed?.append(row);
  });
 };
@@ -340,8 +342,8 @@ $("close")?.addEventListener("click",()=>show(null));
 $("logout")?.addEventListener("click",()=>auth.logout?.());
 
 $("exportUsers")?.addEventListener("click",()=>{
- const rows=[["id","name","email","role","status","createdAt","lastLogin","loginCount","lastDevice","lastBrowser"]];
- users.map(normalize).forEach(u=>{const last=u.loginHistory[0]||{};rows.push([u.id,u.name,u.email,u.role,u.status,u.createdAt||"",u.lastLogin||"",u.loginCount,last.device||"",last.browser||""]);});
+ const rows=[["id","name","email","role","status","createdAt","lastLogin","loginCount","lastDevice","lastBrowser","lastIp"]];
+ users.map(normalize).forEach(u=>{const last=u.loginHistory[0]||{};rows.push([u.id,u.name,u.email,u.role,u.status,u.createdAt||"",u.lastLogin||"",u.loginCount,last.device||"",last.browser||"",last.ip||""]);});
  const csv=rows.map(row=>row.map(value=>{
    let valueText=String(value??"").replace(/"/g,'""');
    if(/^[=+\-@]/.test(valueText))valueText="'"+valueText;
