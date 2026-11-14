@@ -797,3 +797,7 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Tightened footer spacing and desktop column proportions for a cleaner hierarchy.
 - Added a viewport-aware guard so fixed theme/status controls do not overlap footer content.
 - Kept the change lightweight with one `IntersectionObserver` and page-exit cleanup.
+
+
+## v1.6.7 — Theme Panel Footer Collision Fix
+- Prevented an open theme panel from remaining above the footer while the footer is in view.
