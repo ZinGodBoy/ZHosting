@@ -37,6 +37,9 @@ if(!trustedDevice){
 
 let selectedId=null;
 const text=(id,value)=>{const node=$(id);if(node)node.textContent=String(value??"—");};
+const safeQuery=(selector)=>{try{return document.querySelector(selector)}catch{return null}};
+const refreshAdminUserCache=()=>{users=auth.getUsers?.()||[];me=users.find(u=>u.email===session.email)||me;};
+
 const fmt=value=>{if(!value)return"—";const d=new Date(value);return Number.isNaN(d.getTime())?"—":d.toLocaleString("vi-VN",{dateStyle:"medium",timeStyle:"short"});};
 const timeValue=value=>{const n=Date.parse(value||"");return Number.isFinite(n)?n:0;};
 const normalize=u=>({...u,role:u.role==="admin"?"admin":"user",status:u.status==="locked"?"locked":"active",loginHistory:Array.isArray(u.loginHistory)?u.loginHistory:[],loginCount:Number(u.loginCount)||0});
