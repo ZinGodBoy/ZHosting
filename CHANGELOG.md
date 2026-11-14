@@ -461,3 +461,16 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Deferred the shared UI runtime consistently across homepage, auth, dashboard, Admin Center and 404 pages.
 - Removed the duplicate UI scroll-progress runtime; the primary app engine remains responsible for scroll progress.
 - Reduced initial DOM work and avoided a second scroll listener on pages using the shared UI layer.
+
+## v1.4.5 — Live Status & Micro UX — 2026-11-14
+
+### Added
+- Live status indicator trên Homepage, Account Center và Admin Center.
+- Đồng hồ trạng thái dùng chung, tự dừng khi tab bị ẩn để giảm timer overhead.
+- Mobile layout riêng cho status pill, không che nội dung chính.
+
+### Fixed
+- Live clock không còn chạy nền liên tục khi người dùng chuyển tab.
+
+### Performance
+- Không thêm dependency hoặc request mạng mới.
