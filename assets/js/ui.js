@@ -14,9 +14,6 @@
     if(!document.querySelector(".zui-grid")){
       const g=document.createElement("div");g.className="zui-grid";root.appendChild(g);
     }
-    if(!document.querySelector(".zui-progress")){
-      const p=document.createElement("div");p.className="zui-progress";root.appendChild(p);
-    }
   };
   addBase();
 
@@ -48,18 +45,6 @@
   });
   reveal();
 
-  const progress=document.querySelector(".zui-progress");
-  let progressRaf=0;
-  const updateProgress=()=>{
-    if(progressRaf)return;
-    progressRaf=requestAnimationFrame(()=>{
-      progressRaf=0;
-      const max=document.documentElement.scrollHeight-window.innerHeight;
-      if(progress)progress.style.transform=max>0?"scaleX("+(window.scrollY/max)+")":"scaleX(0)";
-      document.body.classList.toggle("is-scrolled",window.scrollY>12);
-    });
-  };
-  addEventListener("scroll",updateProgress,{passive:true});updateProgress();
 
   const toast=(title,message,type="success")=>{
     let stack=document.querySelector(".zui-toast-stack");
