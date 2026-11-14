@@ -1,3 +1,15 @@
+## v1.7.1 — Cross-page Rendering Hardening — 2026-11-14
+
+### Performance
+- Tối ưu thêm UI constrained-device cho Homepage, Account Center và Admin Center.
+- Giảm backdrop-filter trên toast/modal/palette khi thiết bị bị giới hạn.
+- Tắt ambient grid/noise/scanline và các pulse animation không cần thiết trong Admin Center trên performance mode.
+- Giữ reduced-motion nhất quán cho badge, trạng thái và indicator.
+
+### Quality
+- Không thay đổi authentication, session, dữ liệu tài khoản hoặc navigation.
+- Không thêm dependency và không tạo thêm background timer/observer.
+
 ## v1.7.0 — Performance Finishing & Runtime Cleanup — 2026-11-14
 
 ### Fixed
