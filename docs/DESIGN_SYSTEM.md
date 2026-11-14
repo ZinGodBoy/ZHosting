@@ -174,3 +174,19 @@ Network Map dùng transition cho meter và ping. Dữ liệu hiện tại là de
 ## Admin Center motion layer
 
 Admin Center sử dụng cùng visual language với Homepage: navy glass surfaces, cyan/blue gradients, ambient glow và typography Inter + Space Grotesk. Motion layer gồm reveal/stagger, pointer spotlight, card tilt, shimmer, chart entrance, KPI count-up, ripple feedback, header shrink và activity micro-interactions. Tất cả hiệu ứng mới đều có fallback `prefers-reduced-motion: reduce`.
+
+
+## Performance motion policy — 2026-11-14
+
+Motion của ZHosting được thiết kế theo nguyên tắc **progressive enhancement**: thiết bị mạnh có thể nhận đủ visual effects, còn thiết bị yếu vẫn giữ hierarchy và feedback quan trọng.
+
+### Adaptive performance
+
+- `assets/js/performance.js` phát hiện `prefers-reduced-motion`, `deviceMemory`, `hardwareConcurrency` và Save-Data.
+- Khi cần, website thêm `zperf-lite` để bỏ noise, ambient glow, backdrop-filter và hover transform tốn chi phí.
+- Tab nền được đánh dấu `zperf-paused` để các telemetry/clock interval không thực thi callback không cần thiết.
+- Các vùng dài được ưu tiên `content-visibility:auto` và containment để giảm initial paint/layout cost.
+
+### Admin Center
+
+Admin Center ưu tiên dữ liệu và thao tác quản trị trước hiệu ứng. Animation chỉ làm nhiệm vụ định hướng, feedback và hierarchy; không được phép trở thành dependency của chức năng.
