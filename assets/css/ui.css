@@ -599,3 +599,10 @@ input,select,textarea,button{font-family:var(--font-ui)}
 @media(prefers-reduced-motion:reduce){
   .btn,.nav-links a,.service-card,.price-card,.command-card{will-change:auto!important}
 }
+
+/* ===== ZHOSTING ACCESSIBILITY + STATE TOKENS v1.4.1 ===== */
+:root{--focus-ring:0 0 0 3px rgba(67,217,255,.14);--danger:#ff7187;--warning:#ffc76b}
+[aria-busy="true"]{cursor:progress}.zui-form-ready .btn-primary{filter:brightness(1.02)}
+.zui-password-strength{display:flex;gap:4px;margin-top:7px}.zui-password-strength span{height:3px;flex:1;border-radius:99px;background:rgba(255,255,255,.08);transition:background .2s ease}.zui-password-strength[data-level="1"] span:nth-child(1),.zui-password-strength[data-level="2"] span:nth-child(-n+2),.zui-password-strength[data-level="3"] span:nth-child(-n+3),.zui-password-strength[data-level="4"] span{background:var(--green)}
+:where(.panel,.account-card,.admin-panel,.admin-card) :where(input,select,textarea):focus-visible{box-shadow:var(--focus-ring)}
+@media(prefers-reduced-motion:reduce){.zui-password-strength span{transition:none}}
