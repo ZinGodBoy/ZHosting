@@ -150,3 +150,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm Security Audit Log cho các event đăng ký, đăng nhập thành công và đăng nhập thất bại.
 - Audit không lưu hoặc hiển thị mật khẩu, password hash hay salt.
 - Các số liệu vẫn là dữ liệu client-side của prototype; không giả lập số liệu.
+
+### Security & Bugfix Pass — 2026-11-14
+
+- Fix Admin Center JavaScript syntax lỗi ở phần thống kê.
+- Fix cấu trúc HTML analytics để các card nằm đúng trong grid.
+- Fix CSV export: UTF-8 BOM và newline chuẩn.
+- Ghi audit event cho thao tác Admin khóa/mở khóa tài khoản và thu hồi phiên.
+- Giữ nguyên nguyên tắc không lưu plaintext password.
+- Audit client-side được giới hạn 200 event để tránh phình localStorage.
