@@ -360,3 +360,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Browser theme-color metadata follows the selected primary background.
 - [ ] Header, cards, buttons and scroll progress remain visually consistent after changing theme colors.
 - [ ] Reduced-motion remains functional after theme changes.
+
+### v1.5.3 bugfix regression
+- [ ] Support bubbles use the calculated scrollbar-aware right offset on desktop.
+- [ ] Support bubbles remain correctly aligned on mobile with and without a browser scrollbar.
+- [ ] Scrolling does not cause horizontal layout movement.
+- [ ] Low-resource mode disables support bubble animation/blur.
+- [ ] Mobile background remains stable without fixed-background rendering.
+- [ ] Reduced-motion remains respected.
