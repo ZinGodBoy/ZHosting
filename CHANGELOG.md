@@ -656,3 +656,17 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### UI
 - Đồng bộ hệ màu Midnight Violet / Indigo cho Homepage, UI runtime và Admin Center.
 - Giữ accent violet/indigo làm màu chính, trạng thái thành công vẫn dùng green để phân biệt rõ trạng thái.
+
+## v1.5.7 — Runtime Resilience & GPU Memory Pass — 2026-11-14
+
+### Fixed
+- Scheduler demo không còn bị dừng vĩnh viễn nếu một callback runtime phát sinh exception.
+- Callback được bảo vệ để scheduler luôn tự lập lịch vòng tiếp theo.
+- Loại bỏ biến scheduler dư thừa không được sử dụng.
+
+### Performance
+- Gỡ các will-change cố định trên card/reveal/support bubble để tránh GPU layer promotion liên tục và giảm memory pressure.
+- Giữ promotion chỉ cho các thành phần thực sự cần thiết theo trạng thái runtime.
+
+### Quality
+- Ưu tiên runtime ổn định trước animation: lỗi của một hiệu ứng/demo không được làm chết các tác vụ cập nhật khác.
