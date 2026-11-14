@@ -188,3 +188,11 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Kept the support bubbles aligned beside the browser scrollbar while reducing resize-handler churn.
 - Viewport recalculation is now batched with requestAnimationFrame.
 - Added mobile safe-area support and pointer isolation so the floating dock does not intercept page interaction outside the buttons.
+
+
+## v1.4.9 — Scroll Navigation Optimization
+
+- Audited the homepage scroll runtime and removed the per-frame section `offsetTop` scan.
+- Active navigation is now driven by IntersectionObserver.
+- Scroll progress uses a transform scale update, matching the existing performance CSS.
+- Kept the existing header and back-to-top interactions unchanged.
