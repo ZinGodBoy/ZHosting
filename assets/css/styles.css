@@ -540,3 +540,20 @@ body{background:var(--z-custom-background-image,var(--z-custom-bg));background-a
   .support-bubble{box-shadow:0 8px 22px rgba(0,0,0,.24)}
 }
 .zperf-lite .support-bubble{box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+/* ===== v1.5.5 VISUAL + PERFORMANCE HARDENING ===== */
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+:where(button,a,input,select,textarea):focus-visible{outline:2px solid color-mix(in srgb,var(--violet,#7C6CFF) 78%,white);outline-offset:3px}
+:where(.service-card,.price-card,.review,.dash-card,.panel,.status-main,.status-list,.compare-wrap){contain:layout paint}
+.zperf-lite .service-card,.zperf-lite .price-card,.zperf-lite .review,.zperf-lite .dash-card,.zperf-lite .panel,.zperf-lite .status-main,.zperf-lite .status-list,.zperf-lite .compare-wrap{contain:layout}
+.zperf-lite .hero-grid-lines,.zperf-lite .hero:after,.zperf-lite .orb{display:none!important}
+.zperf-lite .header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--z-custom-bg,#07111F)!important}
+@media(max-width:900px){
+  .hero-grid{gap:42px}
+  .hero-actions{flex-wrap:wrap}
+  .service-card,.price-card,.review,.dash-card,.panel,.status-main,.status-list,.compare-wrap{contain:layout}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,:before,:after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
