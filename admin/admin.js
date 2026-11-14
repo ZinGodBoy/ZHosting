@@ -290,29 +290,26 @@ backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:reduceMotio
 syncScrollUI();
 
 if(canHover&&!reduceMotion){
-  const cards=document.querySelectorAll(".admin-panel,.admin-kpi,.admin-privacy");
-  let pointerFrame=0,lastEvent=null;
-  const updateTilt=()=>{
-    pointerFrame=0;
-    if(!lastEvent)return;
-    const event=lastEvent;
-    const target=event.currentTarget;
-    if(!target)return;
-    const rect=target.getBoundingClientRect();
-    const x=(event.clientX-rect.left)/rect.width-.5;
-    const y=(event.clientY-rect.top)/rect.height-.5;
-    target.style.setProperty("--tilt-x",(x*1.4)+"deg");
-    target.style.setProperty("--tilt-y",(-y*1.4)+"deg");
-  };
-  cards.forEach(card=>{
+  document.querySelectorAll(".admin-panel,.admin-kpi,.admin-privacy").forEach(card=>{
+    let frame=0;
+    let point=null;
+    const update=()=>{
+      frame=0;
+      if(!point)return;
+      const rect=card.getBoundingClientRect();
+      const x=(point.clientX-rect.left)/rect.width-.5;
+      const y=(point.clientY-rect.top)/rect.height-.5;
+      card.style.setProperty("--tilt-x",(x*1.4)+"deg");
+      card.style.setProperty("--tilt-y",(-y*1.4)+"deg");
+    };
     card.addEventListener("pointermove",event=>{
-      lastEvent=event;
-      if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTilt);
+      point=event;
+      if(!frame)frame=requestAnimationFrame(update);
     },{passive:true});
     card.addEventListener("pointerleave",()=>{
+      point=null;
       card.style.setProperty("--tilt-x","0deg");
       card.style.setProperty("--tilt-y","0deg");
-      lastEvent=null;
     },{passive:true});
   });
 }
