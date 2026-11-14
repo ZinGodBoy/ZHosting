@@ -1,3 +1,9 @@
+## Contact routing fix — 2026-11-14
+
+- Đồng bộ email liên hệ trên homepage và Contact Flow về `dangkhoita2@gmail.com`.
+- Loại bỏ địa chỉ `contact@zhosting.vn` còn sót trong các luồng mailto của frontend.
+- Không thay đổi logic thu thập dữ liệu hoặc authentication.
+
 ## v1.4.0 — 2026-11-14 — Frontend Hardening & Admin Control Plane
 
 ### Added
