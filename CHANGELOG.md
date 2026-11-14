@@ -266,3 +266,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Khi tab hoạt động trở lại, scheduler tự tiếp tục mà không cần reload trang.
 - Không thay đổi dữ liệu, auth flow, trusted-device gate hoặc cấu trúc Admin Center.
 - Mục tiêu là giảm background CPU wake-up và giữ animation mượt khi người dùng làm việc lâu với website.
+
+
+## Admin account visibility hardening — 2026-11-14
+
+- Bổ sung vùng thông tin Email và IP trong User Details.
+- Admin có thể xem IP khi login metadata/backend cung cấp trường `ip`; không tự suy đoán hoặc gọi dịch vụ IP bên thứ ba.
+- Login History, Recent Activity và CSV có thể mang IP metadata nếu có.
+- Mật khẩu plaintext không bao giờ được hiển thị trong Admin Center.
+- Giữ nguyên trusted-device gate cho Admin Center.
