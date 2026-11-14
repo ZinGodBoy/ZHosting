@@ -599,3 +599,10 @@ input,select,textarea,button{font-family:var(--font-ui)}
 .account-page :where(a,button,input,select,textarea):focus-visible{outline:2px solid rgba(67,217,255,.78);outline-offset:3px}.account-page .panel{overflow:clip}.account-page .account-activity,.account-page .account-health{scroll-margin-top:90px}
 @media(max-width:520px){.account-page .panel{border-radius:18px}.account-page .panel-actions,.account-page .quick-actions{flex-wrap:wrap}.account-page .panel-actions>*{min-width:0}}
 @media(prefers-reduced-motion:reduce){.account-page *{scroll-behavior:auto}}
+
+/* ===== ACCOUNT REGRESSION GUARD v1.4.3 ===== */
+.account-page :where(button,a,input,select,textarea):focus-visible{outline:2px solid rgba(67,217,255,.82);outline-offset:3px}
+.account-page img{max-width:100%;height:auto}
+.account-page [aria-busy="true"]{cursor:progress}
+@media(max-width:700px){.account-page .panel{overflow-x:clip}.account-page .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+@media(prefers-reduced-motion:reduce){.account-page .zui-tilt{transform:none!important}}
