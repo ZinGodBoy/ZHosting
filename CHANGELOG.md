@@ -169,3 +169,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Ghi audit event cho thao tác Admin khóa/mở khóa tài khoản và thu hồi phiên.
 - Giữ nguyên nguyên tắc không lưu plaintext password.
 - Audit client-side được giới hạn 200 event để tránh phình localStorage.
+
+### UI consistency & readiness — 2026-11-14
+
+- Chuẩn hóa typography toàn bộ Homepage, Auth, Account Center và Admin Center về Inter + Space Grotesk.
+- Đồng bộ font cho heading, brand, CTA, form controls và dữ liệu.
+- Bổ sung baseline metadata `color-scheme` và `robots` cho homepage.
+- Xác định roadmap tiếp theo theo hướng hoàn thiện frontend đủ dùng trước khi triển khai backend production.
