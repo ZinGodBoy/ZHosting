@@ -216,7 +216,8 @@ const refreshData=()=>{
 };
 
 $("jumpDirectory")?.addEventListener("click",()=>{document.querySelector(".admin-workspace")?.scrollIntoView({behavior:"smooth",block:"start"});});
-$("adminGlobalSearch")?.addEventListener("input",event=>{const value=event.target.value.trim();const search=$("search");if(search){search.value=value;render();}});
+let globalSearchDebounce=0;
+$("adminGlobalSearch")?.addEventListener("input",event=>{const value=event.target.value.trim();const search=$("search");if(search){search.value=value;window.clearTimeout(globalSearchDebounce);globalSearchDebounce=window.setTimeout(render,120);}});
 /* Performance-aware motion engine */
 const reduceMotion=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 const canHover=window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
@@ -337,7 +338,8 @@ $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")
 $("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();notify("Filter","Đang hiển thị tài khoản bị khóa.");}});
 $("clearFilters")?.addEventListener("click",()=>{["search"].forEach(id=>{if($(id))$(id).value="";});if($("status"))$("status").value="all";if($("role"))$("role").value="all";if($("sort"))$("sort").value="recent";render();notify("Filters","Đã đặt lại toàn bộ bộ lọc.");});
 let searchDebounce=0;
-$("search")?.addEventListener("input",()=>{window.clearTimeout(searchDebounce);searchDebounce=window.setTimeout(render,120);});\n["status","role","sort"].forEach(id=>$(id)?.addEventListener("change",render));
+$("search")?.addEventListener("input",()=>{window.clearTimeout(searchDebounce);searchDebounce=window.setTimeout(render,120);});
+["status","role","sort"].forEach(id=>$(id)?.addEventListener("change",render));
 $("refresh")?.addEventListener("click",()=>{refreshData();notify("System","Dữ liệu Admin Center đã được làm mới.");});
 $("close")?.addEventListener("click",()=>show(null));
 $("logout")?.addEventListener("click",()=>auth.logout?.());
