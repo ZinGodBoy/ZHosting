@@ -230,3 +230,27 @@ td{color:#b9c9d7;font-size:10px}
   .admin-kpi,.growth-chart i,.bar-track i{transition:none}
   .admin-kpi:hover,.growth-chart i:hover{transform:none}
 }
+
+/* Directory refinement */
+.admin-toolbar select{min-width:125px}
+.admin-toolbar button{white-space:nowrap}
+.admin-toolbar input{min-width:180px}
+.admin-panel table tbody tr{transition:background .2s ease}
+.admin-panel table tbody tr:hover{background:rgba(67,217,255,.025)}
+.admin-panel table tbody tr.is-selected{background:linear-gradient(90deg,rgba(67,217,255,.07),rgba(107,124,255,.025))}
+.admin-panel table tbody tr.is-selected .view{border-color:rgba(67,217,255,.38);background:rgba(67,217,255,.1)}
+.admin-panel td.numeric{font-variant-numeric:tabular-nums;color:#dceaf4}
+.admin-panel-head>span b{color:#dcebf5;font-weight:800}
+@media(max-width:900px){
+  .admin-toolbar{flex-wrap:wrap}
+  .admin-toolbar input{flex:1 1 100%}
+  .admin-toolbar select{flex:1 1 145px}
+  .admin-toolbar button{flex:1 1 120px}
+}
+@media(max-width:620px){
+  .admin-toolbar{grid-template-columns:1fr 1fr}
+  .admin-toolbar input,.admin-toolbar select,.admin-toolbar button{min-width:0;width:100%;flex:unset}
+  .admin-toolbar input{grid-column:1/-1}
+  .admin-toolbar button{grid-column:auto}
+  .admin-panel-head>span{font-size:8px}
+}
