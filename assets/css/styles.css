@@ -497,3 +497,6 @@ body.zperf-lite .brand-mark{box-shadow:none}
 
 /* ===== SUPPORT BUBBLE VIEWPORT GUARD v1.5.0 ===== */
 .support-bubbles{bottom:auto;top:calc(50% + var(--support-scroll-y,0px));padding-block:var(--support-bubble-safe,90px);transform:translateY(-50%);box-sizing:border-box}.support-bubble{flex:0 0 auto}@media(max-height:620px){.support-bubbles{gap:7px}.support-bubble{width:46px;height:46px}.support-bubble img{width:20px;height:20px}}
+/* ===== THEME COLOR TOOL v1.4.13 ===== */
+:root{--z-custom-bg:#07111F;--z-custom-bg-2:#111C31}.theme-mode-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8px;margin-top:13px}.theme-mode-row label,.theme-angle-row label{font-size:10px;font-weight:800;color:#aebdd0}.theme-mode-row select{height:32px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:#0d1522;color:#dbe7f4;padding:0 8px;font-size:10px}.theme-angle-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-top:9px}.theme-angle-row input{grid-column:1/-1;width:100%;accent-color:var(--violet)}.theme-angle-row output{font:700 10px ui-monospace,SFMono-Regular,Consolas,monospace;color:#b9c7d8}.theme-secondary-bg[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.theme-tools-trigger{transition:none}.theme-tools{backdrop-filter:none}}
