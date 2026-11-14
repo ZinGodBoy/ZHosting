@@ -454,3 +454,5 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Preserved the full visual system on capable devices.
 - Kept reduced-motion and accessibility behavior intact.
 - No new runtime dependency was introduced.
+
+\n## v1.4.3 — Regression & Cross-page Hardening — 2026-11-14\n\n### Fixed\n- Fixed malformed escaped newline in `assets/js/ui.js` that could stop the shared UI runtime from parsing.\n- Removed duplicate homepage logout handling so the shared logout controller owns the transition.\n- Added IntersectionObserver fallback so reveal animations degrade to immediately visible content instead of failing on unsupported browsers.\n- Hardened responsive focus, disabled, hidden and reduced-motion states across Homepage, Account Center and Admin Center.\n\n### Quality gate\n- Re-checked JavaScript delimiter balance across core runtime files.\n- Re-checked literal escaped-newline occurrences and confirmed remaining instances are inside intended string literals (email/CSV payloads).\n- No plaintext password exposure was added.\n\n
