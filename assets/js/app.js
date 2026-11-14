@@ -75,6 +75,11 @@ if(navTargets.length&&nav.length&&'IntersectionObserver' in window){
   nav.forEach(a=>a.classList.remove('active'));
 }
 backTop.addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+window.addEventListener('pagehide',()=>{
+  observer?.disconnect?.();
+  if(typeof navObserver!=="undefined")navObserver.disconnect();
+},{once:true});
+
 
 document.querySelectorAll('.price-card .btn,.service-card a').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')==='#contact')setTimeout(()=>toast('Đã mở khu vực liên hệ — hãy gửi yêu cầu của bạn.'),300)}));
 
@@ -286,12 +291,27 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
 /* ===== V3 COUNTER ENGINE ===== */
 (()=>{
 const counters=document.querySelectorAll('[data-counter]');
+if(!counters.length)return;
+const animateCounter=el=>{
+  if(el.dataset.counterAnimated==='1')return;
+  el.dataset.counterAnimated='1';
+  const target=parseFloat(el.dataset.counter),duration=1100,start=performance.now();
+  const tick=now=>{
+    const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);
+    el.textContent=target%1?((target*ease).toFixed(2)):Math.round(target*ease);
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+if(!('IntersectionObserver' in window)){
+  counters.forEach(animateCounter);
+  return;
+}
 const counterObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
-    const el=entry.target,target=parseFloat(el.dataset.counter),duration=1100,start=performance.now();
-    const tick=now=>{const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);el.textContent=target%1?((target*ease).toFixed(2)):Math.round(target*ease);if(p<1)requestAnimationFrame(tick)};
-    requestAnimationFrame(tick);counterObserver.unobserve(el);
+    animateCounter(entry.target);
+    counterObserver.unobserve(entry.target);
   });
 },{threshold:.5});
 counters.forEach(el=>counterObserver.observe(el));
