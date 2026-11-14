@@ -43,3 +43,5 @@ const reveal=(selector)=>{
 };
 reveal(".service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list,.admin-kpi,.admin-panel,.admin-workspace");
 })();
+/* Runtime marker for the v1.4 visual hardening layer. */
+window.ZPerformance?.mark?.("ui-hardening");
