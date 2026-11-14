@@ -45,3 +45,11 @@ reveal(".service-card,.price-card,.node-card,.review,.feature,.step,.launch-card
 })();
 /* Runtime marker for the v1.4 visual hardening layer. */
 window.ZPerformance?.mark?.("ui-hardening");
+
+/* ===== ZHOSTING PERFORMANCE LIFECYCLE v1.4.1 ===== */
+(()=>{
+  const root=document.documentElement;
+  const syncLifecycle=()=>root.classList.toggle("z-runtime-hidden",document.hidden);
+  document.addEventListener("visibilitychange",syncLifecycle,{passive:true});
+  syncLifecycle();
+})();
