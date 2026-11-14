@@ -36,7 +36,7 @@
 }
 .admin-header-inner{
   width:min(1440px,calc(100% - 40px));height:100%;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;gap:24px
+  display:grid;grid-template-columns:auto minmax(260px,1fr) auto;align-items:center;gap:24px
 }
 .admin-brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
 .admin-brand-mark{
@@ -253,4 +253,47 @@ td{color:#b9c9d7;font-size:10px}
   .admin-toolbar input{grid-column:1/-1}
   .admin-toolbar button{grid-column:auto}
   .admin-panel-head>span{font-size:8px}
+}
+
+/* ZHosting branded mark + global control */
+.admin-brand-mark{
+  position:relative;overflow:hidden;
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(145deg,#43d9ff 0%,#6b7cff 58%,#8f5cff 100%);
+  box-shadow:0 0 24px rgba(67,217,255,.18),inset 0 1px rgba(255,255,255,.4);
+  transform:skew(-7deg);
+}
+.admin-brand-mark:before,.admin-brand-mark:after{
+  content:"";position:absolute;display:block;border-radius:3px;
+  background:#06111c;transform:skew(7deg) rotate(-25deg);
+}
+.admin-brand-mark:before{width:22px;height:6px;left:7px;top:10px;box-shadow:-3px 10px 0 #06111c,4px 20px 0 #06111c}
+.admin-brand-mark:after{width:7px;height:24px;right:9px;top:7px}
+.admin-brand-mark span{position:absolute;z-index:2;color:transparent}
+.admin-header-search{
+  height:40px;max-width:560px;justify-self:center;width:100%;
+  display:flex;align-items:center;gap:9px;padding:0 13px;
+  border:1px solid var(--admin-border);border-radius:11px;
+  background:rgba(255,255,255,.025);transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.admin-header-search:focus-within{
+  border-color:var(--admin-border-strong);background:rgba(67,217,255,.035);
+  box-shadow:0 0 0 4px rgba(67,217,255,.05);
+}
+.admin-header-search>span{color:#6f8aa1;font-size:20px;line-height:1}
+.admin-header-search input{width:100%;border:0;outline:0;background:transparent;color:#dceaf5;font-size:11px}
+.admin-header-search input::placeholder{color:#60768c}
+.admin-header-actions{justify-self:end}
+.admin-header-actions #jumpDirectory{color:#8fa5b8}
+.admin-header-actions #jumpDirectory:hover{color:#dffaff}
+@media(max-width:800px){
+  .admin-header-inner{grid-template-columns:auto 1fr;gap:10px}
+  .admin-header-search{grid-column:1/-1;grid-row:2;max-width:none}
+  .admin-header{height:auto;min-height:72px;padding:9px 0 55px}
+  .admin-header-actions{position:absolute;right:20px;top:18px}
+  .admin-header-search{position:absolute;left:20px;right:20px;bottom:9px;width:auto}
+}
+@media(max-width:620px){
+  .admin-header-actions a,.admin-header-actions #jumpDirectory{display:none}
+  .admin-status{font-size:8px}
 }
