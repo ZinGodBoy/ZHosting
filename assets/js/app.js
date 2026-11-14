@@ -513,7 +513,7 @@ window.addEventListener('pagehide',()=>counterObserver.disconnect(),{once:true})
 (()=>{"use strict";
 const panel=document.querySelector('#themeTools'),trigger=document.querySelector('#themeToolsTrigger');if(!panel||!trigger)return;
 const accent=document.querySelector('#themeAccent'),accentHex=document.querySelector('#themeAccentHex'),bg=document.querySelector('#themeBackground'),bgHex=document.querySelector('#themeBackgroundHex'),bg2=document.querySelector('#themeBackgroundSecondary'),bg2Hex=document.querySelector('#themeBackgroundSecondaryHex'),mode=document.querySelector('#themeBackgroundMode'),angle=document.querySelector('#themeGradientAngle'),angleValue=document.querySelector('#themeGradientAngleValue'),secondary=document.querySelectorAll('.theme-secondary-bg'),root=document.documentElement,key='zhosting_theme_v2';
-const defaults={accent:'#7C6CFF',background:'#07111F',backgroundSecondary:'#111C31',mode:'solid',angle:135};
+const defaults={accent:'#43D9FF',background:'#050B14',backgroundSecondary:'#0D1A2B',mode:'solid',angle:135};
 const normalize=v=>{v=String(v||'').trim();return /^#[0-9a-fA-F]{6}$/.test(v)?v.toUpperCase():null};
 const clamp=n=>Math.max(0,Math.min(255,Number(n)||0));
 const rgbToHex=(r,g,b)=>'#'+[r,g,b].map(n=>clamp(n).toString(16).padStart(2,'0')).join('').toUpperCase();
