@@ -255,3 +255,15 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Zalo and Discord use distinct focus/glow states.
 - [ ] Mobile remains compact and does not cover primary actions.
 - [ ] `prefers-reduced-motion` disables non-essential animation.
+
+
+### Performance optimization v1.4.2
+
+- [ ] Desktop máy đủ mạnh giữ animation/visual layer bình thường.
+- [ ] Thiết bị <=4 GB RAM hoặc <=4 logical CPU chuyển sang zperf-lite.
+- [ ] Save-Data/2G giảm visual effects và noise.
+- [ ] Scroll không tạo nhiều callback đồng thời.
+- [ ] Chuyển tab sang background không tiếp tục visual work không cần thiết.
+- [ ] Mobile vẫn scroll mượt và section lớn không gây layout jump đáng kể.
+- [ ] Reduced-motion không chạy animation bắt buộc.
+- [ ] Không phát sinh lỗi console sau khi hardening.
