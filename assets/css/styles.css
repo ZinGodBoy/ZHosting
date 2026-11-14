@@ -465,3 +465,18 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @media(prefers-reduced-motion:reduce){
   .hero:after,.orb{filter:none}
 }
+
+
+/* ===== FLOATING SUPPORT BUBBLES v1.4.8 ===== */
+.support-bubbles{position:fixed;right:22px;bottom:22px;z-index:130;display:flex;flex-direction:column;gap:12px;align-items:center;pointer-events:none}
+.support-bubble{position:relative;width:54px;height:54px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(17,12,31,.9);box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 24px rgba(167,139,250,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;text-decoration:none;animation:supportBubbleFloat 3.8s ease-in-out infinite;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.support-bubble:nth-child(2){animation-delay:-1.9s}
+.support-bubble img{width:24px;height:24px;display:block;object-fit:contain}
+.support-bubble-zalo{border-color:rgba(45,140,255,.35);box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 24px rgba(45,140,255,.18)}
+.support-bubble-discord{border-color:rgba(114,137,218,.35);box-shadow:0 12px 30px rgba(0,0,0,.3),0 0 24px rgba(114,137,218,.18)}
+.support-bubble:hover,.support-bubble:focus-visible{transform:translateY(-6px) scale(1.06);box-shadow:0 18px 38px rgba(0,0,0,.38),0 0 28px rgba(167,139,250,.3);border-color:rgba(255,255,255,.35);outline:none}
+.support-bubble-label{position:absolute;right:66px;top:50%;transform:translateY(-50%) translateX(5px);opacity:0;pointer-events:none;white-space:nowrap;padding:7px 10px;border:1px solid rgba(205,184,255,.15);border-radius:10px;background:rgba(12,8,24,.96);color:#f5f1ff;font:700 10px var(--font-ui);box-shadow:0 10px 25px rgba(0,0,0,.28);transition:opacity .18s ease,transform .18s ease}
+.support-bubble:hover .support-bubble-label,.support-bubble:focus-visible .support-bubble-label{opacity:1;transform:translateY(-50%) translateX(0)}
+@keyframes supportBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:700px){.support-bubbles{right:14px;bottom:max(14px,env(safe-area-inset-bottom));gap:9px}.support-bubble{width:48px;height:48px}.support-bubble img{width:21px;height:21px}.support-bubble-label{display:none}}
+@media(prefers-reduced-motion:reduce){.support-bubble{animation:none;transition:none}.support-bubble:hover,.support-bubble:focus-visible{transform:scale(1.03)}}
