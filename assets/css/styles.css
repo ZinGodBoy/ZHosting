@@ -1224,3 +1224,47 @@ html.zperf-constrained .site-live-pill{
     scroll-behavior:auto!important;
   }
 }
+
+
+/* ===== FINAL RUNTIME VISUAL HARDENING v1.8.3 ===== */
+html.zperf-constrained .admin-page .admin-bg-grid,
+html.zperf-constrained .admin-page .admin-noise,
+html.zperf-constrained .admin-page .admin-scanline,
+html.zperf-constrained .admin-page .admin-ambient,
+html.zperf-constrained .admin-page .admin-orb,
+html.zperf-constrained .admin-page .admin-command-security::before{
+  animation:none!important;
+}
+html.zperf-constrained .admin-page .admin-bg-grid,
+html.zperf-constrained .admin-page .admin-noise,
+html.zperf-constrained .admin-page .admin-scanline,
+html.zperf-constrained .admin-page .admin-ambient,
+html.zperf-constrained .admin-page .admin-orb{
+  opacity:0!important;
+}
+html.zperf-constrained .admin-page .admin-panel,
+html.zperf-constrained .admin-page .admin-kpi,
+html.zperf-constrained .admin-page .admin-commandbar,
+html.zperf-constrained .admin-page .admin-card,
+html.zperf-constrained .admin-page .admin-table-wrap{
+  box-shadow:0 8px 24px rgba(0,0,0,.14)!important;
+}
+@media(max-width:900px){
+  .admin-page .admin-panel,
+  .admin-page .admin-workspace{content-visibility:auto;contain-intrinsic-size:360px}
+}
+@media(prefers-reduced-motion:reduce){
+  .admin-page *,
+  .dashboard-page *{animation-duration:.001ms!important;animation-iteration-count:1!important}
+}
+/* Keep the support/contact surfaces aligned with the primary navy/cyan brand. */
+.support-bubble,
+.support-bubble-label{
+  background:rgba(7,16,27,.96);
+  border-color:rgba(67,217,255,.16);
+  color:#eef6ff;
+}
+.support-bubble:hover,.support-bubble:focus-visible{
+  border-color:rgba(67,217,255,.38);
+  box-shadow:0 14px 32px rgba(0,0,0,.3),0 0 24px rgba(67,217,255,.14);
+}
