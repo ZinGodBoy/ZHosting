@@ -354,8 +354,13 @@ if(!reduceMotion){
 }
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 const stopClock=zSetInterval(updateClock,1000);updateClock();
-window.addEventListener("pagehide",stopClock,{once:true});
-window.addEventListener("pagehide",()=>{numberFrames.forEach(frame=>cancelAnimationFrame(frame));numberFrames.clear();revealObserver?.disconnect?.();},{once:true});
+/* BFCache-safe lifecycle: zSetInterval already pauses/resumes on pagehide/pageshow.
+   Keep the reveal observer alive so returning through browser history does not
+   silently disable admin motion/visibility states. */
+window.addEventListener("pagehide",()=>{
+  numberFrames.forEach(frame=>cancelAnimationFrame(frame));
+  numberFrames.clear();
+},{passive:true});
 
 $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();notify("Search","Đã đưa con trỏ tới bộ lọc User Directory.");});
 $("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();notify("Filter","Đang hiển thị tài khoản bị khóa.");}});
