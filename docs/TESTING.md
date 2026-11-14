@@ -420,3 +420,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify support bubbles remain functional after resize/orientation changes.
 - Verify `ResizeObserver` is disconnected during `pagehide`.
 - Verify no support animation frame remains scheduled after page exit.
+
+
+## v1.6.6 — Footer UI Verification
+- Verify footer spacing and column balance at wide desktop widths.
+- Scroll into the footer and confirm the fixed theme/status utilities fade out instead of covering content.
+- Scroll away from the footer and confirm the utilities return normally.
+- Verify reduced-motion and `zperf-lite` behavior remains non-animated.
