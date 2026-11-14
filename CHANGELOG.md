@@ -1,4 +1,14 @@
 # Changelog
+## Admin Center homepage synchronization — 2026-11-14
+
+- Đồng bộ Admin Center với design tokens của trang chủ: background, panel, border, typography, cyan/blue accent và glass surface.
+- Thêm grid background, noise layer và ambient glow giống visual language của homepage.
+- Thêm reveal/stagger animation khi các khu vực Admin Center xuất hiện trong viewport.
+- Thêm hover lift, shimmer, glow và micro-interaction cho card, button, table row và activity feed.
+- Thêm scroll progress và nút back-to-top.
+- Thêm reduced-motion fallback để tắt animation không cần thiết.
+- Giữ nguyên chức năng quản trị, audit, session và user management hiện có.
+
 ## Admin Center visual upgrade — 2026-11-14
 
 - Thêm branded ZHosting mark mới cho Admin Center theo hướng cyber-SaaS.
