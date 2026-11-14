@@ -508,3 +508,14 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Confirm support bubbles remain aligned after resize and orientation changes.
 - [ ] Confirm `app.js`, `ui.js`, `support.js` and `performance.js` pass JavaScript syntax validation.
 - [ ] Confirm blue/cyan typography and theme defaults remain unchanged.
+
+
+### v1.7.9 — Runtime Frame & Palette Regression
+
+- [ ] Homepage counter không để lại requestAnimationFrame sau pagehide.
+- [ ] Counter chỉ chạy một lần cho mỗi metric và không chồng animation.
+- [ ] Admin KPI refresh nhiều lần không tạo nhiều animation song song cho cùng metric.
+- [ ] Admin Center rời trang không để lại KPI animation frame hoặc reveal observer.
+- [ ] Footer/support sử dụng blue/cyan identity; không xuất hiện violet ngoài các thành phần brand có chủ đích.
+- [ ] Reduced-motion và zperf-lite vẫn loại bỏ motion/effect không cần thiết.
+- [x] Static JavaScript syntax check: assets/js/app.js, admin/admin.js.
