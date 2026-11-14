@@ -237,5 +237,13 @@
 
 /* ===== SMALL UX FEEDBACK v1.4.4 ===== */
 (()=>{"use strict";
- document.querySelectorAll("button,.btn").forEach(btn=>btn.addEventListener("click",()=>{if(btn.disabled)return;btn.classList.remove("zui-clicked");requestAnimationFrame(()=>btn.classList.add("zui-clicked"))},{passive:true}));
+ document.querySelectorAll("button,.btn").forEach(btn=>{
+   if(btn.dataset.zuiClickBound)return;
+   btn.dataset.zuiClickBound="1";
+   btn.addEventListener("click",()=>{
+     if(btn.disabled)return;
+     btn.classList.remove("zui-clicked");
+     requestAnimationFrame(()=>btn.classList.add("zui-clicked"));
+   },{passive:true});
+ });
 })();
