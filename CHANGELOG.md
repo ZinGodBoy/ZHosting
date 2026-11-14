@@ -481,3 +481,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Chặn việc gắn lặp event click feedback khi shared UI được khởi tạo nhiều lần.
 - Clipboard micro-UX kiểm tra khả năng hỗ trợ Clipboard API trước khi gọi.
 - Live status pill có focus treatment và fallback khi giảm transparency.
+
+## [1.4.6] — Account/Admin Consistency Fixes
+
+- Removed duplicate Account Center admin-navigation initialization.
+- Admin Center entry now requires both an active admin role and a trusted admin device, matching the Admin Center gate.
+- Aligned dashboard password-change validation with the 12-character authentication policy.
