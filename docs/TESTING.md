@@ -394,3 +394,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Footer adds no JavaScript runtime work.
 - [ ] Keyboard focus remains visible on footer links.
 - [ ] Constrained-device mode keeps the footer readable without heavy effects.
+
+### v1.6.1 support/footer regression
+- [ ] Floating support bubbles stay aligned with the viewport scrollbar area after resize/orientation changes.
+- [ ] Navigating away cancels pending support animation frames.
+- [ ] Footer contact cards remain readable and keyboard-focusable.
+- [ ] Footer has no horizontal overflow on narrow screens.
+- [ ] Reduced-motion mode removes nonessential footer transitions.
