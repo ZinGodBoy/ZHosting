@@ -769,3 +769,8 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Refined footer contact hierarchy and responsive layout.
 - Added a low-cost visual accent instead of heavier effects.
 - Optimized support bubble lifecycle by disconnecting `ResizeObserver` and cancelling pending frames on page exit.
+
+
+## v1.6.5 — Support Observer Lifecycle Cleanup
+- Finalized `ResizeObserver` cleanup for the shared support bubble runtime.
+- Prevented observer retention after `pagehide` while keeping scroll/resize behavior unchanged.
