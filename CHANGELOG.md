@@ -816,3 +816,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ## v1.6.7 — Theme Panel Footer Collision Fix
 - Prevented an open theme panel from remaining above the footer while the footer is in view.
+
+
+## v1.6.8 — Whole-Page Runtime & Visual Hardening
+- Cached homepage scroll bounds instead of recalculating document height on every scroll frame.
+- Added lifecycle cleanup for adaptive performance observers, network listeners and idle callbacks.
+- Refined whole-page rendering with stable scrollbar geometry, section dividers, text rendering and low-cost containment.
+- Preserved reduced-motion and constrained-device paths.
