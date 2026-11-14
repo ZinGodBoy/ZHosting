@@ -480,3 +480,8 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @keyframes supportBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @media(max-width:700px){.support-bubbles{right:14px;bottom:max(14px,env(safe-area-inset-bottom));gap:9px}.support-bubble{width:48px;height:48px}.support-bubble img{width:21px;height:21px}.support-bubble-label{display:none}}
 @media(prefers-reduced-motion:reduce){.support-bubble{animation:none;transition:none}.support-bubble:hover,.support-bubble:focus-visible{transform:scale(1.03)}}
+
+
+/* ===== SUPPORT BUBBLE SCROLL FOLLOW v1.4.9 ===== */
+.support-bubbles{top:calc(50% + var(--support-scroll-y,0px));bottom:auto;transform:translateY(-50%)}
+@media(max-width:700px){.support-bubbles{top:calc(50% + var(--support-scroll-y,0px));bottom:auto}}
