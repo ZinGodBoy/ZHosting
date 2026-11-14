@@ -502,3 +502,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Tạm dừng animation khi tab bị ẩn.
 - Giảm box-shadow trên surface trong performance mode.
 - Giữ nguyên layout và chức năng, không thêm dependency.
+
+## [1.4.8] — Support Dock Polish
+
+- Refined the floating Zalo/Discord dock positioning and viewport recalculation.
+- Resize/orientation updates are now batched with requestAnimationFrame.
+- Added safe-area handling for mobile devices and kept the dock non-blocking outside its buttons.
+- Preserved the scrollbar-aware right offset from v1.4.7.
