@@ -368,3 +368,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Low-resource mode disables support bubble animation/blur.
 - [ ] Mobile background remains stable without fixed-background rendering.
 - [ ] Reduced-motion remains respected.
+
+### v1.5.4 performance regression
+- [ ] Support dock scroll remains smooth without repeated layout reads during scroll.
+- [ ] Resize/orientation updates recalculate dock positioning correctly.
+- [ ] Mobile page has reduced blur/noise/shadow overhead.
+- [ ] Low-resource mode remains visually stable.
+- [ ] No horizontal overflow is introduced.
