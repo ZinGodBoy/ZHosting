@@ -499,3 +499,12 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Navigate away and return through normal browser lifecycle restoration; support bubbles remain interactive.
 - [ ] Resize/scroll the support dock and confirm no duplicate frame scheduling or console errors occur.
 - [ ] Confirm blue/cyan palette, typography and constrained-device visual reductions remain unchanged.
+
+
+## v1.7.8 — Runtime Performance Verification
+- [ ] Drag RAM/CPU sliders continuously and confirm the Config Builder remains responsive without visible input lag.
+- [ ] Confirm addon selection updates price, count and selected styling correctly.
+- [ ] Confirm changing service still applies the intended visual transition.
+- [ ] Confirm support bubbles remain aligned after resize and orientation changes.
+- [ ] Confirm `app.js`, `ui.js`, `support.js` and `performance.js` pass JavaScript syntax validation.
+- [ ] Confirm blue/cyan typography and theme defaults remain unchanged.
