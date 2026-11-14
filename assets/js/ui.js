@@ -244,8 +244,12 @@
 (()=>{"use strict";
  document.addEventListener("click",event=>{
    const btn=event.target.closest?.("button,.btn");
-   if(!btn||btn.disabled)return;
+   if(!btn||btn.disabled||btn.dataset.zuiFeedback==="1")return;
+   btn.dataset.zuiFeedback="1";
    btn.classList.remove("zui-clicked");
-   requestAnimationFrame(()=>btn.classList.add("zui-clicked"));
+   requestAnimationFrame(()=>{
+     if(btn.isConnected)btn.classList.add("zui-clicked");
+   });
+   window.setTimeout(()=>btn.dataset.zuiFeedback="0",220);
  },{passive:true});
 })();
