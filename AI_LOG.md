@@ -100,3 +100,8 @@ AI giúp tăng tốc quá trình xây dựng ZHosting, nhưng chất lượng cu
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## 2026-11-14 — Admin Center Motion Suite
+
+Tiếp tục nâng cấp Admin Center với spotlight theo con trỏ, tilt card, ripple, animated counters, chart stagger, scanline, border flow, header shrink, detail-panel state và reduced-motion fallback.
