@@ -2,6 +2,8 @@
  * Keeps the visual system rich while reducing expensive work on constrained devices.
  */
 (()=>{"use strict";
+if(window.__ZHostingPerformanceInitialized)return;
+window.__ZHostingPerformanceInitialized=true;
 const root=document.documentElement;
 const body=document.body;
 const reduced=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
