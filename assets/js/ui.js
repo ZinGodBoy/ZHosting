@@ -24,10 +24,11 @@
   const spotlight=document.querySelector(".zui-spotlight");
   if(spotlight)spotlight.setAttribute("aria-hidden","true");
 
+  let revealObserver=null;
   const reveal=()=>{if(window.ZAppEngine)return;
     const items=[...document.querySelectorAll("[data-zui-reveal],.reveal")];
     if(!("IntersectionObserver" in window)){items.forEach(x=>x.classList.add("zui-visible","visible"));return}
-    const obs=new IntersectionObserver(entries=>{
+    revealObserver=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           entry.target.classList.add("zui-visible","visible");
@@ -38,9 +39,10 @@
     items.forEach((el,i)=>{
       if(!el.dataset.zuiReveal)el.dataset.zuiReveal="up";
       el.style.setProperty("--reveal-delay",(i%6)*65+"ms");
-      obs.observe(el);
+      revealObserver.observe(el);
     });
   };
+  window.addEventListener("pagehide",()=>{revealObserver?.disconnect();revealObserver=null},{once:true});
   document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.panel,.status-main,.status-list").forEach(el=>{
     el.dataset.zuiReveal=el.dataset.zuiReveal||"up";
     el.classList.add("zui-glow-line");
