@@ -910,3 +910,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Removed the duplicate JavaScript smooth-scroll handler from `app.js`.
 - Native CSS `scroll-behavior` and `scroll-padding-top` now own in-page navigation, avoiding duplicate scroll animations and layout reads.
 - Kept active navigation and back-to-top behavior event-driven.
+
+
+## v1.7.4 — Theme Palette Restoration & Typography Recovery
+- Restored the original ZHosting blue/cyan visual palette and text hierarchy that had been overridden by the newer violet defaults.
+- Restored cyan/blue accents, dark navy backgrounds, original body text, muted text and navigation colors.
+- Aligned the theme customization tool defaults with the restored palette so reset no longer reintroduces violet styling.
+- Kept the performance hardening from v1.7.x intact.
