@@ -17,7 +17,7 @@ const measure=()=>{
  maxScroll=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
  const scrollbar=Math.max(0,window.innerWidth-document.documentElement.clientWidth);
  const safe=window.matchMedia?.("(max-width:700px)")?.matches?10:12;
- root.style.setProperty("--support-right",Math.max(safe,scrollbar+safe)+"px");
+ root.style.setProperty("--support-scrollbar-offset",Math.max(safe,scrollbar+safe)+"px");
  sync();
 };
 const onScroll=()=>{
@@ -32,5 +32,6 @@ window.addEventListener("scroll",onScroll,{passive:true});
 window.addEventListener("resize",onResize,{passive:true});
 window.addEventListener("orientationchange",onResize,{passive:true});
 window.addEventListener("pageshow",onResize,{passive:true});
+window.addEventListener("pagehide",()=>{if(raf)cancelAnimationFrame(raf);if(resizeRaf)cancelAnimationFrame(resizeRaf)},{once:true});
 measure();
 })();
