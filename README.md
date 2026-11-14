@@ -390,3 +390,7 @@ The project remains intentionally framework-free. These improvements are fronten
 
 ### v1.4.12 — Theme customization
 The homepage now includes a lightweight theme color tool with RGB/HEX accent editing, background color control, presets, local persistence, and reset support.
+
+
+### v1.4.13 — Advanced theme backgrounds
+Theme customization now supports solid or gradient backgrounds, a secondary color, gradient angle, presets, and local persistence.
