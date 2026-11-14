@@ -573,3 +573,15 @@ input,select,textarea,button{font-family:var(--font-ui)}
 .account-page .account-section{content-visibility:auto;contain-intrinsic-size:520px}
 .zperf-lite .account-page .account-card,.zperf-lite .account-page .account-panel{backdrop-filter:none;box-shadow:none}
 .zperf-lite .account-page .account-card:hover,.zperf-lite .account-page .account-panel:hover{transform:none!important}
+
+/* ===== ACCOUNT HEALTH ===== */
+.account-health{display:grid;grid-template-columns:minmax(240px,.72fr) 1.28fr;gap:22px;align-items:center}
+.health-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.health-item{display:flex;align-items:center;gap:10px;min-height:68px;padding:13px 14px;border:1px solid rgba(137,190,230,.12);border-radius:15px;background:rgba(9,20,34,.58);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.health-item:hover{transform:translateY(-2px);border-color:rgba(67,217,255,.28);background:rgba(11,27,45,.72)}
+.health-item div{display:grid;gap:4px;min-width:0}.health-item b{font:700 10px var(--font-display);color:#eaf5ff}.health-item small{font:500 8px var(--font-ui);color:#8196aa;line-height:1.4}
+.health-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#ff7888;box-shadow:0 0 10px rgba(255,120,136,.5)}
+.health-dot.is-good{background:#55e6a5;box-shadow:0 0 12px rgba(85,230,165,.58)}
+.health-dot.is-warn{background:#ffc76b;box-shadow:0 0 12px rgba(255,199,107,.45)}
+@media(max-width:900px){.account-health{grid-template-columns:1fr}.health-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.health-item{transition:none}.health-item:hover{transform:none}}
