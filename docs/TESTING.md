@@ -342,3 +342,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 ## v1.4.13 — Theme Tool Test Notes
 - Verify solid/gradient switching, secondary color, gradient angle, presets and reset.
 - Verify reload persistence and mobile/reduced-motion behavior.
+
+### v1.5.1 — Support Bubble Runtime
+- [ ] Homepage has exactly two support bubbles, not two overlapping components.
+- [ ] Login/Register/Dashboard/Admin/404 also show exactly two bubbles.
+- [ ] Bubbles stay near the browser scrollbar and follow the viewport position smoothly while scrolling.
+- [ ] Resize/orientation updates horizontal offset without console errors.
+- [ ] Reduced-motion disables non-essential bubble animation/compositor hints.
+- [ ] Keyboard focus reaches both support links and no layout shift occurs.
