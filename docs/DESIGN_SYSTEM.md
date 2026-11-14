@@ -1,3 +1,8 @@
+
+
+## Motion & performance policy
+
+ZHosting ưu tiên motion có mục đích thay vì animation liên tục. Scroll work được gom bằng requestAnimationFrame, reveal dùng IntersectionObserver và unobserve sau khi đã hiển thị. Pointer tilt chỉ bật trên thiết bị có hover/pointer phù hợp; mobile giảm hiệu ứng blur và shadow. Các animation phải có prefers-reduced-motion fallback và tránh forced synchronous layout.
 # ZHosting Design System
 
 ## 1. Typography
