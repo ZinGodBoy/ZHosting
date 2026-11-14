@@ -4,7 +4,7 @@ if(window.__ZHostingPerformanceInitialized)return;
 window.__ZHostingPerformanceInitialized=true;
 const root=document.documentElement,body=document.body;
 const reducedQuery=window.matchMedia?.("(prefers-reduced-motion: reduce)");
-const reduced=!!reducedQuery?.matches;
+let reduced=!!reducedQuery?.matches;
 const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
 const lowMemory=typeof navigator.deviceMemory==="number"&&navigator.deviceMemory<=4;
 const lowCpu=typeof navigator.hardwareConcurrency==="number"&&navigator.hardwareConcurrency<=4;
@@ -13,7 +13,6 @@ const slowNetwork=connection?.effectiveType==="slow-2g"||connection?.effectiveTy
 if(reduced||lowMemory||lowCpu||saveData||slowNetwork)body?.classList.add("zperf-lite");
 if(lowMemory||lowCpu||saveData||slowNetwork)root.classList.add("zperf-constrained");
 if(reduced)body?.classList.add("zperf-reduced");
-reducedQuery?.addEventListener?.("change",event=>{body?.classList.toggle("zperf-reduced",event.matches);body?.classList.toggle("zperf-lite",event.matches)});
 const syncNetworkMode=()=>{
  const conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
  const saver=!!conn?.saveData;
@@ -25,6 +24,12 @@ const syncNetworkMode=()=>{
 syncNetworkMode();
 const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
 network?.addEventListener?.("change",syncNetworkMode);
+const syncMotionMode=event=>{
+ reduced=!!event.matches;
+ body?.classList.toggle("zperf-reduced",reduced);
+ body?.classList.toggle("zperf-lite",reduced||lowMemory||lowCpu||saveData||slowNetwork);
+};
+reducedQuery?.addEventListener?.("change",syncMotionMode);
 let raf=0,lastViewportHeight=0;
 const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
 window.addEventListener("resize",syncViewport,{passive:true});
@@ -41,7 +46,7 @@ window.addEventListener("pagehide",()=>{
   revealObservers.forEach(io=>io.disconnect());
   revealObservers.length=0;
   network?.removeEventListener?.("change",syncNetworkMode);
-  reducedQuery?.removeEventListener?.("change",syncNetworkMode);
+  reducedQuery?.removeEventListener?.("change",syncMotionMode);
   if(idleHandle){if("cancelIdleCallback"in window)cancelIdleCallback(idleHandle);else clearTimeout(idleHandle);idleHandle=0}
 },{once:true});
 })();
