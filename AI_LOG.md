@@ -175,3 +175,9 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Audited Account Center navigation against the trusted-device Admin Center boundary.
 - Removed duplicate admin-entry initialization and prevented an untrusted admin account from exposing the Admin Center link.
 - Aligned dashboard password-change validation with the authentication layer's 12-character minimum.
+
+
+## v1.4.7 — Support Dock Scrollbar Alignment
+
+- Adjusted the floating support dock so its horizontal position follows the actual viewport scrollbar width instead of relying only on a fixed pixel offset.
+- The offset is measured once at load and refreshed on resize/orientation changes, avoiding continuous scroll work.
