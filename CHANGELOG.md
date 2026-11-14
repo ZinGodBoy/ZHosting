@@ -555,3 +555,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added a lightweight browser-side theme tool for accent/background customization.
 - Supports HEX and RGB editing plus preset palettes.
 - Persists user theme preferences locally and provides reset-to-default.
+
+
+## v1.5.0 — Support Bubble Viewport Guard — 2026-11-14
+
+- Thêm viewport guard để cụm Zalo/Discord tránh vùng quá sát mép trên/dưới khi cuộn.
+- Tự điều chỉnh kích thước trên viewport thấp và khi xoay màn hình.
+- Giữ scroll-follow nhẹ bằng requestAnimationFrame.
