@@ -424,3 +424,10 @@ counters.forEach(el=>counterObserver.observe(el));
   const onPageShow=fn=>window.addEventListener("pageshow",fn,{passive:true});
   window.ZHostingUI={debounce,setBusy,safeText,onPageShow,version:"1.4.1"};
 })();
+
+/* ===== MICRO UX v1.4.4 ===== */
+(()=>{"use strict";
+ const updateClock=()=>document.querySelectorAll("[data-live-clock]").forEach(el=>{el.textContent=new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit"})});
+ if(document.querySelector("[data-live-clock]")){updateClock();window.setInterval(updateClock,1000)}
+ document.querySelectorAll("[data-copy]").forEach(btn=>{if(btn.dataset.copyBound)return;btn.dataset.copyBound="1";btn.addEventListener("click",async()=>{const value=btn.dataset.copy||btn.textContent||"";try{await navigator.clipboard.writeText(value.trim());btn.classList.add("is-copied");setTimeout(()=>btn.classList.remove("is-copied"),1200)}catch{}})});
+})();
