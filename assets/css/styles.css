@@ -319,3 +319,10 @@ img{max-width:100%;height:auto}
   .support-dock-item,.footer-contact-link{transition:none}
   .support-dock-item:hover,.support-dock-item:focus-visible,.footer-contact-link:hover{transform:none}
 }
+
+/* ===== ZHOSTING QUALITY LAYER v1.4.1 ===== */
+.skip-link{position:fixed;left:14px;top:14px;z-index:100;padding:10px 14px;border:1px solid rgba(67,217,255,.45);border-radius:10px;background:#081522;color:#fff;transform:translateY(-180%);transition:transform .2s ease}.skip-link:focus{transform:none;outline:2px solid var(--cyan);outline-offset:3px}
+:focus-visible{outline:2px solid rgba(67,217,255,.78);outline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid rgba(67,217,255,.78);outline-offset:3px}
+img,svg{max-width:100%;height:auto}.btn[disabled],button[disabled]{opacity:.55;cursor:not-allowed;transform:none!important;filter:none!important}.is-loading{pointer-events:none;opacity:.68}.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.field-invalid{border-color:rgba(255,105,125,.65)!important;box-shadow:0 0 0 3px rgba(255,105,125,.08)}
+@media print{.noise,.header,.support-float,.back-top,.toast,.scroll-progress,.hero-visual,.hero-actions,.cta-actions{display:none!important}body{background:#fff!important;color:#111!important}.section,.hero{padding:30px 0!important}.container{width:100%!important}.service-card,.price-card,.feature,.step,.status-main,.status-list{break-inside:avoid;box-shadow:none!important;background:#fff!important;border-color:#bbb!important;color:#111!important}}
+@media(prefers-reduced-motion:reduce){.skip-link{transition:none}}
