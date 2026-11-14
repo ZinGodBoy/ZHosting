@@ -455,3 +455,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify page exit disconnects homepage observers.
 - Verify auth pages and footer use lighter effects on constrained/mobile modes.
 - Verify the server card remains static in constrained mode.
+
+
+## v1.7.2 — Observer Lifecycle Verification
+- Verify active navigation still updates when sections enter/leave the viewport.
+- Verify the navigation observer is disconnected on `pagehide`.
+- Verify counter observer cleanup occurs on `pagehide`.
+- Verify no continuous polling or pointer-follow runtime is introduced.
