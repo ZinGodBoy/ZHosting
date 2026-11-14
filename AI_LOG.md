@@ -130,3 +130,7 @@ AI-assisted review focused on preventing regression across authentication, Admin
 ## 2026-11-14 — Persistent support dock
 
 Đồng bộ hai kênh liên hệ thành một component floating dùng chung. Component được tách khỏi từng page, dùng local brand assets, có responsive/reduced-motion behavior và guard chống khởi tạo trùng để tránh một page tự thêm nhiều dock.
+
+## 2026-11-14 — Support Dock V2
+
+Polished the persistent Zalo/Discord bubbles into a branded floating support dock with online status, circular logos, channel-specific glow, hover expansion, mobile compact mode and reduced-motion handling.
