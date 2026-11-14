@@ -416,3 +416,25 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm trạng thái `HỖ TRỢ / ONLINE`.
 - Icon thương hiệu giữ dạng hình tròn; desktop có hover/focus expansion, shimmer và glow riêng theo từng nền tảng.
 - Mobile chuyển về icon-only 50px để tránh che nội dung.
+
+## v1.4.1 — UI Quality & Runtime Hardening — 2026-11-14
+
+### Added
+- Shared accessibility focus ring, skip-link, screen-reader utility and print-safe presentation rules.
+- Shared runtime quality API for debouncing, busy states, safe display text and page lifecycle hooks.
+- Form validation state cleanup and safer handling of links opened in a new tab.
+- Account Center and Admin Center lifecycle refresh hooks for returning to a tab/page.
+
+### Changed
+- Hardened responsive table behavior and sticky table headers in Admin Center.
+- Added lightweight UI state tokens and reduced-motion-safe interaction rules.
+- Added final responsive polish for small Account Center layouts.
+- Kept performance changes additive and framework-free.
+
+### Security
+- No plaintext passwords, secrets or fabricated IP data were introduced.
+- target=_blank links are normalized with noopener noreferrer.
+- Accessibility helpers do not replace server-side authorization.
+
+### Validation note
+- This release remains a static/frontend prototype. Real account security, IP collection, RBAC, billing and hosting control require a backend.
