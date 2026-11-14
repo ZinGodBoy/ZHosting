@@ -137,3 +137,16 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - [ ] Production backend authorization.
 - [ ] Server-side sessions and audit log.
 - [ ] Real hosting node integration.
+
+## v1.4.1 — UI Quality & Runtime Hardening
+**Status: Implemented / release candidate**
+
+- [x] Shared accessibility focus states.
+- [x] Skip-link and screen-reader utility.
+- [x] Print-safe and reduced-motion-safe rules.
+- [x] Shared lightweight runtime helpers.
+- [x] External-link safety normalization.
+- [x] Account/Admin lifecycle refresh hardening.
+- [x] Responsive Admin table hardening.
+- [ ] Backend RBAC and server-side sessions.
+- [ ] Real IP/session audit pipeline.
