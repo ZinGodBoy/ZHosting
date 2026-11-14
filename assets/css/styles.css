@@ -510,3 +510,16 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @media(prefers-reduced-motion:reduce){
   .support-bubbles,.support-bubble{will-change:auto}
 }
+
+/* ===== THEME TOKEN CONSISTENCY v1.5.2 ===== */
+:root{--z-custom-bg:#07111F;--z-custom-bg-2:#111C31;--z-custom-background-image:var(--z-custom-bg)}
+body{background:var(--z-custom-background-image,var(--z-custom-bg));background-attachment:fixed}
+.header{background:color-mix(in srgb,var(--z-custom-bg) 82%,transparent);border-bottom-color:color-mix(in srgb,var(--violet) 18%,var(--line))}
+.server-card,.service-card,.price-card,.status-main,.status-list,.review,.compare-wrap,.dash-card,.panel{
+  border-color:color-mix(in srgb,var(--violet) 13%,var(--line));
+}
+.service-card:hover,.price-card:hover{border-color:color-mix(in srgb,var(--violet) 34%,var(--line))}
+.btn-primary{background:linear-gradient(135deg,var(--violet),var(--blue))}
+.scroll-progress{background:linear-gradient(90deg,var(--violet),var(--blue))}
+.theme-tools-trigger:hover,.theme-tools-trigger:focus-visible,.theme-presets button:hover,.theme-reset:hover{border-color:var(--violet)}
+@media(prefers-reduced-motion:reduce){body{background-attachment:scroll}}
