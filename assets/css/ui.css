@@ -8,7 +8,7 @@
   --font-display:"Space Grotesk","Inter",Arial,sans-serif;
   --motion-fast:.18s;
   --motion:.28s;
-  --motion-slow:.65s;--cyan:#a78bfa;--blue:#6366f1;
+  --motion-slow:.65s;--cyan:#35d9ff;--blue:#5c7cff;
   --ease:cubic-bezier(.2,.8,.2,1);
   --ease-spring:cubic-bezier(.16,1,.3,1);
 }
