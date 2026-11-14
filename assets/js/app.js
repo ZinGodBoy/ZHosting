@@ -246,14 +246,24 @@ counters.forEach(el=>counterObserver.observe(el));
 
   if (account && currentUser) {
     const existingAdmin = account.querySelector('[data-admin-link]');
-    if (currentUser.role === 'admin' && !existingAdmin) {
-      const admin = document.createElement('a');
-      admin.href = 'admin/index.html';
-      admin.className = 'admin-nav-link';
-      admin.dataset.adminLink = 'true';
-      admin.textContent = 'Admin Center';
-      account.insertBefore(admin, account.querySelector('.logout-link'));
-    }
+    const syncAdminLink = async () => {
+      if (currentUser.role !== 'admin') {
+        existingAdmin?.remove();
+        return;
+      }
+      const trusted = await window.ZAdminAccess?.isTrusted?.(currentUser);
+      if (trusted && !account.querySelector('[data-admin-link]')) {
+        const admin = document.createElement('a');
+        admin.href = 'admin/index.html';
+        admin.className = 'admin-nav-link';
+        admin.dataset.adminLink = 'true';
+        admin.textContent = 'Admin Center';
+        account.insertBefore(admin, account.querySelector('.logout-link'));
+      } else if (!trusted) {
+        account.querySelector('[data-admin-link]')?.remove();
+      }
+    };
+    syncAdminLink();
 
     const logout = account.querySelector('#navLogout');
     logout?.addEventListener('click', event => {
@@ -293,7 +303,7 @@ counters.forEach(el=>counterObserver.observe(el));
     {label:'Liên hệ',meta:'Tạo project brief',href:'#contact'},
     {label:'Account Center',meta:'Mở khu vực tài khoản',href:'dashboard/index.html'}
   ];
-  if (currentUser?.role === 'admin') {
+  if (currentUser?.role === 'admin' && window.ZAdminAccess?.isTrusted?.(currentUser)) {
     actions.push({label:'Admin Center',meta:'Quản lý tài khoản và audit demo',href:'admin/index.html'});
   }
 
