@@ -163,7 +163,10 @@ const analytics=()=>{
  const auditLabel={
    login_success:"Đăng nhập thành công",
    login_failed:"Đăng nhập thất bại",
-   register:"Tạo tài khoản"
+   register:"Tạo tài khoản",
+   admin_lock:"Admin khóa tài khoản",
+   admin_unlock:"Admin mở khóa tài khoản",
+   admin_revoke_session:"Admin thu hồi phiên"
  };
  if(!recent.length){const e=document.createElement("div");e.className="no-history";e.textContent="Chưa có audit event.";auditFeed?.append(e);}
  recent.slice(0,10).forEach(e=>{
