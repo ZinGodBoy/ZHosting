@@ -307,13 +307,15 @@ const safeReadArray=(storage,key)=>{
         name,email,password:passwordRecord,
         createdAt:new Date().toISOString(),
         lastLogin:null,
-        role:users.length===0?"admin":"user",
+        role:"user",
         status:"active",
         loginCount:0,
         loginHistory:[],
         sessionRevokedAt:null
       });
-      saveUsers(users);
+      if(!saveUsers(users)){
+        throw new Error("Unable to persist account data");
+      }
       recordAudit("register",{userId:users[users.length-1].id,email,name,device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       saveSession(email,true);
       setMessage("registerMessage","Tài khoản đã được tạo. Đang mở Control Center...","success");
