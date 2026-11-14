@@ -91,3 +91,10 @@ Các biện pháp trên chỉ harden prototype. Không thay thế backend author
 
 - Explicit logout được ghi nhận bằng audit event logout nếu có session hợp lệ.
 - Event chỉ lưu email tham chiếu; không lưu password, token hoặc session secret.
+
+
+## Latest hardening pass
+
+The 2026-11-14 hardening pass adds malformed-storage recovery, stronger password-change rules, session revocation after credential changes, explicit logout audit events, and safer navigation state handling. These controls improve the demo but do not turn localStorage into a trusted security boundary.
+
+For production deployment, authentication must move to a backend with server-side password verification, HttpOnly/Secure/SameSite cookies or equivalent protected tokens, server-side session revocation, rate limiting, RBAC enforcement, and tamper-resistant audit logging.
