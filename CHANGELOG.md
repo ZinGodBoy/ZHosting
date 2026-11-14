@@ -257,3 +257,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Giảm chi phí paint/layout bằng `contain`, `content-visibility` và hạn chế `will-change`.
 - Tối ưu Admin Center theo hướng ưu tiên độ mượt: analytics/workspace lazy-paint, giảm backdrop-filter và ambient effects trên thiết bị yếu.
 - Giữ nguyên trusted-device gate và không thay đổi ranh giới authorization hiện tại.
+
+
+## Performance runtime refinement — 2026-11-14
+
+- Chuyển timer demo của homepage sang scheduler tự tạm dừng khi tab không visible, thay vì tiếp tục wake-up theo chu kỳ.
+- Áp dụng cơ chế này cho hero micro-animation, Live Status, latency demo và launch clock.
+- Khi tab hoạt động trở lại, scheduler tự tiếp tục mà không cần reload trang.
+- Không thay đổi dữ liệu, auth flow, trusted-device gate hoặc cấu trúc Admin Center.
+- Mục tiêu là giảm background CPU wake-up và giữ animation mượt khi người dùng làm việc lâu với website.
