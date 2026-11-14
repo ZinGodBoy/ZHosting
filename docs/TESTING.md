@@ -315,3 +315,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Back-to-top button still appears after the existing threshold.
 - Anchor navigation still scrolls to the correct section.
 - Reduced-motion mode still uses the existing non-animated scroll behavior.
+
+## v1.4.10 Smoke Test
+
+- Existing trusted admin device still opens Admin Center.
+- Untrusted admin device remains blocked.
+- First device enrollment still creates the expected adminDevice fingerprint.
+- Repeated Admin Center checks do not repeatedly open IndexedDB or re-hash the public key during the same page lifecycle.
+- IndexedDB unavailable/error path still returns an untrusted result rather than granting access.
