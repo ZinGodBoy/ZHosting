@@ -567,3 +567,9 @@ body.account-page .dash-card{
 body{font-family:var(--font-ui)}
 h1,h2,h3,h4,h5,h6,.brand,.gradient-text,.eyebrow,.btn,.nav-links,.section-head,.price,.plan,.dash-label,.panel-title,.hero h1,.hero h2,.hero h3,.account-command h2,.account-support h2,.insight-head h2,.workspace-tools-head h2,.palette-results b{font-family:var(--font-display)}
 input,select,textarea,button{font-family:var(--font-ui)}
+
+/* ===== ACCOUNT PERFORMANCE POLISH ===== */
+.account-page .account-section,.account-page .account-card,.account-page .account-panel{contain:layout paint}
+.account-page .account-section{content-visibility:auto;contain-intrinsic-size:520px}
+.zperf-lite .account-page .account-card,.zperf-lite .account-page .account-panel{backdrop-filter:none;box-shadow:none}
+.zperf-lite .account-page .account-card:hover,.zperf-lite .account-page .account-panel:hover{transform:none!important}
