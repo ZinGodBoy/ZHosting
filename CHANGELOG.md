@@ -1,3 +1,19 @@
+## v1.8.4 — Compositor & CSS Hardening — 2026-11-14
+
+### Performance
+- Loại bỏ `will-change: transform` thường trực khỏi button/card để tránh promote hàng loạt layer.
+- Loại bỏ `contain: paint` trên `body`, tránh tạo stacking/painting boundary không cần thiết cho toàn trang.
+- Loại bỏ rule blur của header trong `zperf-lite` bị ghi đè bởi rule tối ưu phía sau.
+- Giữ compositing promotion ở trạng thái theo tương tác thay vì duy trì liên tục.
+
+### Fixed
+- Giảm nguy cơ lỗi clipping/stacking với sticky header, fixed elements và theme/support UI.
+- Loại bỏ cascade CSS mâu thuẫn trong performance mode.
+
+### Quality
+- Không thay đổi giao diện chính hoặc hành vi tài khoản.
+- Không thêm dependency, polling hoặc background worker.
+
 ## v1.8.2 — Runtime Performance Hardening
 
 - Hardened performance lifecycle cleanup for visibility/pagehide handlers.
