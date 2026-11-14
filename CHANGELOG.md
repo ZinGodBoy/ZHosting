@@ -392,3 +392,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Xóa script performance.js bị nhúng trùng trên trang 404.
 - Làm timer kiểm tra session và đồng hồ Admin Center lifecycle-safe: dừng khi tab nền và cleanup khi rời trang.
 - Harden anchor navigation để href="#" hoặc selector không hợp lệ không gây JavaScript exception.
+
+## Support Dock — 2026-11-14
+
+- Thay support bubbles cũ bằng dock nổi cố định dùng chung trên Homepage, Login, Register, Account Center, Admin Center và 404.
+- Zalo và Discord hiển thị dạng nút tròn với logo thương hiệu, hover/focus mở rộng thông tin liên hệ.
+- Mobile giữ dạng icon-only để không che nội dung.
+- Support dock được inject bởi một runtime duy nhất và có guard chống khởi tạo trùng.
+- Thêm reduced-motion fallback.
