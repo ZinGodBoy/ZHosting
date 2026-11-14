@@ -1015,3 +1015,36 @@ body.zperf-constrained .footer-contact-link:focus-visible{transform:none}
  body .node-ping,
  body .announcement-live i{animation:none!important}
 }
+
+
+/* ===== PERFORMANCE & POLISH PASS v1.7.1 ===== */
+@media(max-width:900px){
+  .auth-bg span{filter:none}
+  .auth-grid{opacity:.16}
+  .auth-card{box-shadow:0 24px 70px rgba(0,0,0,.34)}
+}
+@media(max-width:700px){
+  .auth-bg span:nth-child(3){display:none}
+  .auth-card{box-shadow:0 18px 50px rgba(0,0,0,.3)}
+  .footer-contact-inner:before{display:none}
+}
+body.zperf-lite .auth-bg span{
+  filter:none!important;
+}
+body.zperf-lite .auth-grid{
+  opacity:.1;
+}
+body.zperf-lite .auth-card{
+  box-shadow:none!important;
+}
+body.zperf-lite .footer-contact-inner:before{
+  display:none;
+}
+body.zperf-constrained .server-card{
+  animation:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .auth-bg span{filter:none}
+  .auth-card{box-shadow:none}
+  .footer-contact-inner:before{display:none}
+}
