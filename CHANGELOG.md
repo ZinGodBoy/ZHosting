@@ -1,3 +1,12 @@
+## Pricing & Config decision UX — 2026-11-14
+
+- Làm rõ từng gói với nhãn **phù hợp với** và phần “Bạn nên chọn gói này nếu”.
+- Đổi CTA của bảng giá thành hành động rõ nghĩa hơn như “Tư vấn gói Pro” thay vì chỉ “Chọn gói”.
+- Config Builder bổ sung vùng **Gợi ý** theo từng loại dịch vụ.
+- Add-on được highlight rõ khi đang chọn.
+- Hiển thị lại thông tin giá theo hướng minh bạch: giá minh họa/prototype được ghi chú ngay tại khu vực tính toán.
+- Giữ reduced-motion và responsive behavior.
+
 ## User guidance & onboarding UX — 2026-11-14
 
 - Thêm khu vực **Bắt đầu nhanh** để người dùng mới hiểu quy trình theo 3 bước: chọn nhu cầu → kiểm tra cấu hình → liên hệ.
