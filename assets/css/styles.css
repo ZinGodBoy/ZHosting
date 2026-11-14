@@ -791,3 +791,36 @@ body.zperf-lite .noise{display:none}
 .zperf-constrained .footer-contact-link{
   box-shadow:none!important;
 }
+
+
+/* ===== FOOTER POLISH v1.6.4 ===== */
+.footer-contact{margin-top:4px}
+.footer-contact-inner{
+  border:1px solid color-mix(in srgb,var(--violet,#7C6CFF) 17%,var(--line));
+  border-radius:18px;
+  padding:14px;
+  background:linear-gradient(135deg,rgba(167,139,250,.055),rgba(99,102,241,.025) 48%,rgba(4,7,13,.24));
+}
+.footer-contact-copy b{font-size:11px;letter-spacing:.01em}
+.footer-contact-copy span{color:#7f93a8;font-size:10px}
+.footer-contact-link{
+  transition:border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.footer-contact-link:hover,.footer-contact-link:focus-visible{
+  transform:translateY(-1px);
+}
+.footer-bottom{margin-top:16px}
+@media(max-width:900px){
+  .footer-contact-inner{padding:13px}
+}
+@media(max-width:700px){
+  .footer-contact{margin-top:0}
+  .footer-contact-inner{padding:12px;border-radius:15px}
+  .footer-contact-copy{align-items:flex-start}
+  .footer-contact-copy>i{margin-top:4px}
+  .footer-contact-copy b{font-size:10px}
+  .footer-contact-copy span{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .footer-contact-link{transition:none}
+}
