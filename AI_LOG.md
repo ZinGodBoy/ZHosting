@@ -325,3 +325,9 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 A focused runtime audit found a concrete error in assets/js/ui.js: the shared reveal IntersectionObserver callback called obs.unobserve(...), but no obs variable existed in that scope. The fix now uses the actual revealObserver instance, preventing a runtime exception when reveal elements enter the viewport.
 
 The support dock lifecycle was also reviewed for browser page lifecycle behavior. Its page-exit handler now cancels pending frames without marking the runtime permanently disposed, so returning through browser lifecycle restoration does not leave the support controls inert. No additional continuous work or visual effect was introduced.
+
+
+## v1.7.8 — Config & Support Performance Audit
+The Config Builder was recalculating more DOM state than necessary during RAM/CPU slider interaction: it searched for the active service and queried every config item again on each frame. The runtime now caches service buttons and config containers, then performs addon pricing, selection state and count updates in a single pass. The expensive two-frame visual retrigger is no longer executed for every slider movement.
+
+The support dock was also reviewed as a lightweight fixed utility. Its runtime uses scheduled resize/orientation work rather than a persistent layout observer, while retaining scroll throttling and lifecycle frame cleanup. Core JavaScript files were syntax-checked after the changes.
