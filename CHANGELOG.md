@@ -1,3 +1,12 @@
+## Admin Center device-bound access — 2026-11-14
+
+- Thêm browser-bound Admin Device Gate bằng IndexedDB + Web Crypto.
+- Admin Center chỉ hiển thị trong navigation/command palette khi tài khoản admin đang ở trusted browser device.
+- Admin route kiểm tra trusted device trước khi render dữ liệu quản trị.
+- Bỏ cơ chế tự động nâng tài khoản đầu tiên thành admin để tránh privilege escalation trên browser mới.
+- Thêm trạng thái TRUSTED DEVICE / DEVICE BOUND trong Admin Center.
+- Ghi audit event khi admin truy cập từ thiết bị không được tin cậy.
+
 ## Admin Center motion upgrade — 2026-11-14
 
 - Nâng cấp Admin Center với motion suite đồng bộ visual language của Homepage.
