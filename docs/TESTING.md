@@ -306,3 +306,12 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Mobile with a bottom safe area: bubbles remain accessible.
 - Clicking/dragging empty space around the dock does not block page interaction.
 - Reduced-motion mode removes unnecessary compositor hints.
+
+## v1.4.9 Smoke Test
+
+- Scroll from top to bottom: progress bar remains smooth.
+- Active navigation changes as sections enter the navigation observation zone.
+- Header scrolled state still activates after scrolling.
+- Back-to-top button still appears after the existing threshold.
+- Anchor navigation still scrolls to the correct section.
+- Reduced-motion mode still uses the existing non-animated scroll behavior.
