@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="admin.css">
 </head>
 <body class="admin-page">
+<div class="admin-bg-grid" aria-hidden="true"></div><div class="admin-noise" aria-hidden="true"></div><div class="admin-ambient ambient-one" aria-hidden="true"></div><div class="admin-ambient ambient-two" aria-hidden="true"></div>
 <header class="admin-header">
   <div class="admin-header-inner">
     <a class="admin-brand" href="../index.html" aria-label="ZHosting home">
@@ -25,7 +26,7 @@
   </div>
 </header>
 
-<main class="admin-main">
+<main class="admin-main" data-admin-reveal-root>
   <section class="admin-hero">
     <div>
       <div class="admin-eyebrow"><i></i>Admin User Management</div>
@@ -38,7 +39,7 @@
     </aside>
   </section>
 
-  <section class="admin-kpis" aria-label="Tổng quan hệ thống">
+  <section class="admin-kpis admin-reveal-group" aria-label="Tổng quan hệ thống">
     <article class="admin-kpi"><span class="admin-kpi-label">Total accounts</span><strong id="total">0</strong><small>Tổng tài khoản</small></article>
     <article class="admin-kpi"><span class="admin-kpi-label">Active</span><strong id="active">0</strong><small>Đang hoạt động</small></article>
     <article class="admin-kpi"><span class="admin-kpi-label">Administrators</span><strong id="admins">0</strong><small>Quyền quản trị</small></article>
@@ -54,7 +55,7 @@
     <time id="adminClock" aria-label="Thời gian hiện tại">--:--:--</time>
   </section>
 
-  <section class="analytics-grid" aria-label="Analytics">
+  <section class="analytics-grid admin-reveal-group" aria-label="Analytics">
     <article class="admin-panel">
       <header class="admin-panel-head"><div><small>USER GROWTH</small><h2>Tăng trưởng tài khoản</h2></div><span>30 ngày</span></header>
       <div id="userGrowth" class="growth-chart" aria-label="Biểu đồ tăng trưởng tài khoản 30 ngày"></div>
@@ -108,7 +109,7 @@
     </article>
   </section>
 
-  <section class="admin-workspace">
+  <section class="admin-workspace admin-reveal-group">
     <div>
       <section class="admin-toolbar" aria-label="User filters">
         <input id="search" type="search" placeholder="Tìm tên hoặc email..." autocomplete="off" aria-label="Tìm người dùng">
