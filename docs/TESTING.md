@@ -375,3 +375,13 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Mobile page has reduced blur/noise/shadow overhead.
 - [ ] Low-resource mode remains visually stable.
 - [ ] No horizontal overflow is introduced.
+
+### v1.5.5 runtime and visual regression
+- [ ] Live clock updates normally while the page is visible.
+- [ ] Live clock stops while the tab is hidden and resumes after returning.
+- [ ] Homepage scroll progress and back-to-top still work normally.
+- [ ] No duplicate scroll-driven visual state is created by `performance.js`.
+- [ ] Cards/panels remain visually intact with rendering containment enabled.
+- [ ] Keyboard focus rings are visible and do not cause layout shifts.
+- [ ] Reduced-motion disables smooth scrolling and decorative motion.
+- [ ] Constrained-device mode remains readable and responsive.
