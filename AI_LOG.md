@@ -280,3 +280,10 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Found a malformed V3 counter block comment in `app.js`; the comment consumed the counter and following account/navigation runtime until a later comment terminator.
 - Restored the executable counter block with an isolated IIFE.
 - Re-audited CSS compositing: many historical blur declarations existed, so a final responsive override was added rather than rewriting the entire stylesheet and risking regressions.
+
+
+## v1.7.1 — Runtime Observer Audit
+- Re-audited homepage observers after the v1.6.9 runtime recovery.
+- Counter rendering now has a safe fallback when `IntersectionObserver` is unavailable and guards against duplicate animation starts.
+- Reveal and active-navigation observers now disconnect on `pagehide`.
+- Added a final constrained-device visual pass focused on auth backgrounds, footer decoration and the animated server card.
