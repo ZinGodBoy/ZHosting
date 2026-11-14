@@ -214,101 +214,122 @@ const refreshData=()=>{
 
 $("jumpDirectory")?.addEventListener("click",()=>{document.querySelector(".admin-workspace")?.scrollIntoView({behavior:"smooth",block:"start"});});
 $("adminGlobalSearch")?.addEventListener("input",event=>{const value=event.target.value.trim();const search=$("search");if(search){search.value=value;render();}});
-/* Homepage-compatible motion engine */
-const reduceMotion=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+/* Performance-aware motion engine */
+const reduceMotion=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+const canHover=window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
+
 const revealObserver=reduceMotion?null:new IntersectionObserver(entries=>{
- entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("is-visible");});
-},{threshold:.12});
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.08,rootMargin:"0px 0px -8% 0px"});
+
 document.querySelectorAll(".admin-reveal-group,.admin-workspace").forEach(node=>{
- if(revealObserver)revealObserver.observe(node); else node.classList.add("is-visible");
+  if(revealObserver)revealObserver.observe(node);
+  else node.classList.add("is-visible");
 });
 
 const toast=document.createElement("div");
-toast.className="admin-toast";toast.setAttribute("role","status");toast.setAttribute("aria-live","polite");
+toast.className="admin-toast";
+toast.setAttribute("role","status");
+toast.setAttribute("aria-live","polite");
 document.body.append(toast);
 let toastTimer=0;
 const notify=(title,message)=>{
- toast.innerHTML="";
- const strong=document.createElement("strong");strong.textContent=title;
- const span=document.createElement("span");span.textContent=message;
- toast.append(strong,span);toast.classList.add("is-visible");
- clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("is-visible"),2600);
+  toast.replaceChildren();
+  const strong=document.createElement("strong");
+  const span=document.createElement("span");
+  strong.textContent=title;span.textContent=message;
+  toast.append(strong,span);
+  toast.classList.add("is-visible");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove("is-visible"),2400);
 };
+
 document.addEventListener("keydown",event=>{
- if((event.key==="/"&&!["INPUT","TEXTAREA","SELECT"].includes(document.activeElement?.tagName))||(event.key.toLowerCase()==="k"&&(event.ctrlKey||event.metaKey))){
-   event.preventDefault();$("adminGlobalSearch")?.focus();$("adminGlobalSearch")?.select();
- }
- if(event.key==="Escape"&&document.activeElement?.id==="adminGlobalSearch")document.activeElement.blur();
+  const tag=document.activeElement?.tagName;
+  if((event.key==="/"&&!["INPUT","TEXTAREA","SELECT"].includes(tag))||
+     (event.key.toLowerCase()==="k"&&(event.ctrlKey||event.metaKey))){
+    event.preventDefault();
+    $("adminGlobalSearch")?.focus();
+    $("adminGlobalSearch")?.select();
+  }
+  if(event.key==="Escape"&&document.activeElement?.id==="adminGlobalSearch"){
+    document.activeElement.blur();
+  }
 });
+
 const scrollProgress=document.createElement("div");
 scrollProgress.className="admin-scroll-progress";
 document.body.append(scrollProgress);
 const backTop=document.createElement("button");
-backTop.type="button";backTop.className="admin-back-top";backTop.textContent="↑";backTop.setAttribute("aria-label","Về đầu trang");
+backTop.type="button";
+backTop.className="admin-back-top";
+backTop.textContent="↑";
+backTop.setAttribute("aria-label","Về đầu trang");
 document.body.append(backTop);
+
+let scrollTick=false;
 const syncScrollUI=()=>{
- const doc=document.documentElement;
- const max=doc.scrollHeight-window.innerHeight;
- const pct=max>0?(window.scrollY/max)*100:0;
- scrollProgress.style.setProperty("--progress",pct+"%");
- backTop.classList.toggle("is-visible",window.scrollY>420);
+  if(scrollTick)return;
+  scrollTick=true;
+  requestAnimationFrame(()=>{
+    const doc=document.documentElement;
+    const max=Math.max(1,doc.scrollHeight-window.innerHeight);
+    scrollProgress.style.setProperty("--progress",(window.scrollY/max)*100+"%");
+    backTop.classList.toggle("is-visible",window.scrollY>420);
+    document.body.classList.toggle("header-scrolled",window.scrollY>22);
+    scrollTick=false;
+  });
 };
 window.addEventListener("scroll",syncScrollUI,{passive:true});
 backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:reduceMotion?"auto":"smooth"}));
 syncScrollUI();
 
-if(!reduceMotion){
- document.querySelectorAll(".admin-panel,.admin-kpi,.admin-commandbar,.admin-privacy").forEach(card=>{
-   card.addEventListener("pointermove",event=>{
-     const rect=card.getBoundingClientRect();
-     const x=(event.clientX-rect.left)/rect.width-.5;
-     const y=(event.clientY-rect.top)/rect.height-.5;
-     card.style.setProperty("--mx",(x*100)+"%");
-     card.style.setProperty("--my",(y*100)+"%");
-   });
-   card.addEventListener("pointerleave",()=>{card.style.removeProperty("--mx");card.style.removeProperty("--my");});
- });
+if(canHover&&!reduceMotion){
+  const cards=document.querySelectorAll(".admin-panel,.admin-kpi,.admin-privacy");
+  let pointerFrame=0,lastEvent=null;
+  const updateTilt=()=>{
+    pointerFrame=0;
+    if(!lastEvent)return;
+    const event=lastEvent;
+    const target=event.currentTarget;
+    if(!target)return;
+    const rect=target.getBoundingClientRect();
+    const x=(event.clientX-rect.left)/rect.width-.5;
+    const y=(event.clientY-rect.top)/rect.height-.5;
+    target.style.setProperty("--tilt-x",(x*1.4)+"deg");
+    target.style.setProperty("--tilt-y",(-y*1.4)+"deg");
+  };
+  cards.forEach(card=>{
+    card.addEventListener("pointermove",event=>{
+      lastEvent=event;
+      if(!pointerFrame)pointerFrame=requestAnimationFrame(updateTilt);
+    },{passive:true});
+    card.addEventListener("pointerleave",()=>{
+      card.style.setProperty("--tilt-x","0deg");
+      card.style.setProperty("--tilt-y","0deg");
+      lastEvent=null;
+    },{passive:true});
+  });
 }
-/* Advanced interaction layer */
-const motionCards=document.querySelectorAll(".admin-panel,.admin-kpi,.admin-privacy");
-const setSpotlight=event=>{
- if(reduceMotion)return;
- document.documentElement.style.setProperty("--spot-x",event.clientX+"px");
- document.documentElement.style.setProperty("--spot-y",event.clientY+"px");
-};
-window.addEventListener("pointermove",setSpotlight,{passive:true});
-
-window.addEventListener("scroll",()=>{
- document.body.classList.toggle("header-scrolled",window.scrollY>22);
-},{passive:true});
 
 if(!reduceMotion){
- motionCards.forEach(card=>{
-   card.addEventListener("pointermove",event=>{
-     const rect=card.getBoundingClientRect();
-     const px=(event.clientX-rect.left)/rect.width-.5;
-     const py=(event.clientY-rect.top)/rect.height-.5;
-     card.style.setProperty("--tilt-x",(px*2.2)+"deg");
-     card.style.setProperty("--tilt-y",(-py*2.2)+"deg");
-   });
-   card.addEventListener("pointerleave",()=>{
-     card.style.setProperty("--tilt-x","0deg");
-     card.style.setProperty("--tilt-y","0deg");
-   });
- });
+  document.addEventListener("pointerdown",event=>{
+    const button=event.target.closest("button,.view,.admin-header-actions a");
+    if(!button||button.disabled)return;
+    const rect=button.getBoundingClientRect();
+    const ripple=document.createElement("span");
+    ripple.className="ripple-dot";
+    ripple.style.left=(event.clientX-rect.left)+"px";
+    ripple.style.top=(event.clientY-rect.top)+"px";
+    button.append(ripple);
+    ripple.addEventListener("animationend",()=>ripple.remove(),{once:true});
+  },{passive:true});
 }
-document.querySelectorAll("button,.view,.admin-header-actions a").forEach(button=>{
- button.addEventListener("pointerdown",event=>{
-   if(reduceMotion)return;
-   const rect=button.getBoundingClientRect();
-   const ripple=document.createElement("span");
-   ripple.className="ripple-dot";
-   ripple.style.left=(event.clientX-rect.left)+"px";
-   ripple.style.top=(event.clientY-rect.top)+"px";
-   button.append(ripple);
-   ripple.addEventListener("animationend",()=>ripple.remove(),{once:true});
- });
-});
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 
