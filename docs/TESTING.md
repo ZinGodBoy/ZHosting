@@ -1,3 +1,12 @@
+## v1.8.2 Runtime Performance Checks
+
+- Verify `assets/js/performance.js` parses without syntax errors.
+- Verify `pagehide` removes the performance visibility listener and disconnects reveal observers.
+- Verify constrained mode disables expensive blur/filter/shadow/decorative animation effects.
+- Verify normal desktop mode keeps the existing navy/cyan/blue visual treatment.
+- Verify reduced-motion mode remains free of forced smooth scrolling.
+- Browser E2E/Lighthouse was not run in this pass.
+
 # ZHosting Testing Guide
 
 ## 1. Test strategy
