@@ -190,3 +190,8 @@ Frontend nên giữ:
 Admin navigation and the Admin Center route use `assets/js/admin-access.js` as a browser-local privileged-device gate. The module stores a non-extractable ECDSA P-256 private key in IndexedDB and binds the corresponding public-key fingerprint to the existing admin user record. This improves separation between ordinary user browsers and the trusted admin browser while the project remains a static/localStorage demo.
 
 For production, this boundary must move to a backend authorization service with server-side sessions and device/permission policy enforcement.
+
+
+## Frontend performance runtime
+
+`assets/js/performance.js` cung cấp adaptive performance flags theo reduced motion, device memory, CPU concurrency và Save-Data. Các timer demo của `assets/js/app.js` dùng scheduler tự tạm dừng khi document hidden để tránh background wake-up không cần thiết. Đây là tối ưu runtime phía client, không thay đổi authorization hoặc dữ liệu nghiệp vụ.
