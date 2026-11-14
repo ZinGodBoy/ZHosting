@@ -380,3 +380,9 @@ The project remains intentionally framework-free. These improvements are fronten
 - `v1.4.10` — Admin Device Gate Runtime Optimization
 
 - `v1.4.11` — Runtime Smoothness Pass: lighter Admin Center interactions, batched config updates, and reduced compositor overhead.
+
+
+### Support Bubble Scroll Follow
+- Zalo và Discord dùng floating bubble dạng tròn với logo thương hiệu.
+- Vị trí dock thay đổi nhẹ theo tiến trình cuộn trang để giữ cảm giác bám theo vùng scrollbar.
+- Scroll handler dùng requestAnimationFrame và passive listener để hạn chế layout work.
