@@ -593,3 +593,9 @@ body.config-active .config-result{animation:zuiConfigPulse .5s var(--ease-spring
 body{font-family:var(--font-ui)}
 h1,h2,h3,h4,h5,h6,.brand,.gradient-text,.eyebrow,.btn,.nav-links,.section-head,.price,.plan,.dash-label,.panel-title,.hero h1,.hero h2,.hero h3,.account-command h2,.account-support h2,.insight-head h2,.workspace-tools-head h2,.palette-results b{font-family:var(--font-display)}
 input,select,textarea,button{font-family:var(--font-ui)}
+
+/* ===== SHARED UI MICRO-INTERACTIONS ===== */
+.btn,.nav-links a,.service-card,.price-card,.command-card{will-change:transform}
+@media(prefers-reduced-motion:reduce){
+  .btn,.nav-links a,.service-card,.price-card,.command-card{will-change:auto!important}
+}
