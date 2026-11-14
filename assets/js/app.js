@@ -286,7 +286,11 @@ counters.forEach(el=>counterObserver.observe(el));
 
 
 /* ===== COMMAND LAUNCH MICRO-UI ===== */
-(()=>{const clock=document.querySelector('#launchClock');if(!clock)return;const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})};tick();zSetInterval(tick,1000);})();
+(()=>{const clock=document.querySelector('#launchClock');if(!clock)return;
+ const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});};
+ tick();
+ zSetInterval(tick,1000);
+})();
 
 
 /* ===== ZHOSTING V1.4 COMMAND PALETTE + NAV HARDENING ===== */
