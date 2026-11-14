@@ -642,4 +642,17 @@ body.zperf-lite [data-zui-reveal]{transition:none;transform:none;opacity:1}
 /* ===== RENDERING HARDENING v1.6.0 ===== */
 body.zperf-lite *{text-shadow:none}
 @media(prefers-reduced-motion:reduce){body *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
-\n\n/* ===== CONSTRAINED UI FINISH v1.7.1 ===== */\nbody.zperf-lite .toast,\nbody.zperf-lite .zui-modal-backdrop,\nbody.zperf-lite .modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}\nbody.zperf-lite .security-badge,\nbody.zperf-lite .account-badge,\nbody.zperf-lite .mail-unread,\nbody.zperf-lite .config-live i,\nbody.zperf-lite .node-ping{animation:none!important}\n@media(prefers-reduced-motion:reduce){\n body .security-badge,body .account-badge,body .mail-unread,body .config-live i,body .node-ping{animation:none!important}\n}
+
+
+/* ===== CONSTRAINED UI FINISH v1.7.1 ===== */
+body.zperf-lite .toast,
+body.zperf-lite .zui-modal-backdrop,
+body.zperf-lite .modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body.zperf-lite .security-badge,
+body.zperf-lite .account-badge,
+body.zperf-lite .mail-unread,
+body.zperf-lite .config-live i,
+body.zperf-lite .node-ping{animation:none!important}
+@media(prefers-reduced-motion:reduce){
+ body .security-badge,body .account-badge,body .mail-unread,body .config-live i,body .node-ping{animation:none!important}
+}
