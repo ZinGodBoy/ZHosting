@@ -636,3 +636,27 @@ body.zperf-lite .dashboard-page .palette-backdrop,
 body.zperf-lite .dashboard-page .modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 body.zperf-lite .dashboard-page .account-badge,
 body.zperf-lite .dashboard-page .mail-unread{animation:none!important}
+
+/* ===== THEME COHERENCE FINISH v1.7.7 ===== */
+.dashboard-page{
+  --account-bg:#050b14;
+  --account-surface:rgba(10,20,34,.84);
+  background:
+    radial-gradient(circle at 78% 0,rgba(67,217,255,.10),transparent 32%),
+    radial-gradient(circle at 12% 48%,rgba(92,124,255,.06),transparent 28%),
+    linear-gradient(180deg,#050b14,#07111f 58%,#040910);
+}
+.dashboard-page .dash-card,
+.dashboard-page .panel{
+  background:linear-gradient(145deg,rgba(10,20,34,.90),rgba(5,11,20,.92));
+  border-color:rgba(145,190,230,.13);
+}
+.dashboard-page .dash-user>span,
+.dashboard-page .account-avatar{
+  background:linear-gradient(135deg,#35d9ff,#5c7cff);
+  color:#04101a;
+}
+body.zperf-lite .dashboard-page .dash-card,
+body.zperf-lite .dashboard-page .panel{
+  box-shadow:0 8px 24px rgba(0,0,0,.14);
+}
