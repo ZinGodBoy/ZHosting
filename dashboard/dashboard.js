@@ -63,14 +63,13 @@
     setHealth("#healthSecurityDot","#healthSecurityText","Đang dùng cơ chế bảo vệ mật khẩu","Kiểm tra lại bảo mật",securityOk);
     setHealth("#healthActivityDot","#healthActivityText",activityOk?"Lịch sử hoạt động sẵn sàng":"Chưa có lịch sử","Chưa có dữ liệu",activityOk);
   };
-  syncHealth();
-  document.addEventListener("visibilitychange",()=>{if(!document.hidden)syncHealth()},{passive:true});
+  const refreshAccountRuntime=()=>{
+    if(document.hidden)return;
+    syncHealth();
+    try{if(typeof auth?.touchSession==="function")auth.touchSession()}catch{}
+  };
+  refreshAccountRuntime();
+  window.addEventListener("pageshow",refreshAccountRuntime,{passive:true});
+  document.addEventListener("visibilitychange",refreshAccountRuntime,{passive:true});
 
-})();
-
-/* ===== ACCOUNT RUNTIME QUALITY v1.4.1 ===== */
-(()=>{
-  const refresh=()=>{try{if(typeof auth?.touchSession==="function")auth.touchSession()}catch{}};
-  window.addEventListener("pageshow",refresh,{passive:true});
-  document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()},{passive:true});
 })();
