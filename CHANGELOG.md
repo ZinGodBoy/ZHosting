@@ -1,3 +1,11 @@
+## User guidance & onboarding UX — 2026-11-14
+
+- Thêm khu vực **Bắt đầu nhanh** để người dùng mới hiểu quy trình theo 3 bước: chọn nhu cầu → kiểm tra cấu hình → liên hệ.
+- Bổ sung CTA trực tiếp tới Dịch vụ, Config Builder và Liên hệ.
+- Thêm hướng dẫn ngắn giải thích rằng người mới không cần hiểu sâu về server trước khi liên hệ.
+- Responsive cho desktop/mobile và có reduced-motion fallback.
+- Giữ nguyên hệ thống hỗ trợ Zalo/Discord, Account Center và Admin Center.
+
 ## User Support Floaters — 2026-11-14
 
 - Thêm bubble hỗ trợ Zalo với số 0828 689 789.
