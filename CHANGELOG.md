@@ -1,3 +1,11 @@
+## User Support Floaters — 2026-11-14
+
+- Thêm bubble hỗ trợ Zalo với số 0828 689 789.
+- Thêm bubble Discord với username tdk_208.
+- Desktop hiển thị dạng bubble có nhãn; mobile thu gọn thành nút tròn.
+- Có focus state và reduced-motion fallback.
+- Các nút chỉ điều hướng tới kênh liên hệ, không thu thập dữ liệu người dùng.
+
 
 ## Performance & Admin Center refinement — 2026-11-14
 
