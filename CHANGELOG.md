@@ -1,3 +1,17 @@
+## v1.8.9 — Content Visibility Regression Guard — 2026-11-14
+
+### Fixed
+- Thêm lớp bảo vệ cuối stylesheet để nội dung `.reveal`, `[data-zui-reveal]` và `.zperf-visible` luôn hiển thị.
+- Ngăn các lớp optimization/theme/reveal khác vô tình ghi đè thành `opacity:0` hoặc `visibility:hidden`.
+- Xác định khả năng đọc nội dung là invariant: animation có thể lỗi nhưng chữ không được biến mất.
+
+### Performance
+- Chỉ thêm một selector guard tĩnh, không thêm JavaScript, observer, timer hoặc polling.
+- Không thay đổi animation runtime hiện tại.
+
+### Quality
+- Guard đặt ở cuối shared stylesheet để giảm nguy cơ regression do cascade.
+
 ## v1.8.8 — Content Visibility Hotfix — 2026-11-14
 
 ### Fixed
