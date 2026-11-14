@@ -1048,3 +1048,42 @@ body.zperf-constrained .server-card{
   .auth-card{box-shadow:none}
   .footer-contact-inner:before{display:none}
 }
+
+
+/* ===== THEME RESTORE & TYPOGRAPHY LOCK v1.7.4 ===== */
+:root{
+  --bg:#050b14;
+  --panel:#0a1422;
+  --panel2:#0d1a2b;
+  --line:rgba(145,190,230,.13);
+  --text:#eef6ff;
+  --muted:#8ea4bb;
+  --cyan:#43d9ff;
+  --blue:#5c7cff;
+  --green:#55e6a5;
+  --violet:#43d9ff;
+  --z-custom-bg:#050b14;
+  --z-custom-bg-2:#0d1a2b;
+}
+body{
+  color:var(--text);
+  background:var(--z-custom-background-image,var(--z-custom-bg));
+}
+h1,h2,h3,h4,h5,h6,.brand,.server-title,.trust-row strong{
+  color:var(--text);
+}
+p,.hero-desc,.footer-brand>p,.footer-contact-copy span{
+  color:var(--muted);
+}
+.nav-links a,.footer-column a,.footer-bottom-links a{
+  color:#a9bbce;
+}
+.nav-links a:hover,.nav-links a:focus-visible,
+.footer-column a:hover,.footer-column a:focus-visible,
+.footer-bottom-links a:hover,.footer-bottom-links a:focus-visible{
+  color:#fff;
+}
+.btn-ghost{color:#e6f2ff}
+.metrics>div{color:#8ea4bb}
+.metrics b{color:#dff3ff}
+.trust-row span{color:#687f97}
