@@ -181,3 +181,10 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 
 - Adjusted the floating support dock so its horizontal position follows the actual viewport scrollbar width instead of relying only on a fixed pixel offset.
 - The offset is measured once at load and refreshed on resize/orientation changes, avoiding continuous scroll work.
+
+
+## v1.4.8 — Support Dock Polish
+
+- Kept the support bubbles aligned beside the browser scrollbar while reducing resize-handler churn.
+- Viewport recalculation is now batched with requestAnimationFrame.
+- Added mobile safe-area support and pointer isolation so the floating dock does not intercept page interaction outside the buttons.
