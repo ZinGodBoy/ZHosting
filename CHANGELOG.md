@@ -726,3 +726,18 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Consolidated the final low-resource header/footer fallback so constrained devices do not re-enable expensive blur effects.
 - Reduced footer shadows and hover transitions on smaller/constrained devices.
 - Preserved the full footer visual hierarchy on normal desktop hardware.
+
+## v1.6.0 — Rendering & Accessibility Hardening — 2026-11-14
+
+### Fixed
+- Loại bỏ một số `will-change: transform` cố định trên card/support UI để tránh GPU layer promotion liên tục.
+- Performance layer phản ứng khi người dùng thay đổi `prefers-reduced-motion` trong lúc trang đang mở.
+
+### Performance
+- Giảm persistent compositing pressure trên homepage, dashboard và admin.
+- Chế độ thiết bị hạn chế tiếp tục giảm hiệu ứng không cần thiết mà không thay đổi cấu trúc UI.
+- Reduced Motion được áp dụng nhất quán hơn cho animation và transition.
+
+### UI
+- Giữ nguyên bố cục Midnight Violet/Indigo và các trạng thái hover/focus cần thiết.
+- Ưu tiên chuyển động theo trạng thái tương tác thay vì giữ GPU promotion liên tục.
