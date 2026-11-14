@@ -270,3 +270,15 @@ body{contain:paint}
 
 /* ===== Persistent branded support dock ===== */
 .support-dock{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:none}.support-dock-item{pointer-events:auto;display:flex;align-items:center;gap:10px;width:54px;height:54px;padding:5px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(7,15,27,.82);backdrop-filter:blur(16px);box-shadow:0 14px 38px rgba(0,0,0,.32),0 0 24px rgba(67,217,255,.08);color:#fff;text-decoration:none;overflow:hidden;transition:width .28s ease,transform .22s ease,border-color .22s ease,box-shadow .22s ease}.support-dock-item:hover,.support-dock-item:focus-visible{width:190px;transform:translateX(-3px);border-color:rgba(67,217,255,.42);box-shadow:0 18px 44px rgba(0,0,0,.38),0 0 28px rgba(67,217,255,.14);outline:none}.support-dock-icon{flex:0 0 44px;width:44px;height:44px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#101b2c;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}.support-dock-icon img{display:block;width:100%;height:100%;object-fit:cover}.support-dock-label{min-width:0;display:flex;flex:1;flex-direction:column;line-height:1.15;opacity:0;transform:translateX(8px);transition:opacity .18s ease,transform .22s ease;white-space:nowrap}.support-dock-item:hover .support-dock-label,.support-dock-item:focus-visible .support-dock-label{opacity:1;transform:none}.support-dock-label b{font-size:12px;font-weight:800}.support-dock-label small{margin-top:4px;color:#8ea4bb;font-size:10px}.support-dock-arrow{font-size:14px;color:#8ea4bb;opacity:0;transition:opacity .18s ease}.support-dock-item:hover .support-dock-arrow,.support-dock-item:focus-visible .support-dock-arrow{opacity:1}.support-dock-zalo:hover,.support-dock-zalo:focus-visible{border-color:rgba(0,104,255,.58)}.support-dock-discord:hover,.support-dock-discord:focus-visible{border-color:rgba(88,101,242,.62)}@media(max-width:600px){.support-dock{right:14px;bottom:14px;gap:8px}.support-dock-item{width:48px;height:48px;padding:4px}.support-dock-icon{width:40px;height:40px;flex-basis:40px}.support-dock-item:hover,.support-dock-item:focus-visible{width:48px;transform:none}.support-dock-label,.support-dock-arrow{display:none}}@media(prefers-reduced-motion:reduce){.support-dock-item,.support-dock-label{transition:none}.support-dock-item:hover,.support-dock-item:focus-visible{transform:none}}
+
+/* ===== V1.4 UI HARDENING ===== */
+:focus-visible{outline:2px solid rgba(67,217,255,.82);outline-offset:3px}
+button,a,input,select,textarea{touch-action:manipulation}
+img{max-width:100%;height:auto}
+@media(max-width:700px){
+  .container{width:min(100% - 24px,1180px)}
+  .hero-actions,.section-actions{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important}
+}
