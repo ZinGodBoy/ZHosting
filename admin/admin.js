@@ -192,6 +192,44 @@ const refreshData=()=>{
 
 $("jumpDirectory")?.addEventListener("click",()=>{document.querySelector(".admin-workspace")?.scrollIntoView({behavior:"smooth",block:"start"});});
 $("adminGlobalSearch")?.addEventListener("input",event=>{const value=event.target.value.trim();const search=$("search");if(search){search.value=value;render();}});
+/* Homepage-compatible motion engine */
+const reduceMotion=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+const revealObserver=reduceMotion?null:new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("is-visible");});
+},{threshold:.12});
+document.querySelectorAll(".admin-reveal-group,.admin-workspace").forEach(node=>{
+ if(revealObserver)revealObserver.observe(node); else node.classList.add("is-visible");
+});
+
+const scrollProgress=document.createElement("div");
+scrollProgress.className="admin-scroll-progress";
+document.body.append(scrollProgress);
+const backTop=document.createElement("button");
+backTop.type="button";backTop.className="admin-back-top";backTop.textContent="↑";backTop.setAttribute("aria-label","Về đầu trang");
+document.body.append(backTop);
+const syncScrollUI=()=>{
+ const doc=document.documentElement;
+ const max=doc.scrollHeight-window.innerHeight;
+ const pct=max>0?(window.scrollY/max)*100:0;
+ scrollProgress.style.setProperty("--progress",pct+"%");
+ backTop.classList.toggle("is-visible",window.scrollY>420);
+};
+window.addEventListener("scroll",syncScrollUI,{passive:true});
+backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:reduceMotion?"auto":"smooth"}));
+syncScrollUI();
+
+if(!reduceMotion){
+ document.querySelectorAll(".admin-panel,.admin-kpi,.admin-commandbar,.admin-privacy").forEach(card=>{
+   card.addEventListener("pointermove",event=>{
+     const rect=card.getBoundingClientRect();
+     const x=(event.clientX-rect.left)/rect.width-.5;
+     const y=(event.clientY-rect.top)/rect.height-.5;
+     card.style.setProperty("--mx",(x*100)+"%");
+     card.style.setProperty("--my",(y*100)+"%");
+   });
+   card.addEventListener("pointerleave",()=>{card.style.removeProperty("--mx");card.style.removeProperty("--my");});
+ });
+}
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 
