@@ -331,3 +331,9 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Move the pointer rapidly across Admin Center cards; no pointer-driven tilt loop should run.
 - Scroll homepage and Admin Center; verify navigation, progress bars, support dock, and back-to-top remain responsive.
 - Test reduced-motion mode and mobile viewport; blur/shadow reductions must not break layout.
+
+
+## v1.4.12 — Theme Tool Test Notes
+- Verify theme panel opens/closes with mouse and keyboard.
+- Verify RGB values map correctly to HEX and update the accent/background immediately.
+- Verify presets, reset, local persistence, mobile layout, and reduced-motion behavior.
