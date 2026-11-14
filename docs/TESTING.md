@@ -439,3 +439,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify reduced-motion and constrained-device modes remove non-essential rendering effects.
 - Verify section dividers render correctly at desktop/tablet/mobile widths.
 - Verify no runtime observer/listener continues after `pagehide`.
+
+
+## v1.6.9 — Runtime & Mobile Verification
+- Verify homepage counters animate when entering the viewport.
+- Verify account-aware navigation and trusted admin navigation are active again.
+- Verify scroll progress remains accurate after resize/layout changes.
+- Verify tablet/mobile pages do not use non-essential backdrop filters.
+- Verify desktop retains the intended visual atmosphere.
