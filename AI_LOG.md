@@ -319,3 +319,9 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Homepage layout measurement observed the entire document root; it is now scoped to the main content container to reduce unrelated resize notifications.
 - Both reveal observers now disconnect on page exit.
 - No visual behavior was intentionally removed.
+
+
+## v1.7.7 — Runtime Bugfix Audit
+A focused runtime audit found a concrete error in assets/js/ui.js: the shared reveal IntersectionObserver callback called obs.unobserve(...), but no obs variable existed in that scope. The fix now uses the actual revealObserver instance, preventing a runtime exception when reveal elements enter the viewport.
+
+The support dock lifecycle was also reviewed for browser page lifecycle behavior. Its page-exit handler now cancels pending frames without marking the runtime permanently disposed, so returning through browser lifecycle restoration does not leave the support controls inert. No additional continuous work or visual effect was introduced.
