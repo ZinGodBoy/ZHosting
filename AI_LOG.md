@@ -134,3 +134,7 @@ AI-assisted review focused on preventing regression across authentication, Admin
 ## 2026-11-14 — Support Dock V2
 
 Polished the persistent Zalo/Discord bubbles into a branded floating support dock with online status, circular logos, channel-specific glow, hover expansion, mobile compact mode and reduced-motion handling.
+
+## 2026-11-14 — v1.4.1 UI/runtime quality pass
+
+Đợt rà soát cuối tập trung vào các lớp dùng chung thay vì thêm framework: focus-visible, skip-link, reduced-motion, print behavior, trạng thái form, external-link safety, lifecycle refresh và responsive table. Các thay đổi được thiết kế theo hướng additive để giảm nguy cơ phá vỡ flow auth/account/admin hiện có.
