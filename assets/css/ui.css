@@ -625,3 +625,7 @@ button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.62}
 /* ===== LIVE STATUS SHARED UI v1.4.5 ===== */
 .account-live-bar,.admin-live-bar{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:8px 11px;border:1px solid rgba(167,139,250,.18);border-radius:999px;background:rgba(167,139,250,.045);color:#c4b5fd;font-size:11px;font-weight:800;letter-spacing:.06em}
 .account-live-bar time,.admin-live-bar time{font-variant-numeric:tabular-nums;color:#a78bfa}
+
+/* ===== PERFORMANCE MODE SHARED v1.4.6 ===== */
+body.zperf-lite .zui-spotlight,body.zperf-lite .zui-tilt,body.zperf-lite .zui-ripple-wave{display:none!important}
+body.zperf-lite [style*="backdrop-filter"]{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
