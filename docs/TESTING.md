@@ -191,3 +191,14 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [ ] Thiết bị tài nguyên thấp vẫn thao tác được với navigation, filters và user directory.
 - [ ] Admin analytics/workspace không gây layout jump đáng kể khi xuất hiện.
 - [ ] Kiểm tra 360px, 480px, 768px, 1024px và 1440px.
+
+
+## Performance regression checks — 2026-11-14
+
+- [ ] Mở homepage, cuộn toàn trang và kiểm tra không có animation liên tục gây giật.
+- [ ] Chuyển tab sang background ít nhất 30 giây; các demo timer không được tiếp tục cập nhật liên tục.
+- [ ] Quay lại tab; Live Status, clock và micro-animation tiếp tục hoạt động bình thường.
+- [ ] Admin Center: mở/đóng detail, lọc user, refresh và cuộn dài không tạo lỗi console.
+- [ ] Admin Center trên mobile không có backdrop/ambient effect nặng gây giảm FPS rõ rệt.
+- [ ] Bật prefers-reduced-motion và xác nhận animation được giảm/tắt phù hợp.
+- [ ] Kiểm tra thiết bị yếu/Save-Data: visual effects được hạ cấp nhưng chức năng vẫn đầy đủ.
