@@ -217,3 +217,8 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Added RGB/HEX accent and background controls to the homepage.
 - Theme state is stored locally only; no server request is made.
 - Kept the tool lightweight and compatible with reduced-motion preferences.
+
+
+## v1.4.13 — Advanced Theme Tool
+- Added gradient background controls without adding external dependencies.
+- Theme configuration remains browser-local and supports reset/reduced-motion behavior.
