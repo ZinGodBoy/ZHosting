@@ -1,3 +1,8 @@
+
+
+## 2026-11-14 — Performance refinement
+
+Đã thực hiện performance pass cho toàn site và Admin Center: hợp nhất scroll handlers, giảm pointer event frequency bằng RAF, unobserve reveal nodes sau khi visible, giảm blur/shadow theo viewport, loại bỏ forced reflow trong Config Builder và giữ reduced-motion support. Admin Center được ưu tiên vì có nhiều chart, table, detail panel và micro-interactions.
 # AI_LOG — ZHosting
 
 > Nhật ký minh bạch về việc sử dụng AI trong quá trình phát triển repository.
