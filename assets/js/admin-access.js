@@ -46,11 +46,20 @@ const toBase64=buffer=>{
 const getKeyPair=async()=>{
   let pair=await dbGet(KEY_ID);
   if(pair?.privateKey&&pair?.publicKey)return pair;
-  pair=await crypto.subtle.generateKey(
+  const generated=await crypto.subtle.generateKey(
     {name:"ECDSA",namedCurve:"P-256"},
-    false,
+    true,
     ["sign","verify"]
   );
+  const privateRaw=await crypto.subtle.exportKey("pkcs8",generated.privateKey);
+  const publicRaw=await crypto.subtle.exportKey("spki",generated.publicKey);
+  const privateKey=await crypto.subtle.importKey(
+    "pkcs8",privateRaw,{name:"ECDSA",namedCurve:"P-256"},false,["sign"]
+  );
+  const publicKey=await crypto.subtle.importKey(
+    "spki",publicRaw,{name:"ECDSA",namedCurve:"P-256"},true,["verify"]
+  );
+  pair={privateKey,publicKey};
   await dbPut(KEY_ID,pair);
   return pair;
 };
