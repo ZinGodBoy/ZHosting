@@ -9,7 +9,10 @@ const rgbToHex=(r,g,b)=>"#"+[r,g,b].map(n=>clamp(n).toString(16).padStart(2,"0")
 const hexToRgb=h=>{const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255]};
 let saved=null;try{saved=JSON.parse(localStorage.getItem(key)||"null")}catch{}
 const state={accent:normalize(saved?.accent)||defaults.accent,text:normalize(saved?.text)||defaults.text,background:normalize(saved?.background)||defaults.background,backgroundSecondary:normalize(saved?.backgroundSecondary)||defaults.backgroundSecondary,mode:saved?.mode==="gradient"?"gradient":"solid",angle:Math.max(0,Math.min(360,Number(saved?.angle)||defaults.angle))};
-let saveTimer=0;const save=()=>{window.clearTimeout(saveTimer);saveTimer=window.setTimeout(()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch{}},120)};
+let saveTimer=0;
+const flushSave=()=>{window.clearTimeout(saveTimer);saveTimer=0;try{localStorage.setItem(key,JSON.stringify(state))}catch{}};
+const save=()=>{window.clearTimeout(saveTimer);saveTimer=window.setTimeout(flushSave,160)};
+
 const meta=document.querySelector('meta[name="theme-color"]')||(()=>{const m=document.createElement("meta");m.name="theme-color";document.head.appendChild(m);return m})();
 const apply=()=>{const image=state.mode==="gradient"?`linear-gradient(${state.angle}deg,${state.background},${state.backgroundSecondary})`:state.background;root.style.setProperty("--z-accent",state.accent);root.style.setProperty("--z-text",state.text);root.style.setProperty("--z-bg",state.background);root.style.setProperty("--z-bg-2",state.backgroundSecondary);root.style.setProperty("--z-theme-image",image);root.style.setProperty("--z-gradient-angle",state.angle+"deg");root.style.setProperty("--cyan",state.accent);root.style.setProperty("--blue",state.accent);root.style.setProperty("--violet",state.accent);root.style.setProperty("--text",state.text);root.style.setProperty("--bg",state.background);root.dataset.zThemeMode=state.mode;document.body?.classList.add("theme-customized");meta.setAttribute("content",state.background)};
 const panel=document.createElement("aside");panel.className="ztheme-panel";panel.hidden=true;panel.setAttribute("aria-label","Tùy chỉnh màu giao diện");
@@ -17,12 +20,22 @@ panel.innerHTML=`<div class="ztheme-head"><div><span class="eyebrow">ZHOSTING TH
 const trigger=document.createElement("button");trigger.className="ztheme-trigger";trigger.type="button";trigger.textContent="🎨";trigger.setAttribute("aria-label","Đổi màu giao diện");trigger.title="Đổi màu RGB / nền";document.body.append(trigger,panel);
 const els={accent:panel.querySelector("#zthemeAccent"),accentHex:panel.querySelector("#zthemeAccentHex"),text:panel.querySelector("#zthemeText"),textHex:panel.querySelector("#zthemeTextHex"),background:panel.querySelector("#zthemeBg"),backgroundHex:panel.querySelector("#zthemeBgHex"),backgroundSecondary:panel.querySelector("#zthemeBg2"),backgroundSecondaryHex:panel.querySelector("#zthemeBg2Hex"),mode:panel.querySelector("#zthemeMode"),angle:panel.querySelector("#zthemeAngle"),angleValue:panel.querySelector("#zthemeAngleValue"),secondary:[...panel.querySelectorAll(".ztheme-secondary")]};
 const sync=()=>{for(const type of ["accent","text","background","backgroundSecondary"]){const hex=state[type],color=els[type],text=els[type+"Hex"];if(color)color.value=hex;if(text)text.value=hex;const rgb=hexToRgb(hex);panel.querySelectorAll(`.ztheme-rgb[data-type="${type}"] input`).forEach((el,i)=>el.value=rgb[i])}els.mode.value=state.mode;els.angle.value=state.angle;els.angleValue.textContent=state.angle+"°";els.secondary.forEach(x=>x.hidden=state.mode!=="gradient")};
-const repaint=()=>{apply();save();sync()};
+let paintFrame=0;
+const repaint=()=>{
+  if(paintFrame)return;
+  paintFrame=requestAnimationFrame(()=>{
+    paintFrame=0;
+    apply();save();sync();
+  });
+};
+
 const bindHex=type=>{const color=els[type],text=els[type+"Hex"];color?.addEventListener("input",()=>{state[type]=normalize(color.value)||state[type];repaint()});text?.addEventListener("change",()=>{state[type]=normalize(text.value)||state[type];repaint()})};
 ["accent","text","background","backgroundSecondary"].forEach(bindHex);
 panel.querySelectorAll(".ztheme-rgb").forEach(group=>group.addEventListener("change",()=>{const type=group.dataset.type;if(!type)return;state[type]=rgbToHex(...[...group.querySelectorAll("input")].map(x=>clamp(x.value)));repaint()}));
 els.mode.addEventListener("change",()=>{state.mode=els.mode.value==="gradient"?"gradient":"solid";repaint()});els.angle.addEventListener("input",()=>{state.angle=clamp(els.angle.value*1);repaint()});
 const presets={cyan:["#35D9FF","#EEF6FF","#050B14","#0D1A2B"],blue:["#5C7CFF","#F2F5FF","#070B16","#101B31"],green:["#55E6A5","#F0FFF8","#06120D","#0D251A"],orange:["#FF9D4D","#FFF7EE","#160D07","#32190B"]};
 panel.querySelectorAll("[data-preset]").forEach(button=>button.addEventListener("click",()=>{const p=presets[button.dataset.preset];if(!p)return;[state.accent,state.text,state.background,state.backgroundSecondary]=p;state.mode="solid";state.angle=135;repaint()}));
-const close=()=>{panel.hidden=true;document.body.classList.remove("ztheme-open")};trigger.addEventListener("click",()=>{const open=panel.hidden;panel.hidden=!open;document.body.classList.toggle("ztheme-open",open);if(open)sync()});panel.querySelector(".ztheme-close").addEventListener("click",close);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden)close()});apply();sync();
+const close=()=>{panel.hidden=true;document.body.classList.remove("ztheme-open")};trigger.addEventListener("click",()=>{const open=panel.hidden;panel.hidden=!open;document.body.classList.toggle("ztheme-open",open);if(open)sync()});panel.querySelector(".ztheme-close").addEventListener("click",close);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden)close()});
+window.addEventListener("pagehide",()=>{if(paintFrame)cancelAnimationFrame(paintFrame);paintFrame=0;flushSave()},{once:true});
+apply();sync();
 })();
