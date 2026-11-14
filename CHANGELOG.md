@@ -1,3 +1,12 @@
+## CSS & JS hardening — 2026-11-14
+
+- Tăng cường focus-visible và thao tác touch trên shared CSS.
+- Bổ sung responsive hardening cho homepage, Account Center và Admin Center.
+- Giảm layout overhead bằng containment ở khu vực Account Health.
+- Thêm helper debounce/safe text cho runtime frontend.
+- Bổ sung guard helper cho Admin Center khi refresh dữ liệu user.
+- Giữ reduced-motion và không thay đổi cơ chế authentication.
+
 ## Account Center health overview — 2026-11-14
 
 - Thêm khu vực **Account Health** để người dùng nhìn nhanh trạng thái phiên, bảo mật và lịch sử hoạt động.
