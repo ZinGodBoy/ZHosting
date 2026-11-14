@@ -151,3 +151,12 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Reduced floating support controls to compact Zalo/Discord bubbles with lightweight hover disclosure instead of large persistent labels.
 - Improved homepage contact presentation with channel icons, readable labels and responsive stacking on narrow screens.
 - Preserved reduced-motion behavior and avoided introducing new dependencies or runtime polling.
+
+
+## v1.4.4 — Runtime Smoothness & Rendering Optimization
+
+- Audited the main UI runtime for high-frequency pointer and scroll work.
+- Removed pointer-follow spotlight and JavaScript card tilt handlers; hover motion is now CSS-only.
+- Moved UI progress updates behind `requestAnimationFrame` to coalesce scroll events.
+- Throttled `ZAuth.touchSession()` activity persistence to a 15-second window, preventing repeated localStorage writes from scroll/touch activity.
+- Added constrained-device CSS fallbacks that remove expensive blur, shadow and decorative layers while preserving core content and navigation.
