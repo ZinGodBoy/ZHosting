@@ -118,7 +118,14 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     service=button.dataset.service;
     calc();
   }));
-  ram?.addEventListener('input',calc);cpu?.addEventListener('input',calc);addons.forEach(x=>x.addEventListener('change',calc));
+  let calcFrame=0;
+  const scheduleCalc=()=>{
+    if(calcFrame)return;
+    calcFrame=requestAnimationFrame(()=>{calcFrame=0;calc()});
+  };
+  ram?.addEventListener('input',scheduleCalc,{passive:true});
+  cpu?.addEventListener('input',scheduleCalc,{passive:true});
+  addons.forEach(x=>x.addEventListener('change',calc));
 
   reset?.addEventListener('click',()=>{
     service='minecraft';
