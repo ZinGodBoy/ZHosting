@@ -11,6 +11,7 @@ const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matc
 const revealNodes=[...document.querySelectorAll('.reveal')];
 const observer=('IntersectionObserver' in window)?new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'}):null;
 revealNodes.forEach(el=>observer?observer.observe(el):el.classList.add('visible'));
+if(observer)window.addEventListener('pagehide',()=>observer.disconnect(),{once:true});
 const toggleButtons=document.querySelectorAll('.billing-toggle button');const prices=document.querySelectorAll('.price b[data-month]');toggleButtons.forEach(btn=>btn.addEventListener('click',()=>{toggleButtons.forEach(x=>x.classList.remove('active'));btn.classList.add('active');const cycle=btn.dataset.cycle;prices.forEach(p=>p.textContent=p.dataset[cycle])}));
 /* Native CSS smooth scrolling + scroll-padding-top handle in-page navigation. */
 
@@ -43,7 +44,8 @@ addEventListener('scroll',onScroll,{passive:true});
 addEventListener('resize',onLayoutChange,{passive:true});
 if('ResizeObserver' in window){
   const pageSizeObserver=new ResizeObserver(onLayoutChange);
-  pageSizeObserver.observe(document.documentElement);
+  const sizeTarget=document.querySelector('main')||document.body;
+  pageSizeObserver.observe(sizeTarget);
   window.addEventListener('pagehide',()=>{pageSizeObserver.disconnect();if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
 }else{
   window.addEventListener('pagehide',()=>{if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
