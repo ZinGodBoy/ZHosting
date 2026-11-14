@@ -47,7 +47,7 @@
   }));
 
   // Keep legacy dashboard pages compatible while the Account Center uses its richer controller.
-  if(typeof auth.touchSession==="function")auth.touchSession();  const syncHealth=()=>{
+  const syncHealth=()=>{
     const sessionNow=auth.getSession?.();
     const loginAt=sessionNow?.createdAt||sessionNow?.issuedAt||sessionNow?.loginAt;
     const age=loginAt?Date.now()-Date.parse(loginAt):0;
