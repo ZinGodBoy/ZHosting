@@ -55,3 +55,15 @@ Admin Center có audit telemetry phía client cho prototype:
 Audit chỉ lưu metadata cần cho giao diện quản trị demo như thời gian, email/user ID, thiết bị và trình duyệt. Không ghi password, password hash hoặc salt.
 
 > localStorage vẫn không phải security boundary. Audit log client-side có thể bị sửa/xóa bởi người có quyền trên trình duyệt. Production cần audit log server-side, append-only hoặc tamper-resistant, cùng RBAC ở backend.
+
+## Admin action auditing
+
+Các thao tác quản trị nhạy cảm trong prototype được ghi audit event:
+
+- `admin_lock`
+- `admin_unlock`
+- `admin_revoke_session`
+
+Audit chứa admin ID/email và target ID/email cùng thời điểm thao tác; không chứa password hoặc credential material.
+
+Đây là telemetry phía client. Không xem `localStorage` là vùng tin cậy. Production cần chuyển authorization, session management và audit log sang backend.
