@@ -23,10 +23,21 @@
       return users;
     }catch{return[]}
   };
-  const saveUsers=users=>localStorage.setItem(USERS_KEY,JSON.stringify(users));
-  const getAudit=()=>{
-    try{return JSON.parse(localStorage.getItem(AUDIT_KEY)||"[]");}catch{return[]}
-  };
+  const saveUsers=users=>{
+  try{localStorage.setItem(USERS_KEY,JSON.stringify(users));return true}catch{return false}
+};
+const safeReadArray=(storage,key)=>{
+  try{
+    const raw=storage.getItem(key);
+    if(!raw)return[];
+    const parsed=JSON.parse(raw);
+    return Array.isArray(parsed)?parsed:[];
+  }catch{
+    try{storage.removeItem(key)}catch{}
+    return[];
+  }
+};
+  const getAudit=()=>safeReadArray(localStorage,AUDIT_KEY);
   const saveAudit=events=>localStorage.setItem(AUDIT_KEY,JSON.stringify(events.slice(0,200)));
   const recordAudit=(type,meta={})=>{
     const events=getAudit();
@@ -203,7 +214,16 @@
   };
 
   const getGuard=()=>{
-    try{return JSON.parse(sessionStorage.getItem(GUARD_KEY)||'{"fails":0,"lockedUntil":0}')}catch{return{fails:0,lockedUntil:0}}
+    try{
+      const raw=sessionStorage.getItem(GUARD_KEY);
+      if(!raw)return{fails:0,lockedUntil:0};
+      const value=JSON.parse(raw);
+      if(!value||typeof value!=="object")throw new Error("invalid guard");
+      return{fails:Math.max(0,Number(value.fails)||0),lockedUntil:Math.max(0,Number(value.lockedUntil)||0)};
+    }catch{
+      sessionStorage.removeItem(GUARD_KEY);
+      return{fails:0,lockedUntil:0};
+    }
   };
   const setGuard=guard=>sessionStorage.setItem(GUARD_KEY,JSON.stringify(guard));
   const resetGuard=()=>sessionStorage.removeItem(GUARD_KEY);
@@ -252,7 +272,7 @@
 
     if(name.length<2)return setMessage("registerMessage","Họ và tên cần có ít nhất 2 ký tự.","error");
     if(!/^\S+@\S+\.\S+$/.test(email))return setMessage("registerMessage","Email chưa đúng định dạng.","error");
-    if(password.length<8)return setMessage("registerMessage","Mật khẩu cần ít nhất 8 ký tự.","error");
+    if(password.length<12)return setMessage("registerMessage","Mật khẩu cần ít nhất 12 ký tự.","error");
     if(password!==confirm)return setMessage("registerMessage","Mật khẩu xác nhận chưa khớp.","error");
     if(getUsers().some(user=>user.email===email))return setMessage("registerMessage","Email này đã được đăng ký.","error");
 
@@ -320,6 +340,15 @@
         return;
       }
 
+      if(user.status==="locked"){
+        recordAudit("login_failed",{userId:user.id,email:user.email,device:getDeviceInfo().device,browser:getDeviceInfo().browser,reason:"locked-account"});
+        registerFailure();
+        setBusy(loginForm,false);
+        setMessage("loginMessage","Email hoặc mật khẩu không đúng.","error");
+        window.ZUI?.toast("Đăng nhập thất bại","Thông tin xác thực không chính xác.","error");
+        return;
+      }
+
       const valid=await verifyPassword(password,user);
       if(!valid){
         recordAudit("login_failed",{email,device:getDeviceInfo().device,browser:getDeviceInfo().browser,reason:"invalid-password"});
@@ -330,13 +359,6 @@
         loginForm.classList.remove("auth-error");
         void loginForm.offsetWidth;
         loginForm.classList.add("auth-error");
-        return;
-      }
-
-      if(user.status==="locked"){
-        setBusy(loginForm,false);
-        setMessage("loginMessage","Tài khoản đang bị khóa. Vui lòng liên hệ quản trị viên.","error");
-        window.ZUI?.toast("Tài khoản bị khóa","Không thể đăng nhập tài khoản này.","error");
         return;
       }
 
@@ -368,7 +390,7 @@
     if(!target)return {ok:false,reason:"not-found"};
     const valid=await verifyPassword(currentPassword,target);
     if(!valid)return {ok:false,reason:"invalid-current"};
-    if(typeof newPassword!=="string"||newPassword.length<8)return {ok:false,reason:"weak"};
+    if(typeof newPassword!=="string"||newPassword.length<12)return {ok:false,reason:"weak"};
     target.password=await createPasswordRecord(newPassword);
     delete target.passwordHash;
     saveUsers(users);
