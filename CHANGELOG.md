@@ -746,3 +746,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added page-exit cleanup for the adaptive performance resize frame.
 - Consolidated the final low-resource header/footer fallback so constrained devices do not re-enable expensive blur effects.
 - Reduced footer shadows and hover transitions on smaller/constrained devices.
+
+
+## v1.6.3 — Footer Refinement & Support Runtime Cleanup
+- Refined footer contact hierarchy and responsive layout.
+- Added a low-cost visual accent instead of heavier effects.
+- Optimized support bubble lifecycle by disconnecting `ResizeObserver` and cancelling pending frames on page exit.
