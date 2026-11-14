@@ -1,3 +1,4 @@
+const zSetInterval=(fn,ms)=>window.setInterval(()=>{if(!document.hidden)fn();},ms);
 const menuBtn=document.querySelector('#menuBtn');const navLinks=document.querySelector('#navLinks');menuBtn?.setAttribute('aria-expanded','false');menuBtn?.addEventListener('click',()=>{const open=navLinks?.classList.toggle('open')??false;menuBtn?.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{navLinks?.classList.remove('open');menuBtn?.setAttribute('aria-expanded','false')}));
 const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches??false;
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'});
@@ -183,7 +184,7 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
   const terminal=document.querySelector('.terminal');
   const ok=terminal?.querySelector('.ok');
   if(!terminal||!ok)return;
-  setInterval(()=>{
+  zSetInterval(()=>{
     ok.style.opacity="0.55";
     setTimeout(()=>{ok.style.opacity="1"},450);
   },3200);
@@ -222,12 +223,12 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
   const status=document.querySelector('.status-main-top>span:last-child');
   if(status)status.textContent='UPDATED '+new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
  };
- update();setInterval(update,5000);
+ update();zSetInterval(update,5000);
 })();
 
 /* ===== LIVE STATUS DEMO ===== */
 const liveValues={latency:18,nodes:12};
-setInterval(()=>{const latency=Math.round(16+Math.random()*8);const el=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));if(el)el.textContent=latency+'ms'},4000);
+zSetInterval(()=>{const latency=Math.round(16+Math.random()*8);const el=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));if(el)el.textContent=latency+'ms'},4000);
 
 /* ===== V3 COUNTER ENGINE ===== */
 const counters=document.querySelectorAll('[data-counter]');
@@ -246,7 +247,7 @@ counters.forEach(el=>counterObserver.observe(el));
 
 
 /* ===== COMMAND LAUNCH MICRO-UI ===== */
-(()=>{const clock=document.querySelector('#launchClock');if(!clock)return;const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})};tick();setInterval(tick,1000);})();
+(()=>{const clock=document.querySelector('#launchClock');if(!clock)return;const tick=()=>{const now=new Date();clock.textContent=now.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})};tick();zSetInterval(tick,1000);})();
 
 
 /* ===== ZHOSTING V1.4 COMMAND PALETTE + NAV HARDENING ===== */
