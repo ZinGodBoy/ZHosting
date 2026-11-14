@@ -323,3 +323,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - First device enrollment still creates the expected adminDevice fingerprint.
 - Repeated Admin Center checks do not repeatedly open IndexedDB or re-hash the public key during the same page lifecycle.
 - IndexedDB unavailable/error path still returns an untrusted result rather than granting access.
+
+
+## v1.4.11 Runtime Smoothness Checks
+
+- Drag RAM/CPU sliders continuously and verify the values remain responsive without visible stutter.
+- Move the pointer rapidly across Admin Center cards; no pointer-driven tilt loop should run.
+- Scroll homepage and Admin Center; verify navigation, progress bars, support dock, and back-to-top remain responsive.
+- Test reduced-motion mode and mobile viewport; blur/shadow reductions must not break layout.
