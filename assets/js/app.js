@@ -464,23 +464,6 @@ counters.forEach(el=>counterObserver.observe(el));
 })();
 
 
-/* ===== SUPPORT BUBBLE SCROLL FOLLOW v1.4.9 ===== */
-(()=>{
-  "use strict";
-  const sync=()=>{
-    const root=document.documentElement;
-    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-    const progress=Math.min(1,Math.max(0,window.scrollY/max));
-    root.style.setProperty("--support-scroll-y",((progress-.5)*150).toFixed(2)+"px");
-  };
-  let raf=0;
-  const onScroll=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;sync()})};
-  window.addEventListener("scroll",onScroll,{passive:true});
-  window.addEventListener("resize",sync,{passive:true});
-  window.addEventListener("pageshow",sync,{passive:true});
-  sync();
-})();
-
 
 /* ===== THEME COLOR TOOL v1.4.13 ===== */
 (()=>{const panel=document.querySelector('#themeTools'),trigger=document.querySelector('#themeToolsTrigger');if(!panel||!trigger)return;
