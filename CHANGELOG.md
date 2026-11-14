@@ -1,3 +1,18 @@
+## v1.8.7 — Runtime & CSS Cleanup — 2026-11-14
+
+### Fixed
+- Admin Center không còn tự vô hiệu hóa clock/reveal runtime sau `pagehide`, tránh lỗi khi quay lại bằng Back/Forward.
+- Giữ lifecycle BFCache ổn định cho Admin Center.
+
+### Performance
+- Loại bỏ các rule CSS Support Dock bị khai báo trùng.
+- Loại bỏ block Support Bubble scroll-follow cũ đã bị block viewport-guard mới ghi đè.
+- Giảm lượng CSS cascade cần xử lý mà không thay đổi computed layout cuối cùng.
+
+### Quality
+- Không thêm polling, dependency hoặc animation runtime mới.
+- Giữ nguyên giao diện, màu sắc và hành vi người dùng hiện tại.
+
 ## v1.8.4 — Interaction Rendering Optimization
 
 - Debounced Command Palette filtering to avoid rebuilding its result list on every keystroke.
