@@ -501,7 +501,7 @@ body.zperf-lite .brand-mark{box-shadow:none}
 
 /* ===== BUGFIX HARDENING v1.5.3 ===== */
 @media(max-width:700px){body{background-attachment:scroll!important}.header{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}}
-@media(prefers-reduced-motion:reduce){.support-bubbles{will-change:auto}.theme-tools,.theme-tools-trigger{backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-reduced-motion:reduce){.support-bubbles{will-change:auto}.ztheme-panel,.ztheme-panel-trigger{backdrop-filter:none;-webkit-backdrop-filter:none}}
 .zperf-lite .support-bubble{animation:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 
 /* ===== RUNTIME PERFORMANCE v1.5.4 ===== */
@@ -825,13 +825,13 @@ body.zperf-lite .noise{display:none}
 .footer-contact-link{min-height:44px}
 
 /* Fixed utility controls should never sit over the final footer content. */
-.site-live-pill,.theme-tools-trigger{transition:opacity .18s ease,transform .18s ease}
-.footer-in-view .site-live-pill,.footer-in-view .theme-tools-trigger{
+.site-live-pill,.ztheme-panel-trigger{transition:opacity .18s ease,transform .18s ease}
+.footer-in-view .site-live-pill,.footer-in-view .ztheme-panel-trigger{
   opacity:0;
   pointer-events:none;
   transform:translateY(8px);
 }
-.footer-in-view .theme-tools[hidden]{display:none}
+.footer-in-view .ztheme-panel[hidden]{display:none}
 
 @media(max-width:900px){
   .footer-main{gap:28px;padding:34px 0 26px}
@@ -844,14 +844,14 @@ body.zperf-lite .noise{display:none}
   .footer-bottom{padding-top:13px}
 }
 @media(prefers-reduced-motion:reduce){
-  .site-live-pill,.theme-tools-trigger{transition:none}
+  .site-live-pill,.ztheme-panel-trigger{transition:none}
 }
 .zperf-lite .footer{box-shadow:none}
-.zperf-lite .site-live-pill,.zperf-lite .theme-tools-trigger{transition:none}
+.zperf-lite .site-live-pill,.zperf-lite .ztheme-panel-trigger{transition:none}
 
 
 /* ===== FOOTER UTILITY VISIBILITY v1.6.7 ===== */
-.footer-in-view .theme-tools{display:none!important}
+.footer-in-view .ztheme-panel{display:none!important}
 
 
 /* ===== FOOTER FINISHING PASS v1.6.8 ===== */
@@ -904,7 +904,7 @@ main>section:not(:first-child)::before{
 .service-card,.price-card,.review,.feature,.step,.node-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list{
   isolation:isolate;
 }
-.btn,.service-card,.price-card,.footer-contact-link,.theme-tools-trigger,.back-top{
+.btn,.service-card,.price-card,.footer-contact-link,.ztheme-panel-trigger,.back-top{
   -webkit-tap-highlight-color:transparent;
 }
 .back-top{
@@ -935,8 +935,8 @@ main>section:not(:first-child)::before{
   .dash-header,
   .support-bubble,
   .support-dock-item,
-  .theme-tools-trigger,
-  .theme-tools,
+  .ztheme-panel-trigger,
+  .ztheme-panel,
   .site-live-pill,
   .modal,
   .auth-card{
@@ -947,8 +947,8 @@ main>section:not(:first-child)::before{
   .dash-header{background:rgba(5,11,19,.96)!important}
   .site-live-pill{background:rgba(12,7,24,.96)}
   .support-bubble{background:rgba(17,12,31,.96)}
-  .theme-tools-trigger{background:#09101d}
-  .theme-tools{background:#070c16}
+  .ztheme-panel-trigger{background:#09101d}
+  .ztheme-panel{background:#070c16}
 }
 @media(max-width:700px){
   .header{box-shadow:0 8px 24px rgba(0,0,0,.16)}
@@ -958,14 +958,14 @@ main>section:not(:first-child)::before{
   .support-bubble{box-shadow:0 8px 20px rgba(0,0,0,.22)}
 }
 @media(prefers-reduced-motion:reduce){
-  .header,.dash-header,.support-bubble,.theme-tools-trigger,.theme-tools,.site-live-pill,.modal,.auth-card{
+  .header,.dash-header,.support-bubble,.ztheme-panel-trigger,.ztheme-panel,.site-live-pill,.modal,.auth-card{
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
   }
 }
 .zperf-lite .support-bubble,
-.zperf-lite .theme-tools,
-.zperf-lite .theme-tools-trigger,
+.zperf-lite .ztheme-panel,
+.zperf-lite .ztheme-panel-trigger,
 .zperf-lite .site-live-pill{
   backdrop-filter:none!important;
   -webkit-backdrop-filter:none!important;
@@ -979,8 +979,8 @@ body.zperf-lite .site-live-dot,
 body.zperf-lite .config-live i,
 body.zperf-lite .node-ping,
 body.zperf-lite .announcement-live i{animation:none!important}
-body.zperf-lite .theme-tools,
-body.zperf-lite .theme-tools-trigger{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body.zperf-lite .ztheme-panel,
+body.zperf-lite .ztheme-panel-trigger{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 body.zperf-constrained .footer-contact-link:hover,
 body.zperf-constrained .footer-contact-link:focus-visible{transform:none}
 @media(prefers-reduced-motion:reduce){
@@ -1175,7 +1175,7 @@ body.zperf-lite .support-bubble{
 /* Prefer stable opaque surfaces when the user/device requests reduced transparency. */
 @media (prefers-reduced-transparency: reduce){
   .header,.dash-header,.auth-card,.modal,.toast,.back-top,
-  .support-bubble,.theme-tools,.theme-tools-trigger,.site-live-pill{
+  .support-bubble,.ztheme-panel,.ztheme-panel-trigger,.site-live-pill{
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
     background:rgba(7,16,27,.97)!important;
@@ -1187,8 +1187,8 @@ html.zperf-constrained .dash-header,
 html.zperf-constrained .auth-card,
 html.zperf-constrained .modal,
 html.zperf-constrained .support-bubble,
-html.zperf-constrained .theme-tools,
-html.zperf-constrained .theme-tools-trigger{
+html.zperf-constrained .ztheme-panel,
+html.zperf-constrained .ztheme-panel-trigger{
   backdrop-filter:none!important;
   -webkit-backdrop-filter:none!important;
 }
