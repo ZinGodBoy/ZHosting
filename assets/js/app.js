@@ -1,5 +1,7 @@
 const menuBtn=document.querySelector('#menuBtn');const navLinks=document.querySelector('#navLinks');menuBtn?.setAttribute('aria-expanded','false');menuBtn?.addEventListener('click',()=>{const open=navLinks?.classList.toggle('open')??false;menuBtn?.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{navLinks?.classList.remove('open');menuBtn?.setAttribute('aria-expanded','false')}));
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches??false;
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 const toggleButtons=document.querySelectorAll('.billing-toggle button');const prices=document.querySelectorAll('.price b[data-month]');toggleButtons.forEach(btn=>btn.addEventListener('click',()=>{toggleButtons.forEach(x=>x.classList.remove('active'));btn.classList.add('active');const cycle=btn.dataset.cycle;prices.forEach(p=>p.textContent=p.dataset[cycle])}));
 document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{const target=document.querySelector(link.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}}));
 
@@ -8,11 +10,26 @@ const header=document.querySelector('.header');
 const progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
 const backTop=document.createElement('button');backTop.className='back-top';backTop.type='button';backTop.setAttribute('aria-label','Về đầu trang');backTop.textContent='↑';document.body.appendChild(backTop);
 const toast=(message)=>{let el=document.querySelector('.toast');if(!el){el=document.createElement('div');el.className='toast';document.body.appendChild(el)}el.textContent=message;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2600)};
-const onScroll=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=max>0?((scrollY/max)*100)+'%':'0%';header?.classList.toggle('scrolled',scrollY>12);backTop.classList.toggle('show',scrollY>550)};
-addEventListener('scroll',onScroll,{passive:true});onScroll();backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
-
-const sections=[...document.querySelectorAll('main section[id]')];const nav=[...document.querySelectorAll('.nav-links a[href^="#"]')];
-const activeNav=()=>{const y=scrollY+120;let current='';sections.forEach(s=>{if(y>=s.offsetTop)current=s.id});nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current))};addEventListener('scroll',activeNav,{passive:true});activeNav();
+const sections=[...document.querySelectorAll('main section[id]')];
+const nav=[...document.querySelectorAll('.nav-links a[href^="#"]')];
+let scrollFrame=0;
+const onScroll=()=>{
+  if(scrollFrame)return;
+  scrollFrame=requestAnimationFrame(()=>{
+    const y=window.scrollY;
+    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    progress.style.width=((y/max)*100)+'%';
+    header?.classList.toggle('scrolled',y>12);
+    backTop.classList.toggle('show',y>550);
+    let current='';
+    sections.forEach(s=>{if(y+120>=s.offsetTop)current=s.id});
+    nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+    scrollFrame=0;
+  });
+};
+addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+backTop.addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 
 document.querySelectorAll('.price-card .btn,.service-card a').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')==='#contact')setTimeout(()=>toast('Đã mở khu vực liên hệ — hãy gửi yêu cầu của bạn.'),300)}));
 
@@ -55,7 +72,11 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     if(total)total.textContent=result+'K';
     if(title)title.textContent=services[service].name;
     if(description)description.textContent=services[service].desc;
-    document.body.classList.remove('config-active');void document.body.offsetWidth;document.body.classList.add('config-active');
+    if(reduceMotion){document.body.classList.remove('config-active');return;}
+    requestAnimationFrame(()=>{
+      document.body.classList.remove('config-active');
+      requestAnimationFrame(()=>document.body.classList.add('config-active'));
+    });
   };
 
   serviceButtons.forEach(button=>button.addEventListener('click',()=>{
