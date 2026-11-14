@@ -385,3 +385,12 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Keyboard focus rings are visible and do not cause layout shifts.
 - [ ] Reduced-motion disables smooth scrolling and decorative motion.
 - [ ] Constrained-device mode remains readable and responsive.
+
+### v1.6.0 footer regression
+- [ ] Footer brand, description and status render correctly.
+- [ ] Service/support links point to valid existing routes or sections.
+- [ ] Footer is balanced at 1440px, 1024px, 768px, 520px and 360px.
+- [ ] No horizontal overflow is introduced.
+- [ ] Footer adds no JavaScript runtime work.
+- [ ] Keyboard focus remains visible on footer links.
+- [ ] Constrained-device mode keeps the footer readable without heavy effects.
