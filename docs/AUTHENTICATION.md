@@ -154,3 +154,12 @@ Admin Center chuẩn hóa role/status/login metadata trước khi hiển thị v
 Admin role không còn được tự động cấp cho tài khoản đầu tiên trên một browser mới. Khi một admin hiện hữu đăng nhập trên browser chưa có binding, hệ thống đăng ký thiết bị bằng ECDSA P-256 và lưu private key non-extractable trong IndexedDB. Những browser khác không có key tương ứng sẽ không thấy Admin Center và bị route guard từ chối.
 
 Lưu ý: cơ chế này phù hợp với frontend demo. Production phải chuyển identity, session và authorization sang backend đáng tin cậy.
+
+## v1.4.0 authentication baseline
+
+- New registrations are always `user`; there is no automatic first-user admin promotion.
+- Admin access requires an existing admin role plus the trusted-device gate.
+- Session guard timers pause when the document is hidden and clean up on page lifecycle changes.
+- Invalid browser storage is recovered safely instead of crashing the auth runtime.
+
+This remains demo authentication. Production identity and authorization must be server-side.
