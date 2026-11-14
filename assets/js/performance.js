@@ -43,7 +43,8 @@ const onPageHide=()=>{
 };
 window.addEventListener("pagehide",onPageHide,{once:true});
 syncViewport();
-const syncVisibility=()=>{const hidden=document.hidden;body?.classList.toggle("zperf-paused",hidden);if(hidden)root.classList.remove("z-scroll-active")};\ndocument.addEventListener("visibilitychange",syncVisibility,{passive:true});
+const syncVisibility=()=>{const hidden=document.hidden;body?.classList.toggle("zperf-paused",hidden);if(hidden)root.classList.remove("z-scroll-active")};
+document.addEventListener("visibilitychange",syncVisibility,{passive:true});
 const revealObservers=[];
 const reveal=selector=>{const nodes=document.querySelectorAll(selector);if(!nodes.length||!("IntersectionObserver"in window))return;const io=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("zperf-visible");io.unobserve(entry.target)}},{rootMargin:"0px 0px -6% 0px",threshold:.01});nodes.forEach(node=>io.observe(node));revealObservers.push(io)};
 if(!reduced)reveal(".launch-card,.compare-wrap,.config-panel,.config-result,.admin-kpi,.admin-panel,.admin-workspace");
