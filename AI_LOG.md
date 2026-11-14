@@ -298,3 +298,10 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 ## v1.7.3 — Navigation Performance Audit
 - Identified duplicate in-page scrolling: CSS already provided smooth scrolling while `app.js` attached a second `scrollIntoView()` handler to every anchor.
 - Removed the redundant handler to prevent competing smooth-scroll work and unnecessary selector/layout reads on navigation clicks.
+
+
+## v1.7.4 — Visual Regression Recovery
+- User reported that the original background tone and text colors had been removed.
+- Root CSS was re-audited against the original palette and restored to the prior blue/cyan ZHosting identity.
+- The theme tool had independent violet defaults, so its reset state was also aligned with the restored palette.
+- No performance runtime was removed while correcting the visual regression.
