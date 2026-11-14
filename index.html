@@ -387,11 +387,21 @@
     </div>
   </section>
 
-  <footer class="footer">
+  <footer class="footer" aria-label="Chân trang ZHosting">
   <div class="container footer-inner">
-    <a class="brand" href="#top" aria-label="ZHosting"><span class="brand-mark"><img src="assets/brand/zhosting-mark.svg" alt="" width="35" height="35"></span><span>Z<span class="accent">Hosting</span></span></a>
-    <p>© 2026 ZHosting. Built for creators, communities & businesses.</p>
-    <div class="footer-links"><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#contact">Liên hệ</a><a href="#config">Cấu hình</a><a href="docs/SECURITY.md">Security</a></div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="ZHosting về đầu trang"><span class="brand-mark"><img src="assets/brand/zhosting-mark.svg" alt="" width="35" height="35"></span><span>Z<span class="accent">Hosting</span></span></a>
+        <p>Hạ tầng hosting hiện đại cho Minecraft, website, VPS và cộng đồng. Tập trung vào hiệu năng, trải nghiệm và vận hành ổn định.</p>
+        <span class="footer-status"><i aria-hidden="true"></i> Hệ thống demo đang hoạt động</span>
+      </div>
+      <nav class="footer-column" aria-label="Dịch vụ"><b>Dịch vụ</b><a href="#services">Tổng quan</a><a href="#pricing">Bảng giá</a><a href="#config">Tự cấu hình</a><a href="#status">Trạng thái</a></nav>
+      <nav class="footer-column" aria-label="Hỗ trợ"><b>Hỗ trợ</b><a href="#contact">Liên hệ</a><a href="auth/login.html">Đăng nhập</a><a href="auth/register.html">Tạo tài khoản</a><a href="docs/SECURITY.md">Security</a></nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ZHosting. Built for creators, communities & businesses.</p>
+      <div class="footer-bottom-links"><a href="#top">Về đầu trang</a><a href="docs/SECURITY.md">Bảo mật</a></div>
+    </div>
   </div>
 </footer>
 
@@ -410,6 +420,5 @@
   <script src="assets/js/ui.js" defer></script>
   <script src="assets/js/support.js" defer></script>
 
-    <div class="support-bubble-status" aria-hidden="true">ONLINE</div>
     </body>
 </html>
