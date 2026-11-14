@@ -246,3 +246,9 @@ A follow-up audit found a real support-dock bug: JavaScript wrote `--support-rig
 
 ## 2026-11-14 — v1.6.2 Runtime Cleanup
 The performance audit found duplicate/contradictory low-resource CSS rules, including an older constrained header blur rule that could override later hardening. A final cascade layer now explicitly disables that blur and reduces footer effects on constrained devices. The adaptive performance resize rAF is also cancelled on page exit.
+
+
+## v1.6.3 — Footer / Runtime Pass
+- Audited the shared support bubble runtime for page-exit cleanup.
+- Reduced persistent rendering work in the footer while preserving the existing visual language.
+- Kept responsive and reduced-motion paths explicit.
