@@ -824,3 +824,52 @@ body.zperf-lite .noise{display:none}
 @media(prefers-reduced-motion:reduce){
   .footer-contact-link{transition:none}
 }
+
+
+/* ===== FOOTER FINISHING PASS v1.6.6 ===== */
+.footer{
+  margin-top:24px;
+  padding-bottom:max(24px,env(safe-area-inset-bottom));
+  overflow:clip;
+}
+.footer-main{
+  grid-template-columns:minmax(0,1.65fr) minmax(150px,.7fr) minmax(150px,.7fr);
+  gap:36px;
+  padding:38px 0 30px;
+}
+.footer-brand>p{max-width:520px;margin:14px 0 16px}
+.footer-status{min-height:20px}
+.footer-column{min-width:0}
+.footer-column b{margin-bottom:5px}
+.footer-column a{padding:2px 0}
+.footer-bottom{padding-top:15px}
+.footer-bottom p{line-height:1.5}
+.footer-contact-inner{min-height:82px}
+.footer-contact-copy{padding-left:2px}
+.footer-contact-links{min-width:min(100%,520px)}
+.footer-contact-link{min-height:44px}
+
+/* Fixed utility controls should never sit over the final footer content. */
+.site-live-pill,.theme-tools-trigger{transition:opacity .18s ease,transform .18s ease}
+.footer-in-view .site-live-pill,.footer-in-view .theme-tools-trigger{
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(8px);
+}
+.footer-in-view .theme-tools[hidden]{display:none}
+
+@media(max-width:900px){
+  .footer-main{gap:28px;padding:34px 0 26px}
+  .footer-contact-inner{min-height:0}
+}
+@media(max-width:700px){
+  .footer{margin-top:18px}
+  .footer-main{gap:24px;padding:30px 0 24px}
+  .footer-brand>p{max-width:62ch}
+  .footer-bottom{padding-top:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-live-pill,.theme-tools-trigger{transition:none}
+}
+.zperf-lite .footer{box-shadow:none}
+.zperf-lite .site-live-pill,.zperf-lite .theme-tools-trigger{transition:none}
