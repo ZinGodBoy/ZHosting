@@ -431,3 +431,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 
 ## v1.6.7 — Theme Panel Edge Check
 - Verify an opened theme panel is hidden while the footer is visible and restored after leaving the footer.
+
+
+## v1.6.8 — Whole-Page Verification
+- Verify scroll progress remains accurate after resize and content/layout changes.
+- Verify navigation, back-to-top and footer utilities remain responsive.
+- Verify reduced-motion and constrained-device modes remove non-essential rendering effects.
+- Verify section dividers render correctly at desktop/tablet/mobile widths.
+- Verify no runtime observer/listener continues after `pagehide`.
