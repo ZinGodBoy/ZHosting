@@ -1,5 +1,7 @@
 (() => {
   "use strict";
+  if(window.__ZUIInitialized)return;
+  window.__ZUIInitialized=true;
   const root=document.body;
   if(!root)return;
 
@@ -57,17 +59,18 @@
   };
   window.ZUI={toast};
 
-  document.querySelectorAll(".btn,.nav-cta,.text-btn,.billing-toggle button").forEach(el=>{
-    el.classList.add("zui-ripple");
-    el.addEventListener("click",e=>{
-      if(el.disabled)return;
-      const r=el.getBoundingClientRect(),w=Math.max(r.width,r.height);
-      const wave=document.createElement("span");wave.className="zui-ripple-wave";
-      wave.style.width=wave.style.height=w+"px";
-      wave.style.left=e.clientX-r.left-w/2+"px";wave.style.top=e.clientY-r.top-w/2+"px";
-      el.appendChild(wave);setTimeout(()=>wave.remove(),700);
-    });
-  });
+  const rippleSelector=".btn,.nav-cta,.text-btn,.billing-toggle button";
+  document.querySelectorAll(rippleSelector).forEach(el=>el.classList.add("zui-ripple"));
+  document.addEventListener("click",event=>{
+    const el=event.target.closest?.(rippleSelector);
+    if(!el||el.disabled||!el.isConnected)return;
+    const r=el.getBoundingClientRect(),w=Math.max(r.width,r.height);
+    const wave=document.createElement("span");wave.className="zui-ripple-wave";
+    wave.style.width=wave.style.height=w+"px";
+    wave.style.left=event.clientX-r.left-w/2+"px";wave.style.top=event.clientY-r.top-w/2+"px";
+    el.appendChild(wave);
+    window.setTimeout(()=>wave.remove(),700);
+  },{passive:true});
 
   // Keep card hover CSS-only. Removing per-card pointermove handlers avoids
   // repeated getBoundingClientRect/style writes while scrolling or moving the pointer.
