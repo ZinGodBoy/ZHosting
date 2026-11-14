@@ -1,3 +1,14 @@
+
+## Performance & Admin Center refinement — 2026-11-14
+
+- Tối ưu Admin Center motion: bỏ global pointer/scroll work gây layout pressure, gom scroll processing vào requestAnimationFrame.
+- Giảm cường độ tilt và backdrop blur để ưu tiên FPS ổn định.
+- IntersectionObserver của Admin Center tự unobserve sau khi reveal.
+- Giảm shadow/blur trên viewport nhỏ.
+- Tối ưu homepage scroll progress + active navigation bằng một scroll loop duy nhất.
+- Loại bỏ forced synchronous layout trong Config Builder animation.
+- Tắt config animation khi người dùng bật reduced motion.
+- Ngăn tự động enrollment Admin Device từ một browser mới; thiết bị admin mới không được tự claim quyền quản trị.
 ## Admin Center device-bound access — 2026-11-14
 
 - Thêm browser-bound Admin Device Gate bằng IndexedDB + Web Crypto.
