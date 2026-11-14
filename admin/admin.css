@@ -591,7 +591,7 @@ td{color:#b9c9d7;font-size:10px}
 
 .admin-panel{
   transform:translateZ(0);
-  will-change:transform;
+  will-change:auto;
 }
 .admin-panel::before{
   background-size:200% 100%;
@@ -806,7 +806,7 @@ td{color:#b9c9d7;font-size:10px}
   transform:translateZ(0);
 }
 .admin-panel:hover,.admin-kpi:hover,.admin-privacy:hover{
-  will-change:transform;
+  will-change:auto;
 }
 .admin-panel::before{
   will-change:auto;
@@ -907,3 +907,8 @@ td{color:#b9c9d7;font-size:10px}
 /* ===== ADMIN PERFORMANCE v1.4.6 ===== */
 body.zperf-lite .admin-page .admin-card,body.zperf-lite .admin-page .admin-panel,body.zperf-lite .admin-page .admin-table-wrap{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
 body.zperf-paused .admin-page *{animation-play-state:paused!important}
+
+
+/* ===== RENDERING HARDENING v1.6.0 ===== */
+body.zperf-lite *{text-shadow:none}
+@media(prefers-reduced-motion:reduce){body *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
