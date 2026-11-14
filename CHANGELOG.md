@@ -275,3 +275,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Login History, Recent Activity và CSV có thể mang IP metadata nếu có.
 - Mật khẩu plaintext không bao giờ được hiển thị trong Admin Center.
 - Giữ nguyên trusted-device gate cho Admin Center.
+
+
+## Stability & regression pass — 2026-11-14
+
+- Fixed duplicate homepage motion/reveal observers between `app.js` and `ui.js`, reducing redundant IntersectionObserver work.
+- Added a shared homepage motion-engine flag so secondary UI runtime does not bind duplicate anchor/reveal behavior.
+- Debounced Admin Center directory search to avoid excessive table renders while typing.
+- Unified homepage footer branding with the shared ZHosting logo asset.
+- Fixed the homepage Security footer route from a root-level `SECURITY.md` path to `docs/SECURITY.md`.
+- Preserved trusted-device Admin Center protection and adaptive performance fallbacks.
