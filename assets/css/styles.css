@@ -505,7 +505,7 @@ body.zperf-lite .brand-mark{box-shadow:none}
 .support-bubbles{right:var(--support-right,24px)}
 .support-bubble{will-change:auto}
 @media(max-width:700px){
-  .support-bubbles{right:var(--support-scrollbar-offset,10px)}
+  .support-bubbles{right:var(--support-right,10px)}
 }
 @media(prefers-reduced-motion:reduce){
   .support-bubbles,.support-bubble{will-change:auto}
@@ -877,3 +877,18 @@ body.zperf-lite .noise{display:none}
 
 /* ===== FOOTER UTILITY VISIBILITY v1.6.7 ===== */
 .footer-in-view .theme-tools{display:none!important}
+
+
+/* ===== FOOTER FINISHING PASS v1.6.8 ===== */
+/* Keep footer utilities stable without adding runtime animation work. */
+.footer-contact-link{contain:layout paint}
+.footer-contact-copy{contain:layout}
+.footer-bottom-links a{padding:2px 0}
+@media(max-width:700px){
+  .footer-contact-link{width:100%;}
+  .footer-bottom-links{row-gap:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .footer-contact-link{contain:layout}
+}
+.zperf-lite .footer-contact-link{contain:layout}
