@@ -1,7 +1,5 @@
 window.ZAppEngine=true;
 const zDebounce=(fn,wait=180)=>{let t=0;return(...args)=>{window.clearTimeout(t);t=window.setTimeout(()=>fn(...args),wait)}};
-const zRafThrottle=(fn)=>{let frame=0,lastArgs;return(...args)=>{lastArgs=args;if(frame)return;frame=requestAnimationFrame(()=>{frame=0;fn(...lastArgs)})}};
-const zSafeText=value=>String(value??"").replace(/[<>]/g,"");
 const zPageReady=()=>{document.documentElement.classList.add("z-ready")};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",zPageReady,{once:true});else zPageReady();
 
@@ -300,6 +298,7 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
 (()=>{
 const counters=document.querySelectorAll('[data-counter]');
 if(!counters.length)return;
+const counterFrames=new Map();
 const animateCounter=el=>{
   if(el.dataset.counterAnimated==='1')return;
   el.dataset.counterAnimated='1';
@@ -307,9 +306,13 @@ const animateCounter=el=>{
   const tick=now=>{
     const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);
     el.textContent=target%1?((target*ease).toFixed(2)):Math.round(target*ease);
-    if(p<1)requestAnimationFrame(tick);
+    if(p<1){
+      counterFrames.set(el,requestAnimationFrame(tick));
+    }else{
+      counterFrames.delete(el);
+    }
   };
-  requestAnimationFrame(tick);
+  counterFrames.set(el,requestAnimationFrame(tick));
 };
 if(!('IntersectionObserver' in window)){
   counters.forEach(animateCounter);
@@ -323,7 +326,11 @@ const counterObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 counters.forEach(el=>counterObserver.observe(el));
-window.addEventListener('pagehide',()=>counterObserver.disconnect(),{once:true});
+window.addEventListener('pagehide',()=>{
+  counterObserver.disconnect();
+  counterFrames.forEach(frame=>cancelAnimationFrame(frame));
+  counterFrames.clear();
+},{once:true});
 })();
 
 /* ===== ACCOUNT-AWARE NAV ===== */
