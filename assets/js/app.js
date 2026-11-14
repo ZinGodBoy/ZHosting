@@ -1,5 +1,6 @@
 window.ZAppEngine=true;
 const zDebounce=(fn,wait=180)=>{let t=0;return(...args)=>{window.clearTimeout(t);t=window.setTimeout(()=>fn(...args),wait)}};
+const zRafThrottle=(fn)=>{let frame=0,lastArgs;return(...args)=>{lastArgs=args;if(frame)return;frame=requestAnimationFrame(()=>{frame=0;fn(...lastArgs)})}};
 const zSafeText=value=>String(value??"").replace(/[<>]/g,"");
 const zPageReady=()=>{document.documentElement.classList.add("z-ready")};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",zPageReady,{once:true});else zPageReady();
