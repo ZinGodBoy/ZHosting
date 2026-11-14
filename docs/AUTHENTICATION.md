@@ -147,3 +147,10 @@ Admin Center chuẩn hóa role/status/login metadata trước khi hiển thị v
 - Session records carry a generated session ID and user ID metadata for local consistency checks.
 - Logout records a local audit event when an active session exists.
 - Browser storage remains a demo boundary: it is not equivalent to HttpOnly/Secure/SameSite server cookies or a server-side session store.
+
+
+## Trusted Admin Device
+
+Admin role không còn được tự động cấp cho tài khoản đầu tiên trên một browser mới. Khi một admin hiện hữu đăng nhập trên browser chưa có binding, hệ thống đăng ký thiết bị bằng ECDSA P-256 và lưu private key non-extractable trong IndexedDB. Những browser khác không có key tương ứng sẽ không thấy Admin Center và bị route guard từ chối.
+
+Lưu ý: cơ chế này phù hợp với frontend demo. Production phải chuyển identity, session và authorization sang backend đáng tin cậy.
