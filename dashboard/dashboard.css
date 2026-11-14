@@ -609,7 +609,7 @@ input,select,textarea,button{font-family:var(--font-ui)}
 
 /* ===== ACCOUNT CENTER VISUAL REFRESH v1.4.4 ===== */
 .dashboard-page{
- --account-bg:#0b0716;--account-surface:rgba(22,15,39,.84);
+ --account-bg:#050b14;--account-surface:rgba(10,20,34,.84);
  background:radial-gradient(circle at 78% 0,rgba(139,92,246,.15),transparent 32%),linear-gradient(180deg,#0b0716,#0f0a1f 55%,#090611);
 }
 .dash-header{background:rgba(11,7,22,.84)}
