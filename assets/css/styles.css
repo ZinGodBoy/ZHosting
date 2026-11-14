@@ -154,3 +154,27 @@ img{content-visibility:auto}
 @media(prefers-reduced-motion:reduce){
   .server-card{will-change:auto}
 }
+
+/* ===== ZHOSTING PERFORMANCE POLISH ===== */
+:root{--z-viewport-height:100vh}
+html{scroll-padding-top:84px}
+body{contain:paint}
+.noise{will-change:auto;contain:strict}
+.service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list{contain:layout paint;backface-visibility:hidden}
+.reveal{will-change:opacity,transform}
+@media(min-width:701px){
+  .section{content-visibility:auto;contain-intrinsic-size:900px}
+}
+.zperf-lite .noise{display:none}
+.zperf-lite .server-card{animation:none!important;transform:none!important}
+.zperf-lite .hero:after{display:none}
+.zperf-lite .service-card:after,.zperf-lite .price-card.popular:before,.zperf-lite .cta:after{display:none}
+.zperf-lite .btn:before{display:none}
+.zperf-lite .service-card,.zperf-lite .price-card,.zperf-lite .review,.zperf-lite .feature,.zperf-lite .step{will-change:auto}
+.zperf-lite .service-card:hover,.zperf-lite .price-card:hover,.zperf-lite .review:hover,.zperf-lite .feature:hover{transform:none;box-shadow:none}
+.zperf-lite .header{backdrop-filter:none}
+.zperf-lite .reveal{transition-duration:.35s}
+.zperf-paused .server-card,.zperf-paused .pulse,.zperf-paused .live-dot{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
+}
