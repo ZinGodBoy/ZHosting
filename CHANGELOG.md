@@ -487,3 +487,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Removed duplicate Account Center admin-navigation initialization.
 - Admin Center entry now requires both an active admin role and a trusted admin device, matching the Admin Center gate.
 - Aligned dashboard password-change validation with the 12-character authentication policy.
+
+## [1.4.7] — Support Dock Scrollbar Alignment
+
+- Support Zalo/Discord bubbles now calculate the browser scrollbar width and stay visually aligned beside the right scrollbar.
+- Alignment recalculates on viewport resize and orientation changes without a scroll listener.
+- Mobile keeps a smaller safe offset.
