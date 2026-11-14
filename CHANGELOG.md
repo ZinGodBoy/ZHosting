@@ -952,3 +952,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Reduced decorative rendering cost on constrained/mobile devices by disabling non-essential hero grid, glow and 3D effects.
 - Hardened adaptive performance state updates when network conditions change.
 - Removed the resize listener on page exit after viewport synchronization cleanup.
+
+
+## v1.7.6 — Observer Lifecycle & Layout Measurement Hardening
+- Added explicit cleanup for the homepage reveal IntersectionObserver.
+- Scoped homepage ResizeObserver measurement to `<main>` instead of the entire document root to reduce unnecessary layout observation work.
+- Added cleanup for the shared UI reveal observer on page exit.
+- Preserved the v1.7.5 responsive performance and blue/cyan visual system.
