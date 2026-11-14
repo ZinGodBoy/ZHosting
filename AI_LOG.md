@@ -293,3 +293,8 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Found that the homepage navigation observer was declared inside a conditional block while the page-exit handler attempted to reference it outside that scope; cleanup therefore could not reach the observer.
 - Moved the observer reference to page scope and added explicit counter observer disposal.
 - This is a lifecycle correctness fix rather than a cosmetic optimization.
+
+
+## v1.7.3 — Navigation Performance Audit
+- Identified duplicate in-page scrolling: CSS already provided smooth scrolling while `app.js` attached a second `scrollIntoView()` handler to every anchor.
+- Removed the redundant handler to prevent competing smooth-scroll work and unnecessary selector/layout reads on navigation clicks.
