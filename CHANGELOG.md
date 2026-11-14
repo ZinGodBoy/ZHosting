@@ -859,3 +859,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Reduced scroll work by caching document bounds and refreshing them only on layout changes.
 - Disabled non-essential backdrop filtering on tablet/mobile and constrained modes to reduce compositing cost.
 - Preserved the desktop visual language while keeping smaller viewports lighter.
+
+
+## v1.7.1 — Observer Hardening & Constrained Visual Pass
+- Hardened homepage counter initialization with a non-IntersectionObserver fallback.
+- Added explicit cleanup for homepage reveal/navigation observers on page exit.
+- Reduced auth-page blur, grid opacity and card shadow on smaller/constrained devices.
+- Disabled non-essential footer decorative layers and server-card motion in constrained mode.
