@@ -234,3 +234,6 @@ Found a regression introduced during support-runtime consolidation: `support.js`
 
 ## 2026-11-14 — v1.5.4 Runtime Performance
 Audited the shared runtime for scroll-driven work. The support dock was recalculating `document.documentElement.scrollHeight` and `window.innerHeight` on every rAF while scrolling. Metrics are now cached and refreshed only on resize/orientation/layout changes, while scroll frames only calculate normalized progress. Mobile decorative effects were also reduced to lower compositor and paint cost.
+
+## 2026-11-14 — v1.5.5 Serious Runtime Audit
+The runtime audit found two avoidable sources of work: the homepage clock used `setInterval` and repeatedly queried the DOM, while `performance.js` maintained a scroll observer alongside the homepage scroll engine. The clock now caches its target nodes and uses a visibility-aware recursive timeout. The duplicate performance scroll observer was removed because the shared CSS did not consume `z-scroll-active`; this eliminates redundant rAF work during scrolling. Rendering containment and constrained-device fallbacks were added without changing core functionality.
