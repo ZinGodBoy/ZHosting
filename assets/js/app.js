@@ -465,21 +465,41 @@ counters.forEach(el=>counterObserver.observe(el));
 
 
 
-/* ===== THEME COLOR TOOL v1.4.13 ===== */
-(()=>{const panel=document.querySelector('#themeTools'),trigger=document.querySelector('#themeToolsTrigger');if(!panel||!trigger)return;
+/* ===== THEME COLOR TOOL v1.5.2 ===== */
+(()=>{"use strict";
+const panel=document.querySelector('#themeTools'),trigger=document.querySelector('#themeToolsTrigger');if(!panel||!trigger)return;
 const accent=document.querySelector('#themeAccent'),accentHex=document.querySelector('#themeAccentHex'),bg=document.querySelector('#themeBackground'),bgHex=document.querySelector('#themeBackgroundHex'),bg2=document.querySelector('#themeBackgroundSecondary'),bg2Hex=document.querySelector('#themeBackgroundSecondaryHex'),mode=document.querySelector('#themeBackgroundMode'),angle=document.querySelector('#themeGradientAngle'),angleValue=document.querySelector('#themeGradientAngleValue'),secondary=document.querySelectorAll('.theme-secondary-bg'),root=document.documentElement,key='zhosting_theme_v2';
 const defaults={accent:'#7C6CFF',background:'#07111F',backgroundSecondary:'#111C31',mode:'solid',angle:135};
 const normalize=v=>{v=String(v||'').trim();return /^#[0-9a-fA-F]{6}$/.test(v)?v.toUpperCase():null};
-const rgbToHex=(r,g,b)=>'#'+[r,g,b].map(n=>Math.max(0,Math.min(255,Number(n)||0)).toString(16).padStart(2,'0')).join('').toUpperCase();
+const clamp=n=>Math.max(0,Math.min(255,Number(n)||0));
+const rgbToHex=(r,g,b)=>'#'+[r,g,b].map(n=>clamp(n).toString(16).padStart(2,'0')).join('').toUpperCase();
 const hexToRgb=h=>{const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255]};
 const syncRgb=(type,hex)=>{const v=hexToRgb(hex);document.querySelectorAll('.theme-rgb[data-rgb="'+type+'"] input').forEach((el,i)=>el.value=v[i])};
-const paint=(a,b,b2,m,g,save=true)=>{const av=normalize(a)||defaults.accent,bv=normalize(b)||defaults.background,b2v=normalize(b2)||defaults.backgroundSecondary,gm=m==='gradient'?'gradient':'solid',ga=Math.max(0,Math.min(360,Number(g)||defaults.angle));root.style.setProperty('--violet',av);root.style.setProperty('--z-custom-bg',bv);root.style.setProperty('--z-custom-bg-2',b2v);document.body.style.background=gm==='gradient'?'linear-gradient('+ga+'deg,'+bv+','+b2v+')':bv;accent.value=av;accentHex.value=av;bg.value=bv;bgHex.value=bv;bg2.value=b2v;bg2Hex.value=b2v;mode.value=gm;angle.value=ga;angleValue.value=ga+'°';secondary.forEach(el=>el.hidden=gm!=='gradient');syncRgb('accent',av);syncRgb('background',bv);if(save)try{localStorage.setItem(key,JSON.stringify({accent:av,background:bv,backgroundSecondary:b2v,mode:gm,angle:ga}))}catch{}};
+const setMetaColor=hex=>document.querySelector('meta[name="theme-color"]')?.setAttribute('content',hex);
+const paint=(a,b,b2,m,g,save=true)=>{
+ const av=normalize(a)||defaults.accent,bv=normalize(b)||defaults.background,b2v=normalize(b2)||defaults.backgroundSecondary;
+ const gm=m==='gradient'?'gradient':'solid',ga=Math.max(0,Math.min(360,Number(g)||defaults.angle));
+ root.style.setProperty('--violet',av);root.style.setProperty('--z-custom-bg',bv);root.style.setProperty('--z-custom-bg-2',b2v);
+ root.style.setProperty('--z-custom-background-image',gm==='gradient'?'linear-gradient('+ga+'deg,'+bv+','+b2v+')':bv);
+ root.dataset.themeMode=gm;root.style.setProperty('--z-theme-angle',ga+'deg');setMetaColor(bv);
+ accent.value=av;accentHex.value=av;bg.value=bv;bgHex.value=bv;bg2.value=b2v;bg2Hex.value=b2v;mode.value=gm;angle.value=ga;angleValue.value=ga+'°';
+ secondary.forEach(el=>el.hidden=gm!=='gradient');syncRgb('accent',av);syncRgb('background',bv);syncRgb('backgroundSecondary',b2v);
+ if(save)try{localStorage.setItem(key,JSON.stringify({accent:av,background:bv,backgroundSecondary:b2v,mode:gm,angle:ga}))}catch{}
+};
 let saved=null;try{saved=JSON.parse(localStorage.getItem(key)||'null')}catch{}paint(saved?.accent,saved?.background,saved?.backgroundSecondary,saved?.mode,saved?.angle,false);
-const open=v=>{panel.hidden=!v;trigger.setAttribute('aria-expanded',String(v));document.body.classList.toggle('theme-tools-open',v);if(v)accentHex.focus()};trigger.addEventListener('click',()=>open(panel.hidden));document.querySelector('#themeToolsClose')?.addEventListener('click',()=>open(false));
+const open=v=>{panel.hidden=!v;trigger.setAttribute('aria-expanded',String(v));document.body.classList.toggle('theme-tools-open',v);if(v)accentHex.focus()};
+trigger.addEventListener('click',()=>open(panel.hidden));document.querySelector('#themeToolsClose')?.addEventListener('click',()=>open(false));
 const repaint=()=>paint(accent.value,bg.value,bg2.value,mode.value,angle.value);
-const bind=(color,text)=>{color?.addEventListener('input',repaint);text?.addEventListener('change',()=>{const v=normalize(text.value);if(v){color.value=v;repaint()}else text.value=color.value.toUpperCase()})};bind(accent,accentHex);bind(bg,bgHex);bind(bg2,bg2Hex);
-document.querySelectorAll('.theme-rgb').forEach(group=>group.addEventListener('change',()=>{const v=[...group.querySelectorAll('input')].map(x=>Math.max(0,Math.min(255,Number(x.value)||0)));const hex=rgbToHex(...v);if(group.dataset.rgb==='accent')accent.value=hex;else bg.value=hex;repaint()}));
+const bind=(color,text)=>{color?.addEventListener('input',repaint);text?.addEventListener('change',()=>{const v=normalize(text.value);if(v){color.value=v;repaint()}else text.value=color.value.toUpperCase()})};
+bind(accent,accentHex);bind(bg,bgHex);bind(bg2,bg2Hex);
+document.querySelectorAll('.theme-rgb').forEach(group=>group.addEventListener('change',()=>{
+ const v=[...group.querySelectorAll('input')].map(x=>clamp(x.value)),hex=rgbToHex(...v),type=group.dataset.rgb;
+ if(type==='accent')accent.value=hex;else if(type==='backgroundSecondary')bg2.value=hex;else bg.value=hex;
+ repaint();
+}));
 mode?.addEventListener('change',repaint);angle?.addEventListener('input',repaint);
 const presets={cyan:['#35D9FF','#06131D','#10283A'],violet:['#7C6CFF','#07111F','#151A38'],emerald:['#35D399','#061511','#0D2A22'],orange:['#FF9D4D','#160D07','#32190B']};
 document.querySelectorAll('[data-theme-preset]').forEach(b=>b.addEventListener('click',()=>{const p=presets[b.dataset.themePreset];if(p){accent.value=p[0];bg.value=p[1];bg2.value=p[2];paint(p[0],p[1],p[2],mode.value,angle.value)}}));
-document.querySelector('#themeToolsReset')?.addEventListener('click',()=>paint(defaults.accent,defaults.background,defaults.backgroundSecondary,defaults.mode,defaults.angle));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)open(false)});})();
+document.querySelector('#themeToolsReset')?.addEventListener('click',()=>paint(defaults.accent,defaults.background,defaults.backgroundSecondary,defaults.mode,defaults.angle));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)open(false)});
+})();
