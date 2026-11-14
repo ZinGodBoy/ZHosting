@@ -143,3 +143,11 @@ Polished the persistent Zalo/Discord bubbles into a branded floating support doc
 ## 2026-11-14 — Performance Optimization v1.4.2
 
 Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện đầy đủ, thiết bị yếu hoặc mạng hạn chế tự giảm rendering cost. Runtime được rút gọn, scroll/viewport update được schedule bằng requestAnimationFrame, background visual work được giảm khi tab ẩn, và mobile section lớn được áp dụng content-visibility/containment. Mục tiêu là giảm jank, giảm main-thread pressure và cải thiện perceived load time mà không phá vỡ UI hiện tại.
+
+
+## v1.4.3 — Brand & Contact UX Refinement
+
+- Refined the single shared ZHosting logo asset so the same mark works consistently as header branding, footer branding and favicon.
+- Reduced floating support controls to compact Zalo/Discord bubbles with lightweight hover disclosure instead of large persistent labels.
+- Improved homepage contact presentation with channel icons, readable labels and responsive stacking on narrow screens.
+- Preserved reduced-motion behavior and avoided introducing new dependencies or runtime polling.
