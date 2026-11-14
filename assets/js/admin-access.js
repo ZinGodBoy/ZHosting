@@ -8,6 +8,8 @@ const DB_NAME="zhosting_admin_device_v1";
 const STORE="keys";
 const KEY_ID="primary";
 const USERS_KEY="zhosting_users_v1";
+let keyPairPromise=null;
+let fingerprintPromise=null;
 
 const openDb=()=>new Promise((resolve,reject)=>{
   if(!window.indexedDB)return reject(new Error("IndexedDB unavailable"));
@@ -44,6 +46,8 @@ const toBase64=buffer=>{
 };
 
 const getKeyPair=async()=>{
+  if(keyPairPromise)return keyPairPromise;
+  keyPairPromise=(async()=>{
   let pair=await dbGet(KEY_ID);
   if(pair?.privateKey&&pair?.publicKey)return pair;
   const generated=await crypto.subtle.generateKey(
@@ -62,12 +66,18 @@ const getKeyPair=async()=>{
   pair={privateKey,publicKey};
   await dbPut(KEY_ID,pair);
   return pair;
+  })();
+  try{return await keyPairPromise}catch(error){keyPairPromise=null;throw error;}
 };
 
 const publicKeyFingerprint=async publicKey=>{
-  const raw=await crypto.subtle.exportKey("spki",publicKey);
-  const digest=await crypto.subtle.digest("SHA-256",raw);
-  return toBase64(digest);
+  if(fingerprintPromise)return fingerprintPromise;
+  fingerprintPromise=(async()=>{
+    const raw=await crypto.subtle.exportKey("spki",publicKey);
+    const digest=await crypto.subtle.digest("SHA-256",raw);
+    return toBase64(digest);
+  })();
+  try{return await fingerprintPromise}catch(error){fingerprintPromise=null;throw error;}
 };
 
 const readUsers=()=>{
