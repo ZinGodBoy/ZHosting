@@ -1,3 +1,8 @@
+
+
+## Admin device enrollment policy
+
+Admin Device Gate không còn tự động đăng ký một browser mới cho tài khoản admin. Browser phải có trusted public-key fingerprint đã tồn tại; nếu không, Admin Center navigation bị ẩn và route guard từ chối truy cập. Điều này tránh việc một thiết bị lạ có thể tự claim binding chỉ vì local record chưa có fingerprint.
 # Security Notes
 
 This document is a concise security overview for the current ZHosting frontend prototype.
