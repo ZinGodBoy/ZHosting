@@ -20,14 +20,10 @@
   };
   addBase();
 
+  // Pointer-follow spotlight is intentionally disabled: it adds a continuous main-thread task
+  // on desktop without improving core navigation or readability.
   const spotlight=document.querySelector(".zui-spotlight");
-  let raf=0;
-  window.addEventListener("pointermove",e=>{
-    if(!spotlight||window.matchMedia("(max-width:760px)").matches)return;
-    const x=e.clientX,y=e.clientY;
-    cancelAnimationFrame(raf);
-    raf=requestAnimationFrame(()=>{spotlight.style.left=x+"px";spotlight.style.top=y+"px"});
-  },{passive:true});
+  if(spotlight)spotlight.setAttribute("aria-hidden","true");
 
   const reveal=()=>{if(window.ZAppEngine)return;
     const items=[...document.querySelectorAll("[data-zui-reveal],.reveal")];
@@ -83,16 +79,11 @@
     });
   });
 
-  const tiltOK=()=>window.matchMedia("(pointer:fine) and (min-width:900px)").matches;
-  document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.status-main").forEach(el=>{
-    if(!tiltOK())return;
-    el.classList.add("zui-tilt");
-    el.addEventListener("pointermove",e=>{
-      const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
-      el.style.transform="perspective(900px) rotateX("+(-py*3.2)+"deg) rotateY("+(px*3.2)+"deg) translateY(-3px)";
-    });
-    el.addEventListener("pointerleave",()=>{el.style.transform=""});
-  });
+  // Keep card hover CSS-only. Removing per-card pointermove handlers avoids
+  // repeated getBoundingClientRect/style writes while scrolling or moving the pointer.
+  if(window.matchMedia("(pointer:fine) and (min-width:900px)").matches){
+    document.querySelectorAll(".service-card,.price-card,.review,.dash-card,.status-main").forEach(el=>el.classList.add("zui-tilt"));
+  }
 
   const setupLogout=()=>{
     const nodes=[...document.querySelectorAll("#logoutBtn,#navLogout,.logout-link")];
@@ -161,8 +152,13 @@
 
   const setupSessionGuard=()=>{
     if(!window.ZAuth?.getSession)return;
-    const activity=()=>window.ZAuth.touchSession?.();
+    let activityTimer=0;
+    const activity=()=>{
+      if(activityTimer)return;
+      activityTimer=window.setTimeout(()=>{activityTimer=0;window.ZAuth.touchSession?.()},15000);
+    };
     ["pointerdown","keydown","scroll","touchstart"].forEach(type=>addEventListener(type,activity,{passive:true}));
+    window.addEventListener("pagehide",()=>window.clearTimeout(activityTimer),{once:true});
     const check=()=>{
       const session=window.ZAuth.getSession?.();
       if(session)return;
@@ -237,17 +233,6 @@
     }));
   }
 
-  document.querySelectorAll("a[href^="#"]").forEach(a=>{
-    a.addEventListener("click",e=>{
-      const selector=a.getAttribute("href");
-      if(!selector||selector==="#")return;
-      let target=null;
-      try{target=document.querySelector(selector)}catch{return}
-      if(!target)return;
-      e.preventDefault();
-      target.scrollIntoView({behavior:"smooth",block:"start"});
-    });
-  });
 })();
 
 /* ===== ZHOSTING UI SAFETY PASS v1.4.1 ===== */
