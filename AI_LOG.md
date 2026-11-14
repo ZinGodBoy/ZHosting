@@ -122,3 +122,7 @@ Thêm trusted-device layer cho Admin Center: IndexedDB + non-extractable ECDSA p
 - Removed duplicated performance runtime on 404.html.
 - Reworked UI session polling and Admin Center clock scheduling to pause in background tabs and clean up on page lifecycle changes.
 - Hardened hash-anchor navigation against empty or invalid selectors.
+
+## 2026-11-14 — v1.4.0 release hardening
+
+AI-assisted review focused on preventing regression across authentication, Admin Center authorization, timers, navigation and performance runtime. Existing behavior was inspected before each fix so optimizations did not replace or disable another control. Documentation was synchronized with the implementation.
