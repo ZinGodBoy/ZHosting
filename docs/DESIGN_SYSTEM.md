@@ -190,3 +190,7 @@ Motion của ZHosting được thiết kế theo nguyên tắc **progressive enh
 ### Admin Center
 
 Admin Center ưu tiên dữ liệu và thao tác quản trị trước hiệu ứng. Animation chỉ làm nhiệm vụ định hướng, feedback và hierarchy; không được phép trở thành dependency của chức năng.
+
+## Support Dock
+
+Support Dock là component floating dùng chung: fixed positioning, circular brand icon, glass surface, hover/focus expansion, mobile icon-only mode và reduced-motion fallback. Component được render tập trung bởi `assets/js/support.js` để tránh duplicate markup giữa các page.
