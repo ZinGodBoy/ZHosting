@@ -312,3 +312,10 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Corrected an adaptive-performance state issue where motion/network state could retain stale initial connection values.
 - Added explicit resize-listener cleanup on page exit.
 - Added a final CSS cascade that restores the blue/cyan visual identity while reducing hero paint cost on constrained devices.
+
+
+## v1.7.6 — Observer Audit
+- Runtime audit found homepage and shared UI reveal observers without complete lifecycle cleanup.
+- Homepage layout measurement observed the entire document root; it is now scoped to the main content container to reduce unrelated resize notifications.
+- Both reveal observers now disconnect on page exit.
+- No visual behavior was intentionally removed.
