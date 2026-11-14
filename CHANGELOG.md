@@ -1,3 +1,11 @@
+## v1.8.3 — Constrained Rendering & Visual Hardening
+
+- Reduced expensive decorative rendering on constrained devices, especially in Admin Center and Dashboard.
+- Disabled ambient grids, scanlines, orbs, repeated glow animations, and heavy hover transforms under constrained mode.
+- Reduced panel shadow cost while preserving the normal desktop visual hierarchy.
+- Re-aligned support/contact surfaces with the established dark navy/cyan/blue brand palette.
+- Added mobile content-visibility hints for Admin workspaces.
+
 ## v1.8.6 — BFCache Runtime Reliability — 2026-11-14
 
 ### Fixed
