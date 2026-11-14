@@ -590,3 +590,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Zalo/Discord bubbles are now generated consistently across public, auth, dashboard, admin and 404 routes.
 - Scroll-follow positioning and scrollbar-aware horizontal alignment are now owned by the shared support runtime to avoid duplicate scroll handlers.
 - Preserved responsive and reduced-motion behavior.
+
+## v1.5.3 — Shared UI Runtime Hardening — 2026-11-14
+
+### Performance
+- Thêm guard idempotent cho assets/js/ui.js, tránh bind lại runtime nếu script vô tình được nạp nhiều lần.
+- Chuyển ripple feedback từ listener riêng trên từng nút sang event delegation cấp document.
+- Giảm số lượng event listener và giữ ripple hoạt động với các nút được render động.
+- Không thay đổi auth, session, Admin Center hoặc dữ liệu người dùng.
