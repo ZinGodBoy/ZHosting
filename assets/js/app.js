@@ -294,7 +294,7 @@ counters.forEach(el=>counterObserver.observe(el));
 
   const input = palette.querySelector('.zhost-palette-input');
   const results = palette.querySelector('.zhost-palette-results');
-  const actions = [
+  const baseActions = [
     {label:'Dịch vụ',meta:'Khám phá các dịch vụ ZHosting',href:'#services'},
     {label:'Bảng giá',meta:'So sánh gói và chu kỳ thanh toán',href:'#pricing'},
     {label:'Config Builder',meta:'Tự chọn RAM, CPU và add-on',href:'#config'},
@@ -303,12 +303,17 @@ counters.forEach(el=>counterObserver.observe(el));
     {label:'Liên hệ',meta:'Tạo project brief',href:'#contact'},
     {label:'Account Center',meta:'Mở khu vực tài khoản',href:'dashboard/index.html'}
   ];
-  if (currentUser?.role === 'admin' && window.ZAdminAccess?.isTrusted?.(currentUser)) {
-    actions.push({label:'Admin Center',meta:'Quản lý tài khoản và audit demo',href:'admin/index.html'});
-  }
+  let actions = [...baseActions];
+  const syncPaletteActions = async () => {
+    actions = [...baseActions];
+    if (currentUser?.role === 'admin' && await window.ZAdminAccess?.isTrusted?.(currentUser)) {
+      actions.push({label:'Admin Center',meta:'Quản lý tài khoản và audit demo',href:'admin/index.html'});
+    }
+  };
 
   let active = 0;
-  const openPalette = () => {
+  const openPalette = async () => {
+    await syncPaletteActions();
     palette.hidden = false;
     palette.setAttribute('aria-hidden','false');
     document.body.classList.add('palette-open');
