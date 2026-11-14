@@ -693,3 +693,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### UI
 - Giữ hai bubble Zalo/Discord đồng nhất vị trí, kích thước và hành vi responsive.
 - Reduced Motion tắt transition/animation của support dock.
+
+## v1.6.0 — Footer & Runtime Polish
+- Redesigned the homepage footer into a structured three-column information area with responsive mobile layouts.
+- Added clearer brand description, system status, service navigation and support navigation.
+- Added a compact footer utility row and consistent keyboard focus states.
+- Removed the unused homepage `support-bubble-status` marker.
+- Reduced footer visual overhead on constrained devices while preserving the main visual hierarchy.
