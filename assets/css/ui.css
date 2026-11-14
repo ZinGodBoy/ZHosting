@@ -629,3 +629,11 @@ button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.62}
 /* ===== PERFORMANCE MODE SHARED v1.4.6 ===== */
 body.zperf-lite .zui-spotlight,body.zperf-lite .zui-tilt,body.zperf-lite .zui-ripple-wave{display:none!important}
 body.zperf-lite [style*="backdrop-filter"]{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+
+/* ===== PERFORMANCE VISUAL PASS v1.5.6 ===== */
+body.zperf-lite .zui-grain{display:none}
+body.zperf-constrained .zui-grid{opacity:.035;background-size:96px 96px}
+body.zperf-lite .zui-grid{display:none}
+body.zperf-lite [data-zui-reveal]{transition:none;transform:none;opacity:1}
+@media(prefers-reduced-motion:reduce){.zui-page{animation:none;opacity:1}.zui-grain,.zui-grid{display:none!important}.zui-tilt{will-change:auto}}
