@@ -183,3 +183,10 @@ Frontend nên giữ:
 - Account Tools và Quick Actions.
 - Responsive/mobile và reduced-motion support.
 - Tài liệu cần được cập nhật cùng mỗi thay đổi đáng kể.
+
+
+## Admin access boundary
+
+Admin navigation and the Admin Center route use `assets/js/admin-access.js` as a browser-local privileged-device gate. The module stores a non-extractable ECDSA P-256 private key in IndexedDB and binds the corresponding public-key fingerprint to the existing admin user record. This improves separation between ordinary user browsers and the trusted admin browser while the project remains a static/localStorage demo.
+
+For production, this boundary must move to a backend authorization service with server-side sessions and device/permission policy enforcement.
