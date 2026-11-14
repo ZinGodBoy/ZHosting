@@ -1,3 +1,12 @@
+## Release v1.4 readiness
+
+Current release-preparation focus:
+- Homepage UX: pricing guidance, Config Builder recommendations and support bubbles.
+- Account/Admin: trusted-device gate, session controls and admin visibility safeguards.
+- Contact routing: frontend mailto flow uses `dangkhoita2@gmail.com`.
+- Security: new registrations are always `user`; admin privileges must be provisioned separately.
+- Prototype limitation: authentication, sessions and audit data remain browser-local until a real backend is introduced.
+
 # ZHosting
 
 > **Hosting mạnh. Web nhanh. Server ổn định.**
