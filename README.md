@@ -338,3 +338,7 @@ ZHosting có thêm lớp **Adaptive Performance Layer** để giữ visual syste
 ### Support Dock
 
 Website có support dock nổi dùng chung trên toàn bộ page. Zalo và Discord được hiển thị bằng icon tròn; desktop mở rộng khi hover/focus, mobile giữ dạng gọn. Đây là lớp điều hướng liên hệ, không thu thập dữ liệu người dùng.
+
+### Support Dock V2
+
+Zalo và Discord hiện dùng floating branded bubbles với logo tròn, trạng thái hỗ trợ online, hover expansion trên desktop và chế độ icon-only trên mobile.
