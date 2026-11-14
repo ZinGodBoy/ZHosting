@@ -1,3 +1,10 @@
+## v1.8.10 — CSS Cache & Visibility Recovery — 2026-11-14
+
+### Fixed
+- Added CSS cache-busting query versions to all primary pages after the content-visibility regression.
+- Prevents browsers/CDN layers from continuing to serve an older broken stylesheet.
+- Preserves the existing content-visibility safety guard; no new runtime dependency was introduced.
+
 ## v1.8.9 — Content Visibility Regression Guard — 2026-11-14
 
 ### Fixed
