@@ -516,3 +516,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Scroll progress now uses compositor-friendly `transform: scaleX()` updates instead of changing width.
 - Reduced layout reads and main-thread work during continuous scrolling.
 - Preserved header state, back-to-top behavior and active section navigation.
+
+## v1.4.6 — Runtime Event Optimization — 2026-11-14
+
+### Performance
+- Giảm DOM writes dư thừa trong scroll state.
+- Thêm shared requestAnimationFrame throttle helper cho các tác vụ UI cần đồng bộ theo frame.
+- Chuyển button feedback sang event delegation, giảm số lượng event listener theo số nút trên trang.
