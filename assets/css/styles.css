@@ -873,3 +873,7 @@ body.zperf-lite .noise{display:none}
 }
 .zperf-lite .footer{box-shadow:none}
 .zperf-lite .site-live-pill,.zperf-lite .theme-tools-trigger{transition:none}
+
+
+/* ===== FOOTER UTILITY VISIBILITY v1.6.7 ===== */
+.footer-in-view .theme-tools{display:none!important}
