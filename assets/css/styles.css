@@ -380,3 +380,28 @@ img,svg{max-width:100%}
  .zui-progress{transition:none!important}
  .service-card:hover,.price-card:hover,.review:hover,.dash-card:hover,.status-main:hover{transform:none!important}
 }
+/* ===== ZHOSTING VISUAL REFRESH v1.4.4 ===== */
+:root{
+ --bg:#0b0716;--panel:#151026;--panel2:#1b1433;
+ --line:rgba(205,184,255,.14);--text:#f5f1ff;--muted:#a79abf;
+ --cyan:#a78bfa;--blue:#6366f1;--green:#6ee7b7;--radius:22px;--max:1180px;
+ --violet:#c084fc;--pink:#f0abfc;
+}
+body{background:radial-gradient(circle at 78% -8%,rgba(139,92,246,.18),transparent 34%),radial-gradient(circle at 8% 42%,rgba(192,132,252,.08),transparent 30%),linear-gradient(180deg,#0b0716 0%,#0f0a1f 48%,#090611 100%);color:var(--text)}
+.header{background:rgba(11,7,22,.78)}
+.brand-mark{background:linear-gradient(135deg,var(--violet),var(--blue));box-shadow:0 0 30px rgba(167,139,250,.24)}
+.accent,.eyebrow{color:var(--violet)}
+.gradient-text{background:linear-gradient(100deg,#fff 5%,var(--violet) 52%,var(--pink));-webkit-background-clip:text;background-clip:text}
+.btn-primary{background:linear-gradient(135deg,var(--violet),var(--blue));color:#100a1d;box-shadow:0 14px 35px rgba(139,92,246,.2)}
+.btn-primary:hover{box-shadow:0 18px 45px rgba(139,92,246,.28)}
+.btn-ghost{background:rgba(167,139,250,.035)}
+.hero-grid-lines{background-image:linear-gradient(rgba(196,181,253,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(196,181,253,.035) 1px,transparent 1px)}
+.orb-one{background:rgba(167,139,250,.17)}.orb-two{background:rgba(99,102,241,.2)}
+.server-card{background:linear-gradient(145deg,rgba(28,20,50,.92),rgba(10,7,21,.96));border-color:rgba(196,181,253,.18)}
+.terminal{background:#080512;border-color:#251b3d}.terminal span{color:var(--violet)}
+.service-card,.price-card,.status-main,.status-list,.review,.compare-wrap,.dash-card,.panel{background:linear-gradient(145deg,rgba(24,17,42,.86),rgba(11,8,21,.88))}
+.service-card.featured,.price-card.popular{background:linear-gradient(145deg,rgba(42,26,64,.9),rgba(14,9,27,.95))}
+.service-icon,.review-user>span{background:rgba(167,139,250,.09);border-color:rgba(167,139,250,.18);color:var(--violet)}
+.service-card li:before,.price-card li:before,.status-list b{color:var(--green)}
+.cta{background:radial-gradient(circle at 85% 30%,rgba(167,139,250,.16),transparent 35%),linear-gradient(120deg,#17102b,#0d0819)}
+.scroll-progress{background:linear-gradient(90deg,var(--violet),var(--blue));box-shadow:0 0 12px rgba(167,139,250,.65)}
