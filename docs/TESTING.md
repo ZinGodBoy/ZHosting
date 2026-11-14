@@ -401,3 +401,9 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Footer contact cards remain readable and keyboard-focusable.
 - [ ] Footer has no horizontal overflow on narrow screens.
 - [ ] Reduced-motion mode removes nonessential footer transitions.
+
+### v1.6.2 runtime/footer regression
+- [ ] No constrained-device header blur is re-enabled by later CSS rules.
+- [ ] Footer remains visually complete on desktop.
+- [ ] Footer shadow/transition load is reduced below 900px and on constrained devices.
+- [ ] Performance resize frame is cancelled on pagehide.
