@@ -161,7 +161,7 @@ html{scroll-padding-top:84px}
 body{contain:paint}
 .noise{will-change:auto;contain:strict}
 .service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list{contain:layout paint;backface-visibility:hidden}
-.reveal{will-change:opacity,transform}
+.reveal{will-change:auto}
 @media(min-width:701px){
   .section{content-visibility:auto;contain-intrinsic-size:900px}
 }
@@ -502,8 +502,8 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @media(prefers-reduced-motion:reduce){.theme-tools-trigger{transition:none}.theme-tools{backdrop-filter:none}}
 
 /* ===== SUPPORT BUBBLES UNIFIED RUNTIME v1.5.1 ===== */
-.support-bubbles{right:var(--support-scrollbar-offset,24px);will-change:transform}
-.support-bubble{will-change:transform}
+.support-bubbles{right:var(--support-scrollbar-offset,24px);will-change:auto}
+.support-bubble{will-change:auto}
 @media(max-width:700px){
   .support-bubbles{right:var(--support-scrollbar-offset,10px)}
 }
