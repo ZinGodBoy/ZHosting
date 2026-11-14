@@ -1,3 +1,17 @@
+## v1.7.6 — Runtime Integrity & UI Cleanup — 2026-11-14
+
+### Fixed
+- Sửa các chuỗi `\\n` bị escape trong constrained UI CSS, khôi phục stylesheet hợp lệ.
+- Loại bỏ lần gọi `touchSession()` trùng khi Account Center khởi tạo.
+
+### Performance
+- Giảm một lần session write/check không cần thiết khi mở Account Center.
+- Giữ nguyên cơ chế pause khi tab ẩn, reduced-motion và adaptive performance.
+
+### Quality
+- Không thêm dependency, polling hoặc background timer.
+- Giữ nguyên bố cục, màu sắc và hierarchy giao diện hiện tại.
+
 ## v1.7.4 — Runtime Integrity & Support Dock Optimization — 2026-11-14
 
 ### Fixed
