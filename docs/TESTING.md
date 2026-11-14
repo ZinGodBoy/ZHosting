@@ -477,3 +477,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify body text remains `#EEF6FF` and muted text `#8EA4BB`.
 - Verify theme reset restores the same blue/cyan palette instead of violet.
 - Verify desktop/mobile performance hardening remains active.
+
+
+## v1.7.5 — Verification
+- Check `assets/js/performance.js` syntax after adaptive-state cleanup.
+- Verify `zperf-lite` removes hero grid/noise/glow rendering and 3D card transform.
+- Verify constrained/mobile layout remains single-column without decorative orb filters.
+- Verify restored default typography and blue/cyan palette remain unchanged.
