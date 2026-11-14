@@ -50,6 +50,11 @@ window.addEventListener("visibilitychange",()=>{
  }
  measure();
 },{passive:true});
-window.addEventListener("pagehide",cleanup,{once:true});
+window.addEventListener("pagehide",cleanup,{passive:true});
+window.addEventListener("pageshow",()=>{
+  paused=false;
+  measure();
+  sync();
+},{passive:true});
 measure();
 })();
