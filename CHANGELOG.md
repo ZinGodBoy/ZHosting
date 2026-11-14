@@ -523,3 +523,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Giảm DOM writes dư thừa trong scroll state.
 - Thêm shared requestAnimationFrame throttle helper cho các tác vụ UI cần đồng bộ theo frame.
 - Chuyển button feedback sang event delegation, giảm số lượng event listener theo số nút trên trang.
+
+## v1.4.7 — Paint & Event Optimization — 2026-11-14
+
+### Performance
+- Copy interaction chuyển sang event delegation, tránh tạo listener riêng cho từng nút.
+- Giảm thêm shadow/glow/backdrop paint trong Performance Lite Mode.
+- Giữ support dock và live status nhẹ hơn trên thiết bị hạn chế tài nguyên.
