@@ -1,3 +1,18 @@
+## v1.7.7 — Theme Consistency & Rendering Polish — 2026-11-14
+
+### Fixed
+- Đồng bộ lại token màu cyan/blue giữa Homepage, UI dùng chung, Account Center và Admin Center.
+- Sửa các lớp visual override còn giữ palette violet cũ trong Account/Admin Center.
+- Giữ nguyên reduced-motion và constrained rendering sau khi đổi palette.
+
+### Performance
+- Không thêm animation, observer hoặc timer nền mới.
+- Giữ nguyên cơ chế adaptive performance và các lifecycle cleanup hiện có.
+
+### Visual
+- Chuẩn hóa nền navy, panel, border và gradient accent để toàn hệ thống có cùng ngôn ngữ thị giác.
+- Giữ độ tương phản và hierarchy chữ hiện tại.
+
 ## v1.7.6 — Runtime Integrity & UI Cleanup — 2026-11-14
 
 ### Fixed
