@@ -670,3 +670,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ### Quality
 - Ưu tiên runtime ổn định trước animation: lỗi của một hiệu ứng/demo không được làm chết các tác vụ cập nhật khác.
+
+## v1.5.5 — Serious Runtime & Visual Hardening
+- Replaced the homepage live clock interval with a lifecycle-safe timeout scheduler.
+- Cached live-clock DOM nodes instead of querying the document every second.
+- Removed the duplicate global scroll observer from the performance layer; homepage scroll progress remains owned by the app runtime.
+- Added containment to large visual surfaces to reduce paint/layout propagation.
+- Improved keyboard focus visibility and scroll offset consistency.
+- Added stronger constrained-device fallbacks and a complete reduced-motion override.
+- Preserved the existing theme customization, support dock, account and admin behavior.
