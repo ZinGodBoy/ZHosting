@@ -225,3 +225,6 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 
 ## 2026-11-14 — Support Bubble Runtime Consolidation
 Audited the floating support controls and found two overlapping implementations: a shared support dock and a homepage-only support bubble block. Consolidated the visible support bubbles into the shared runtime, moved viewport/scrollbar synchronization into that single owner, and removed the duplicate homepage markup plus duplicate app-level scroll listener. This reduces DOM duplication and avoids competing fixed-position components while preserving the Zalo/Discord UX.
+
+## 2026-11-14 — Theme Token Consistency
+Audited the v1.4.13 theme tool and found two consistency issues: the background was applied only as an inline body style, and RGB input handling treated the secondary gradient color as the primary background. v1.5.2 moves background rendering to shared CSS variables, adds a secondary RGB editor, updates the browser theme-color metadata, and keeps persistence in one theme state object.
