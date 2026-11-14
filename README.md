@@ -244,6 +244,29 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 **ZHosting — Built for creators, communities & businesses.**
 
 
+
+## Release status
+
+**Current release track:** `v1.4.0` — Frontend Hardening & Admin Control Plane
+
+- Account Center + Admin Center frontend prototype.
+- Trusted Admin Device Gate.
+- Shared branding/favicon.
+- Adaptive performance + reduced-motion support.
+- Authentication/session hardening.
+- Navigation/runtime regression fixes.
+
+### Semantic Versioning
+
+- `v1.0.0` — Initial frontend foundation.
+- `v1.1.0` — Account Center.
+- `v1.1.1` — Account UX/accessibility fixes.
+- `v1.2.0` — Authentication & Security foundation.
+- `v1.2.1` — Auth/session hardening.
+- `v1.3.0` — Admin Center.
+- `v1.3.1` — Admin UX/analytics/navigation fixes.
+- `v1.4.0` — Frontend hardening, performance and trusted-device gate.
+
 ## Account Center — 2026-11-06
 
 - Account Command Center.
@@ -259,7 +282,7 @@ Built with HTML, CSS, JavaScript and a lot of iteration.
 
 - Chuẩn hóa metadata tài khoản: role, status, loginCount và loginHistory.
 - Ghi nhận lần đăng nhập thành công cùng thiết bị/trình duyệt ở mức demo cục bộ.
-- Tài khoản đầu tiên trong demo được đánh dấu `admin` nếu chưa có admin.
+- Admin Center có trusted-device gate; tài khoản đăng ký mới mặc định là `user`.
 - Hỗ trợ cờ thu hồi phiên và khóa tài khoản ở client demo.
 - Không hiển thị hoặc lưu mật khẩu dạng plaintext.
 - Đây vẫn là cơ chế frontend/localStorage; production cần backend, database và RBAC server-side.
