@@ -203,3 +203,11 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Audited the trusted-device path used by Account Center and Admin Center.
 - Added lifecycle-local caching for the IndexedDB key pair and its SHA-256 fingerprint.
 - No authorization behavior was relaxed; the same fingerprint comparison remains authoritative for this frontend gate.
+
+
+## v1.4.11 — Runtime Smoothness Pass
+
+- Profile target: pointer interaction, range-slider updates, and compositor memory usage.
+- Removed Admin Center pointermove tilt because it required repeated `getBoundingClientRect()` calls and inline transform variables.
+- Config Builder range input now schedules one calculation per animation frame instead of recalculating multiple times inside a single frame.
+- Static cards no longer request persistent compositor promotion through `will-change`.
