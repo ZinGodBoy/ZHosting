@@ -194,3 +194,7 @@ Admin Center ưu tiên dữ liệu và thao tác quản trị trước hiệu �
 ## Support Dock
 
 Support Dock là component floating dùng chung: fixed positioning, circular brand icon, glass surface, hover/focus expansion, mobile icon-only mode và reduced-motion fallback. Component được render tập trung bởi `assets/js/support.js` để tránh duplicate markup giữa các page.
+
+### Support Dock V2
+
+Floating support uses a circular brand icon as the primary affordance. Desktop expands to a compact contact surface on hover/focus; mobile stays icon-only. Each channel has its own accent glow, while the shared container remains aligned with the ZHosting glass system.
