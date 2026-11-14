@@ -32,7 +32,7 @@
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           entry.target.classList.add("zui-visible","visible");
-          obs.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     },{threshold:.12,rootMargin:"0px 0px -40px"});
