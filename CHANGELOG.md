@@ -706,3 +706,17 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added pagehide cleanup for pending support-dock animation frames.
 - Refined footer contact cards, focus states, navigation hover treatment and constrained-device rendering.
 - Kept footer improvements CSS-only to avoid additional runtime work.
+
+## v1.5.9 — Runtime Timer Consolidation — 2026-11-14
+
+### Fixed
+- Giảm các runtime demo cập nhật trùng nhau trên trang chủ.
+- Gộp heartbeat Live Status và Latency thành một chu kỳ cập nhật thay vì hai timer độc lập.
+
+### Performance
+- Giảm số timer định kỳ và số lần wake-up JavaScript khi trang đang hoạt động.
+- Giữ cơ chế pause/resume khi tab bị ẩn thông qua scheduler dùng chung.
+
+### Quality
+- Live Status vẫn cập nhật Load, Latency và timestamp trong cùng một luồng runtime.
+- Không thay đổi dữ liệu cấu hình, đăng nhập hoặc giao diện điều khiển tài khoản.
