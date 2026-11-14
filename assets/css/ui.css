@@ -595,10 +595,7 @@ h1,h2,h3,h4,h5,h6,.brand,.gradient-text,.eyebrow,.btn,.nav-links,.section-head,.
 input,select,textarea,button{font-family:var(--font-ui)}
 
 /* ===== SHARED UI MICRO-INTERACTIONS ===== */
-.btn,.nav-links a,.service-card,.price-card,.command-card{will-change:transform}
-@media(prefers-reduced-motion:reduce){
-  .btn,.nav-links a,.service-card,.price-card,.command-card{will-change:auto!important}
-}
+/* Avoid persistent compositor promotion; interactive elements promote only during active transforms. */
 
 /* ===== ZHOSTING ACCESSIBILITY + STATE TOKENS v1.4.1 ===== */
 :root{--focus-ring:0 0 0 3px rgba(67,217,255,.14);--danger:#ff7187;--warning:#ffc76b}
