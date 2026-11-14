@@ -508,3 +508,17 @@ document.querySelectorAll('[data-theme-preset]').forEach(b=>b.addEventListener('
 document.querySelector('#themeToolsReset')?.addEventListener('click',()=>paint(defaults.accent,defaults.background,defaults.backgroundSecondary,defaults.mode,defaults.angle));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)open(false)});
 })();
+
+/* ===== FOOTER VIEWPORT UTILITY COLLISION GUARD v1.6.6 ===== */
+(()=>{
+ "use strict";
+ const footer=document.querySelector(".footer");
+ if(!footer||!("IntersectionObserver"in window))return;
+ const setVisible=visible=>document.body.classList.toggle("footer-in-view",visible);
+ const observer=new IntersectionObserver(entries=>{
+   const entry=entries[0];
+   setVisible(Boolean(entry?.isIntersecting));
+ },{threshold:0.02});
+ observer.observe(footer);
+ window.addEventListener("pagehide",()=>observer.disconnect(),{once:true});
+})();
