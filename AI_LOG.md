@@ -349,3 +349,8 @@ The support dock was also reviewed as a lightweight fixed utility. Its runtime u
 - Growth 30 ngày không còn lọc toàn bộ user cho từng ngày.
 - CSS bổ sung đường fallback cho reduced transparency và constrained compositing.
 - Static syntax check: 8 JavaScript runtime files PASS.
+## v1.8.1 — Return-State Render Optimization
+
+- Audit Admin Center phát hiện pageshow/visibilitychange luôn gọi render() + analytics() dù dữ liệu không đổi. Đã thêm snapshot localStorage và chỉ chạy refresh khi zhosting_users_v1 thay đổi.
+- Audit legacy Dashboard phát hiện health panel có thể cập nhật lại cùng class/text khi quay lại tab. Đã thêm healthSignature để bỏ qua DOM work khi trạng thái không đổi.
+- Static syntax check sau thay đổi: admin/admin.js PASS, dashboard/dashboard.js PASS.
