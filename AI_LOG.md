@@ -267,3 +267,10 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 
 ## v1.6.7 — Footer Utility Edge Case
 - Closed the remaining footer collision case where the theme panel could stay visible after the footer became visible.
+
+
+## v1.6.8 — Whole-Page Audit
+- Audited homepage scroll work and found document-height calculation inside every scroll animation frame.
+- Added cached bounds refreshed only when layout/viewport changes.
+- Audited the adaptive performance layer for observers/listeners surviving page exit and added explicit cleanup.
+- Added a restrained visual system pass without introducing continuous pointer effects or permanent GPU promotion.
