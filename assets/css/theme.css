@@ -85,7 +85,7 @@ body.theme-customized .account-badge{
 .ztheme-trigger{
   position:fixed;
   right:18px;
-  bottom:18px;
+  bottom:70px;
   z-index:1000;
   width:44px;height:44px;
   display:grid;place-items:center;
@@ -103,7 +103,7 @@ body.theme-customized .account-badge{
 .ztheme-panel{
   position:fixed;
   right:18px;
-  bottom:72px;
+  bottom:124px;
   z-index:1001;
   width:min(360px,calc(100vw - 28px));
   padding:18px;
@@ -138,6 +138,33 @@ body.theme-customized .account-badge{
 .ztheme-angle{display:flex;align-items:center;gap:10px}
 .ztheme-angle output{font:700 10px monospace;color:var(--z-accent);min-width:38px;text-align:right}
 @media(max-width:700px){
-  .ztheme-trigger{right:12px;bottom:12px}
-  .ztheme-panel{right:12px;bottom:64px}
+  .ztheme-trigger{right:12px;bottom:64px}
+  .ztheme-panel{right:12px;bottom:118px}
+}
+
+
+/* Shared primary-text mapping: keep page hierarchy while allowing RGB text customization. */
+body.theme-customized h1,
+body.theme-customized h2,
+body.theme-customized h3,
+body.theme-customized h4,
+body.theme-customized .brand,
+body.theme-customized .nav-links a,
+body.theme-customized .footer-bottom p,
+body.theme-customized .auth-card label,
+body.theme-customized .auth-card h1,
+body.theme-customized .auth-card p,
+body.theme-customized .dash-card strong,
+body.theme-customized .panel h2,
+body.theme-customized .account-command h2,
+body.theme-customized .admin-hero h1,
+body.theme-customized .admin-panel h2,
+body.theme-customized .admin-table td,
+body.theme-customized .admin-table th{
+  color:var(--z-text);
+}
+body.theme-customized .ztheme-panel h2,
+body.theme-customized .ztheme-panel label,
+body.theme-customized .ztheme-panel button{
+  color:var(--z-text);
 }
