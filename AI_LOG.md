@@ -331,3 +331,13 @@ The support dock lifecycle was also reviewed for browser page lifecycle behavior
 The Config Builder was recalculating more DOM state than necessary during RAM/CPU slider interaction: it searched for the active service and queried every config item again on each frame. The runtime now caches service buttons and config containers, then performs addon pricing, selection state and count updates in a single pass. The expensive two-frame visual retrigger is no longer executed for every slider movement.
 
 The support dock was also reviewed as a lightweight fixed utility. Its runtime uses scheduled resize/orientation work rather than a persistent layout observer, while retaining scroll throttling and lifecycle frame cleanup. Core JavaScript files were syntax-checked after the changes.
+
+
+## v1.7.9 — Runtime Frame Cleanup & Palette Consolidation
+
+- Audit tiếp theo tập trung vào các requestAnimationFrame có thể sống lâu hơn page lifecycle.
+- Homepage counter trước đây không giữ handle của frame đang chạy; runtime mới lưu frame theo element và cleanup khi pagehide.
+- Admin KPI có thể được refresh nhiều lần qua visibility/pageshow; animation frame mới nay hủy frame trước đó cùng KPI để tránh chồng work.
+- Admin reveal observer cũng được cleanup cùng lifecycle.
+- Kiểm tra CSS cascade cuối cho thấy footer/support còn giá trị violet từ các version cũ; bổ sung lớp consolidation dùng cyan/blue nhưng không thay đổi màu nhận diện Zalo/Discord.
+- Syntax check assets/js/app.js và admin/admin.js: PASS.
