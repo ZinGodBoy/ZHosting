@@ -987,3 +987,16 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - No new continuous animation loops were introduced.
 - Existing blue/cyan ZHosting palette, typography and constrained-device rendering remain unchanged.
 - Support dock keeps its lightweight rAF-throttled scroll/resize behavior.
+
+
+## v1.7.8 — Config Runtime & Support Paint Optimization — 2026-11-14
+
+### Performance
+- Reduced Config Builder recalculation work by caching service buttons and config items instead of repeatedly querying the document during slider input.
+- Consolidated addon selection, selected-state updates and addon counting into one pass per calculation.
+- Removed the double-rAF visual retrigger from ordinary slider calculations; the stronger visual transition is now only requested for meaningful configuration changes.
+- Kept the shared support dock on lightweight resize/orientation scheduling without introducing a continuous layout observer.
+
+### Quality
+- Re-checked core runtime syntax for app, UI, support and adaptive performance scripts.
+- Preserved the restored dark-navy, cyan and blue palette and existing reduced-motion/constrained-device behavior.
