@@ -1,3 +1,29 @@
+## v1.8.0 — Unified Theme & RGB Customization — 2026-11-14
+
+### Added
+- Thêm Theme Engine dùng chung cho Homepage, Auth, Account Center, Admin Center và 404.
+- Thêm nút 🎨 nổi để mở bảng tùy chỉnh màu trên mọi trang.
+- Hỗ trợ chỉnh RGB/HEX cho màu nhấn/icon, màu chữ và màu nền.
+- Hỗ trợ nền màu đơn hoặc gradient với màu phụ và góc gradient.
+- Thêm preset Cyan, Blue, Green và Orange.
+- Lưu tùy chỉnh theme cục bộ và tự đồng bộ khi chuyển trang.
+
+### Changed
+- Chuẩn hóa màu chủ đạo toàn hệ thống về một token dùng chung.
+- Đồng bộ background, accent, heading và các thành phần quản trị theo theme hiện tại.
+- Loại bỏ theme tool cũ chỉ hoạt động trên Homepage.
+
+### Performance
+- Tách theme runtime thành asset dùng chung, tránh lặp logic trong Homepage.
+- Loại bỏ CSS theme legacy không còn sử dụng.
+- Debounce việc ghi theme vào localStorage để giảm thao tác ghi khi kéo/chọn màu liên tục.
+- Giữ nguyên reduced-motion và các cơ chế adaptive performance hiện có.
+
+### Quality
+- Không thêm dependency.
+- Responsive cho desktop/mobile.
+- Escape/đóng panel bằng nút hoặc phím Escape.
+
 ## v1.7.7 — Theme Consistency & Rendering Polish — 2026-11-14
 
 ### Fixed
