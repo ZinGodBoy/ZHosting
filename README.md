@@ -287,3 +287,16 @@ Trang chủ được mở rộng thêm khu vực **ZHosting Command** với các
 ## Live Infrastructure UI — 2026-11-09
 
 Trang chủ có thêm lớp micro-telemetry mô phỏng cho Network Map: load, latency và timestamp được cập nhật định kỳ phía trình duyệt. Đây là dữ liệu demo, chưa phải monitoring thật.
+
+
+## UI consistency — 2026-11-14
+
+ZHosting sử dụng một hệ typography thống nhất trên Homepage, Auth, Account Center và Admin Center:
+
+- **Inter**: body text, form controls, navigation và dữ liệu.
+- **Space Grotesk**: heading, brand, CTA và các điểm nhấn giao diện.
+- Responsive và reduced-motion tiếp tục được hỗ trợ.
+
+## Product readiness
+
+Mục tiêu của các đợt update tiếp theo là đưa prototype về mức **đủ dùng cho demo/portfolio và vận hành frontend**, gồm UI consistency, auth UX, account management, admin analytics, accessibility, responsive behavior và security hardening. Backend production vẫn là phase riêng.
