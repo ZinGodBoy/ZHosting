@@ -293,3 +293,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Unified homepage footer branding with the shared ZHosting logo asset.
 - Fixed the homepage Security footer route from a root-level `SECURITY.md` path to `docs/SECURITY.md`.
 - Preserved trusted-device Admin Center protection and adaptive performance fallbacks.
+
+
+## Frontend loading & regression hardening — 2026-11-14
+
+- Chuyển các runtime frontend không cần blocking sang `defer` và giữ đúng thứ tự dependency.
+- Performance layer được chạy trước Homepage/App engine để adaptive mode có hiệu lực sớm.
+- Giảm parser blocking từ các script UI/Auth/Admin.
+- Sửa regression ở Admin Directory search debounce do escape newline trong source.
+- Giữ một motion engine chính trên Homepage để tránh observer/listener trùng.
+- Không thay đổi dữ liệu người dùng, auth/session model hoặc trusted-device authorization.
