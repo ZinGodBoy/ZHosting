@@ -491,3 +491,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify homepage layout measurement observes `<main>` when available.
 - Verify `assets/js/ui.js` syntax and reveal observer disconnect on `pagehide`.
 - Verify constrained rendering and restored blue/cyan palette remain active.
+
+
+## v1.7.7 — Runtime Bugfix Verification
+- [ ] Scroll reveal elements into view and confirm no ReferenceError / obs is not defined appears in the console.
+- [ ] Confirm reveal elements become visible exactly once and are unobserved after activation.
+- [ ] Navigate away and return through normal browser lifecycle restoration; support bubbles remain interactive.
+- [ ] Resize/scroll the support dock and confirm no duplicate frame scheduling or console errors occur.
+- [ ] Confirm blue/cyan palette, typography and constrained-device visual reductions remain unchanged.
