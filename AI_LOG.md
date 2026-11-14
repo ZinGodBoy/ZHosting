@@ -115,3 +115,10 @@ Tiếp tục nâng cấp Admin Center với spotlight theo con trỏ, tilt card,
 ## 2026-11-14 — Admin Device Gate
 
 Thêm trusted-device layer cho Admin Center: IndexedDB + non-extractable ECDSA private key, public-key fingerprint binding, hidden admin navigation trên thiết bị không được tin cậy, route guard và audit event. Đồng thời loại bỏ auto-promote tài khoản đầu tiên thành admin.
+
+## Regression hardening — 2026-11-14
+
+- Removed automatic first-user admin promotion from registration.
+- Removed duplicated performance runtime on 404.html.
+- Reworked UI session polling and Admin Center clock scheduling to pause in background tabs and clean up on page lifecycle changes.
+- Hardened hash-anchor navigation against empty or invalid selectors.
