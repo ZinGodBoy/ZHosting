@@ -510,3 +510,256 @@ td{color:#b9c9d7;font-size:10px}
 }
 .admin-toast.is-visible{opacity:1;transform:none}
 .admin-toast strong{display:block;color:var(--admin-cyan);font-family:var(--font-display,Space Grotesk);margin-bottom:2px}
+
+/* =========================================================
+   Admin Center Motion Suite — v3
+   ========================================================= */
+.admin-page{
+  --spot-x:50%;
+  --spot-y:20%;
+  --tilt-x:0deg;
+  --tilt-y:0deg;
+}
+.admin-page::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(520px circle at var(--spot-x) var(--spot-y),rgba(67,217,255,.075),transparent 68%);
+  transition:background-position .08s linear;
+}
+.admin-scanline{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(67,217,255,.08) 4px,transparent 5px);
+  background-size:100% 9px;
+  animation:adminScan 14s linear infinite;
+}
+@keyframes adminScan{from{background-position:0 0}to{background-position:0 180px}}
+
+.admin-header{
+  transition:height .3s ease,background .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.admin-page.header-scrolled .admin-header{
+  height:62px;
+  background:rgba(4,10,18,.88);
+  border-bottom-color:rgba(67,217,255,.18);
+  box-shadow:0 18px 55px rgba(0,0,0,.24),0 1px 0 rgba(67,217,255,.04);
+}
+.admin-page.header-scrolled .admin-brand-copy span{opacity:.7}
+
+.admin-hero{
+  position:relative;
+  padding:18px 0 12px;
+}
+.admin-hero::before{
+  content:"";position:absolute;left:-8%;right:25%;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(67,217,255,.28),transparent);
+  transform-origin:left;animation:adminLineReveal 1.4s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes adminLineReveal{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+.admin-hero h1{position:relative;display:inline-block}
+.admin-hero h1::after{
+  content:"";position:absolute;left:0;bottom:-10px;width:48px;height:2px;border-radius:99px;
+  background:linear-gradient(90deg,var(--admin-cyan),transparent);
+  box-shadow:0 0 18px rgba(67,217,255,.5);
+  animation:adminAccentPulse 2.4s ease-in-out infinite;
+}
+@keyframes adminAccentPulse{0%,100%{width:48px;opacity:.7}50%{width:90px;opacity:1}}
+
+.admin-privacy{
+  transform:perspective(900px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
+  transition:transform .18s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.admin-privacy:hover{border-color:rgba(67,217,255,.28);box-shadow:0 28px 85px rgba(0,0,0,.25),0 0 32px rgba(67,217,255,.06)}
+
+.admin-kpi{
+  position:relative;
+  overflow:hidden;
+}
+.admin-kpi::after{
+  animation:adminOrb 6s ease-in-out infinite;
+}
+.admin-kpi:nth-child(2)::after{animation-delay:-1.2s}
+.admin-kpi:nth-child(3)::after{animation-delay:-2.4s}
+.admin-kpi:nth-child(4)::after{animation-delay:-3.6s}
+.admin-kpi:nth-child(5)::after{animation-delay:-4.8s}
+@keyframes adminOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-18px,16px) scale(1.35)}}
+.admin-kpi strong{
+  background:linear-gradient(100deg,#fff,var(--admin-cyan),#8c96ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:180% auto;
+  animation:adminTextShimmer 5s ease-in-out infinite;
+}
+@keyframes adminTextShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.admin-panel{
+  transform:translateZ(0);
+  will-change:transform;
+}
+.admin-panel::before{
+  background-size:200% 100%;
+  animation:adminBorderFlow 5s linear infinite;
+}
+@keyframes adminBorderFlow{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.admin-panel:hover{
+  transform:translate3d(0,-4px,0) perspective(1000px) rotateX(.25deg);
+}
+.admin-panel-head h2{transition:transform .3s ease,color .3s ease}
+.admin-panel:hover .admin-panel-head h2{transform:translateX(3px);color:#f5fbff}
+
+.admin-commandbar{
+  position:relative;
+}
+.admin-commandbar::after{
+  content:"";position:absolute;top:0;bottom:0;width:120px;left:-140px;
+  background:linear-gradient(90deg,transparent,rgba(67,217,255,.09),transparent);
+  transform:skewX(-18deg);animation:adminSweep 5.5s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes adminSweep{0%,55%{left:-160px}85%,100%{left:calc(100% + 40px)}}
+
+.admin-commandbar time{
+  animation:adminClockGlow 2.6s ease-in-out infinite;
+}
+@keyframes adminClockGlow{0%,100%{box-shadow:0 0 0 rgba(67,217,255,0)}50%{box-shadow:0 0 18px rgba(67,217,255,.10)}}
+
+.admin-toolbar{
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.admin-toolbar:focus-within{
+  transform:translateY(-2px);
+  border-color:rgba(67,217,255,.24);
+  box-shadow:0 20px 65px rgba(0,0,0,.2),0 0 28px rgba(67,217,255,.045);
+}
+
+.admin-toolbar button,.admin-commandbar button,.admin-header-actions button,.admin-header-actions a,.view,.admin-actions button{
+  isolation:isolate;
+}
+.admin-toolbar button::after,.admin-commandbar button::after,.admin-header-actions button::after,.admin-header-actions a::after,.view::after,.admin-actions button::after{
+  content:"";position:absolute;inset:1px;border-radius:inherit;border:1px solid rgba(255,255,255,.04);
+  opacity:0;transition:opacity .25s ease;
+}
+.admin-toolbar button:hover::after,.admin-commandbar button:hover::after,.admin-header-actions button:hover::after,.admin-header-actions a:hover::after,.view:hover::after,.admin-actions button:hover::after{opacity:1}
+
+.admin-panel table tbody tr{
+  position:relative;
+}
+.admin-panel table tbody tr::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--admin-cyan);
+  transform:scaleY(0);transform-origin:center;transition:transform .25s ease;
+}
+.admin-panel table tbody tr:hover::after,.admin-panel table tbody tr.is-selected::after{transform:scaleY(1)}
+.admin-panel table tbody tr:hover{
+  background:linear-gradient(90deg,rgba(67,217,255,.045),transparent);
+}
+.avatar,.profile-avatar{
+  transition:transform .35s cubic-bezier(.2,.75,.25,1),box-shadow .35s ease;
+}
+.admin-panel table tbody tr:hover .avatar,.admin-profile:hover .profile-avatar{
+  transform:scale(1.08) rotate(-3deg);
+  box-shadow:0 0 24px rgba(67,217,255,.16);
+}
+
+.growth-chart i,.bar-track i,.device-track i{
+  position:relative;
+  overflow:hidden;
+}
+.growth-chart i::after,.bar-track i::after,.device-track i::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.28) 50%,transparent 75%);
+  transform:translateX(-140%);
+  animation:adminBarShine 3.8s ease-in-out infinite;
+}
+.growth-chart i:nth-child(3n)::after,.bar-item:nth-child(3n) .bar-track i::after{animation-delay:-1.2s}
+.growth-chart i:nth-child(3n+1)::after{animation-delay:-2.4s}
+@keyframes adminBarShine{0%,55%{transform:translateX(-140%)}75%,100%{transform:translateX(140%)}}
+
+.health-bar i{
+  position:relative;overflow:hidden;
+}
+.health-bar i::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  animation:adminHealthSweep 2.8s linear infinite;
+}
+@keyframes adminHealthSweep{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+
+.donut{
+  animation:adminDonutIn .9s cubic-bezier(.2,.75,.25,1) both,adminDonutFloat 5s ease-in-out 1s infinite;
+}
+@keyframes adminDonutIn{from{opacity:0;transform:scale(.72) rotate(-18deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes adminDonutFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+.legend span{transition:transform .22s ease,color .22s ease}
+.legend span:hover{transform:translateX(5px);color:#eaf7ff}
+
+.session-user{
+  position:relative;overflow:hidden;
+}
+.session-user::before{
+  content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(67,217,255,.04),transparent);
+  transform:translateX(-100%);animation:adminSessionSweep 3.6s ease-in-out infinite;
+}
+@keyframes adminSessionSweep{0%,35%{transform:translateX(-100%)}70%,100%{transform:translateX(100%)}}
+
+.activity-row{
+  position:relative;
+  transition:transform .25s ease,background .25s ease,padding-left .25s ease;
+}
+.activity-row::before{
+  content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(180deg,transparent,var(--admin-cyan),transparent);
+  opacity:0;transition:opacity .25s ease;
+}
+.activity-row:hover::before{opacity:1}
+.activity-row:hover{transform:translateX(4px);padding-left:8px}
+
+.history-row time,.activity-row time{transition:color .2s ease}
+.history-row:hover time,.activity-row:hover time{color:var(--admin-cyan)}
+
+.admin-detail{
+  transition:box-shadow .35s ease,border-color .35s ease;
+}
+.admin-detail.has-selection{
+  border-color:rgba(67,217,255,.28);
+  box-shadow:0 30px 100px rgba(0,0,0,.28),0 0 35px rgba(67,217,255,.045);
+}
+.admin-detail .admin-profile{
+  animation:adminDetailIn .45s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes adminDetailIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.empty{
+  animation:adminEmptyFloat 4s ease-in-out infinite;
+}
+@keyframes adminEmptyFloat{0%,100%{transform:translateY(0);opacity:.72}50%{transform:translateY(-3px);opacity:1}}
+
+.admin-back-top{
+  overflow:hidden;
+}
+.admin-back-top::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(67,217,255,.12),transparent 55%);
+  opacity:0;transition:opacity .25s ease;
+}
+.admin-back-top:hover::before{opacity:1}
+
+.admin-toast.is-visible{
+  animation:adminToastIn .35s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes adminToastIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+
+.ripple-dot{
+  position:absolute;z-index:-1;width:12px;height:12px;border-radius:50%;
+  background:rgba(67,217,255,.22);transform:translate(-50%,-50%) scale(0);
+  animation:adminRipple .65s ease-out forwards;pointer-events:none;
+}
+@keyframes adminRipple{to{transform:translate(-50%,-50%) scale(14);opacity:0}}
+
+@media(max-width:900px){
+  .admin-hero{padding-top:8px}
+  .admin-page.header-scrolled .admin-header{height:68px}
+}
+@media(prefers-reduced-motion:reduce){
+  .admin-page::after,.admin-scanline,.admin-hero::before,.admin-hero h1::after,.admin-kpi::after,
+  .admin-kpi strong,.admin-panel::before,.admin-commandbar::after,.admin-commandbar time,
+  .growth-chart i::after,.bar-track i::after,.device-track i::after,.health-bar i::after,
+  .donut,.session-user::before,.empty,.admin-toast.is-visible{animation:none!important}
+  .admin-panel:hover,.admin-privacy:hover,.admin-toolbar:focus-within{transform:none}
+}
