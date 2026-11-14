@@ -628,3 +628,4 @@ body.zperf-paused .dashboard-page *{animation-play-state:paused!important}
 /* ===== RENDERING HARDENING v1.6.0 ===== */
 body.zperf-lite *{text-shadow:none}
 @media(prefers-reduced-motion:reduce){body *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+\n\n/* ===== CONSTRAINED DASHBOARD FINISH v1.7.1 ===== */\nbody.zperf-lite .dashboard-page .dash-header,\nbody.zperf-lite .dashboard-page .palette-backdrop,\nbody.zperf-lite .dashboard-page .modal-backdrop{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}\nbody.zperf-lite .dashboard-page .account-badge,\nbody.zperf-lite .dashboard-page .mail-unread{animation:none!important}\n
