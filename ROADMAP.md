@@ -111,3 +111,12 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - [x] Live clock micro-interaction.
 - [x] Responsive/reduced-motion support.
 - [ ] Connect launch metrics to real backend telemetry.
+
+
+### Admin Center security next step
+- [x] Browser-bound trusted admin device gate
+- [x] Remove automatic first-account admin promotion
+- [x] Hide Admin Center navigation on untrusted devices
+- [ ] Move admin identity/session/authorization to a backend
+- [ ] Add server-side device enrollment and revocation
+- [ ] Add WebAuthn/passkey step-up authentication for privileged actions
