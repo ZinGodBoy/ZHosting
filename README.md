@@ -365,3 +365,5 @@ The project remains intentionally framework-free. These improvements are fronten
 - Mobile sử dụng containment/content-visibility cho section lớn để giảm chi phí layout/paint ban đầu.
 - Giảm các hiệu ứng blur/glow/animation nặng trên thiết bị yếu mà không thay đổi trải nghiệm trên máy đủ mạnh.
 - Không thêm framework hoặc dependency mới.
+
+\n## Release v1.4.3 — Regression hardening\n\nBản cập nhật tập trung vào độ ổn định cross-page: shared UI runtime, logout ownership, browser fallback, responsive focus/disabled states và reduced-motion. Đây là frontend hardening; không thay thế backend authorization, server-side session hoặc audit persistence.\n\n
