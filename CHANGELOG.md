@@ -1,3 +1,19 @@
+## v1.8.3 — Reveal Runtime Consolidation — 2026-11-14
+
+### Performance
+- Hợp nhất hệ thống reveal về một runtime UI thay vì để Homepage và Performance Layer cùng quan sát một phần tử.
+- Loại bỏ reveal observer riêng của Homepage.
+- Loại bỏ các mục `status-main` và `status-list` bị quan sát trùng trong Adaptive Performance Layer.
+- Giảm số callback IntersectionObserver và thao tác DOM khi cuộn/truy cập các section.
+
+### Fixed
+- Tránh tình trạng một card nhận hai lifecycle reveal khác nhau.
+- Giữ nguyên hiệu ứng xuất hiện, nhưng chỉ còn một nguồn điều khiển trạng thái `visible`/reveal.
+
+### Quality
+- Không thay đổi layout, dữ liệu tài khoản, authentication hoặc quyền Admin.
+- Không thêm timer nền, polling hoặc dependency mới.
+
 ## v1.8.2 — Observer & Compositing Optimization — 2026-11-14
 
 ### Performance
