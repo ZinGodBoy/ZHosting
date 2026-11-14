@@ -429,3 +429,10 @@ body{background:radial-gradient(circle at 78% -8%,rgba(139,92,246,.18),transpare
 @media(prefers-reduced-motion:reduce){
   .support-dock{transition:none}
 }
+
+/* ===== PERFORMANCE MODE v1.4.6 ===== */
+body.zperf-lite .hero-grid-lines,body.zperf-lite .orb-one,body.zperf-lite .orb-two{display:none}
+body.zperf-lite .service-card,body.zperf-lite .price-card,body.zperf-lite .server-card,body.zperf-lite .status-main,body.zperf-lite .status-list,body.zperf-lite .review,body.zperf-lite .compare-wrap,body.zperf-lite .dash-card,body.zperf-lite .panel{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
+body.zperf-lite .service-card:hover,body.zperf-lite .price-card:hover,body.zperf-lite .server-card:hover{transform:none}
+body.zperf-paused *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){body *{scroll-behavior:auto!important}}
