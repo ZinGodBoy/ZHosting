@@ -400,3 +400,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Mobile giữ dạng icon-only để không che nội dung.
 - Support dock được inject bởi một runtime duy nhất và có guard chống khởi tạo trùng.
 - Thêm reduced-motion fallback.
+
+## Support Dock V2 — 2026-11-14
+
+- Nâng cấp hai bong bóng Zalo/Discord thành floating branded support dock.
+- Thêm trạng thái `HỖ TRỢ / ONLINE`.
+- Icon thương hiệu giữ dạng hình tròn; desktop có hover/focus expansion, shimmer và glow riêng theo từng nền tảng.
+- Mobile chuyển về icon-only 50px để tránh che nội dung.
