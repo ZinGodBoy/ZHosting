@@ -598,3 +598,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Chuyển ripple feedback từ listener riêng trên từng nút sang event delegation cấp document.
 - Giảm số lượng event listener và giữ ripple hoạt động với các nút được render động.
 - Không thay đổi auth, session, Admin Center hoặc dữ liệu người dùng.
+
+## v1.5.2 — Theme Token Consistency
+- Theme customization now uses shared CSS tokens for the page background and major UI surfaces instead of relying only on an inline body background.
+- Added RGB controls for the secondary gradient color.
+- Fixed secondary RGB edits previously targeting the primary background.
+- Theme changes now update the browser `theme-color` metadata and persist the selected gradient/solid mode.
+- Shared accent/background tokens are reused by buttons, cards, header and scroll progress.
