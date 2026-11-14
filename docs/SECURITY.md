@@ -85,3 +85,9 @@ Audit chứa admin ID/email và target ID/email cùng thời điểm thao tác; 
 - Các trường bắt đầu bằng =, +, -, @ được prefix apostrophe để giảm rủi ro formula injection khi mở bằng spreadsheet.
 
 Các biện pháp trên chỉ harden prototype. Không thay thế backend authorization, server-side rate limiting hoặc trusted audit logging.
+
+
+### Logout audit — 2026-11-14
+
+- Explicit logout được ghi nhận bằng audit event logout nếu có session hợp lệ.
+- Event chỉ lưu email tham chiếu; không lưu password, token hoặc session secret.
