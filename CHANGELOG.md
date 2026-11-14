@@ -1,3 +1,20 @@
+## v1.6.1 — Runtime Lifecycle & Performance Follow-up — 2026-11-14
+
+### Fixed
+- Support bubbles dừng RAF/resize work khi tab bị ẩn và tự đo lại khi quay lại.
+- Đồng bộ biến vị trí support dock với runtime CSS `--support-right`.
+- Scheduler vẫn tiếp tục vòng lặp sau exception; chỉ log lỗi khi bật `window.ZHostingDebug`.
+- FAQ search được debounce để tránh lọc DOM liên tục khi người dùng gõ nhanh.
+
+### Performance
+- Loại bỏ `will-change: transform` cố định còn sót trên shared selectors.
+- Chế độ constrained tự phản ứng khi trạng thái mạng `saveData/effectiveType` thay đổi.
+- Giảm shadow/shimmer không cần thiết trên thiết bị hoặc mạng bị giới hạn.
+
+### Quality
+- Không thay đổi cấu trúc UI, authentication hoặc dữ liệu tài khoản.
+- Ưu tiên lifecycle đúng, giảm main-thread work và giữ nguyên visual language hiện tại.
+
 ## CSS & JS hardening — 2026-11-14
 
 - Tăng cường focus-visible và thao tác touch trên shared CSS.
