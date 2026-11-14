@@ -300,3 +300,14 @@ ZHosting sử dụng một hệ typography thống nhất trên Homepage, Auth, 
 ## Product readiness
 
 Mục tiêu của các đợt update tiếp theo là đưa prototype về mức **đủ dùng cho demo/portfolio và vận hành frontend**, gồm UI consistency, auth UX, account management, admin analytics, accessibility, responsive behavior và security hardening. Backend production vẫn là phase riêng.
+
+
+## Performance architecture — 2026-11-14
+
+ZHosting có thêm lớp **Adaptive Performance Layer** để giữ visual system hiện đại nhưng tránh animation và rendering cost không cần thiết.
+
+- `assets/js/performance.js` là runtime nhẹ, không thêm framework.
+- Tự hạ hiệu ứng khi phát hiện reduced-motion, thiết bị tài nguyên thấp hoặc Save-Data.
+- Background telemetry và clock được pause về mặt callback khi tab bị ẩn.
+- CSS dùng containment/content-visibility cho các khu vực có chi phí render cao.
+- Admin Center được ưu tiên tối ưu riêng vì có nhiều chart, feed, table và motion layer.
