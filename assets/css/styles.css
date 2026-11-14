@@ -627,8 +627,10 @@ body.zperf-paused .support-bubble{animation-play-state:paused}
 
 /* ===== RENDERING HARDENING v1.6.0 ===== */
 /* Avoid permanent GPU promotion; promote only during active transforms. */
-.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:transform}
+.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:auto}
 body.zperf-lite .server-card{animation:none}
+body.zperf-lite .btn-primary::after{display:none}
+body.zperf-lite .announcement-live i,body.zperf-lite .config-live i,body.zperf-lite .node-ping{box-shadow:none}
 body.zperf-lite .noise{display:none}
 @media(prefers-reduced-motion:reduce){.server-card{animation:none!important}.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:auto}}
 
