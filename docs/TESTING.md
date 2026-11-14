@@ -1,3 +1,13 @@
+## v1.8.3 Constrained Rendering Checks
+
+- Verify constrained mode suppresses Admin ambient/grid/scanline/orb effects.
+- Verify constrained Admin and Dashboard cards do not translate or use large shadows on hover.
+- Verify support bubbles remain readable and use the navy/cyan brand palette.
+- Verify mobile Admin workspace sections can use content visibility without losing layout structure.
+- Verify reduced-motion mode limits animation duration and iteration count.
+- Re-run static JavaScript syntax checks after runtime changes.
+- Browser E2E/Lighthouse was not run in this pass.
+
 ## v1.8.2 Runtime Performance Checks
 
 - Verify `assets/js/performance.js` parses without syntax errors.
