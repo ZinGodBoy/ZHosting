@@ -612,3 +612,15 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Reduced expensive fixed-background rendering on mobile.
 - Added constrained-device support bubble fallback to remove unnecessary animation and blur.
 - Kept reduced-motion behavior intact.
+
+## v1.5.4 — Runtime Lag & Event Optimization — 2026-11-14
+
+### Performance
+- Hợp nhất visibility scheduler của Homepage: nhiều timer demo dùng chung một `visibilitychange` listener thay vì tạo listener riêng.
+- Dừng scheduler khi trang rời lifecycle để tránh background work không cần thiết.
+- Chuyển validation input chung của UI runtime sang event delegation, giảm listener theo số lượng input/textarea.
+- Giữ nguyên hành vi validation, live status, command UI và reduced-motion.
+
+### Fixed
+- Giảm nguy cơ duplicate runtime work khi có nhiều thành phần UI hoạt động cùng trang.
+- Không thay đổi auth/session, Admin Center, trusted-device gate hoặc dữ liệu người dùng.
