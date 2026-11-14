@@ -65,7 +65,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .zui-stagger>*:nth-child(3){--zui-index:2}.zui-stagger>*:nth-child(4){--zui-index:3}
 .zui-stagger>*:nth-child(5){--zui-index:4}.zui-stagger>*:nth-child(6){--zui-index:5}
 
-.zui-tilt{transform-style:preserve-3d;will-change:transform;transition:transform .18s ease,box-shadow .3s ease}
+.zui-tilt{transform-style:preserve-3d;will-change:auto;transition:transform .18s ease,box-shadow .3s ease}
 .zui-tilt:hover{box-shadow:0 24px 80px rgba(0,0,0,.25)}
 
 .zui-glow-line{
@@ -146,7 +146,7 @@ input:focus-visible,button:focus-visible,a:focus-visible{
 .zui-page-lock{overflow:hidden!important}
 
 .auth-card,.dash-card,.panel,.service-card,.price-card,.review,.status-main,.status-list{
-  will-change:transform;
+  will-change:auto;
 }
 
 .auth-card{
@@ -637,3 +637,8 @@ body.zperf-constrained .zui-grid{opacity:.035;background-size:96px 96px}
 body.zperf-lite .zui-grid{display:none}
 body.zperf-lite [data-zui-reveal]{transition:none;transform:none;opacity:1}
 @media(prefers-reduced-motion:reduce){.zui-page{animation:none;opacity:1}.zui-grain,.zui-grid{display:none!important}.zui-tilt{will-change:auto}}
+
+
+/* ===== RENDERING HARDENING v1.6.0 ===== */
+body.zperf-lite *{text-shadow:none}
+@media(prefers-reduced-motion:reduce){body *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
