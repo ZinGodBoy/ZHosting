@@ -700,3 +700,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added a compact footer utility row and consistent keyboard focus states.
 - Removed the unused homepage `support-bubble-status` marker.
 - Reduced footer visual overhead on constrained devices while preserving the main visual hierarchy.
+
+## v1.6.1 — Footer Refinement & Support Dock Fix
+- Fixed the support bubble scrollbar-offset variable mismatch so the floating contact dock uses its intended right offset.
+- Added pagehide cleanup for pending support-dock animation frames.
+- Refined footer contact cards, focus states, navigation hover treatment and constrained-device rendering.
+- Kept footer improvements CSS-only to avoid additional runtime work.
