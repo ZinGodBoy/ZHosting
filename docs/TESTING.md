@@ -529,3 +529,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Reduced transparency tắt backdrop blur trên header/modal/support surfaces.
 - [ ] `zperf-constrained` không cho phép cascade cũ bật lại blur.
 - [x] Static syntax check: dashboard.js, app.js, ui.js, performance.js, support.js, auth.js, dashboard/dashboard.js, admin/admin.js.
+
+### v1.8.1 — Return-State Render Optimization
+
+- [ ] Admin chuyển tab/quay lại khi dữ liệu user không đổi không gọi full render() + analytics().
+- [ ] Thay đổi dữ liệu user rồi quay lại tab khiến Admin Center refresh đúng.
+- [ ] Dashboard health panel không ghi lại class/text nếu trạng thái không đổi.
+- [ ] Dashboard vẫn cập nhật health khi session/security/activity state thay đổi.
+- [x] Static JavaScript syntax check: admin/admin.js, dashboard/dashboard.js.
