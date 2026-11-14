@@ -584,3 +584,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Sửa offset để 2 bong bóng bám đúng mép phải, có tính scrollbar.
 - Đồng bộ lại vị trí khi pageshow/orientation change.
 - Hủy RAF khi pagehide để tránh giữ animation task khi rời trang.
+
+## v1.5.1 — Unified Support Bubble Runtime
+- Replaced the duplicated homepage support bubble markup with one shared runtime component.
+- Zalo/Discord bubbles are now generated consistently across public, auth, dashboard, admin and 404 routes.
+- Scroll-follow positioning and scrollbar-aware horizontal alignment are now owned by the shared support runtime to avoid duplicate scroll handlers.
+- Preserved responsive and reduced-motion behavior.
