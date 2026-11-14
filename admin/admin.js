@@ -201,6 +201,23 @@ document.querySelectorAll(".admin-reveal-group,.admin-workspace").forEach(node=>
  if(revealObserver)revealObserver.observe(node); else node.classList.add("is-visible");
 });
 
+const toast=document.createElement("div");
+toast.className="admin-toast";toast.setAttribute("role","status");toast.setAttribute("aria-live","polite");
+document.body.append(toast);
+let toastTimer=0;
+const notify=(title,message)=>{
+ toast.innerHTML="";
+ const strong=document.createElement("strong");strong.textContent=title;
+ const span=document.createElement("span");span.textContent=message;
+ toast.append(strong,span);toast.classList.add("is-visible");
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("is-visible"),2600);
+};
+document.addEventListener("keydown",event=>{
+ if((event.key==="/"&&!["INPUT","TEXTAREA","SELECT"].includes(document.activeElement?.tagName))||(event.key.toLowerCase()==="k"&&(event.ctrlKey||event.metaKey))){
+   event.preventDefault();$("adminGlobalSearch")?.focus();$("adminGlobalSearch")?.select();
+ }
+ if(event.key==="Escape"&&document.activeElement?.id==="adminGlobalSearch")document.activeElement.blur();
+});
 const scrollProgress=document.createElement("div");
 scrollProgress.className="admin-scroll-progress";
 document.body.append(scrollProgress);
@@ -233,11 +250,11 @@ if(!reduceMotion){
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 
-$("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();});
-$("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();}});
-$("clearFilters")?.addEventListener("click",()=>{["search"].forEach(id=>{if($(id))$(id).value="";});if($("status"))$("status").value="all";if($("role"))$("role").value="all";if($("sort"))$("sort").value="recent";render();});
+$("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();notify("Search","Đã đưa con trỏ tới bộ lọc User Directory.");});
+$("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();notify("Filter","Đang hiển thị tài khoản bị khóa.");}});
+$("clearFilters")?.addEventListener("click",()=>{["search"].forEach(id=>{if($(id))$(id).value="";});if($("status"))$("status").value="all";if($("role"))$("role").value="all";if($("sort"))$("sort").value="recent";render();notify("Filters","Đã đặt lại toàn bộ bộ lọc.");});
 ["search","status","role","sort"].forEach(id=>$(id)?.addEventListener(id==="search"?"input":"change",render));
-$("refresh")?.addEventListener("click",refreshData);
+$("refresh")?.addEventListener("click",()=>{refreshData();notify("System","Dữ liệu Admin Center đã được làm mới.");});
 $("close")?.addEventListener("click",()=>show(null));
 $("logout")?.addEventListener("click",()=>auth.logout?.());
 
@@ -259,13 +276,13 @@ $("lock")?.addEventListener("click",()=>{
  const u=users.find(x=>x.id===selectedId);if(!u||u.email===me.email)return;
  const next=normalize(u).status==="locked"?"active":"locked";u.status=next;
  auth.recordAudit?.(next==="locked"?"admin_lock":"admin_unlock",{adminId:me.id,adminEmail:me.email,targetId:u.id,targetEmail:u.email});
- save();render();analytics();show(u.id);
+ save();render();analytics();show(u.id);notify(next==="locked"?"Account locked":"Account unlocked",u.email);
 });
 $("revoke")?.addEventListener("click",()=>{
  const u=users.find(x=>x.id===selectedId);if(!u||u.email===me.email)return;
  u.sessionRevokedAt=new Date().toISOString();
  auth.recordAudit?.("admin_revoke_session",{adminId:me.id,adminEmail:me.email,targetId:u.id,targetEmail:u.email});
- save();analytics();show(u.id);
+ save();analytics();show(u.id);notify("Session revoked",u.email);
 });
 
 render();analytics();
