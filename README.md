@@ -372,3 +372,5 @@ The project remains intentionally framework-free. These improvements are fronten
 - `v1.4.6` — Account/Admin Consistency Fixes
 
 - `v1.4.7` — Support Dock Scrollbar Alignment
+
+- `v1.4.8` — Support Dock Polish
