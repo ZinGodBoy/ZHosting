@@ -306,7 +306,7 @@ const safeReadArray=(storage,key)=>{
         name,email,password:passwordRecord,
         createdAt:new Date().toISOString(),
         lastLogin:null,
-        role:users.length===0?"admin":"user",
+        role:"user",
         status:"active",
         loginCount:0,
         loginHistory:[],
