@@ -23,14 +23,25 @@ const syncNetworkMode=()=>{
  root.classList.toggle("zperf-constrained",lowMemory||lowCpu||saver||slow);
 };
 syncNetworkMode();
-(navigator.connection||navigator.mozConnection||navigator.webkitConnection)?.addEventListener?.("change",syncNetworkMode);
+const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+network?.addEventListener?.("change",syncNetworkMode);
 let raf=0,lastViewportHeight=0;
 const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
 window.addEventListener("resize",syncViewport,{passive:true});
 window.addEventListener("pagehide",()=>{if(raf)cancelAnimationFrame(raf);raf=0},{once:true});
 syncViewport();
 document.addEventListener("visibilitychange",()=>{body?.classList.toggle("zperf-paused",document.hidden);if(document.hidden)root.classList.remove("z-scroll-active")},{passive:true});
-const reveal=selector=>{const nodes=document.querySelectorAll(selector);if(!nodes.length||!("IntersectionObserver"in window))return;const io=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("zperf-visible");io.unobserve(entry.target)}},{rootMargin:"0px 0px -6% 0px",threshold:.01});nodes.forEach(node=>io.observe(node))};
+const revealObservers=[];
+const reveal=selector=>{const nodes=document.querySelectorAll(selector);if(!nodes.length||!("IntersectionObserver"in window))return;const io=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("zperf-visible");io.unobserve(entry.target)}},{rootMargin:"0px 0px -6% 0px",threshold:.01});nodes.forEach(node=>io.observe(node));revealObservers.push(io)};
 if(!reduced)reveal(".service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list,.admin-kpi,.admin-panel,.admin-workspace");
-if("requestIdleCallback"in window)requestIdleCallback(()=>root.classList.add("z-idle-ready"),{timeout:1200});else setTimeout(()=>root.classList.add("z-idle-ready"),600);
+let idleHandle=0;
+const markIdle=()=>{idleHandle=0;root.classList.add("z-idle-ready")};
+if("requestIdleCallback"in window)idleHandle=requestIdleCallback(markIdle,{timeout:1200});else idleHandle=window.setTimeout(markIdle,600);
+window.addEventListener("pagehide",()=>{
+  revealObservers.forEach(io=>io.disconnect());
+  revealObservers.length=0;
+  network?.removeEventListener?.("change",syncNetworkMode);
+  reducedQuery?.removeEventListener?.("change",syncNetworkMode);
+  if(idleHandle){if("cancelIdleCallback"in window)cancelIdleCallback(idleHandle);else clearTimeout(idleHandle);idleHandle=0}
+},{once:true});
 })();
