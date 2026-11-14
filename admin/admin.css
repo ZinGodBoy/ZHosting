@@ -848,3 +848,20 @@ td{color:#b9c9d7;font-size:10px}
   .admin-page::after,.admin-scanline{display:none}
   .admin-panel,.admin-kpi,.admin-privacy{contain:none}
 }
+
+/* ===== ADMIN PERFORMANCE POLISH ===== */
+.admin-main{contain:layout}
+.admin-kpi,.admin-panel,.admin-workspace,.admin-directory,.admin-detail{contain:layout paint}
+.admin-panel,.admin-workspace{content-visibility:auto;contain-intrinsic-size:420px}
+.admin-bg-grid,.admin-noise,.admin-scanline{will-change:auto}
+.admin-card,.admin-kpi,.admin-row,.admin-activity-item{backface-visibility:hidden}
+.zperf-lite .admin-noise,.zperf-lite .admin-scanline,.zperf-lite .admin-bg-grid{display:none}
+.zperf-lite .admin-ambient{display:none}
+.zperf-lite .admin-panel,.zperf-lite .admin-kpi,.zperf-lite .admin-card{backdrop-filter:none}
+.zperf-lite .admin-kpi:hover,.zperf-lite .admin-card:hover,.zperf-lite .admin-row:hover{transform:none!important;box-shadow:none}
+.zperf-lite .admin-panel::before,.zperf-lite .admin-panel::after,.zperf-lite .admin-command-bar::before{display:none}
+.zperf-lite .admin-reveal-group,.zperf-lite .admin-workspace{opacity:1!important;transform:none!important}
+.zperf-paused .admin-scanline,.zperf-paused .admin-ambient{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){
+  .admin-reveal-group,.admin-workspace{opacity:1!important;transform:none!important}
+}
