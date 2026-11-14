@@ -606,3 +606,9 @@ input,select,textarea,button{font-family:var(--font-ui)}
 .zui-password-strength{display:flex;gap:4px;margin-top:7px}.zui-password-strength span{height:3px;flex:1;border-radius:99px;background:rgba(255,255,255,.08);transition:background .2s ease}.zui-password-strength[data-level="1"] span:nth-child(1),.zui-password-strength[data-level="2"] span:nth-child(-n+2),.zui-password-strength[data-level="3"] span:nth-child(-n+3),.zui-password-strength[data-level="4"] span{background:var(--green)}
 :where(.panel,.account-card,.admin-panel,.admin-card) :where(input,select,textarea):focus-visible{box-shadow:var(--focus-ring)}
 @media(prefers-reduced-motion:reduce){.zui-password-strength span{transition:none}}
+
+/* ===== SHARED REGRESSION GUARD v1.4.3 ===== */
+:where(button,a,input,select,textarea):focus-visible{outline:2px solid rgba(67,217,255,.82);outline-offset:3px}
+[hidden]{display:none!important}
+button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.62}
+@media(prefers-reduced-motion:reduce){.zui-ripple-wave,.zui-spotlight,.zui-tilt{animation:none!important;transition:none!important;transform:none!important}}
