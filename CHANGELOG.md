@@ -1,3 +1,10 @@
+## v1.8.2 — Runtime Performance Hardening
+
+- Hardened performance lifecycle cleanup for visibility/pagehide handlers.
+- Removed the remaining visibility listener on page teardown to avoid stale runtime references.
+- Reduced visual workload on constrained devices by disabling expensive blur, filters, large shadows, and decorative animations.
+- Preserved the existing dark navy/cyan/blue visual system and normal-device effects.
+
 ## v1.8.3 — Reveal Runtime Consolidation — 2026-11-14
 
 ### Performance
