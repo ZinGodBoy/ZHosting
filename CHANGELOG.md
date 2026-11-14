@@ -1,3 +1,17 @@
+## v1.7.2 — Lifecycle Deduplication & CSS Integrity — 2026-11-14
+
+### Fixed
+- Gộp lifecycle `pageshow/visibilitychange` của Account Center để tránh chạy `syncHealth()` và `touchSession()` qua các listener trùng nhau.
+- Sửa newline CSS bị escape trong lần hardening Dashboard, tránh để chuỗi `\\n` xuất hiện trong stylesheet.
+
+### Performance
+- Giảm callback UI trùng khi tab quay lại foreground.
+- Giữ nguyên cơ chế pause khi tab ẩn và reduced-motion.
+
+### Quality
+- Không thay đổi auth/session semantics.
+- Không thêm dependency, timer nền hoặc observer mới.
+
 ## v1.7.1 — Cross-page Rendering Hardening — 2026-11-14
 
 ### Performance
