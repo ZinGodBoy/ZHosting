@@ -1,3 +1,7 @@
+## v1.8.3 — Constrained Rendering & Visual Hardening
+
+This pass targets the remaining visual workload rather than adding new effects. Constrained mode now suppresses decorative Admin layers and repeated glow/animation work, while Dashboard cards avoid expensive hover transforms and large shadows. The normal visual treatment remains unchanged. Support surfaces were also consolidated back to the project's navy/cyan brand language so later cascade overrides do not visually drift toward violet.
+
 ## v1.8.2 — Runtime Performance Hardening
 
 The performance layer now keeps its visibility handler named so it can be removed during `pagehide`, matching the existing cleanup for resize, network, reduced-motion, observers, and idle work. The CSS layer adds a constrained-device fallback that removes expensive blur/filter/shadow/ambient animation work without changing the normal visual design. This is a targeted runtime optimization rather than a visual redesign.
