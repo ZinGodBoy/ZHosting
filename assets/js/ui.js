@@ -29,7 +29,7 @@
     raf=requestAnimationFrame(()=>{spotlight.style.left=x+"px";spotlight.style.top=y+"px"});
   },{passive:true});
 
-  const reveal=()=>{
+  const reveal=()=>{if(window.ZAppEngine)return;
     const items=[...document.querySelectorAll("[data-zui-reveal],.reveal")];
     if(!("IntersectionObserver" in window)){items.forEach(x=>x.classList.add("zui-visible","visible"));return}
     const obs=new IntersectionObserver(entries=>{
