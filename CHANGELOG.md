@@ -1,3 +1,20 @@
+## v1.8.6 — BFCache Runtime Reliability — 2026-11-14
+
+### Fixed
+- Khắc phục lifecycle của Adaptive Performance khi trang quay lại từ BFCache.
+- Không còn remove `resize` listener vĩnh viễn ở `pagehide`; viewport runtime được khôi phục qua `pageshow`.
+- Khắc phục Support Dock không tự khởi tạo lại trạng thái scroll/kích thước sau BFCache.
+- Giảm nguy cơ trang trở lại từ lịch sử trình duyệt nhưng mất một phần behavior động.
+
+### Performance
+- Không thêm polling.
+- Không thêm observer hoặc dependency mới.
+- Giữ scheduler hiện tại và chỉ sửa lifecycle listener.
+
+### Quality
+- Không thay đổi giao diện, màu sắc hoặc logic tài khoản.
+- Đây là bản sửa lỗi runtime, ưu tiên tính ổn định hơn việc thêm hiệu ứng.
+
 ## v1.8.5 — Interaction & Compositing Refinement — 2026-11-14
 
 ### Performance
