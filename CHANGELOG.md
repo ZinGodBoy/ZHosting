@@ -1010,3 +1010,15 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Admin Center dọn các KPI animation frame và reveal observer khi rời trang.
 - Footer và support bubble được đưa về đúng identity xanh/cyan cũ, giảm các màu violet còn sót ở lớp cascade cuối.
 - Giữ nguyên reduced-motion và zperf-lite; không thêm animation loop mới.
+
+## v1.8.0 — Runtime Analytics & Compositing Hardening
+
+### Fixed
+- Dashboard không còn ghi `lastActivity` vào localStorage/sessionStorage mỗi lần `visibilitychange`; session activity đã có cơ chế touch riêng được throttle trong UI runtime.
+- Admin analytics giảm số lần quét `loginHistory`: login theo ngày, device mix và user growth dùng các map đã tính trước thay vì lặp toàn bộ lịch sử nhiều lần.
+- User growth chart chuyển sang mô hình cộng dồn theo ngày, giảm chi phí tính toán khi số user/lịch sử tăng.
+
+### Performance
+- Thêm fallback `prefers-reduced-transparency` để tắt backdrop blur khi người dùng yêu cầu giảm hiệu ứng trong suốt.
+- Thiết bị bị đánh dấu `zperf-constrained` luôn dùng surface ổn định, tránh cascade cũ vô tình bật lại compositing blur.
+- Giữ nguyên reduced-motion, adaptive performance và visual identity blue/cyan.
