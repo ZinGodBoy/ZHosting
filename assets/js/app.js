@@ -456,10 +456,12 @@ counters.forEach(el=>counterObserver.observe(el));
 
 /* ===== MICRO UX v1.4.4 ===== */
 (()=>{"use strict";
+ const clockEls=[...document.querySelectorAll("[data-live-clock]")];
  let clockTimer=0;
- const updateClock=()=>document.querySelectorAll("[data-live-clock]").forEach(el=>{el.textContent=new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit"})});
- const syncClock=()=>{if(clockTimer)clearInterval(clockTimer);if(document.hidden)return;updateClock();clockTimer=setInterval(updateClock,1000)};
- if(document.querySelector("[data-live-clock]")){syncClock();document.addEventListener("visibilitychange",syncClock,{passive:true})}
+ const updateClock=()=>{const value=new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit"});clockEls.forEach(el=>{el.textContent=value})};
+ const stopClock=()=>{if(clockTimer){clearTimeout(clockTimer);clockTimer=0}};
+ const scheduleClock=()=>{stopClock();if(document.hidden||!clockEls.length)return;updateClock();clockTimer=setTimeout(scheduleClock,1000)};
+ if(clockEls.length){scheduleClock();document.addEventListener("visibilitychange",scheduleClock,{passive:true});window.addEventListener("pagehide",stopClock,{once:true})}
  document.addEventListener("click",async event=>{const btn=event.target.closest?.("[data-copy]");if(!btn||btn.dataset.copyBound)return;btn.dataset.copyBound="1";const value=btn.dataset.copy||btn.textContent||"";try{if(!navigator.clipboard?.writeText)throw new Error("Clipboard API unavailable");await navigator.clipboard.writeText(value.trim());btn.classList.add("is-copied");window.setTimeout(()=>btn.classList.remove("is-copied"),1200)}catch{}});
 })();
 
