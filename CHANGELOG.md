@@ -1,3 +1,9 @@
+## v1.8.4 — Interaction Rendering Optimization
+
+- Debounced Command Palette filtering to avoid rebuilding its result list on every keystroke.
+- Added page lifecycle cleanup for the Command Palette render timer.
+- Preserved keyboard navigation and immediate action selection behavior.
+
 ## v1.8.3 — Constrained Rendering & Visual Hardening
 
 - Reduced expensive decorative rendering on constrained devices, especially in Admin Center and Dashboard.
