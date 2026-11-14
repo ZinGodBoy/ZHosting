@@ -274,3 +274,9 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Added cached bounds refreshed only when layout/viewport changes.
 - Audited the adaptive performance layer for observers/listeners surviving page exit and added explicit cleanup.
 - Added a restrained visual system pass without introducing continuous pointer effects or permanent GPU promotion.
+
+
+## v1.6.9 — Runtime Recovery Audit
+- Found a malformed V3 counter block comment in `app.js`; the comment consumed the counter and following account/navigation runtime until a later comment terminator.
+- Restored the executable counter block with an isolated IIFE.
+- Re-audited CSS compositing: many historical blur declarations existed, so a final responsive override was added rather than rewriting the entire stylesheet and risking regressions.
