@@ -445,3 +445,9 @@ body.zperf-paused *{animation-play-state:paused!important}
  .support-dock-item{box-shadow:0 8px 24px rgba(0,0,0,.26)}
 }
 @media(prefers-reduced-motion:reduce){.support-dock-item{will-change:auto}}
+
+/* ===== LOW-COST PAINT MODE v1.4.7 ===== */
+body.zperf-lite .support-dock-item{will-change:auto}
+body.zperf-lite .site-live-pill{backdrop-filter:none;-webkit-backdrop-filter:none}
+body.zperf-lite .scroll-progress{box-shadow:none}
+body.zperf-lite .brand-mark{box-shadow:none}
