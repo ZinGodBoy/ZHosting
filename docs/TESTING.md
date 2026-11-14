@@ -1,3 +1,12 @@
+## v1.8.4 Interaction Rendering Checks
+
+- Verify Command Palette filtering remains responsive while typing.
+- Verify rapid typing does not rebuild the result list for every individual event.
+- Verify ArrowUp/ArrowDown/Enter keyboard navigation still works after debouncing.
+- Verify pending palette rendering is cleared during page teardown.
+- Static syntax check for `assets/js/app.js` passes.
+- Browser E2E/Lighthouse was not run in this pass.
+
 ## v1.8.3 Constrained Rendering Checks
 
 - Verify constrained mode suppresses Admin ambient/grid/scanline/orb effects.
