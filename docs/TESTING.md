@@ -291,3 +291,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - On a trusted admin device: Admin Center link appears and opens normally.
 - Change password with 8–11 characters: rejected.
 - Change password with 12+ characters: continues to the authentication layer.
+
+## v1.4.7 Smoke Test
+
+- Desktop with a visible vertical scrollbar: Zalo/Discord bubbles sit immediately beside it with a small safety gap.
+- Resize the browser: the dock recalculates its horizontal offset.
+- Mobile/overlay-scrollbar browsers: bubbles retain a safe right margin.
+- Scroll the page: bubbles remain fixed to the viewport and do not create a new scroll handler.
