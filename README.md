@@ -367,3 +367,4 @@ The project remains intentionally framework-free. These improvements are fronten
 - Không thêm framework hoặc dependency mới.
 
 \n## Release v1.4.3 — Regression hardening\n\nBản cập nhật tập trung vào độ ổn định cross-page: shared UI runtime, logout ownership, browser fallback, responsive focus/disabled states và reduced-motion. Đây là frontend hardening; không thay thế backend authorization, server-side session hoặc audit persistence.\n\n\n## Visual Refresh v1.4.4\n\nZHosting hiện sử dụng nền **midnight violet / indigo** thay cho nền xanh-cyan cũ. Homepage, Account Center và Admin Center được đồng bộ surface, accent và glow để giao diện thống nhất hơn.\n\nBản này cũng bổ sung một số micro-interaction nhỏ như live clock hook, copy feedback và button feedback; không thêm thư viện bên ngoài.\n\n
+- `v1.4.5` — Load & Runtime Cleanup
