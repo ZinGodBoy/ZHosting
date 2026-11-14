@@ -480,3 +480,25 @@ counters.forEach(el=>counterObserver.observe(el));
   window.addEventListener("pageshow",sync,{passive:true});
   sync();
 })();
+
+
+/* ===== THEME COLOR TOOL v1.4.12 ===== */
+(()=>{
+ const panel=document.querySelector('#themeTools'),trigger=document.querySelector('#themeToolsTrigger');if(!panel||!trigger)return;
+ const accent=document.querySelector('#themeAccent'),accentHex=document.querySelector('#themeAccentHex'),bg=document.querySelector('#themeBackground'),bgHex=document.querySelector('#themeBackgroundHex'),root=document.documentElement,key='zhosting_theme_v1';
+ const defaults={accent:'#7C6CFF',background:'#07111F'};
+ const normalize=v=>{v=String(v||'').trim();return /^#[0-9a-fA-F]{6}$/.test(v)?v.toUpperCase():null};
+ const rgbToHex=(r,g,b)=>'#'+[r,g,b].map(n=>Math.max(0,Math.min(255,Number(n)||0)).toString(16).padStart(2,'0')).join('').toUpperCase();
+ const hexToRgb=h=>{const n=parseInt(h.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255]};
+ const syncRgb=(type,hex)=>{const values=hexToRgb(hex);document.querySelectorAll('.theme-rgb[data-rgb="'+type+'"] input').forEach((el,i)=>el.value=values[i])};
+ const apply=(accentValue,bgValue,save=true)=>{const av=normalize(accentValue)||defaults.accent,bv=normalize(bgValue)||defaults.background;root.style.setProperty('--violet',av);root.style.setProperty('--z-custom-bg',bv);document.body.style.backgroundColor=bv;accent.value=av;accentHex.value=av;bg.value=bv;bgHex.value=bv;syncRgb('accent',av);syncRgb('background',bv);if(save)try{localStorage.setItem(key,JSON.stringify({accent:av,background:bv}))}catch{}};
+ try{const saved=JSON.parse(localStorage.getItem(key)||'null');apply(saved?.accent,saved?.background,false)}catch{apply(defaults.accent,defaults.background,false)}
+ const open=visible=>{panel.hidden=!visible;trigger.setAttribute('aria-expanded',String(visible));document.body.classList.toggle('theme-tools-open',visible);if(visible)accentHex.focus()};
+ trigger.addEventListener('click',()=>open(panel.hidden));document.querySelector('#themeToolsClose')?.addEventListener('click',()=>open(false));
+ const bind=(color,text,isAccent)=>{color.addEventListener('input',()=>apply(isAccent?color.value:accent.value,isAccent?bg.value:color.value));text.addEventListener('change',()=>{const v=normalize(text.value);if(v)apply(isAccent?v:accent.value,isAccent?bg.value:v);else text.value=color.value.toUpperCase()})};
+ bind(accent,accentHex,true);bind(bg,bgHex,false);
+ document.querySelectorAll('.theme-rgb').forEach(group=>group.addEventListener('change',()=>{const values=[...group.querySelectorAll('input')].map(x=>Math.max(0,Math.min(255,Number(x.value)||0)));const hex=rgbToHex(...values);group.dataset.rgb==='accent'?apply(hex,bg.value):apply(accent.value,hex)}));
+ const presets={cyan:['#35D9FF','#06131D'],violet:['#7C6CFF','#07111F'],emerald:['#35D399','#061511'],orange:['#FF9D4D','#160D07']};
+ document.querySelectorAll('[data-theme-preset]').forEach(button=>button.addEventListener('click',()=>{const p=presets[button.dataset.themePreset];if(p)apply(p[0],p[1])}));
+ document.querySelector('#themeToolsReset')?.addEventListener('click',()=>apply(defaults.accent,defaults.background));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden)open(false)});
+})();
