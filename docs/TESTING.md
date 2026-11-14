@@ -484,3 +484,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify `zperf-lite` removes hero grid/noise/glow rendering and 3D card transform.
 - Verify constrained/mobile layout remains single-column without decorative orb filters.
 - Verify restored default typography and blue/cyan palette remain unchanged.
+
+
+## v1.7.6 — Runtime Verification
+- Verify `assets/js/app.js` syntax and homepage reveal observer cleanup.
+- Verify homepage layout measurement observes `<main>` when available.
+- Verify `assets/js/ui.js` syntax and reveal observer disconnect on `pagehide`.
+- Verify constrained rendering and restored blue/cyan palette remain active.
