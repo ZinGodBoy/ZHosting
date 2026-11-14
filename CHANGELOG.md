@@ -837,3 +837,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added lifecycle cleanup for adaptive performance observers, network listeners and idle callbacks.
 - Refined whole-page rendering with stable scrollbar geometry, section dividers, text rendering and low-cost containment.
 - Preserved reduced-motion and constrained-device paths.
+
+
+## v1.6.9 — Runtime Recovery & Mobile Rendering Hardening
+- Fixed an accidental JavaScript comment boundary that disabled the homepage counter/account runtime block.
+- Reduced scroll work by caching document bounds and refreshing them only on layout changes.
+- Disabled non-essential backdrop filtering on tablet/mobile and constrained modes to reduce compositing cost.
+- Preserved the desktop visual language while keeping smaller viewports lighter.
