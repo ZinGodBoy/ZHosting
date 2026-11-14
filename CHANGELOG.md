@@ -1000,3 +1000,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### Quality
 - Re-checked core runtime syntax for app, UI, support and adaptive performance scripts.
 - Preserved the restored dark-navy, cyan and blue palette and existing reduced-motion/constrained-device behavior.
+
+
+## v1.7.9 — Runtime Frame Cleanup & Palette Consolidation
+
+- Loại bỏ hai helper homepage không còn được sử dụng để giảm runtime footprint.
+- Counter homepage lưu requestAnimationFrame theo element và hủy frame còn tồn tại khi pagehide.
+- Admin KPI animation hủy frame cũ trước khi bắt đầu animation mới, tránh chồng nhiều animation khi refresh dữ liệu.
+- Admin Center dọn các KPI animation frame và reveal observer khi rời trang.
+- Footer và support bubble được đưa về đúng identity xanh/cyan cũ, giảm các màu violet còn sót ở lớp cascade cuối.
+- Giữ nguyên reduced-motion và zperf-lite; không thêm animation loop mới.
