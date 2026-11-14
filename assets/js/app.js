@@ -1,4 +1,9 @@
 window.ZAppEngine=true;
+const zDebounce=(fn,wait=180)=>{let t=0;return(...args)=>{window.clearTimeout(t);t=window.setTimeout(()=>fn(...args),wait)}};
+const zSafeText=value=>String(value??"").replace(/[<>]/g,"");
+const zPageReady=()=>{document.documentElement.classList.add("z-ready")};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",zPageReady,{once:true});else zPageReady();
+
 const zSetInterval=(fn,ms)=>{let timer=0;let stopped=false;const schedule=()=>{window.clearTimeout(timer);if(stopped||document.hidden)return;timer=window.setTimeout(()=>{if(!document.hidden)fn();schedule()},ms)};const onVisibility=()=>schedule();document.addEventListener('visibilitychange',onVisibility,{passive:true});schedule();return()=>{stopped=true;window.clearTimeout(timer);document.removeEventListener('visibilitychange',onVisibility)}};
 const menuBtn=document.querySelector('#menuBtn');const navLinks=document.querySelector('#navLinks');menuBtn?.setAttribute('aria-expanded','false');menuBtn?.addEventListener('click',()=>{const open=navLinks?.classList.toggle('open')??false;menuBtn?.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{navLinks?.classList.remove('open');menuBtn?.setAttribute('aria-expanded','false')}));
 const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches??false;
