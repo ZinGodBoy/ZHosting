@@ -8,9 +8,22 @@
   const PBKDF2_ITERATIONS=600000;
   const AUDIT_KEY="zhosting_audit_v1";
 
+  const readJson=(storage,key,fallback)=>{
+    try{
+      const raw=storage.getItem(key);
+      if(!raw)return fallback;
+      const parsed=JSON.parse(raw);
+      return parsed??fallback;
+    }catch{
+      try{storage.removeItem(key)}catch{}
+      return fallback;
+    }
+  };
+
   const getUsers=()=>{
     try{
-      const users=JSON.parse(localStorage.getItem(USERS_KEY)||"[]");
+      const parsed=readJson(localStorage,USERS_KEY,[]);
+      const users=Array.isArray(parsed)?parsed:[];
       let changed=false;
       users.forEach(user=>{
         if(!user.role){user.role="user";changed=true;}
@@ -24,8 +37,12 @@
     }catch{return[]}
   };
   const saveUsers=users=>{
-  try{localStorage.setItem(USERS_KEY,JSON.stringify(users));return true}catch{return false}
-};
+    try{
+      if(!Array.isArray(users))return false;
+      localStorage.setItem(USERS_KEY,JSON.stringify(users));
+      return true;
+    }catch{return false}
+  };
 const safeReadArray=(storage,key)=>{
   try{
     const raw=storage.getItem(key);
@@ -38,7 +55,9 @@ const safeReadArray=(storage,key)=>{
   }
 };
   const getAudit=()=>safeReadArray(localStorage,AUDIT_KEY);
-  const saveAudit=events=>localStorage.setItem(AUDIT_KEY,JSON.stringify(events.slice(0,200)));
+  const saveAudit=events=>{
+    try{localStorage.setItem(AUDIT_KEY,JSON.stringify(events.slice(0,200)));return true}catch{return false}
+  };
   const recordAudit=(type,meta={})=>{
     const events=getAudit();
     events.unshift({
@@ -109,6 +128,7 @@ const safeReadArray=(storage,key)=>{
     const value=JSON.stringify({
       id:crypto.randomUUID?.()||String(Date.now()),
       email,
+      userId:getUsers().find(user=>user.email===email)?.id||null,
       issuedAt:Date.now(),
       lastActivity:Date.now()
     });
@@ -225,7 +245,9 @@ const safeReadArray=(storage,key)=>{
       return{fails:0,lockedUntil:0};
     }
   };
-  const setGuard=guard=>sessionStorage.setItem(GUARD_KEY,JSON.stringify(guard));
+  const setGuard=guard=>{
+    try{sessionStorage.setItem(GUARD_KEY,JSON.stringify(guard));return true}catch{return false}
+  };
   const resetGuard=()=>sessionStorage.removeItem(GUARD_KEY);
 
   const checkLoginGuard=()=>{
@@ -416,6 +438,10 @@ const safeReadArray=(storage,key)=>{
       return target?.role==="admin";
     },
     logout:()=>{
+      const current=getSession();
+      if(current){
+        recordAudit("logout",{userId:current.userId||undefined,email:current.email});
+      }
       clearSession();
       const path=location.pathname.includes("/dashboard/")?"../auth/login.html":
         location.pathname.includes("/auth/")?"login.html":"auth/login.html";
