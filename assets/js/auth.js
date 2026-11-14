@@ -31,7 +31,6 @@
         if(!Array.isArray(user.loginHistory)){user.loginHistory=[];changed=true;}
         if(typeof user.loginCount!=="number"){user.loginCount=user.lastLogin?1:0;changed=true;}
       });
-      if(users.length&&!users.some(user=>user.role==="admin")){users[0].role="admin";changed=true;}
       if(changed)saveUsers(users);
       return users;
     }catch{return[]}
@@ -391,6 +390,12 @@ const safeReadArray=(storage,key)=>{
       }
 
       await recordLogin(user);
+      if(user.role==="admin"){
+        const trusted=await window.ZAdminAccess?.enrollIfNeeded?.(user);
+        if(trusted===false){
+          recordAudit("admin_device_denied",{userId:user.id,email:user.email,reason:"untrusted-device",device:getDeviceInfo().device,browser:getDeviceInfo().browser});
+        }
+      }
       recordAudit("login_success",{userId:user.id,email:user.email,name:user.name,device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       saveUsers(users);
       saveSession(user.email,remember);
