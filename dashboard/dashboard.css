@@ -585,3 +585,12 @@ input,select,textarea,button{font-family:var(--font-ui)}
 .health-dot.is-warn{background:#ffc76b;box-shadow:0 0 12px rgba(255,199,107,.45)}
 @media(max-width:900px){.account-health{grid-template-columns:1fr}.health-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.health-item{transition:none}.health-item:hover{transform:none}}
+
+/* ===== ACCOUNT CENTER RESPONSIVE POLISH ===== */
+.account-health{content-visibility:auto;contain-intrinsic-size:180px}
+.health-item{min-width:0}
+@media(max-width:520px){
+  .health-grid{gap:8px}
+  .health-item{padding:11px 12px;min-height:60px}
+  .health-item small{font-size:8px}
+}
