@@ -1,3 +1,7 @@
+## Contact routing fix — 2026-11-14
+
+- Đồng bộ email hiển thị trên homepage về `dangkhoita2@gmail.com`.
+
 # Changelog
 ## 2026-11-14 — Security & UX Hardening
 
