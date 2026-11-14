@@ -536,3 +536,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Cached the IndexedDB-backed admin ECDSA key pair during the page lifecycle.
 - Cached the derived public-key fingerprint to avoid repeated Web Crypto export/hash work.
 - Preserved device trust checks and enrollment behavior while reducing repeated async storage/crypto operations.
+
+## [1.4.11] — Runtime Smoothness Pass
+
+- Removed pointer-follow admin card tilt and its per-frame layout reads/writes.
+- Batched live hosting configuration recalculation to one animation frame per input frame.
+- Removed unnecessary persistent compositor hints from static homepage cards.
+- Reduced mobile blur/shadow workload while preserving the visual hierarchy.
