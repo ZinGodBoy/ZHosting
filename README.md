@@ -334,3 +334,7 @@ ZHosting có thêm lớp **Adaptive Performance Layer** để giữ visual syste
 - Background telemetry và clock được pause về mặt callback khi tab bị ẩn.
 - CSS dùng containment/content-visibility cho các khu vực có chi phí render cao.
 - Admin Center được ưu tiên tối ưu riêng vì có nhiều chart, feed, table và motion layer.
+
+### Support Dock
+
+Website có support dock nổi dùng chung trên toàn bộ page. Zalo và Discord được hiển thị bằng icon tròn; desktop mở rộng khi hover/focus, mobile giữ dạng gọn. Đây là lớp điều hướng liên hệ, không thu thập dữ liệu người dùng.
