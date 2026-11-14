@@ -150,7 +150,8 @@
       render(!visible);
       input.focus({preventScroll:true});
     });
-  };\n  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
+  };
+  document.querySelectorAll("[data-toggle-password]").forEach(button=>{
     const input=document.querySelector(button.dataset.togglePassword);
     bindPasswordToggle(button,input);
   });
