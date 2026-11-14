@@ -211,3 +211,9 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Removed Admin Center pointermove tilt because it required repeated `getBoundingClientRect()` calls and inline transform variables.
 - Config Builder range input now schedules one calculation per animation frame instead of recalculating multiple times inside a single frame.
 - Static cards no longer request persistent compositor promotion through `will-change`.
+
+
+## v1.4.12 — Theme Color Tool
+- Added RGB/HEX accent and background controls to the homepage.
+- Theme state is stored locally only; no server request is made.
+- Kept the tool lightweight and compatible with reduced-motion preferences.
