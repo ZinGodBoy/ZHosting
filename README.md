@@ -355,3 +355,13 @@ The current release track includes a final UI/runtime hardening pass focused on 
 - Responsive Admin table hardening and sticky headers.
 
 The project remains intentionally framework-free. These improvements are frontend quality controls, not a replacement for server-side authentication, authorization, rate limiting or audit persistence.
+
+
+## Performance Optimization — 2026-11-14 (v1.4.2)
+
+- Runtime performance layer được tinh gọn, giảm callback không cần thiết và gom các cập nhật viewport/scroll bằng requestAnimationFrame.
+- Tự nhận diện reduced-motion, thiết bị ít RAM/CPU, Save-Data và mạng 2G để giảm hiệu ứng/rendering cost.
+- Tạm dừng visual work khi tab bị ẩn.
+- Mobile sử dụng containment/content-visibility cho section lớn để giảm chi phí layout/paint ban đầu.
+- Giảm các hiệu ứng blur/glow/animation nặng trên thiết bị yếu mà không thay đổi trải nghiệm trên máy đủ mạnh.
+- Không thêm framework hoặc dependency mới.
