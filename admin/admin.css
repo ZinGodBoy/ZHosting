@@ -903,3 +903,7 @@ td{color:#b9c9d7;font-size:10px}
 /* ===== ADMIN LIVE STATUS v1.4.5 ===== */
 .admin-live-bar{margin-left:auto}
 @media(max-width:700px){.admin-live-bar{margin-left:0;width:max-content;max-width:100%}}
+
+/* ===== ADMIN PERFORMANCE v1.4.6 ===== */
+body.zperf-lite .admin-page .admin-card,body.zperf-lite .admin-page .admin-panel,body.zperf-lite .admin-page .admin-table-wrap{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
+body.zperf-paused .admin-page *{animation-play-state:paused!important}
