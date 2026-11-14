@@ -128,3 +128,12 @@ Account Center có thể hiển thị entry `Admin Center` dựa trên role củ
 ## Admin data rendering — 2026-11-06
 
 Admin Center chuẩn hóa role/status/login metadata trước khi hiển thị và dùng DOM text rendering cho dữ liệu tài khoản. Đây là hardening phía client; production vẫn cần validation và authorization ở backend.
+
+
+## Security hardening — 2026-11-14
+
+- Mật khẩu mới và mật khẩu đổi từ Account Center yêu cầu tối thiểu 12 ký tự.
+- Browser storage được đọc qua các helper có xử lý JSON hỏng; dữ liệu storage không hợp lệ sẽ được bỏ qua thay vì làm vỡ toàn bộ auth flow.
+- Tài khoản bị khóa được từ chối trước bước verify password để tránh thực hiện xử lý mật khẩu không cần thiết.
+- Login failure do tài khoản bị khóa vẫn dùng thông báo chung, tránh tiết lộ trạng thái account cho người không có quyền.
+- Admin CSV export chống CSV formula injection với các giá trị bắt đầu bằng các ký tự =, +, -, @.
