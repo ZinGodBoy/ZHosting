@@ -1,4 +1,4 @@
-(()=>{"use strict";
+(async()=>{"use strict";
 const auth=window.ZAuth;
 if(!auth)return;
 const $=id=>document.getElementById(id);
@@ -8,6 +8,13 @@ if(!session){location.replace("../auth/login.html");return;}
 let users=auth.getUsers?.()||[];
 let me=users.find(u=>u.email===session.email);
 if(!me||me.role!=="admin"||me.status==="locked"){auth.logout?.();return;}
+
+const trustedDevice=await window.ZAdminAccess?.isTrusted?.(me);
+if(!trustedDevice){
+  window.ZAdminAccess?.auditDenied?.(me);
+  location.replace("../dashboard/index.html?admin=denied");
+  return;
+}
 
 let selectedId=null;
 const text=(id,value)=>{const node=$(id);if(node)node.textContent=String(value??"—");};
