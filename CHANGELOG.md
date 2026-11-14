@@ -493,3 +493,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Support Zalo/Discord bubbles now calculate the browser scrollbar width and stay visually aligned beside the right scrollbar.
 - Alignment recalculates on viewport resize and orientation changes without a scroll listener.
 - Mobile keeps a smaller safe offset.
+
+## v1.4.6 — Performance & Rendering Optimization — 2026-11-14
+
+### Performance
+- Giảm chi phí render trên thiết bị RAM/CPU thấp, Save-Data hoặc mạng chậm.
+- Tự tắt một số glow/orb/spotlight/tilt và backdrop blur nặng khi vào chế độ lite.
+- Tạm dừng animation khi tab bị ẩn.
+- Giảm box-shadow trên surface trong performance mode.
+- Giữ nguyên layout và chức năng, không thêm dependency.
