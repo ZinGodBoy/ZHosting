@@ -311,3 +311,11 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Sửa regression ở Admin Directory search debounce do escape newline trong source.
 - Giữ một motion engine chính trên Homepage để tránh observer/listener trùng.
 - Không thay đổi dữ liệu người dùng, auth/session model hoặc trusted-device authorization.
+
+
+## Frontend regression hardening — 2026-11-14
+
+- Sửa Admin Directory search để không còn newline escape nằm trong JavaScript source.
+- Debounce cả Global Search của Admin Center để tránh render liên tục khi nhập nhanh.
+- Harden Homepage anchor navigation, tránh selector lỗi làm gián đoạn click handler.
+- Làm adaptive performance runtime idempotent, tránh bind resize/visibility listener hai lần nếu script bị nạp lại.
