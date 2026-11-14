@@ -427,7 +427,9 @@ counters.forEach(el=>counterObserver.observe(el));
 
 /* ===== MICRO UX v1.4.4 ===== */
 (()=>{"use strict";
+ let clockTimer=0;
  const updateClock=()=>document.querySelectorAll("[data-live-clock]").forEach(el=>{el.textContent=new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit"})});
- if(document.querySelector("[data-live-clock]")){updateClock();window.setInterval(updateClock,1000)}
+ const syncClock=()=>{if(clockTimer)clearInterval(clockTimer);if(document.hidden)return;updateClock();clockTimer=setInterval(updateClock,1000)};
+ if(document.querySelector("[data-live-clock]")){syncClock();document.addEventListener("visibilitychange",syncClock,{passive:true})}
  document.querySelectorAll("[data-copy]").forEach(btn=>{if(btn.dataset.copyBound)return;btn.dataset.copyBound="1";btn.addEventListener("click",async()=>{const value=btn.dataset.copy||btn.textContent||"";try{await navigator.clipboard.writeText(value.trim());btn.classList.add("is-copied");setTimeout(()=>btn.classList.remove("is-copied"),1200)}catch{}})});
 })();
