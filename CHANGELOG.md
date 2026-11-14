@@ -4,6 +4,14 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ## [Unreleased]
 
+### Security hardening — 2026-11-14
+
+- Nâng password policy của tài khoản mới và đổi mật khẩu lên tối thiểu 12 ký tự.
+- Thêm recovery khi browser storage chứa JSON không hợp lệ.
+- Chặn account locked trước password verification và giữ thông báo đăng nhập chung.
+- Harden Admin CSV export chống formula injection và sửa newline CSV chuẩn.
+- Bổ sung regression checklist cho các case security mới.
+
 ### Added
 
 - Shared ZHosting UI system.
