@@ -314,30 +314,8 @@ window.addEventListener("scroll",syncScrollUI,{passive:true});
 backTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:reduceMotion?"auto":"smooth"}));
 syncScrollUI();
 
-if(canHover&&!reduceMotion){
-  document.querySelectorAll(".admin-panel,.admin-kpi,.admin-privacy").forEach(card=>{
-    let frame=0;
-    let point=null;
-    const update=()=>{
-      frame=0;
-      if(!point)return;
-      const rect=card.getBoundingClientRect();
-      const x=(point.clientX-rect.left)/rect.width-.5;
-      const y=(point.clientY-rect.top)/rect.height-.5;
-      card.style.setProperty("--tilt-x",(x*1.4)+"deg");
-      card.style.setProperty("--tilt-y",(-y*1.4)+"deg");
-    };
-    card.addEventListener("pointermove",event=>{
-      point=event;
-      if(!frame)frame=requestAnimationFrame(update);
-    },{passive:true});
-    card.addEventListener("pointerleave",()=>{
-      point=null;
-      card.style.setProperty("--tilt-x","0deg");
-      card.style.setProperty("--tilt-y","0deg");
-    },{passive:true});
-  });
-}
+/* Performance: keep admin cards CSS-driven. Pointer-follow tilt caused
+   per-card getBoundingClientRect/style work on every pointer frame. */
 
 if(!reduceMotion){
   document.addEventListener("pointerdown",event=>{
