@@ -1,3 +1,18 @@
+## v1.8.5 — Interaction & Compositing Refinement — 2026-11-14
+
+### Performance
+- Loại bỏ animation trực tiếp trên `backdrop-filter` của modal; chuyển sang opacity để giảm chi phí compositing khi mở modal.
+- Giữ hiệu ứng modal mượt nhưng không tạo blur animation theo từng frame.
+
+### Fixed
+- Giảm nguy cơ giật hình trên thiết bị yếu khi mở modal tài khoản.
+- Không thay đổi logic auth, session, account hoặc admin.
+
+### Quality
+- Không thêm dependency.
+- Không thêm polling hoặc background task mới.
+- Giữ nguyên reduced-motion và adaptive performance.
+
 ## v1.8.4 — Compositor & CSS Hardening — 2026-11-14
 
 ### Performance
