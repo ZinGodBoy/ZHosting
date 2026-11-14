@@ -243,3 +243,6 @@ The homepage footer was structurally too minimal and still carried legacy suppor
 
 ## 2026-11-14 — v1.6.1 Footer + Support Runtime
 A follow-up audit found a real support-dock bug: JavaScript wrote `--support-right` while the stylesheet consumed `--support-scrollbar-offset`. The runtime now writes the consumed token and cancels pending animation frames on pagehide. The footer contact layer was also refined without introducing new JavaScript or continuous animation loops.
+
+## 2026-11-14 — v1.6.2 Runtime Cleanup
+The performance audit found duplicate/contradictory low-resource CSS rules, including an older constrained header blur rule that could override later hardening. A final cascade layer now explicitly disables that blur and reduces footer effects on constrained devices. The adaptive performance resize rAF is also cancelled on page exit.
