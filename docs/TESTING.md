@@ -276,3 +276,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Open DevTools Performance and verify no continuous pointermove rendering loop is active for the UI spotlight.
 - On a constrained device or with reduced motion, verify decorative grain/grid/blur effects are reduced while content remains readable.
 - Sign in and scroll/touch repeatedly; verify session activity remains functional without excessive storage writes.
+
+
+## v1.4.5 Performance Smoke Test
+
+- Hard-refresh each main route and verify content paints before non-critical UI enhancements.
+- Verify login/register/dashboard/Admin Center still initialize correctly with deferred `ui.js`.
+- Scroll continuously and verify only the primary scroll-progress runtime updates.
