@@ -791,3 +791,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ## v1.6.5 — Support Observer Lifecycle Cleanup
 - Finalized `ResizeObserver` cleanup for the shared support bubble runtime.
 - Prevented observer retention after `pagehide` while keeping scroll/resize behavior unchanged.
+
+
+## v1.6.6 — Footer Finishing & Utility Collision Guard
+- Tightened footer spacing and desktop column proportions for a cleaner hierarchy.
+- Added a viewport-aware guard so fixed theme/status controls do not overlap footer content.
+- Kept the change lightweight with one `IntersectionObserver` and page-exit cleanup.
