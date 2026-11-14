@@ -267,3 +267,12 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Mobile vẫn scroll mượt và section lớn không gây layout jump đáng kể.
 - [ ] Reduced-motion không chạy animation bắt buộc.
 - [ ] Không phát sinh lỗi console sau khi hardening.
+
+
+## v1.4.4 Performance Smoke Test
+
+- Scroll the homepage continuously on desktop and mobile; verify no visible stutter or pointer-induced card jitter.
+- Move the pointer across service/pricing cards; verify hover motion remains smooth without JavaScript tilt calculations.
+- Open DevTools Performance and verify no continuous pointermove rendering loop is active for the UI spotlight.
+- On a constrained device or with reduced motion, verify decorative grain/grid/blur effects are reduced while content remains readable.
+- Sign in and scroll/touch repeatedly; verify session activity remains functional without excessive storage writes.
