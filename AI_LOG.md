@@ -126,3 +126,7 @@ Thêm trusted-device layer cho Admin Center: IndexedDB + non-extractable ECDSA p
 ## 2026-11-14 — v1.4.0 release hardening
 
 AI-assisted review focused on preventing regression across authentication, Admin Center authorization, timers, navigation and performance runtime. Existing behavior was inspected before each fix so optimizations did not replace or disable another control. Documentation was synchronized with the implementation.
+
+## 2026-11-14 — Persistent support dock
+
+Đồng bộ hai kênh liên hệ thành một component floating dùng chung. Component được tách khỏi từng page, dùng local brand assets, có responsive/reduced-motion behavior và guard chống khởi tạo trùng để tránh một page tự thêm nhiều dock.
