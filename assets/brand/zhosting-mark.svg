@@ -1,12 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-<title>ZHosting</title><desc>Stylized ZHosting Z mark</desc>
-<defs>
- <linearGradient id="g" x1="12" y1="8" x2="116" y2="120" gradientUnits="userSpaceOnUse">
-  <stop stop-color="#43D9FF"/><stop offset=".58" stop-color="#5C7CFF"/><stop offset="1" stop-color="#8F5CFF"/>
- </linearGradient>
- <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<rect x="7" y="7" width="114" height="114" rx="31" fill="#07111F" stroke="url(#g)" stroke-width="3"/>
-<path d="M28 34h72L72 56 52 75l-24 19h72" fill="none" stroke="url(#g)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
-<path d="M31 34h64M33 94h64" stroke="#EAFBFF" stroke-width="2.5" stroke-linecap="round" opacity=".72"/>
-</svg>
+<title>ZHosting</title><desc>Modern ZHosting Z monogram</desc>
+<defs><linearGradient id="g" x1="18" y1="12" x2="110" y2="116" gradientUnits="userSpaceOnUse"><stop stop-color="#63E8FF"/><stop offset=".52" stop-color="#4FA8FF"/><stop offset="1" stop-color="#7C6CFF"/></linearGradient><linearGradient id="z" x1="28" y1="34" x2="99" y2="96" gradientUnits="userSpaceOnUse"><stop stop-color="#F4FDFF"/><stop offset=".48" stop-color="#BCEFFF"/><stop offset="1" stop-color="#D4D8FF"/></linearGradient><filter id="glow" x="-35%" y="-35%" width="170%" height="170%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect x="8" y="8" width="112" height="112" rx="30" fill="#07111F" stroke="url(#g)" stroke-width="3"/>
+<path d="M25 29h78a7 7 0 0 1 4.8 12L50 99h53" fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+<path d="M29 31h70M31 97h68" fill="none" stroke="url(#z)" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>
+<circle cx="101" cy="31" r="4.5" fill="#63E8FF"/><circle cx="30" cy="97" r="4.5" fill="#7C6CFF"/></svg>
