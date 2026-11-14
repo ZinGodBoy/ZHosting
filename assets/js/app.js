@@ -248,7 +248,8 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
 /* ===== V7 LIVE STATUS MICRO-DASH ===== */
 (()=>{
  const cards=[...document.querySelectorAll('.node-card[data-node]')];
- if(!cards.length)return;
+ const latencyEl=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));
+ if(!cards.length&&!latencyEl)return;
  const profiles={hanoi:{load:[34,44],latency:[12,18]},hcm:{load:[48,58],latency:[16,23]},singapore:{load:[25,35],latency:[28,38]},tokyo:{load:[12,22],latency:[50,66]}};
  const update=()=>{
   cards.forEach(card=>{
@@ -257,19 +258,17 @@ window.addEventListener('load',()=>document.body.classList.add('ready'));
    const latency=Math.round(p.latency[0]+Math.random()*(p.latency[1]-p.latency[0]));
    const meter=card.querySelector('.node-meter i'),meta=card.querySelector('.node-meter+small');
    if(meter)meter.style.width=load+'%';
-   if(meta)meta.innerHTML='Load <b>'+load+'%</b> · '+latency+'ms';
+   if(meta)meta.textContent='Load '+load+'% · '+latency+'ms';
   });
+  if(latencyEl)latencyEl.textContent=Math.round(16+Math.random()*8)+'ms';
   const status=document.querySelector('.status-main-top>span:last-child');
   if(status)status.textContent='UPDATED '+new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
  };
- update();zSetInterval(update,5000);
+ update();
+ zSetInterval(update,5000);
 })();
 
-/* ===== LIVE STATUS DEMO ===== */
-const liveValues={latency:18,nodes:12};
-zSetInterval(()=>{const latency=Math.round(16+Math.random()*8);const el=[...document.querySelectorAll('.status-mini b')].find(x=>x.parentElement?.textContent.includes('Latency'));if(el)el.textContent=latency+'ms'},4000);
-
-/* ===== V3 COUNTER ENGINE ===== */
+/* ===== V3 COUNTER ENGINE =====
 const counters=document.querySelectorAll('[data-counter]');
 const counterObserver=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
