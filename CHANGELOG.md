@@ -642,3 +642,17 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Kept scroll updates passive and rAF-batched.
 - Added lightweight containment/backface hints for the floating support dock.
 - Reduced mobile blur/noise/shadow overhead.
+
+## v1.5.6 — Lifecycle, Performance & Visual Consistency — 2026-11-14
+
+### Fixed
+- Sửa scheduler dùng chung để tương thích BFCache: pagehide chỉ pause, pageshow tự resume thay vì hủy vĩnh viễn job.
+- Tránh tình trạng live status/clock không chạy lại sau khi quay lại trang bằng Back/Forward cache.
+
+### Performance
+- Giữ scheduler ở trạng thái ngủ khi tab nền và khởi động lại đúng lifecycle.
+- Giảm render work không cần thiết khi quay lại trang.
+
+### UI
+- Đồng bộ hệ màu Midnight Violet / Indigo cho Homepage, UI runtime và Admin Center.
+- Giữ accent violet/indigo làm màu chính, trạng thái thành công vẫn dùng green để phân biệt rõ trạng thái.
