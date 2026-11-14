@@ -240,3 +240,6 @@ The runtime audit found two avoidable sources of work: the homepage clock used `
 
 ## 2026-11-14 — v1.6.0 Footer Refinement
 The homepage footer was structurally too minimal and still carried legacy support styling. Replaced it with a semantic footer system: brand/description/status, service navigation, support navigation and a compact legal/utility row. The layout uses CSS Grid with mobile breakpoints and avoids unnecessary runtime JavaScript, keeping the improvement visual without adding main-thread work.
+
+## 2026-11-14 — v1.6.1 Footer + Support Runtime
+A follow-up audit found a real support-dock bug: JavaScript wrote `--support-right` while the stylesheet consumed `--support-scrollbar-offset`. The runtime now writes the consumed token and cancels pending animation frames on pagehide. The footer contact layer was also refined without introducing new JavaScript or continuous animation loops.
