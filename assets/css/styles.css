@@ -951,3 +951,47 @@ main>section:not(:first-child)::before{
 .zperf-lite .back-top{
   box-shadow:none!important;
 }
+
+
+/* ===== RUNTIME & VISUAL HARDENING v1.6.9 ===== */
+/* Keep desktop atmosphere, but remove expensive transparency on constrained viewports. */
+@media(max-width:900px){
+  .header,
+  .dash-header,
+  .support-bubble,
+  .support-dock-item,
+  .theme-tools-trigger,
+  .theme-tools,
+  .site-live-pill,
+  .modal,
+  .auth-card{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  .header{background:rgba(5,11,19,.96)!important}
+  .dash-header{background:rgba(5,11,19,.96)!important}
+  .site-live-pill{background:rgba(12,7,24,.96)}
+  .support-bubble{background:rgba(17,12,31,.96)}
+  .theme-tools-trigger{background:#09101d}
+  .theme-tools{background:#070c16}
+}
+@media(max-width:700px){
+  .header{box-shadow:0 8px 24px rgba(0,0,0,.16)}
+  .footer{background:rgba(4,7,13,.94)}
+  .footer:before{opacity:.3}
+  .footer-contact-inner{background:rgba(8,14,24,.96)}
+  .support-bubble{box-shadow:0 8px 20px rgba(0,0,0,.22)}
+}
+@media(prefers-reduced-motion:reduce){
+  .header,.dash-header,.support-bubble,.theme-tools-trigger,.theme-tools,.site-live-pill,.modal,.auth-card{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+}
+.zperf-lite .support-bubble,
+.zperf-lite .theme-tools,
+.zperf-lite .theme-tools-trigger,
+.zperf-lite .site-live-pill{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
