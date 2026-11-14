@@ -500,3 +500,13 @@ body.zperf-lite .brand-mark{box-shadow:none}
 /* ===== THEME COLOR TOOL v1.4.13 ===== */
 :root{--z-custom-bg:#07111F;--z-custom-bg-2:#111C31}.theme-mode-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:8px;margin-top:13px}.theme-mode-row label,.theme-angle-row label{font-size:10px;font-weight:800;color:#aebdd0}.theme-mode-row select{height:32px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:#0d1522;color:#dbe7f4;padding:0 8px;font-size:10px}.theme-angle-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-top:9px}.theme-angle-row input{grid-column:1/-1;width:100%;accent-color:var(--violet)}.theme-angle-row output{font:700 10px ui-monospace,SFMono-Regular,Consolas,monospace;color:#b9c7d8}.theme-secondary-bg[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){.theme-tools-trigger{transition:none}.theme-tools{backdrop-filter:none}}
+
+/* ===== SUPPORT BUBBLES UNIFIED RUNTIME v1.5.1 ===== */
+.support-bubbles{right:var(--support-scrollbar-offset,24px);will-change:transform}
+.support-bubble{will-change:transform}
+@media(max-width:700px){
+  .support-bubbles{right:var(--support-scrollbar-offset,10px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .support-bubbles,.support-bubble{will-change:auto}
+}
