@@ -220,3 +220,19 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [ ] Session guard không tạo interval chạy nền liên tục.
 - [ ] Admin clock dừng khi tab hidden và được cleanup khi pagehide.
 - [ ] Existing admin account vẫn giữ role admin và trusted-device gate hoạt động bình thường.
+
+## v1.4.0 release regression matrix
+
+| Area | Required result |
+|---|---|
+| Registration | New account is always `user` |
+| Admin | Only trusted admin device sees/opens Admin Center |
+| Session | Hidden-tab timer does not continue callback work |
+| Navigation | Empty/invalid anchors do not throw |
+| 404 | Performance runtime loads once |
+| Admin search | Debounced and stable during rapid typing |
+| CSV | Formula-like values are escaped |
+| Reduced motion | Non-essential motion is disabled |
+| Responsive | 360/480/768/1024/1440px remain usable |
+
+Release completion requires browser smoke testing plus passing CI/security checks.
