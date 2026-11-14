@@ -11,7 +11,10 @@ document.body.appendChild(root);
 let raf=0,resizeRaf=0,maxScroll=1,paused=document.hidden,disposed=false,lastScrollY=-1;
 const sync=()=>{
  if(disposed)return;
- const progress=Math.min(1,Math.max(0,window.scrollY/maxScroll));
+ const scrollY=window.scrollY;
+ if(scrollY===lastScrollY)return;
+ lastScrollY=scrollY;
+ const progress=Math.min(1,Math.max(0,scrollY/maxScroll));
  root.style.setProperty("--support-scroll-y",((progress-.5)*150).toFixed(2)+"px");
 };
 const measure=()=>{
