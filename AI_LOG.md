@@ -257,3 +257,9 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 ## v1.6.5 — Support Runtime Finalization
 - Re-audited the support bubble lifecycle after the v1.6.4 runtime pass.
 - Added explicit `ResizeObserver.disconnect()` cleanup on page exit.
+
+
+## v1.6.6 — Footer Screenshot-Driven Pass
+- Reviewed the supplied footer screenshot for excessive empty space and fixed floating-control overlap.
+- Reduced footer vertical padding and tightened navigation spacing without adding continuous animation work.
+- Added a lifecycle-safe footer visibility observer in `app.js`.
