@@ -110,3 +110,11 @@ For production deployment, authentication must move to a backend with server-sid
 Admin Center hiện có lớp bảo vệ phía trình duyệt: tài khoản admin được bind với một khóa ECDSA P-256 lưu trong IndexedDB, trong đó private key được lưu dưới dạng non-extractable. Navigation và route guard chỉ cho phép Admin Center khi public-key fingerprint khớp với trusted device đã đăng ký.
 
 Đây là lớp bảo vệ frontend cho bản demo static/localStorage. Không xem nó là boundary bảo mật tuyệt đối: authorization thật phải được enforce ở backend/server-side. OWASP khuyến nghị không dùng client-side checks hoặc hidden UI làm cơ chế authorization quyết định. Khi chuyển sang production, cần server-side session, role/permission policy và device binding phía server.
+
+
+## Admin account visibility policy — 2026-11-14
+
+- Admin Center được phép hiển thị thông tin tài khoản cần cho vận hành như tên, email, trạng thái, vai trò, lịch sử đăng nhập, thiết bị/trình duyệt và IP **chỉ khi hệ thống xác thực đã cung cấp trường IP hợp lệ**.
+- Repository frontend hiện là prototype localStorage nên không thể biết IP public thật của các thiết bị khác một cách đáng tin cậy. Không dùng API IP bên thứ ba để giả lập dữ liệu quản trị.
+- Mật khẩu plaintext, password hash và salt không được hiển thị trong Admin Center và không được đưa vào CSV export.
+- Muốn quản trị IP/session của mọi thiết bị thật sự cần backend/server-side authentication, session store và audit log.
