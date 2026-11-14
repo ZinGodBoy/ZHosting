@@ -40,14 +40,10 @@ const onLayoutChange=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true});
 addEventListener('resize',onLayoutChange,{passive:true});
-if('ResizeObserver' in window){
-  const pageSizeObserver=new ResizeObserver(onLayoutChange);
-  const sizeTarget=document.querySelector('main')||document.body;
-  pageSizeObserver.observe(sizeTarget);
-  window.addEventListener('pagehide',()=>{pageSizeObserver.disconnect();if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
-}else{
-  window.addEventListener('pagehide',()=>{if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
-}
+window.addEventListener('pagehide',()=>{
+  if(scrollFrame)cancelAnimationFrame(scrollFrame);
+  if(layoutFrame)cancelAnimationFrame(layoutFrame);
+},{once:true});
 measureScrollBounds();
 
 /* Active navigation uses IntersectionObserver instead of scanning every section
