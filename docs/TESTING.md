@@ -350,3 +350,13 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Resize/orientation updates horizontal offset without console errors.
 - [ ] Reduced-motion disables non-essential bubble animation/compositor hints.
 - [ ] Keyboard focus reaches both support links and no layout shift occurs.
+
+### Theme customization regression — v1.5.2
+- [ ] Solid background changes update the visible page background.
+- [ ] Gradient mode updates both primary and secondary colors.
+- [ ] Secondary RGB controls change only the secondary gradient color.
+- [ ] Accent RGB/HEX controls remain synchronized.
+- [ ] Reload preserves accent, background, secondary background, mode and angle.
+- [ ] Browser theme-color metadata follows the selected primary background.
+- [ ] Header, cards, buttons and scroll progress remain visually consistent after changing theme colors.
+- [ ] Reduced-motion remains functional after theme changes.
