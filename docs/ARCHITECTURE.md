@@ -199,3 +199,9 @@ For production, this boundary must move to a backend authorization service with 
 ## Runtime regression safeguards
 
 Frontend timers phải dùng lifecycle-aware scheduling: không chạy callback khi document.hidden và phải cleanup khi page rời khỏi. Navigation handlers phải kiểm tra selector trước khi gọi querySelector. Registration không được tự nâng quyền admin; quyền admin phải đến từ provisioning/authorization có chủ đích.
+
+## v1.4.0 architecture baseline
+
+The release baseline is static-first. Public pages, auth demo, Account Center and Admin Center share common UI/runtime layers. Admin privilege additionally uses a browser-bound trusted-device layer. Production authorization remains a backend responsibility.
+
+Changes must preserve separation between presentation, client session state, demo telemetry and future server-side authority. Optimizations must not silently disable security or lifecycle controls.
