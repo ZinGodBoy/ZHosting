@@ -472,3 +472,26 @@ td{color:#b9c9d7;font-size:10px}
   .admin-panel:hover,.admin-kpi:hover,.admin-commandbar:hover{transform:none}
   .admin-reveal-group > *,.admin-workspace > *{opacity:1;transform:none}
 }
+
+.admin-scroll-progress{
+  position:fixed;left:0;right:0;top:0;height:2px;z-index:100;pointer-events:none;
+  background:linear-gradient(90deg,var(--admin-cyan),var(--admin-blue));
+  transform-origin:left center;transform:scaleX(var(--progress,0%));
+  box-shadow:0 0 14px rgba(67,217,255,.45);
+}
+.admin-back-top{
+  position:fixed;right:22px;bottom:22px;z-index:80;width:42px;height:42px;border:1px solid var(--admin-border-strong);
+  border-radius:13px;background:rgba(8,18,31,.82);backdrop-filter:blur(16px);color:var(--admin-cyan);
+  cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);
+  transition:opacity .25s ease,transform .25s ease,box-shadow .25s ease,background .25s ease;
+}
+.admin-back-top.is-visible{opacity:1;pointer-events:auto;transform:none}
+.admin-back-top:hover{background:rgba(67,217,255,.08);box-shadow:0 14px 35px rgba(0,0,0,.28),0 0 24px rgba(67,217,255,.12);transform:translateY(-3px)}
+.admin-panel,.admin-kpi,.admin-commandbar,.admin-privacy{
+  --mx:50%;--my:50%;
+}
+.admin-panel::selection,.admin-kpi::selection{background:rgba(67,217,255,.25)}
+@media(prefers-reduced-motion:reduce){
+  .admin-scroll-progress{transition:none}
+  .admin-back-top{transition:none}
+}
