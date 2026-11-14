@@ -16,6 +16,19 @@
   set("#userEmail",user.email);
   set("#userAvatar",(user.name||"Z").trim().charAt(0).toUpperCase());
 
+  const syncAdminCenter=async()=>{
+    const adminLink=$("#adminCenterLink");
+    if(!adminLink)return;
+    const trusted=user.role==="admin"&&await window.ZAdminAccess?.isTrusted?.(user);
+    adminLink.hidden=!trusted;
+    if(trusted){
+      adminLink.onclick=()=>{location.href="../admin/index.html";};
+    }else{
+      adminLink.onclick=null;
+    }
+  };
+  syncAdminCenter();
+
   $("#logoutBtn")?.addEventListener("click",event=>{
     event.preventDefault();
     auth.logout?.();
