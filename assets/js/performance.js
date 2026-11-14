@@ -27,13 +27,21 @@ network?.addEventListener?.("change",syncNetworkMode);
 const syncMotionMode=event=>{
  reduced=!!event.matches;
  body?.classList.toggle("zperf-reduced",reduced);
- body?.classList.toggle("zperf-lite",reduced||lowMemory||lowCpu||saveData||slowNetwork);
+ const conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+ const saver=!!conn?.saveData;
+ const slow=conn?.effectiveType==="slow-2g"||conn?.effectiveType==="2g";
+ body?.classList.toggle("zperf-lite",reduced||lowMemory||lowCpu||saver||slow);
 };
 reducedQuery?.addEventListener?.("change",syncMotionMode);
 let raf=0,lastViewportHeight=0;
 const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
 window.addEventListener("resize",syncViewport,{passive:true});
-window.addEventListener("pagehide",()=>{if(raf)cancelAnimationFrame(raf);raf=0},{once:true});
+const onPageHide=()=>{
+ if(raf)cancelAnimationFrame(raf);
+ raf=0;
+ window.removeEventListener("resize",syncViewport);
+};
+window.addEventListener("pagehide",onPageHide,{once:true});
 syncViewport();
 document.addEventListener("visibilitychange",()=>{body?.classList.toggle("zperf-paused",document.hidden);if(document.hidden)root.classList.remove("z-scroll-active")},{passive:true});
 const revealObservers=[];
