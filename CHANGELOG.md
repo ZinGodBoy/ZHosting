@@ -931,3 +931,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Restored cyan/blue accents, dark navy backgrounds, original body text, muted text and navigation colors.
 - Aligned the theme customization tool defaults with the restored palette so reset no longer reintroduces violet styling.
 - Kept the performance hardening from v1.7.x intact.
+
+
+## v1.7.5 — Performance & Visual Consolidation
+- Consolidated the final visual cascade around the original dark-navy/cyan/blue palette.
+- Reduced decorative rendering cost on constrained/mobile devices by disabling non-essential hero grid, glow and 3D effects.
+- Hardened adaptive performance state updates when network conditions change.
+- Removed the resize listener on page exit after viewport synchronization cleanup.
