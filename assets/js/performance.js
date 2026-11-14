@@ -16,17 +16,6 @@ if(saveData||slowNetwork)body?.classList.add("zperf-data-saver");
 let raf=0,lastViewportHeight=0;
 const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
 window.addEventListener("resize",syncViewport,{passive:true});syncViewport();
-let scrollRaf=0;
-let lastScrollState=false;
-const syncScroll=()=>{
-  if(scrollRaf)return;
-  scrollRaf=requestAnimationFrame(()=>{
-    scrollRaf=0;
-    const next=window.scrollY>8;
-    if(next!==lastScrollState){lastScrollState=next;root.classList.toggle("z-scroll-active",next)}
-  });
-};
-window.addEventListener("scroll",syncScroll,{passive:true});syncScroll();
 document.addEventListener("visibilitychange",()=>{body?.classList.toggle("zperf-paused",document.hidden);if(document.hidden)root.classList.remove("z-scroll-active")},{passive:true});
 const reveal=selector=>{const nodes=document.querySelectorAll(selector);if(!nodes.length||!("IntersectionObserver"in window))return;const io=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("zperf-visible");io.unobserve(entry.target)}},{rootMargin:"0px 0px -6% 0px",threshold:.01});nodes.forEach(node=>io.observe(node))};
 if(!reduced)reveal(".service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list,.admin-kpi,.admin-panel,.admin-workspace");
