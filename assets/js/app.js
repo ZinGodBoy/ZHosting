@@ -53,6 +53,7 @@ measureScrollBounds();
 /* Active navigation uses IntersectionObserver instead of scanning every section
    and reading offsetTop on every scroll frame. */
 const navTargets=[...document.querySelectorAll('main section[id]')];
+let navObserver=null;
 if(navTargets.length&&nav.length&&'IntersectionObserver' in window){
   const visible=new Map();
   const syncActive=()=>{
@@ -63,7 +64,7 @@ if(navTargets.length&&nav.length&&'IntersectionObserver' in window){
     });
     nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
   };
-  const navObserver=new IntersectionObserver(entries=>{
+  navObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting)visible.set(entry.target.id,entry.intersectionRatio);
       else visible.delete(entry.target.id);
@@ -77,7 +78,7 @@ if(navTargets.length&&nav.length&&'IntersectionObserver' in window){
 backTop.addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 window.addEventListener('pagehide',()=>{
   observer?.disconnect?.();
-  if(typeof navObserver!=="undefined")navObserver.disconnect();
+  navObserver?.disconnect?.();
 },{once:true});
 
 
@@ -315,6 +316,7 @@ const counterObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 counters.forEach(el=>counterObserver.observe(el));
+window.addEventListener('pagehide',()=>counterObserver.disconnect(),{once:true});
 })();
 
 /* ===== ACCOUNT-AWARE NAV ===== */
