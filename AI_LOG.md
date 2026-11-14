@@ -168,3 +168,10 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Standardized `ui.js` to deferred loading.
 - Removed the duplicate `.zui-progress` element/runtime because `app.js` already owns the primary scroll progress indicator.
 - Result: less startup DOM work and fewer scroll callbacks without changing core navigation behavior.
+
+
+## v1.4.6 — Account/Admin Consistency Fixes
+
+- Audited Account Center navigation against the trusted-device Admin Center boundary.
+- Removed duplicate admin-entry initialization and prevented an untrusted admin account from exposing the Admin Center link.
+- Aligned dashboard password-change validation with the authentication layer's 12-character minimum.
