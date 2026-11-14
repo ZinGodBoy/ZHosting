@@ -1,4 +1,12 @@
 # Changelog
+## Admin Center visual upgrade — 2026-11-14
+
+- Thêm branded ZHosting mark mới cho Admin Center theo hướng cyber-SaaS.
+- Thêm global search trên header để tìm user trực tiếp từ Control Plane.
+- Thêm quick jump tới User Directory.
+- Tăng tính nhất quán giữa brand, header, control actions và Admin Center design system.
+- Tối ưu header cho desktop, tablet và mobile.
+
 ## Admin Center refinement — 2026-11-14
 
 - Nâng User Directory với sắp xếp theo hoạt động gần nhất, tên, số login và ngày đăng ký.
