@@ -21,7 +21,7 @@ h1,h2,h3,h4,h5,h6,.brand,.eyebrow,.plan,.card-label,.dash-label,.status,.price b
 button,input,textarea,select{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 
-.zui-page{min-height:100vh;opacity:0;animation:zuiPageIn .65s var(--ease) .04s forwards}
+.zui-page{min-height:100vh;opacity:1;animation:zuiPageIn .65s var(--ease) .04s forwards}
 @keyframes zuiPageIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
 .zui-page::selection{background:rgba(67,217,255,.24);color:#fff}
@@ -50,7 +50,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 }
 
 [data-zui-reveal]{
-  opacity:0;transform:translateY(28px) scale(.985);
+  opacity:1;transform:translateY(28px) scale(.985);
   transition:opacity .72s var(--ease),transform .72s var(--ease);
   transition-delay:var(--reveal-delay,0ms);
 }
