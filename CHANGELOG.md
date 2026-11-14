@@ -1,3 +1,17 @@
+## v1.6.9 — Runtime Stability & Interaction Polish — 2026-11-14
+
+### Fixed
+- Sửa lifecycle của chế độ reduced-motion để listener được đăng ký/hủy đúng handler.
+- Giữ trạng thái adaptive performance đồng bộ khi người dùng thay đổi Reduce Motion trong lúc trang đang mở.
+
+### Performance
+- Giảm xử lý click feedback lặp lại trên cùng nút trong khoảng thời gian rất ngắn.
+- Không thêm observer hoặc timer nền mới cho UI.
+
+### UI
+- Giữ hiệu ứng click ngắn, ổn định và tương thích reduced-motion.
+- Không thay đổi cấu trúc footer; tiếp tục ưu tiên bố cục sạch, vùng chạm rõ và hiệu ứng nhẹ.
+
 ## v1.6.8 — Footer Runtime & Layout Hardening — 2026-11-14
 
 ### Fixed
