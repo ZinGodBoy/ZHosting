@@ -120,3 +120,20 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - [ ] Move admin identity/session/authorization to a backend
 - [ ] Add server-side device enrollment and revocation
 - [ ] Add WebAuthn/passkey step-up authentication for privileged actions
+
+## Release track
+
+### v1.4.0 — Frontend Hardening & Admin Control Plane
+**Status: Release candidate**
+
+- [x] Shared branding/logo/favicon.
+- [x] Account Center.
+- [x] Admin Center user directory, analytics and audit views.
+- [x] Trusted Admin Device Gate.
+- [x] Authentication/session hardening.
+- [x] Adaptive performance and reduced-motion handling.
+- [x] Navigation/runtime regression hardening.
+- [x] Release documentation and SemVer policy.
+- [ ] Production backend authorization.
+- [ ] Server-side sessions and audit log.
+- [ ] Real hosting node integration.
