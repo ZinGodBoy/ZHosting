@@ -390,11 +390,8 @@ const safeReadArray=(storage,key)=>{
       }
 
       await recordLogin(user);
-      if(user.role==="admin"){
-        const trusted=await window.ZAdminAccess?.enrollIfNeeded?.(user);
-        if(trusted===false){
-          recordAudit("admin_device_denied",{userId:user.id,email:user.email,reason:"untrusted-device",device:getDeviceInfo().device,browser:getDeviceInfo().browser});
-        }
+      if(user.role==="admin" && user.adminDevice?.fingerprint && !(await window.ZAdminAccess?.isTrusted?.(user))){
+        recordAudit("admin_device_denied",{userId:user.id,email:user.email,reason:"untrusted-device",device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       }
       recordAudit("login_success",{userId:user.id,email:user.email,name:user.name,device:getDeviceInfo().device,browser:getDeviceInfo().browser});
       saveUsers(users);
