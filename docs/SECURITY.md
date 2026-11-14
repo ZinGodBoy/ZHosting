@@ -98,3 +98,10 @@ Các biện pháp trên chỉ harden prototype. Không thay thế backend author
 The 2026-11-14 hardening pass adds malformed-storage recovery, stronger password-change rules, session revocation after credential changes, explicit logout audit events, and safer navigation state handling. These controls improve the demo but do not turn localStorage into a trusted security boundary.
 
 For production deployment, authentication must move to a backend with server-side password verification, HttpOnly/Secure/SameSite cookies or equivalent protected tokens, server-side session revocation, rate limiting, RBAC enforcement, and tamper-resistant audit logging.
+
+
+## Admin device binding
+
+Admin Center hiện có lớp bảo vệ phía trình duyệt: tài khoản admin được bind với một khóa ECDSA P-256 lưu trong IndexedDB, trong đó private key được lưu dưới dạng non-extractable. Navigation và route guard chỉ cho phép Admin Center khi public-key fingerprint khớp với trusted device đã đăng ký.
+
+Đây là lớp bảo vệ frontend cho bản demo static/localStorage. Không xem nó là boundary bảo mật tuyệt đối: authorization thật phải được enforce ở backend/server-side. OWASP khuyến nghị không dùng client-side checks hoặc hidden UI làm cơ chế authorization quyết định. Khi chuyển sang production, cần server-side session, role/permission policy và device binding phía server.
