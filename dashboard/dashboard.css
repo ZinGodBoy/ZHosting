@@ -623,3 +623,8 @@ input,select,textarea,button{font-family:var(--font-ui)}
 /* ===== ACCOUNT PERFORMANCE v1.4.6 ===== */
 body.zperf-lite .dashboard-page .dash-card,body.zperf-lite .dashboard-page .panel{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
 body.zperf-paused .dashboard-page *{animation-play-state:paused!important}
+
+
+/* ===== RENDERING HARDENING v1.6.0 ===== */
+body.zperf-lite *{text-shadow:none}
+@media(prefers-reduced-motion:reduce){body *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
