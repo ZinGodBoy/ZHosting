@@ -1251,3 +1251,17 @@ html.zperf-constrained .admin-page .admin-table-wrap{
   border-color:rgba(67,217,255,.38);
   box-shadow:0 14px 32px rgba(0,0,0,.3),0 0 24px rgba(67,217,255,.14);
 }
+
+
+/* ===== CONTENT VISIBILITY GUARANTEE v1.8.9 =====
+   Readability is authoritative: reveal effects may enhance content, never hide it.
+   This guard intentionally sits at the end of the shared stylesheet so later
+   optimization/theme rules cannot regress page text visibility. */
+body .reveal,
+body .reveal.visible,
+body [data-zui-reveal],
+body [data-zui-reveal].zui-visible,
+body .zperf-visible{
+  opacity:1!important;
+  visibility:visible!important;
+}
