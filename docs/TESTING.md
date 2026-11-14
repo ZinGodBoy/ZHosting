@@ -236,3 +236,13 @@ Browser testing không thể chứng minh backend security vì repository hiện
 | Responsive | 360/480/768/1024/1440px remain usable |
 
 Release completion requires browser smoke testing plus passing CI/security checks.
+
+### Support Dock regression — 2026-11-14
+
+- [ ] Dock xuất hiện trên Homepage, Login, Register, Account Center, Admin Center và 404.
+- [ ] Hai nút đều hình tròn và hiển thị đúng asset logo.
+- [ ] Desktop hover/focus mở rộng nhưng không làm layout shift.
+- [ ] Mobile không che CTA hoặc nội dung chính.
+- [ ] Tab navigation tới được cả hai nút.
+- [ ] Reduced motion không tạo animation bắt buộc.
+- [ ] Không tạo component trùng khi runtime được tải lại.
