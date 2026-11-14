@@ -190,6 +190,8 @@ const refreshData=()=>{
  users=fresh;me=current;render();analytics();show(selectedId);
 };
 
+$("jumpDirectory")?.addEventListener("click",()=>{document.querySelector(".admin-workspace")?.scrollIntoView({behavior:"smooth",block:"start"});});
+$("adminGlobalSearch")?.addEventListener("input",event=>{const value=event.target.value.trim();const search=$("search");if(search){search.value=value;render();}});
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 setInterval(updateClock,1000);updateClock();
 
