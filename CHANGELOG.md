@@ -636,3 +636,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Performance layer không ghi lại `--z-viewport-height` nếu chiều cao viewport không thực sự thay đổi.
 - Giảm các style write không cần thiết trong resize lifecycle.
 - Không thay đổi chức năng đăng nhập, dashboard, Admin Center hoặc cấu hình hosting.
+
+## v1.5.4 — Runtime Performance Pass
+- Cached support-dock scroll metrics instead of reading document height on every scroll frame.
+- Kept scroll updates passive and rAF-batched.
+- Added lightweight containment/backface hints for the floating support dock.
+- Reduced mobile blur/noise/shadow overhead.
