@@ -252,3 +252,8 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Audited the shared support bubble runtime for page-exit cleanup.
 - Reduced persistent rendering work in the footer while preserving the existing visual language.
 - Kept responsive and reduced-motion paths explicit.
+
+
+## v1.6.5 — Support Runtime Finalization
+- Re-audited the support bubble lifecycle after the v1.6.4 runtime pass.
+- Added explicit `ResizeObserver.disconnect()` cleanup on page exit.
