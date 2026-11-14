@@ -297,3 +297,178 @@ td{color:#b9c9d7;font-size:10px}
   .admin-header-actions a,.admin-header-actions #jumpDirectory{display:none}
   .admin-status{font-size:8px}
 }
+
+/* =========================================================
+   ZHosting Homepage Sync — Admin Motion Layer v2
+   Uses the same design tokens as assets/css/styles.css.
+   ========================================================= */
+.admin-page{
+  --admin-bg:var(--bg,#050b14);
+  --admin-surface:rgba(10,20,34,.76);
+  --admin-surface-2:rgba(13,26,43,.66);
+  --admin-border:var(--line,rgba(145,190,230,.13));
+  --admin-border-strong:rgba(67,217,255,.36);
+  --admin-text:var(--text,#eef6ff);
+  --admin-muted:var(--muted,#8ea4bb);
+  --admin-soft:#c4d5e5;
+  --admin-cyan:var(--cyan,#43d9ff);
+  --admin-blue:var(--blue,#5c7cff);
+  --admin-green:var(--green,#55e6a5);
+  --admin-red:#ff7888;
+  --admin-radius:var(--radius,22px);
+  position:relative;
+  isolation:isolate;
+  overflow-x:hidden;
+  background:var(--admin-bg);
+  color:var(--admin-text);
+  font-family:var(--font-ui,Inter,system-ui,sans-serif);
+}
+.admin-page::before{
+  content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(850px 520px at 82% -10%,rgba(67,217,255,.10),transparent 64%),
+    radial-gradient(760px 520px at -12% 28%,rgba(92,124,255,.10),transparent 62%),
+    linear-gradient(180deg,#050b14 0%,#07111f 55%,#050b14 100%);
+}
+.admin-bg-grid{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.48;
+  background-image:
+    linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.7) 55%,transparent 100%);
+}
+.admin-noise{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+.admin-ambient{
+  position:fixed;z-index:-1;pointer-events:none;width:420px;height:420px;border-radius:50%;
+  filter:blur(90px);opacity:.10;animation:adminAmbient 12s ease-in-out infinite;
+}
+.ambient-one{top:7%;right:-180px;background:var(--admin-cyan)}
+.ambient-two{top:52%;left:-220px;background:var(--admin-blue);animation-delay:-6s}
+@keyframes adminAmbient{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-30px,25px,0) scale(1.12)}}
+
+.admin-header{
+  background:rgba(5,11,20,.70);
+  border-bottom:1px solid var(--admin-border);
+  box-shadow:0 10px 45px rgba(0,0,0,.16);
+}
+.admin-header-inner,.admin-main{position:relative;z-index:2}
+.admin-brand-mark{
+  background:linear-gradient(135deg,var(--admin-cyan),var(--admin-blue));
+  box-shadow:0 12px 32px rgba(67,217,255,.16),inset 0 1px rgba(255,255,255,.42);
+}
+.admin-brand-copy strong,.admin-hero h1,.admin-panel-head h2,.admin-kpi strong{
+  font-family:var(--font-display,Space Grotesk,var(--font-ui));
+}
+.admin-hero h1{
+  background:linear-gradient(100deg,#fff 5%,var(--admin-cyan) 55%,#7d8dff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.admin-hero p,.admin-panel-head>span,.admin-kpi small,.admin-privacy span{color:var(--admin-muted)}
+.admin-panel,.admin-kpi,.admin-commandbar,.admin-privacy{
+  background:linear-gradient(145deg,rgba(10,20,34,.80),rgba(13,26,43,.54));
+  border-color:var(--admin-border);
+  box-shadow:0 24px 80px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.025);
+  backdrop-filter:blur(18px);
+}
+.admin-panel,.admin-kpi,.admin-commandbar{position:relative;overflow:hidden}
+.admin-panel::before,.admin-kpi::before,.admin-commandbar::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--admin-cyan),transparent);
+  opacity:.25;
+}
+.admin-panel::after,.admin-kpi::after{
+  content:"";position:absolute;width:180px;height:180px;right:-120px;top:-120px;
+  border-radius:50%;background:rgba(67,217,255,.07);filter:blur(28px);
+  transition:transform .5s ease,opacity .5s ease;pointer-events:none;
+}
+.admin-panel:hover::after,.admin-kpi:hover::after{transform:scale(1.55);opacity:.9}
+.admin-kpi:hover{
+  transform:translateY(-5px);
+  border-color:var(--admin-border-strong);
+  box-shadow:0 28px 90px rgba(0,0,0,.28),0 0 35px rgba(67,217,255,.055);
+}
+.admin-panel{
+  transition:transform .32s cubic-bezier(.2,.75,.25,1),border-color .32s ease,box-shadow .32s ease;
+}
+.admin-panel:hover{
+  transform:translateY(-3px);
+  border-color:rgba(67,217,255,.22);
+  box-shadow:0 30px 95px rgba(0,0,0,.24),0 0 30px rgba(67,217,255,.035);
+}
+.admin-commandbar{
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
+}
+.admin-commandbar:hover{border-color:rgba(67,217,255,.22);box-shadow:0 20px 70px rgba(0,0,0,.22)}
+.admin-commandbar button,.admin-header-actions a,.admin-header-actions button,
+.admin-toolbar button,.admin-actions button,.view{
+  position:relative;overflow:hidden;
+  transition:transform .22s cubic-bezier(.2,.75,.25,1),background .22s ease,border-color .22s ease,box-shadow .22s ease,color .22s ease;
+}
+.admin-commandbar button::before,.admin-header-actions a::before,.admin-header-actions button::before,
+.admin-toolbar button::before,.admin-actions button::before,.view::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.12) 50%,transparent 75%);
+  transform:translateX(-120%);transition:transform .55s ease;
+}
+.admin-commandbar button:hover::before,.admin-header-actions a:hover::before,.admin-header-actions button:hover::before,
+.admin-toolbar button:hover::before,.admin-actions button:hover::before,.view:hover::before{transform:translateX(120%)}
+.admin-commandbar button:hover,.admin-header-actions a:hover,.admin-header-actions button:hover,
+.admin-toolbar button:hover,.admin-actions button:hover,.view:hover{
+  transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.22);
+}
+.admin-toolbar input,.admin-toolbar select,.admin-header-search{
+  background:rgba(255,255,255,.025);
+  border-color:var(--admin-border);
+  color:var(--admin-text);
+  transition:border-color .22s ease,box-shadow .22s ease,background .22s ease,transform .22s ease;
+}
+.admin-toolbar input:focus,.admin-toolbar select:focus,.admin-header-search:focus-within{
+  border-color:rgba(67,217,255,.42);
+  background:rgba(67,217,255,.035);
+  box-shadow:0 0 0 4px rgba(67,217,255,.055),0 12px 35px rgba(0,0,0,.18);
+}
+.admin-eyebrow{color:var(--admin-cyan)}
+.admin-eyebrow i{animation:adminPulse 2s ease-in-out infinite}
+.admin-status i,.pulse{animation:adminPulse 1.8s ease-in-out infinite}
+@keyframes adminPulse{0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 10px currentColor}50%{opacity:.55;transform:scale(.72);box-shadow:0 0 22px currentColor}}
+
+.admin-reveal-group > *,.admin-workspace > *{
+  opacity:0;transform:translateY(22px);
+}
+.admin-reveal-group.is-visible > *,.admin-workspace.is-visible > *{
+  opacity:1;transform:none;
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1);
+}
+.admin-reveal-group.is-visible > *:nth-child(2){transition-delay:.07s}
+.admin-reveal-group.is-visible > *:nth-child(3){transition-delay:.14s}
+.admin-reveal-group.is-visible > *:nth-child(4){transition-delay:.21s}
+.admin-reveal-group.is-visible > *:nth-child(5){transition-delay:.28s}
+.admin-reveal-group.is-visible > *:nth-child(6){transition-delay:.35s}
+.admin-workspace.is-visible > *:nth-child(2){transition-delay:.10s}
+
+.growth-chart i,.bar-track i,.device-track i,.health-bar i{
+  box-shadow:0 0 18px rgba(67,217,255,.16);
+}
+.growth-chart i{animation:adminBarIn .75s cubic-bezier(.2,.75,.25,1) both}
+.bar-track i{animation:adminBarIn .7s cubic-bezier(.2,.75,.25,1) both}
+@keyframes adminBarIn{from{opacity:0;transform:scaleY(.15);transform-origin:bottom}to{opacity:1;transform:scaleY(1);transform-origin:bottom}}
+
+.donut{filter:drop-shadow(0 0 18px rgba(67,217,255,.08));animation:adminDonut 1.2s ease both}
+@keyframes adminDonut{from{transform:scale(.88);opacity:.4}to{transform:scale(1);opacity:1}}
+
+.admin-panel table tbody tr{transition:background .2s ease,transform .2s ease}
+.admin-panel table tbody tr:hover{transform:translateX(2px)}
+.admin-panel table tbody tr.is-selected{box-shadow:inset 2px 0 var(--admin-cyan)}
+.history-row,.activity-row{transition:background .2s ease,padding-left .2s ease}
+.history-row:hover,.activity-row:hover{padding-left:5px;background:rgba(67,217,255,.025)}
+
+@media(prefers-reduced-motion:reduce){
+  .admin-ambient,.admin-eyebrow i,.admin-status i,.pulse,.donut,.growth-chart i,.bar-track i{animation:none!important}
+  .admin-panel,.admin-kpi,.admin-commandbar,.admin-panel table tbody tr,.history-row,.activity-row{transition:none!important}
+  .admin-panel:hover,.admin-kpi:hover,.admin-commandbar:hover{transform:none}
+  .admin-reveal-group > *,.admin-workspace > *{opacity:1;transform:none}
+}
