@@ -866,3 +866,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Added explicit cleanup for homepage reveal/navigation observers on page exit.
 - Reduced auth-page blur, grid opacity and card shadow on smaller/constrained devices.
 - Disabled non-essential footer decorative layers and server-card motion in constrained mode.
+
+
+## v1.7.2 — Observer Scope & Lifecycle Fix
+- Fixed homepage navigation observer scope so the actual observer is retained and disconnected on page exit.
+- Added explicit counter observer cleanup on `pagehide`.
+- Kept the runtime event-driven without adding continuous polling or pointer effects.
