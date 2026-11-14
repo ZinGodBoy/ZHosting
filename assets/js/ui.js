@@ -171,8 +171,24 @@
       }
     };
     check();
-    setInterval(check,30000);
-    document.addEventListener("visibilitychange",()=>{if(!document.hidden)check()});
+    let guardTimer=0;
+    let guardStopped=false;
+    const scheduleGuard=()=>{
+      window.clearTimeout(guardTimer);
+      if(guardStopped||document.hidden)return;
+      guardTimer=window.setTimeout(()=>{
+        if(!document.hidden)check();
+        scheduleGuard();
+      },30000);
+    };
+    const onGuardVisibility=()=>scheduleGuard();
+    document.addEventListener("visibilitychange",onGuardVisibility,{passive:true});
+    scheduleGuard();
+    window.addEventListener("pagehide",()=>{
+      guardStopped=true;
+      window.clearTimeout(guardTimer);
+      document.removeEventListener("visibilitychange",onGuardVisibility);
+    },{once:true});
     addEventListener("storage",event=>{
       if(event.key==="zhosting_session_v1"&&!event.newValue){
         if(location.pathname.includes("/dashboard/"))window.ZAuth.logout?.();
@@ -222,9 +238,13 @@
 
   document.querySelectorAll("a[href^="#"]").forEach(a=>{
     a.addEventListener("click",e=>{
-      const target=document.querySelector(a.getAttribute("href"));
+      const selector=a.getAttribute("href");
+      if(!selector||selector==="#")return;
+      let target=null;
+      try{target=document.querySelector(selector)}catch{return}
       if(!target)return;
-      e.preventDefault();target.scrollIntoView({behavior:"smooth",block:"start"});
+      e.preventDefault();
+      target.scrollIntoView({behavior:"smooth",block:"start"});
     });
   });
 })();
