@@ -1,3 +1,12 @@
+## Support bubbles readability refinement — 2026-11-14
+
+- Nâng cấp 2 bong bóng hỗ trợ Zalo và Discord thành mini support panel dễ đọc hơn.
+- Hiển thị rõ tên kênh, số điện thoại/tên Discord và mục đích liên hệ.
+- Thêm trạng thái “Cần hỗ trợ?” và hiệu ứng hover nhẹ.
+- Trên màn hình nhỏ chuyển thành nút nổi gọn; vẫn có tooltip khi hover/focus.
+- Giữ keyboard focus, responsive và reduced-motion.
+- Không thay đổi thông tin liên hệ hiện tại.
+
 ## Pricing & Config decision UX — 2026-11-14
 
 - Làm rõ từng gói với nhãn **phù hợp với** và phần “Bạn nên chọn gói này nếu”.
