@@ -61,20 +61,27 @@ const filtered=()=>{
  });
 };
 
+const numberFrames=new Map();
 const animateNumber=(id,target,duration=520)=>{
  const node=$(id);if(!node)return;
+ const previous=numberFrames.get(id);
+ if(previous)cancelAnimationFrame(previous);
  const start=Number(node.dataset.value||node.textContent)||0;
  const end=Number(target)||0;
  node.dataset.value=String(end);
- if(reduceMotion){node.textContent=String(end);return;}
+ if(reduceMotion){node.textContent=String(end);numberFrames.delete(id);return;}
  const started=performance.now();
  const tick=now=>{
    const p=Math.min(1,(now-started)/duration);
    const eased=1-Math.pow(1-p,3);
    node.textContent=String(Math.round(start+(end-start)*eased));
-   if(p<1)requestAnimationFrame(tick);
+   if(p<1){
+     numberFrames.set(id,requestAnimationFrame(tick));
+   }else{
+     numberFrames.delete(id);
+   }
  };
- requestAnimationFrame(tick);
+ numberFrames.set(id,requestAnimationFrame(tick));
 };
 const stats=()=>{
  const list=users.map(normalize);
@@ -333,6 +340,7 @@ if(!reduceMotion){
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
 const stopClock=zSetInterval(updateClock,1000);updateClock();
 window.addEventListener("pagehide",stopClock,{once:true});
+window.addEventListener("pagehide",()=>{numberFrames.forEach(frame=>cancelAnimationFrame(frame));numberFrames.clear();revealObserver?.disconnect?.();},{once:true});
 
 $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();notify("Search","Đã đưa con trỏ tới bộ lọc User Directory.");});
 $("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();notify("Filter","Đang hiển thị tài khoản bị khóa.");}});
