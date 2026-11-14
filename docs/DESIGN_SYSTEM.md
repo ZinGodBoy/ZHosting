@@ -164,3 +164,8 @@ Command Launch sử dụng card dạng glass panel, số thứ tự nhỏ, accen
 ## Live telemetry motion — 2026-11-09
 
 Network Map dùng transition cho meter và ping. Dữ liệu hiện tại là demo client-side; khi kết nối backend cần thay bằng nguồn monitoring thật và không trình bày dữ liệu mô phỏng như số liệu production.
+
+
+## Admin Center motion layer
+
+Admin Center sử dụng cùng visual language với Homepage: navy glass surfaces, cyan/blue gradients, ambient glow và typography Inter + Space Grotesk. Motion layer gồm reveal/stagger, pointer spotlight, card tilt, shimmer, chart entrance, KPI count-up, ripple feedback, header shrink và activity micro-interactions. Tất cả hiệu ứng mới đều có fallback `prefers-reduced-motion: reduce`.
