@@ -6,6 +6,8 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ### Security hardening — 2026-11-14
 
+- Ghi nhận explicit logout vào client audit telemetry khi có session hợp lệ.
+
 - Nâng password policy của tài khoản mới và đổi mật khẩu lên tối thiểu 12 ký tự.
 - Thêm recovery khi browser storage chứa JSON không hợp lệ.
 - Chặn account locked trước password verification và giữ thông báo đăng nhập chung.
