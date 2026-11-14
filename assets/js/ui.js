@@ -108,6 +108,10 @@
       if(btn.dataset.zuiBound==="1")return;
       e.preventDefault();e.stopImmediatePropagation();btn.dataset.zuiBound="1";
       root.classList.add("zui-page-lock");screen.classList.add("active");
+      try{
+        const session=window.ZAuth?.getSession?.();
+        if(session)window.ZAuth?.recordAudit?.("logout",{email:session.email});
+      }catch{}
       localStorage.removeItem("zhosting_session_v1");
       sessionStorage.removeItem("zhosting_temp_session_v1");
       const loginPath=location.pathname.includes("/dashboard/")?"../auth/login.html":location.pathname.includes("/auth/")?"login.html":"auth/login.html";
