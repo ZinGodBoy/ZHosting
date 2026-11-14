@@ -15,7 +15,7 @@ const sync=()=>{
  root.style.setProperty("--support-scroll-y",((progress-.5)*150).toFixed(2)+"px");
 };
 const onScroll=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;sync()})};
-const syncScrollbar=()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const scrollbar=Math.max(0,window.innerWidth-document.documentElement.clientWidth);const safe=window.matchMedia?.("(max-width:700px)")?.matches?10:12;root.style.setProperty("--support-scrollbar-offset",Math.max(safe,scrollbar+safe)+"px");sync()})};
+const syncScrollbar=()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const scrollbar=Math.max(0,window.innerWidth-document.documentElement.clientWidth);const safe=window.matchMedia?.("(max-width:700px)")?.matches?10:12;root.style.setProperty("--support-right",Math.max(safe,scrollbar+safe)+"px");sync()})};
 window.addEventListener("scroll",onScroll,{passive:true});
 window.addEventListener("resize",syncScrollbar,{passive:true});
 window.addEventListener("orientationchange",syncScrollbar,{passive:true});
