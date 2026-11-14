@@ -67,3 +67,21 @@ Các thao tác quản trị nhạy cảm trong prototype được ghi audit even
 Audit chứa admin ID/email và target ID/email cùng thời điểm thao tác; không chứa password hoặc credential material.
 
 Đây là telemetry phía client. Không xem `localStorage` là vùng tin cậy. Production cần chuyển authorization, session management và audit log sang backend.
+
+
+## Security hardening — 2026-11-14
+
+### Authentication
+
+- Password policy mới: tối thiểu 12 ký tự cho register và change-password.
+- Guard state được validate khi đọc từ sessionStorage; dữ liệu hỏng được reset an toàn.
+- User/session storage parsing có failure recovery thay vì để JSON lỗi phá auth flow.
+- Locked accounts bị chặn trước password verification và ghi nhận login_failed với reason nội bộ.
+
+### Admin export
+
+- CSV export escape dấu ngoặc kép đúng chuẩn.
+- Dòng CSV dùng newline thật thay vì chuỗi escape.
+- Các trường bắt đầu bằng =, +, -, @ được prefix apostrophe để giảm rủi ro formula injection khi mở bằng spreadsheet.
+
+Các biện pháp trên chỉ harden prototype. Không thay thế backend authorization, server-side rate limiting hoặc trusted audit logging.
