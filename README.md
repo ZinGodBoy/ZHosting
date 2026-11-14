@@ -386,3 +386,7 @@ The project remains intentionally framework-free. These improvements are fronten
 - Zalo và Discord dùng floating bubble dạng tròn với logo thương hiệu.
 - Vị trí dock thay đổi nhẹ theo tiến trình cuộn trang để giữ cảm giác bám theo vùng scrollbar.
 - Scroll handler dùng requestAnimationFrame và passive listener để hạn chế layout work.
+
+
+### v1.4.12 — Theme customization
+The homepage now includes a lightweight theme color tool with RGB/HEX accent editing, background color control, presets, local persistence, and reset support.
