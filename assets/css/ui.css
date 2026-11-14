@@ -318,7 +318,7 @@ input:focus-visible,button:focus-visible,a:focus-visible{
 .dashboard-page .modal[aria-hidden="false"]{
   animation:zuiModalBackdrop .25s ease both;
 }
-@keyframes zuiModalBackdrop{from{backdrop-filter:blur(0)}to{backdrop-filter:blur(10px)}}
+@keyframes zuiModalBackdrop{from{opacity:.82}to{opacity:1}}
 
 .btn-primary::after{
   content:"";
