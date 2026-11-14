@@ -519,3 +519,13 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Footer/support sử dụng blue/cyan identity; không xuất hiện violet ngoài các thành phần brand có chủ đích.
 - [ ] Reduced-motion và zperf-lite vẫn loại bỏ motion/effect không cần thiết.
 - [x] Static JavaScript syntax check: assets/js/app.js, admin/admin.js.
+
+### v1.8.0 — Runtime Analytics & Compositing
+
+- [ ] Dashboard chuyển tab/quay lại không tạo localStorage write chỉ vì visibilitychange.
+- [ ] Admin login chart vẫn hiển thị đúng dữ liệu theo 7 ngày.
+- [ ] Admin user growth 30 ngày tăng đúng theo ngày tạo tài khoản.
+- [ ] Device mix không bị nhân đôi các login event thành công.
+- [ ] Reduced transparency tắt backdrop blur trên header/modal/support surfaces.
+- [ ] `zperf-constrained` không cho phép cascade cũ bật lại blur.
+- [x] Static syntax check: dashboard.js, app.js, ui.js, performance.js, support.js, auth.js, dashboard/dashboard.js, admin/admin.js.
