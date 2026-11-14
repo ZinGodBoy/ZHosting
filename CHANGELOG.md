@@ -1,3 +1,20 @@
+## v1.6.4 — Footer UX & Visual Polish — 2026-11-14
+
+### Changed
+- Làm lại khu vực liên hệ cuối trang với Zalo, Discord và Email rõ ràng hơn.
+- Bổ sung CTA hỗ trợ ngay trước footer-bottom, giảm khoảng trống và tăng phân cấp thị giác.
+- Bổ sung liên kết Liên hệ ở footer-bottom để điều hướng nhanh trên mobile.
+
+### Performance
+- Footer dùng hiệu ứng nhẹ, không thêm animation runtime hoặc observer mới.
+- Giữ chế độ reduced-motion và constrained-device tương thích với footer.
+- Không sử dụng blur/backdrop-filter mới trong khu vực footer.
+
+### UI
+- Đồng bộ footer với Midnight Violet/Indigo.
+- Cải thiện responsive ở tablet/mobile, kích thước chữ và vùng chạm.
+- Giữ trạng thái focus-visible cho khả năng truy cập.
+
 ## v1.6.1 — Runtime Lifecycle & Performance Follow-up — 2026-11-14
 
 ### Fixed
