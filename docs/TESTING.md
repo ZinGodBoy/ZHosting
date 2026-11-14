@@ -283,3 +283,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Hard-refresh each main route and verify content paints before non-critical UI enhancements.
 - Verify login/register/dashboard/Admin Center still initialize correctly with deferred `ui.js`.
 - Scroll continuously and verify only the primary scroll-progress runtime updates.
+
+## v1.4.6 Smoke Test
+
+- Log in as a normal user: Admin Center remains hidden.
+- Log in as an admin on an untrusted browser: Admin Center remains hidden.
+- On a trusted admin device: Admin Center link appears and opens normally.
+- Change password with 8–11 characters: rejected.
+- Change password with 12+ characters: continues to the authentication layer.
