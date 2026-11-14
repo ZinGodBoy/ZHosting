@@ -959,3 +959,16 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Scoped homepage ResizeObserver measurement to `<main>` instead of the entire document root to reduce unnecessary layout observation work.
 - Added cleanup for the shared UI reveal observer on page exit.
 - Preserved the v1.7.5 responsive performance and blue/cyan visual system.
+
+
+## v1.7.7 — Runtime Bugfix & Support Lifecycle Hardening — 2026-11-14
+
+### Fixed
+- Fixed a real shared UI runtime error where the reveal observer referenced an undefined variable (obs) when an element entered the viewport.
+- Shared reveal animation now unobserves the target through the active revealObserver instance.
+- Hardened the support dock lifecycle so cancelling pending animation frames on pagehide does not permanently disable the dock when the page is restored through the browser lifecycle.
+
+### Performance & Visual
+- No new continuous animation loops were introduced.
+- Existing blue/cyan ZHosting palette, typography and constrained-device rendering remain unchanged.
+- Support dock keeps its lightweight rAF-throttled scroll/resize behavior.
