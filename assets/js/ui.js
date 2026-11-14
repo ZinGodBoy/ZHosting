@@ -232,12 +232,12 @@
 
 /* ===== ZHOSTING UI SAFETY PASS v1.4.1 ===== */
 (()=>{
-  const links=document.querySelectorAll('a[target="_blank"]');
-  links.forEach(link=>{const rel=new Set((link.getAttribute("rel")||"").split(/\s+/).filter(Boolean));rel.add("noopener");rel.add("noreferrer");link.setAttribute("rel",[...rel].join(" "));});
-  document.querySelectorAll("form").forEach(form=>{
-    form.addEventListener("invalid",event=>{event.target.classList.add("field-invalid");},{capture:true});
-    form.addEventListener("input",event=>{event.target.classList.remove("field-invalid");},{capture:true});
+  document.querySelectorAll('a[target="_blank"]').forEach(link=>{
+    const rel=new Set((link.getAttribute("rel")||"").split(/\s+/).filter(Boolean));
+    rel.add("noopener");rel.add("noreferrer");link.setAttribute("rel",[...rel].join(" "));
   });
+  document.addEventListener("invalid",event=>{event.target.classList.add("field-invalid")},{capture:true});
+  document.addEventListener("input",event=>{event.target.classList.remove("field-invalid")},{passive:true});
 })();
 
 /* ===== SMALL UX FEEDBACK v1.4.4 ===== */
