@@ -214,9 +214,9 @@
         <div class="section-head centered reveal"><span class="eyebrow">BẢNG GIÁ</span><h2>Chọn cấu hình phù hợp.</h2><p>Giá minh họa để tham khảo. Cấu hình thực tế có thể tùy chỉnh theo dự án.</p></div>
         <div class="billing-toggle reveal"><button class="active" data-cycle="month">Theo tháng</button><button data-cycle="year">Theo năm <small>-15%</small></button></div>
         <div class="price-grid">
-          <article class="price-card reveal"><span class="plan">STARTER</span><h3>Minecraft Basic</h3><div class="price"><b data-month="39K" data-year="33K">39K</b><small>/tháng</small></div><p>Dành cho server nhỏ và cộng đồng mới.</p><ul><li>4 GB RAM</li><li>2 vCPU</li><li>NVMe 30 GB</li><li>Anti-DDoS</li><li>Backup cơ bản</li></ul><a class="btn btn-ghost full" href="#contact">Chọn gói</a></article>
-          <article class="price-card popular reveal"><div class="popular-label">ĐƯỢC CHỌN NHIỀU</div><span class="plan">PRO</span><h3>Minecraft Pro</h3><div class="price"><b data-month="89K" data-year="76K">89K</b><small>/tháng</small></div><p>Cho server đang phát triển và nhiều plugin.</p><ul><li>8 GB RAM</li><li>4 vCPU</li><li>NVMe 80 GB</li><li>Anti-DDoS nâng cao</li><li>Backup tự động</li></ul><a class="btn btn-primary full" href="#contact">Chọn gói</a></article>
-          <article class="price-card reveal"><span class="plan">BUSINESS</span><h3>VPS Business</h3><div class="price"><b data-month="199K" data-year="169K">199K</b><small>/tháng</small></div><p>Dành cho ứng dụng và website cần tài nguyên riêng.</p><ul><li>8 vCPU</li><li>16 GB RAM</li><li>NVMe 160 GB</li><li>IPv4 riêng</li><li>Hỗ trợ cấu hình</li></ul><a class="btn btn-ghost full" href="#contact">Tư vấn</a></article>
+          <article class="price-card reveal"><span class="plan">STARTER</span><span class="plan-fit">PHÙ HỢP: SERVER NHỎ</span><h3>Minecraft Basic</h3><div class="price"><b data-month="39K" data-year="33K">39K</b><small>/tháng</small></div><p>Dành cho server nhỏ, bạn bè và cộng đồng mới bắt đầu.</p><div class="plan-tip"><b>Bạn nên chọn gói này nếu:</b><span>chủ yếu cần một server Minecraft cơ bản, ít plugin và lưu lượng vừa phải.</span></div><ul><li>4 GB RAM</li><li>2 vCPU</li><li>NVMe 30 GB</li><li>Anti-DDoS</li><li>Backup cơ bản</li></ul><a class="btn btn-ghost full" href="#contact">Tư vấn gói Basic →</a></article>
+          <article class="price-card popular reveal"><div class="popular-label">ĐƯỢC CHỌN NHIỀU</div><span class="plan">PRO</span><span class="plan-fit">PHÙ HỢP: SERVER ĐANG PHÁT TRIỂN</span><h3>Minecraft Pro</h3><div class="price"><b data-month="89K" data-year="76K">89K</b><small>/tháng</small></div><p>Cho server đang phát triển, nhiều plugin và cộng đồng đông hơn.</p><div class="plan-tip"><b>Bạn nên chọn gói này nếu:</b><span>muốn dư tài nguyên để chạy plugin, event và mở rộng người chơi.</span></div><ul><li>8 GB RAM</li><li>4 vCPU</li><li>NVMe 80 GB</li><li>Anti-DDoS nâng cao</li><li>Backup tự động</li></ul><a class="btn btn-primary full" href="#contact">Tư vấn gói Pro →</a></article>
+          <article class="price-card reveal"><span class="plan">BUSINESS</span><span class="plan-fit">PHÙ HỢP: APP / WEBSITE / VPS</span><h3>VPS Business</h3><div class="price"><b data-month="199K" data-year="169K">199K</b><small>/tháng</small></div><p>Dành cho ứng dụng, API, database và website cần tài nguyên riêng.</p><div class="plan-tip"><b>Bạn nên chọn gói này nếu:</b><span>cần quyền kiểm soát cao hơn hosting thông thường hoặc chạy nhiều dịch vụ cùng lúc.</span></div><ul><li>8 vCPU</li><li>16 GB RAM</li><li>NVMe 160 GB</li><li>IPv4 riêng</li><li>Hỗ trợ cấu hình</li></ul><a class="btn btn-ghost full" href="#contact">Tư vấn VPS →</a></article>
         </div>
       </div>
     </section>
@@ -261,6 +261,7 @@
 
           <aside class="config-result reveal" data-zui-reveal="right">
             <div class="config-result-top"><span class="eyebrow">YOUR CONFIGURATION</span><span class="config-live"><i></i> READY</span></div>
+            <div class="config-recommendation" id="configRecommendation"><span>GỢI Ý</span><b id="configRecommendationText">Cấu hình cân bằng cho server cộng đồng.</b></div>
             <h3 id="configTitle">Minecraft Hosting</h3>
             <p id="configDescription">Cấu hình cân bằng cho server cộng đồng.</p>
             <div class="config-summary">
@@ -268,7 +269,8 @@
               <div><span>CPU</span><b id="summaryCpu">2 vCPU</b></div>
               <div><span>ADD-ONS</span><b id="summaryAddons">0</b></div>
             </div>
-            <div class="config-price"><small>Tạm tính</small><strong id="configTotal">39K</strong><span>/tháng</span></div>
+            <div class="config-price"><small>Tạm tính mỗi tháng</small><strong id="configTotal">39K</strong><span>/tháng</span></div>
+            <p class="config-disclaimer">Giá chỉ mang tính minh họa trong prototype. Giá thực tế sẽ được xác nhận khi tư vấn.</p>
             <button class="btn btn-primary full" id="configContact" type="button">Nhận tư vấn cấu hình <span>→</span></button>
             <button class="config-reset" id="configReset" type="button">Đặt lại cấu hình</button>
           </aside>
