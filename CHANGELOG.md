@@ -568,3 +568,12 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Extended the theme tool with solid/gradient background modes.
 - Added secondary background color and gradient angle controls.
 - Presets now include coordinated secondary colors.
+
+
+## v1.5.1 — Support Bubble Motion Fix — 2026-11-14
+
+- Sửa lỗi support dock có class nhưng thiếu runtime styling nên 2 bong bóng không có chuyển động.
+- Bổ sung animation nổi độc lập và lệch nhịp giữa Zalo/Discord.
+- Scroll-follow được xử lý tập trung trong assets/js/support.js bằng requestAnimationFrame.
+- Loại bỏ scroll listener trùng trong app.js để giảm main-thread work.
+- Giữ responsive, reduced-motion, scrollbar alignment và Performance Lite Mode.
