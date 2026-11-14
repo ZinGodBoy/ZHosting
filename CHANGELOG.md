@@ -1,3 +1,19 @@
+## v1.8.8 — Content Visibility Hotfix — 2026-11-14
+
+### Fixed
+- Khắc phục lỗi nội dung/chữ bị ẩn sau đợt consolidation Reveal runtime.
+- `app.js` đặt `ZAppEngine=true`, khiến Reveal observer trong `ui.js` chủ động bỏ qua, trong khi CSS cũ vẫn giữ `.reveal` ở `opacity:0`.
+- Đưa `.reveal` về trạng thái hiển thị mặc định để nội dung không phụ thuộc vào JavaScript observer.
+- Đồng thời harden `.zui-page` và `[data-zui-reveal]` để lỗi lifecycle/observer không thể làm mất nội dung.
+
+### Performance
+- Không khôi phục observer cũ.
+- Không thêm polling hoặc animation loop.
+- Nội dung vẫn giữ hiệu ứng CSS khi có runtime hỗ trợ, nhưng không còn bị ẩn nếu runtime không chạy.
+
+### Quality
+- Ưu tiên tính đúng đắn và khả năng đọc nội dung trước hiệu ứng reveal.
+
 ## v1.8.7 — Runtime & CSS Cleanup — 2026-11-14
 
 ### Fixed
