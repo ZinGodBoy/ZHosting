@@ -50,10 +50,11 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
   if(!serviceButtons.length)return;
 
   const services={
-    minecraft:{name:'Minecraft Hosting',desc:'Cấu hình cân bằng cho server cộng đồng.'},
-    web:{name:'Web Hosting',desc:'Tối ưu cho portfolio, landing page và website doanh nghiệp.'},
-    vps:{name:'VPS Server',desc:'Tài nguyên riêng cho API, database và ứng dụng cần quyền kiểm soát.'}
+    minecraft:{name:'Minecraft Hosting',desc:'Cấu hình cân bằng cho server cộng đồng.',recommend:'Phù hợp server nhỏ → trung bình, plugin vừa phải và cộng đồng đang phát triển.'},
+    web:{name:'Web Hosting',desc:'Tối ưu cho portfolio, landing page và website doanh nghiệp.',recommend:'Phù hợp website giới thiệu, portfolio, blog và landing page cần triển khai đơn giản.'},
+    vps:{name:'VPS Server',desc:'Tài nguyên riêng cho API, database và ứng dụng cần quyền kiểm soát.',recommend:'Phù hợp API, bot, database hoặc hệ thống cần quyền quản trị máy chủ.'}
   };
+  const recommendation=document.querySelector('#configRecommendationText');
   let service=serviceButtons.find(x=>x.classList.contains('active'))?.dataset.service||'minecraft';
 
   const calc=()=>{
@@ -74,6 +75,8 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     if(total)total.textContent=result+'K';
     if(title)title.textContent=services[service].name;
     if(description)description.textContent=services[service].desc;
+    if(recommendation)recommendation.textContent=services[service].recommend;
+    document.querySelectorAll('.config-check').forEach(item=>item.classList.toggle('is-selected',item.querySelector('input')?.checked));
     if(reduceMotion){document.body.classList.remove('config-active');return;}
     requestAnimationFrame(()=>{
       document.body.classList.remove('config-active');
