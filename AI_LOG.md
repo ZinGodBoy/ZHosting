@@ -138,3 +138,8 @@ Polished the persistent Zalo/Discord bubbles into a branded floating support doc
 ## 2026-11-14 — v1.4.1 UI/runtime quality pass
 
 Đợt rà soát cuối tập trung vào các lớp dùng chung thay vì thêm framework: focus-visible, skip-link, reduced-motion, print behavior, trạng thái form, external-link safety, lifecycle refresh và responsive table. Các thay đổi được thiết kế theo hướng additive để giảm nguy cơ phá vỡ flow auth/account/admin hiện có.
+
+
+## 2026-11-14 — Performance Optimization v1.4.2
+
+Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện đầy đủ, thiết bị yếu hoặc mạng hạn chế tự giảm rendering cost. Runtime được rút gọn, scroll/viewport update được schedule bằng requestAnimationFrame, background visual work được giảm khi tab ẩn, và mobile section lớn được áp dụng content-visibility/containment. Mục tiêu là giảm jank, giảm main-thread pressure và cải thiện perceived load time mà không phá vỡ UI hiện tại.
