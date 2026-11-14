@@ -416,18 +416,6 @@ body{background:radial-gradient(circle at 78% -8%,rgba(139,92,246,.18),transpare
 .site-live-pill:focus-within{outline:2px solid rgba(167,139,250,.7);outline-offset:3px}
 @media(prefers-reduced-transparency:reduce){.site-live-pill{backdrop-filter:none;background:#120b22}}
 
-/* ===== SUPPORT DOCK — SCROLLBAR ALIGNMENT v1.4.7 ===== */
-.support-dock{
-  right:var(--support-scrollbar-offset,24px);
-  bottom:18px;
-}
-@media(max-width:700px){
-  .support-dock{right:var(--support-scrollbar-offset,14px);bottom:14px}
-}
-@media(prefers-reduced-motion:reduce){
-  .support-dock{transition:none}
-}
-
 /* ===== PERFORMANCE MODE v1.4.6 ===== */
 body.zperf-lite .hero-grid-lines,body.zperf-lite .orb-one,body.zperf-lite .orb-two{display:none}
 body.zperf-lite .service-card,body.zperf-lite .price-card,body.zperf-lite .server-card,body.zperf-lite .status-main,body.zperf-lite .status-list,body.zperf-lite .review,body.zperf-lite .compare-wrap,body.zperf-lite .dash-card,body.zperf-lite .panel{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
@@ -478,11 +466,6 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @keyframes supportBubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @media(max-width:700px){.support-bubbles{right:var(--support-right,14px);bottom:max(14px,env(safe-area-inset-bottom));gap:9px}.support-bubble{width:48px;height:48px}.support-bubble img{width:21px;height:21px}.support-bubble-label{display:none}}
 @media(prefers-reduced-motion:reduce){.support-bubble{animation:none;transition:none}.support-bubble:hover,.support-bubble:focus-visible{transform:scale(1.03)}}
-
-
-/* ===== SUPPORT BUBBLE SCROLL FOLLOW v1.4.9 ===== */
-.support-bubbles{top:calc(50% + var(--support-scroll-y,0px));bottom:auto;transform:translateY(-50%)}
-@media(max-width:700px){.support-bubbles{top:calc(50% + var(--support-scroll-y,0px));bottom:auto}}
 
 
 /* ===== SUPPORT BUBBLE VIEWPORT GUARD v1.5.0 ===== */
