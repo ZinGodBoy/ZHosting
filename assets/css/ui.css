@@ -615,3 +615,9 @@ button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.62}
 
 /* ===== VISUAL REFRESH UI TOKENS v1.4.4 ===== */
 :root{--focus-ring:0 0 0 3px rgba(167,139,250,.18);--danger:#fb7185;--warning:#fbbf24}
+
+/* ===== MICRO UX FEEDBACK v1.4.4 ===== */
+.btn.zui-clicked,.zui-clicked{animation:zuiClickPulse .24s ease}
+@keyframes zuiClickPulse{50%{transform:scale(.975)}}
+.is-copied{border-color:rgba(110,231,183,.45)!important;color:#6ee7b7!important}
+@media(prefers-reduced-motion:reduce){.btn.zui-clicked,.zui-clicked{animation:none}}
