@@ -872,3 +872,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Fixed homepage navigation observer scope so the actual observer is retained and disconnected on page exit.
 - Added explicit counter observer cleanup on `pagehide`.
 - Kept the runtime event-driven without adding continuous polling or pointer effects.
+
+
+## v1.7.2 — Observer Scope & Lifecycle Fix
+- Fixed homepage navigation observer scope so the actual observer is retained and disconnected on page exit.
+- Added explicit counter observer cleanup on `pagehide`.
+- Kept the runtime event-driven without adding continuous polling or pointer effects.
