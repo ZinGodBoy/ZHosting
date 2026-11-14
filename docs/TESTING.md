@@ -427,3 +427,7 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Scroll into the footer and confirm the fixed theme/status utilities fade out instead of covering content.
 - Scroll away from the footer and confirm the utilities return normally.
 - Verify reduced-motion and `zperf-lite` behavior remains non-animated.
+
+
+## v1.6.7 — Theme Panel Edge Check
+- Verify an opened theme panel is hidden while the footer is visible and restored after leaving the footer.
