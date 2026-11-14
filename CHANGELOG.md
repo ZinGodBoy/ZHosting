@@ -1,3 +1,18 @@
+## v1.6.8 — Footer Runtime & Layout Hardening — 2026-11-14
+
+### Fixed
+- Đồng bộ biến CSS của support dock với runtime `--support-right`, loại bỏ fallback biến cũ.
+- Giảm cập nhật class `footer-in-view` thừa khi trạng thái viewport không thay đổi.
+
+### Performance
+- Footer contact cards dùng containment nhẹ cho layout/paint, không thêm animation runtime.
+- Giữ nguyên constrained-device, reduced-motion và responsive behavior.
+
+### UI
+- Tinh chỉnh vùng chạm ở liên kết footer trên mobile.
+- Giữ bố cục liên hệ Zalo, Discord, Email cân đối và không che nội dung cuối trang.
+
+
 ## v1.6.4 — Footer UX & Visual Polish — 2026-11-14
 
 ### Changed
