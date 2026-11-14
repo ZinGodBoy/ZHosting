@@ -605,3 +605,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Fixed secondary RGB edits previously targeting the primary background.
 - Theme changes now update the browser `theme-color` metadata and persist the selected gradient/solid mode.
 - Shared accent/background tokens are reused by buttons, cards, header and scroll progress.
+
+## v1.5.3 — Runtime Bugfix Hardening
+- Fixed support bubble scrollbar alignment after the shared runtime switched to a mismatched CSS custom-property name.
+- Restored consistent right-offset behavior on desktop and mobile.
+- Reduced expensive fixed-background rendering on mobile.
+- Added constrained-device support bubble fallback to remove unnecessary animation and blur.
+- Kept reduced-motion behavior intact.
