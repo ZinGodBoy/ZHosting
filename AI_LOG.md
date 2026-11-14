@@ -237,3 +237,6 @@ Audited the shared runtime for scroll-driven work. The support dock was recalcul
 
 ## 2026-11-14 — v1.5.5 Serious Runtime Audit
 The runtime audit found two avoidable sources of work: the homepage clock used `setInterval` and repeatedly queried the DOM, while `performance.js` maintained a scroll observer alongside the homepage scroll engine. The clock now caches its target nodes and uses a visibility-aware recursive timeout. The duplicate performance scroll observer was removed because the shared CSS did not consume `z-scroll-active`; this eliminates redundant rAF work during scrolling. Rendering containment and constrained-device fallbacks were added without changing core functionality.
+
+## 2026-11-14 — v1.6.0 Footer Refinement
+The homepage footer was structurally too minimal and still carried legacy support styling. Replaced it with a semantic footer system: brand/description/status, service navigation, support navigation and a compact legal/utility row. The layout uses CSS Grid with mobile breakpoints and avoids unnecessary runtime JavaScript, keeping the improvement visual without adding main-thread work.
