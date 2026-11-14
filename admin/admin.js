@@ -202,7 +202,7 @@ $("exportUsers")?.addEventListener("click",()=>{
   const text=String(value??"").replace(/"/g,'""');
   return '"' + text + '"';
  }).join(",")).join("\\n");
- const blob=new Blob(["\\ufeff"+csv],{type:"text/csv;charset=utf-8"});
+ const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"});
  const url=URL.createObjectURL(blob);const link=document.createElement("a");
  link.href=url;link.download="zhosting-users-"+new Date().toISOString().slice(0,10)+".csv";
  link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
