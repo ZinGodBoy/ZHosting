@@ -287,3 +287,9 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Counter rendering now has a safe fallback when `IntersectionObserver` is unavailable and guards against duplicate animation starts.
 - Reveal and active-navigation observers now disconnect on `pagehide`.
 - Added a final constrained-device visual pass focused on auth backgrounds, footer decoration and the animated server card.
+
+
+## v1.7.2 — Lifecycle Re-audit
+- Found that the homepage navigation observer was declared inside a conditional block while the page-exit handler attempted to reference it outside that scope; cleanup therefore could not reach the observer.
+- Moved the observer reference to page scope and added explicit counter observer disposal.
+- This is a lifecycle correctness fix rather than a cosmetic optimization.
