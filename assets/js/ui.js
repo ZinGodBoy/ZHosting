@@ -49,10 +49,15 @@
   reveal();
 
   const progress=document.querySelector(".zui-progress");
+  let progressRaf=0;
   const updateProgress=()=>{
-    const max=document.documentElement.scrollHeight-window.innerHeight;
-    if(progress)progress.style.width=max>0?(window.scrollY/max*100)+"%":"0%";
-    document.body.classList.toggle("is-scrolled",window.scrollY>12);
+    if(progressRaf)return;
+    progressRaf=requestAnimationFrame(()=>{
+      progressRaf=0;
+      const max=document.documentElement.scrollHeight-window.innerHeight;
+      if(progress)progress.style.transform=max>0?"scaleX("+(window.scrollY/max)+")":"scaleX(0)";
+      document.body.classList.toggle("is-scrolled",window.scrollY>12);
+    });
   };
   addEventListener("scroll",updateProgress,{passive:true});updateProgress();
 
