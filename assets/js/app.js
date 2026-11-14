@@ -529,11 +529,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)open(
  "use strict";
  const footer=document.querySelector(".footer");
  if(!footer||!("IntersectionObserver"in window))return;
- const setVisible=visible=>document.body.classList.toggle("footer-in-view",visible);
+ let visible=false;
+ const setVisible=next=>{if(visible===next)return;visible=next;document.body.classList.toggle("footer-in-view",next)};
  const observer=new IntersectionObserver(entries=>{
    const entry=entries[0];
    setVisible(Boolean(entry?.isIntersecting));
- },{threshold:0.02});
+ },{threshold:0,rootMargin:"0px 0px 12px 0px"});
  observer.observe(footer);
  window.addEventListener("pagehide",()=>observer.disconnect(),{once:true});
 })();
