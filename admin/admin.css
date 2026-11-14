@@ -789,3 +789,62 @@ td{color:#b9c9d7;font-size:10px}
 @media(prefers-reduced-motion:reduce){
   .admin-command-security::before{animation:none}
 }
+
+/* =========================================================
+   Performance pass — keep motion smooth under real usage
+   ========================================================= */
+.admin-page{
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+.admin-bg-grid,.admin-noise,.admin-ambient,.admin-scanline{
+  pointer-events:none;
+}
+.admin-panel,.admin-kpi,.admin-privacy{
+  contain:layout paint;
+  will-change:auto;
+  transform:translateZ(0);
+}
+.admin-panel:hover,.admin-kpi:hover,.admin-privacy:hover{
+  will-change:transform;
+}
+.admin-panel::before{
+  will-change:auto;
+}
+.admin-page::after{
+  will-change:auto;
+}
+.admin-kpi strong,.donut,.growth-chart i,.bar-track i,.device-track i{
+  will-change:auto;
+}
+.admin-panel table tbody tr,
+.activity-row,
+.history-row{
+  contain:layout style;
+}
+.admin-workspace{
+  contain:layout;
+}
+.admin-header{
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+@media(max-width:900px){
+  .admin-header{
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+}
+@media(max-width:620px){
+  .admin-header{
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+  }
+  .admin-panel,.admin-kpi,.admin-privacy{
+    box-shadow:0 12px 34px rgba(0,0,0,.13);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .admin-page::after,.admin-scanline{display:none}
+  .admin-panel,.admin-kpi,.admin-privacy{contain:none}
+}
