@@ -562,3 +562,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm viewport guard để cụm Zalo/Discord tránh vùng quá sát mép trên/dưới khi cuộn.
 - Tự điều chỉnh kích thước trên viewport thấp và khi xoay màn hình.
 - Giữ scroll-follow nhẹ bằng requestAnimationFrame.
+
+
+## v1.4.13 — Advanced Theme Backgrounds
+- Extended the theme tool with solid/gradient background modes.
+- Added secondary background color and gradient angle controls.
+- Presets now include coordinated secondary colors.
