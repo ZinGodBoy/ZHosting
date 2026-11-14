@@ -1,3 +1,21 @@
+## v1.8.1 — Runtime & Rendering Hardening — 2026-11-14
+
+### Fixed
+- Loại bỏ watcher Admin Runtime không hiệu lực ở ngoài scope quản trị chính.
+- Giảm lifecycle listener dư thừa trong Admin Center.
+- Giữ nguyên cơ chế refresh dữ liệu nằm trong runtime quản trị chính.
+
+### Performance
+- Theme Engine gom các lần repaint màu liên tiếp vào một animation frame.
+- Debounce ghi cấu hình theme vào localStorage và flush an toàn khi rời trang.
+- Tắt backdrop-filter và shadow của Theme Control trên constrained/reduced-performance mode.
+- Không thêm polling hoặc background worker.
+
+### Quality
+- Giữ nguyên hệ màu đồng bộ giữa Homepage, Auth, Account Center, Admin Center và 404.
+- Không thay đổi cấu trúc dữ liệu tài khoản hoặc cơ chế xác thực.
+- Kiểm tra lại các file runtime chính: không phát hiện chuỗi newline bị escape trong source.
+
 ## v1.8.0 — Unified Theme & RGB Customization — 2026-11-14
 
 ### Added
