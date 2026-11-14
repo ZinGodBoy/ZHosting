@@ -631,3 +631,23 @@ body.zperf-paused .support-bubble{animation-play-state:paused}
 body.zperf-lite .server-card{animation:none}
 body.zperf-lite .noise{display:none}
 @media(prefers-reduced-motion:reduce){.server-card{animation:none!important}.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:auto}}
+
+/* ===== RUNTIME CLEANUP v1.6.2 ===== */
+@media(max-width:900px){
+  .footer-contact-inner{box-shadow:0 10px 28px rgba(0,0,0,.12)}
+}
+@media(max-width:700px){
+  .footer-contact-inner{box-shadow:none}
+  .footer{margin-top:20px}
+}
+.zperf-lite .header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--z-custom-bg,#07111F)!important}
+.zperf-lite .footer-contact-inner{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
+.zperf-lite .footer-status i{box-shadow:none}
+.zperf-lite .footer:before{opacity:.35}
+.zperf-constrained .footer-column a:after{display:none}
+.zperf-constrained .footer-column a,.zperf-constrained .footer-bottom-links a{transition:none}
+@media(prefers-reduced-motion:reduce){
+ .footer-contact-link:hover,.footer-contact-link:focus-visible{transform:none}
+ .footer-column a:hover,.footer-column a:focus-visible{transform:none}
+ .footer-column a:after{display:none}
+}
