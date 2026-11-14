@@ -1,3 +1,38 @@
+## v1.4.0 — 2026-11-14 — Frontend Hardening & Admin Control Plane
+
+### Added
+- Trusted Admin Device Gate using browser-bound ECDSA P-256 keys with IndexedDB.
+- Shared ZHosting brand mark and favicon.
+- Adaptive performance runtime and reduced-motion handling.
+- Admin analytics, global search, directory sorting, audit feed and session controls.
+
+### Changed
+- Admin navigation and route access require a trusted admin device.
+- Authentication/session lifecycle and browser storage handling were hardened.
+- Admin and homepage runtime work was optimized to reduce unnecessary background work.
+- Release documentation now follows Semantic Versioning.
+
+### Fixed
+- Removed automatic first-user admin promotion.
+- Removed duplicate performance runtime on 404.
+- Fixed empty/invalid anchor navigation errors.
+- Made session guard and Admin clock lifecycle-safe.
+- Hardened admin search and CSV export.
+
+### Security
+- Admin Center does not render password, hash or salt.
+- Trusted-device binding is documented as a frontend prototype boundary, not server-side authorization.
+
+### Version history
+- `v1.0.0` — Initial frontend foundation.
+- `v1.1.0` — Account Center.
+- `v1.1.1` — Account UX/accessibility fixes.
+- `v1.2.0` — Authentication & Security.
+- `v1.2.1` — Auth/session hardening.
+- `v1.3.0` — Admin Center.
+- `v1.3.1` — Admin UX/analytics/navigation fixes.
+- `v1.4.0` — Frontend hardening & Admin Control Plane.
+
 ## Support bubbles readability refinement — 2026-11-14
 
 - Nâng cấp 2 bong bóng hỗ trợ Zalo và Discord thành mini support panel dễ đọc hơn.
