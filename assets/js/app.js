@@ -12,7 +12,7 @@ const revealNodes=[...document.querySelectorAll('.reveal')];
 const observer=('IntersectionObserver' in window)?new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'}):null;
 revealNodes.forEach(el=>observer?observer.observe(el):el.classList.add('visible'));
 const toggleButtons=document.querySelectorAll('.billing-toggle button');const prices=document.querySelectorAll('.price b[data-month]');toggleButtons.forEach(btn=>btn.addEventListener('click',()=>{toggleButtons.forEach(x=>x.classList.remove('active'));btn.classList.add('active');const cycle=btn.dataset.cycle;prices.forEach(p=>p.textContent=p.dataset[cycle])}));
-document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',e=>{const selector=link.getAttribute('href');if(!selector||selector==="#")return;let target=null;try{target=document.querySelector(selector)}catch{target=null}if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}}));
+/* Native CSS smooth scrolling + scroll-padding-top handle in-page navigation. */
 
 /* ===== ZHOSTING UX/UI ENGINE ===== */
 const header=document.querySelector('.header');
