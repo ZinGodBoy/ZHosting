@@ -222,3 +222,6 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 ## v1.4.13 — Advanced Theme Tool
 - Added gradient background controls without adding external dependencies.
 - Theme configuration remains browser-local and supports reset/reduced-motion behavior.
+
+## 2026-11-14 — Support Bubble Runtime Consolidation
+Audited the floating support controls and found two overlapping implementations: a shared support dock and a homepage-only support bubble block. Consolidated the visible support bubbles into the shared runtime, moved viewport/scrollbar synchronization into that single owner, and removed the duplicate homepage markup plus duplicate app-level scroll listener. This reduces DOM duplication and avoids competing fixed-position components while preserving the Zalo/Discord UX.
