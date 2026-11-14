@@ -543,3 +543,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Batched live hosting configuration recalculation to one animation frame per input frame.
 - Removed unnecessary persistent compositor hints from static homepage cards.
 - Reduced mobile blur/shadow workload while preserving the visual hierarchy.
+
+## v1.4.8 — Support Bubbles — 2026-11-14
+
+- Khôi phục 2 bong bóng Zalo/Discord dạng tròn với logo thương hiệu.
+- Thêm chuyển động nổi nhẹ liên tục, hover/focus nâng bóng và tooltip.
+- Tự thu nhỏ trên mobile và tắt animation khi người dùng giảm chuyển động.
