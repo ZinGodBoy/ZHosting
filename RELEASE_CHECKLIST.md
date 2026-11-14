@@ -43,3 +43,17 @@ Every release should summarize:
 - Security
 - Documentation
 - Known limitations
+
+## v1.4.0 release candidate
+
+- [x] Account Center regression pass.
+- [x] Admin Center regression pass.
+- [x] Trusted-device gate documented.
+- [x] First-user admin auto-promotion removed.
+- [x] Duplicate frontend runtime check completed.
+- [x] Lifecycle-safe timer review completed.
+- [x] Anchor/navigation hardening completed.
+- [x] Documentation synchronized.
+- [ ] Final browser smoke test on GitHub Pages.
+- [ ] Verify GitHub Actions/security workflow.
+- [ ] Create Git tag `v1.4.0` from final release commit.
