@@ -1,3 +1,10 @@
+## Account Center health overview — 2026-11-14
+
+- Thêm khu vực **Account Health** để người dùng nhìn nhanh trạng thái phiên, bảo mật và lịch sử hoạt động.
+- Kiểm tra lại session khi quay lại tab.
+- Bổ sung trạng thái trực quan và responsive cho màn hình nhỏ.
+- Giữ nguyên reduced-motion và không hiển thị dữ liệu nhạy cảm.
+
 ## Contact routing fix — 2026-11-14
 
 - Đồng bộ email liên hệ trên homepage và Contact Flow về `dangkhoita2@gmail.com`.
