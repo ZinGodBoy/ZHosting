@@ -1194,3 +1194,26 @@ body.zperf-constrained .orb{display:none!important}
 body.zperf-lite .support-bubble{
   box-shadow:none!important;
 }
+
+
+/* ===== RUNTIME SMOOTHNESS v1.8.0 ===== */
+/* Prefer stable opaque surfaces when the user/device requests reduced transparency. */
+@media (prefers-reduced-transparency: reduce){
+  .header,.dash-header,.auth-card,.modal,.toast,.back-top,
+  .support-bubble,.theme-tools,.theme-tools-trigger,.site-live-pill{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    background:rgba(7,16,27,.97)!important;
+  }
+}
+/* Keep expensive compositing off constrained hardware even if an older cascade re-enables it. */
+html.zperf-constrained .header,
+html.zperf-constrained .dash-header,
+html.zperf-constrained .auth-card,
+html.zperf-constrained .modal,
+html.zperf-constrained .support-bubble,
+html.zperf-constrained .theme-tools,
+html.zperf-constrained .theme-tools-trigger{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
