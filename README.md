@@ -342,3 +342,16 @@ Website có support dock nổi dùng chung trên toàn bộ page. Zalo và Disco
 ### Support Dock V2
 
 Zalo và Discord hiện dùng floating branded bubbles với logo tròn, trạng thái hỗ trợ online, hover expansion trên desktop và chế độ icon-only trên mobile.
+
+## v1.4.1 quality pass
+
+The current release track includes a final UI/runtime hardening pass focused on maintainability and predictable browser behavior:
+
+- Unified focus-visible behavior and accessibility helpers.
+- Print-safe and reduced-motion-safe UI rules.
+- Shared ZHostingUI runtime helpers for small frontend interactions.
+- Safer external-link handling and form validation state cleanup.
+- Account Center/Admin Center lifecycle refresh behavior.
+- Responsive Admin table hardening and sticky headers.
+
+The project remains intentionally framework-free. These improvements are frontend quality controls, not a replacement for server-side authentication, authorization, rate limiting or audit persistence.
