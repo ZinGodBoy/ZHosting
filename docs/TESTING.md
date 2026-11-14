@@ -298,3 +298,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Resize the browser: the dock recalculates its horizontal offset.
 - Mobile/overlay-scrollbar browsers: bubbles retain a safe right margin.
 - Scroll the page: bubbles remain fixed to the viewport and do not create a new scroll handler.
+
+## v1.4.8 Smoke Test
+
+- Scroll: support bubbles remain fixed beside the scrollbar.
+- Resize/orientation: position updates without visible jitter.
+- Mobile with a bottom safe area: bubbles remain accessible.
+- Clicking/dragging empty space around the dock does not block page interaction.
+- Reduced-motion mode removes unnecessary compositor hints.
