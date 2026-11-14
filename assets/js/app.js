@@ -502,3 +502,6 @@ counters.forEach(el=>counterObserver.observe(el));
  document.querySelectorAll('[data-theme-preset]').forEach(button=>button.addEventListener('click',()=>{const p=presets[button.dataset.themePreset];if(p)apply(p[0],p[1])}));
  document.querySelector('#themeToolsReset')?.addEventListener('click',()=>apply(defaults.accent,defaults.background));document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden)open(false)});
 })();
+
+/* ===== SUPPORT BUBBLE VIEWPORT GUARD v1.5.0 ===== */
+(()=>{"use strict";const root=document.documentElement;const sync=()=>{const bubble=document.querySelector(".support-bubbles");if(!bubble)return;const h=window.innerHeight||0;const safe=Math.max(72,Math.min(150,h*.16));root.style.setProperty("--support-bubble-safe",safe.toFixed(0)+"px")};let raf=0;const schedule=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;sync()})};window.addEventListener("resize",schedule,{passive:true});window.addEventListener("orientationchange",schedule,{passive:true});window.addEventListener("pageshow",schedule,{passive:true});sync()})();
