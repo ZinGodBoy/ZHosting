@@ -509,3 +509,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Resize/orientation updates are now batched with requestAnimationFrame.
 - Added safe-area handling for mobile devices and kept the dock non-blocking outside its buttons.
 - Preserved the scrollbar-aware right offset from v1.4.7.
+
+## [1.4.9] — Scroll Navigation Optimization
+
+- Replaced per-scroll section `offsetTop` scanning with IntersectionObserver-based active navigation tracking.
+- Scroll progress now uses compositor-friendly `transform: scaleX()` updates instead of changing width.
+- Reduced layout reads and main-thread work during continuous scrolling.
+- Preserved header state, back-to-top behavior and active section navigation.
