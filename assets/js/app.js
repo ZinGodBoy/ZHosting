@@ -20,20 +20,35 @@ const progress=document.createElement('div');progress.className='scroll-progress
 const backTop=document.createElement('button');backTop.className='back-top';backTop.type='button';backTop.setAttribute('aria-label','Về đầu trang');backTop.textContent='↑';document.body.appendChild(backTop);
 const toast=(message)=>{let el=document.querySelector('.toast');if(!el){el=document.createElement('div');el.className='toast';document.body.appendChild(el)}el.textContent=message;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2600)};
 const nav=[...document.querySelectorAll('.nav-links a[href^="#"]')];
-let scrollFrame=0;
+let scrollFrame=0,scrollMax=1,layoutFrame=0;
+const measureScrollBounds=()=>{
+  scrollMax=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+  if(!scrollFrame)onScroll();
+};
 const onScroll=()=>{
   if(scrollFrame)return;
   scrollFrame=requestAnimationFrame(()=>{
     const y=window.scrollY;
-    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-    progress.style.transform='scaleX('+Math.min(1,Math.max(0,y/max))+')';
+    progress.style.transform='scaleX('+Math.min(1,Math.max(0,y/scrollMax))+')';
     header?.classList.toggle('scrolled',y>12);
     backTop.classList.toggle('show',y>550);
     scrollFrame=0;
   });
 };
+const onLayoutChange=()=>{
+  if(layoutFrame)return;
+  layoutFrame=requestAnimationFrame(()=>{layoutFrame=0;measureScrollBounds()});
+};
 addEventListener('scroll',onScroll,{passive:true});
-onScroll();
+addEventListener('resize',onLayoutChange,{passive:true});
+if('ResizeObserver' in window){
+  const pageSizeObserver=new ResizeObserver(onLayoutChange);
+  pageSizeObserver.observe(document.documentElement);
+  window.addEventListener('pagehide',()=>{pageSizeObserver.disconnect();if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
+}else{
+  window.addEventListener('pagehide',()=>{if(scrollFrame)cancelAnimationFrame(scrollFrame);if(layoutFrame)cancelAnimationFrame(layoutFrame)},{once:true});
+}
+measureScrollBounds();
 
 /* Active navigation uses IntersectionObserver instead of scanning every section
    and reading offsetTop on every scroll frame. */
