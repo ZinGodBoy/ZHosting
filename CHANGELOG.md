@@ -530,3 +530,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Copy interaction chuyển sang event delegation, tránh tạo listener riêng cho từng nút.
 - Giảm thêm shadow/glow/backdrop paint trong Performance Lite Mode.
 - Giữ support dock và live status nhẹ hơn trên thiết bị hạn chế tài nguyên.
+
+## [1.4.10] — Admin Device Gate Runtime Optimization
+
+- Cached the IndexedDB-backed admin ECDSA key pair during the page lifecycle.
+- Cached the derived public-key fingerprint to avoid repeated Web Crypto export/hash work.
+- Preserved device trust checks and enrollment behavior while reducing repeated async storage/crypto operations.
