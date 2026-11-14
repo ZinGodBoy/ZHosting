@@ -228,3 +228,6 @@ Audited the floating support controls and found two overlapping implementations:
 
 ## 2026-11-14 — Theme Token Consistency
 Audited the v1.4.13 theme tool and found two consistency issues: the background was applied only as an inline body style, and RGB input handling treated the secondary gradient color as the primary background. v1.5.2 moves background rendering to shared CSS variables, adds a secondary RGB editor, updates the browser theme-color metadata, and keeps persistence in one theme state object.
+
+## 2026-11-14 — v1.5.3 Bugfix Hardening
+Found a regression introduced during support-runtime consolidation: `support.js` wrote `--support-right` while the stylesheet consumed `--support-scrollbar-offset`, so the calculated scrollbar offset was ignored. Corrected the shared variable contract and hardened mobile rendering by avoiding fixed background attachment and disabling decorative support effects on constrained devices.
