@@ -341,3 +341,11 @@ The support dock was also reviewed as a lightweight fixed utility. Its runtime u
 - Admin reveal observer cũng được cleanup cùng lifecycle.
 - Kiểm tra CSS cascade cuối cho thấy footer/support còn giá trị violet từ các version cũ; bổ sung lớp consolidation dùng cyan/blue nhưng không thay đổi màu nhận diện Zalo/Discord.
 - Syntax check assets/js/app.js và admin/admin.js: PASS.
+
+## v1.8.0 — Runtime Analytics & Compositing Hardening
+
+- Audit lifecycle Dashboard phát hiện `refreshAccountRuntime()` gọi `touchSession()` trong mỗi lần visibility trở lại, tạo write storage không cần thiết. Đã loại bỏ; activity persistence vẫn do UI runtime throttle và các nút refresh session chủ động xử lý.
+- Audit Admin Center phát hiện analytics có các vòng lặp lồng nhau trên user/login history. Đã gom lịch sử thành một tập dữ liệu và dùng `Map` cho login/day, created/day và device counts.
+- Growth 30 ngày không còn lọc toàn bộ user cho từng ngày.
+- CSS bổ sung đường fallback cho reduced transparency và constrained compositing.
+- Static syntax check: 8 JavaScript runtime files PASS.
