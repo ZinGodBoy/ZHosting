@@ -263,3 +263,7 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Reviewed the supplied footer screenshot for excessive empty space and fixed floating-control overlap.
 - Reduced footer vertical padding and tightened navigation spacing without adding continuous animation work.
 - Added a lifecycle-safe footer visibility observer in `app.js`.
+
+
+## v1.6.7 — Footer Utility Edge Case
+- Closed the remaining footer collision case where the theme panel could stay visible after the footer became visible.
