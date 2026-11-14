@@ -178,3 +178,17 @@ body{contain:paint}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1!important;transform:none!important}
 }
+
+
+/* ===== USER SUPPORT FLOATERS ===== */
+.support-float{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:none}
+.support-float-item{pointer-events:auto;display:flex;align-items:center;gap:10px;min-width:172px;padding:9px 12px 9px 9px;border:1px solid rgba(137,190,230,.15);border-radius:999px;background:rgba(7,16,28,.88);color:#edf6ff;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease}
+.support-float-item:hover{transform:translateY(-4px) scale(1.015);border-color:rgba(67,217,255,.35);background:rgba(9,21,36,.96);box-shadow:0 20px 55px rgba(0,0,0,.34),0 0 28px rgba(67,217,255,.08)}
+.support-float-icon{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border-radius:50%;color:#06111d;font:800 15px var(--font-display);box-shadow:0 0 20px rgba(67,217,255,.18)}
+.support-zalo .support-float-icon{background:linear-gradient(135deg,#58d9ff,#2d8cff)}
+.support-discord .support-float-icon{background:linear-gradient(135deg,#a8b7ff,#6b7cff)}
+.support-float-copy{display:grid;gap:2px}.support-float-copy strong{font:700 11px var(--font-display)}.support-float-copy small{font:500 9px var(--font-ui);color:#8299ae}
+.support-float-item:focus-visible{outline:2px solid rgba(67,217,255,.7);outline-offset:3px}
+@media(max-width:700px){.support-float{right:12px;bottom:14px;gap:8px}.support-float-item{min-width:0;width:46px;height:46px;padding:4px;justify-content:center}.support-float-copy{display:none}.support-float-icon{width:36px;height:36px;flex-basis:36px}}
+@media(prefers-reduced-motion:reduce){.support-float-item{transition:none}.support-float-item:hover{transform:none}}
+@media(max-width:380px){.support-float{right:9px;bottom:10px}.support-float-item{width:42px;height:42px}.support-float-icon{width:32px;height:32px;flex-basis:32px}}
