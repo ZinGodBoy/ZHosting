@@ -679,3 +679,17 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Improved keyboard focus visibility and scroll offset consistency.
 - Added stronger constrained-device fallbacks and a complete reduced-motion override.
 - Preserved the existing theme customization, support dock, account and admin behavior.
+
+## v1.5.8 — Support Runtime & Visual Polish — 2026-11-14
+
+### Fixed
+- Sửa lệch biến CSS khiến vị trí hai nút hỗ trợ không đồng bộ với scrollbar offset runtime.
+- Loại bỏ `ResizeObserver` riêng của support dock để tránh thêm observer liên tục cho một UI phụ.
+
+### Performance
+- Chế độ máy yếu/Data Saver tắt backdrop blur và animation của support bubbles.
+- Giảm paint/compositing work nhưng vẫn giữ bố cục và khả năng liên hệ.
+
+### UI
+- Giữ hai bubble Zalo/Discord đồng nhất vị trí, kích thước và hành vi responsive.
+- Reduced Motion tắt transition/animation của support dock.
