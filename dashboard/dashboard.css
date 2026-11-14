@@ -615,3 +615,7 @@ input,select,textarea,button{font-family:var(--font-ui)}
 .dash-header{background:rgba(11,7,22,.84)}
 .dashboard-page .dash-card,.dashboard-page .panel{background:linear-gradient(145deg,rgba(24,17,42,.9),rgba(11,8,21,.9))}
 .dashboard-page .dash-user>span,.dashboard-page .account-avatar{background:linear-gradient(135deg,#c084fc,#6366f1);color:#100a1d}
+
+/* ===== ACCOUNT LIVE STATUS v1.4.5 ===== */
+.account-live-bar{margin-left:auto}
+@media(max-width:700px){.account-live-bar{margin-left:0;width:max-content;max-width:100%}}
