@@ -246,3 +246,12 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Tab navigation tới được cả hai nút.
 - [ ] Reduced motion không tạo animation bắt buộc.
 - [ ] Không tạo component trùng khi runtime được tải lại.
+
+### Support Dock V2 regression
+
+- [ ] Zalo/Discord remain circular at rest.
+- [ ] Brand logos are centered and not distorted.
+- [ ] Desktop hover/focus expands smoothly without layout shift.
+- [ ] Zalo and Discord use distinct focus/glow states.
+- [ ] Mobile remains compact and does not cover primary actions.
+- [ ] `prefers-reduced-motion` disables non-essential animation.
