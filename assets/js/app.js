@@ -462,3 +462,21 @@ counters.forEach(el=>counterObserver.observe(el));
  if(document.querySelector("[data-live-clock]")){syncClock();document.addEventListener("visibilitychange",syncClock,{passive:true})}
  document.addEventListener("click",async event=>{const btn=event.target.closest?.("[data-copy]");if(!btn||btn.dataset.copyBound)return;btn.dataset.copyBound="1";const value=btn.dataset.copy||btn.textContent||"";try{if(!navigator.clipboard?.writeText)throw new Error("Clipboard API unavailable");await navigator.clipboard.writeText(value.trim());btn.classList.add("is-copied");window.setTimeout(()=>btn.classList.remove("is-copied"),1200)}catch{}});
 })();
+
+
+/* ===== SUPPORT BUBBLE SCROLL FOLLOW v1.4.9 ===== */
+(()=>{
+  "use strict";
+  const sync=()=>{
+    const root=document.documentElement;
+    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    const progress=Math.min(1,Math.max(0,window.scrollY/max));
+    root.style.setProperty("--support-scroll-y",((progress-.5)*150).toFixed(2)+"px");
+  };
+  let raf=0;
+  const onScroll=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;sync()})};
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",sync,{passive:true});
+  window.addEventListener("pageshow",sync,{passive:true});
+  sync();
+})();
