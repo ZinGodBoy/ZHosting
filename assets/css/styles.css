@@ -451,3 +451,17 @@ body.zperf-lite .support-dock-item{will-change:auto}
 body.zperf-lite .site-live-pill{backdrop-filter:none;-webkit-backdrop-filter:none}
 body.zperf-lite .scroll-progress{box-shadow:none}
 body.zperf-lite .brand-mark{box-shadow:none}
+
+
+/* ===== RUNTIME SMOOTHNESS v1.4.11 ===== */
+/* Avoid reserving compositor memory for every static card. Hover transforms are
+   cheap enough without persistent will-change hints. */
+.service-card,.price-card,.feature,.step{will-change:auto}
+@media(max-width:900px){
+  .hero:after{filter:blur(55px)}
+  .orb{filter:blur(3px)}
+  .server-card{box-shadow:0 22px 65px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.04)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero:after,.orb{filter:none}
+}
