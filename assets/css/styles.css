@@ -1192,3 +1192,37 @@ html.zperf-constrained .ztheme-panel-trigger{
   backdrop-filter:none!important;
   -webkit-backdrop-filter:none!important;
 }
+
+
+/* ===== RUNTIME PERFORMANCE HARDENING v1.8.2 ===== */
+html.zperf-constrained .hero:after,
+html.zperf-constrained .orb,
+html.zperf-constrained .auth-bg span{
+  filter:none!important;
+}
+html.zperf-constrained .server-card,
+html.zperf-constrained .footer-contact-inner,
+html.zperf-constrained .support-bubble,
+html.zperf-constrained .header{
+  box-shadow:none!important;
+}
+html.zperf-constrained .server-card,
+html.zperf-constrained .support-bubble,
+html.zperf-constrained .announcement-live i,
+html.zperf-constrained .config-live i,
+html.zperf-constrained .node-ping{
+  animation:none!important;
+}
+html.zperf-constrained .header,
+html.zperf-constrained .support-bubble,
+html.zperf-constrained .theme-tools,
+html.zperf-constrained .theme-tools-trigger,
+html.zperf-constrained .site-live-pill{
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  html.zperf-constrained *{
+    scroll-behavior:auto!important;
+  }
+}
