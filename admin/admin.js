@@ -395,3 +395,10 @@ $("revoke")?.addEventListener("click",()=>{
 
 render();analytics();
 })();
+
+/* ===== ADMIN RUNTIME QUALITY v1.4.1 ===== */
+(()=>{
+  const refreshOnReturn=()=>{try{refreshAdminUserCache?.();render?.();analytics?.()}catch{}};
+  window.addEventListener("pageshow",refreshOnReturn,{passive:true});
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshOnReturn()},{passive:true});
+})();
