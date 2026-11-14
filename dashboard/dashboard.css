@@ -660,3 +660,23 @@ body.zperf-lite .dashboard-page .dash-card,
 body.zperf-lite .dashboard-page .panel{
   box-shadow:0 8px 24px rgba(0,0,0,.14);
 }
+
+
+/* ===== FINAL RUNTIME VISUAL HARDENING v1.8.3 ===== */
+html.zperf-constrained .dashboard-page .dash-card,
+html.zperf-constrained .dashboard-page .panel,
+html.zperf-constrained .dashboard-page .palette-box,
+html.zperf-constrained .dashboard-page .modal-box{
+  box-shadow:0 8px 24px rgba(0,0,0,.14)!important;
+}
+html.zperf-constrained .dashboard-page .dash-card:hover,
+html.zperf-constrained .dashboard-page .panel:hover{
+  transform:none!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.14)!important;
+}
+html.zperf-constrained .dashboard-page .mail-unread,
+html.zperf-constrained .dashboard-page .health-dot,
+html.zperf-constrained .dashboard-page .account-badge{
+  animation:none!important;
+  box-shadow:none!important;
+}
