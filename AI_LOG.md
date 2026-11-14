@@ -160,3 +160,11 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Moved UI progress updates behind `requestAnimationFrame` to coalesce scroll events.
 - Throttled `ZAuth.touchSession()` activity persistence to a 15-second window, preventing repeated localStorage writes from scroll/touch activity.
 - Added constrained-device CSS fallbacks that remove expensive blur, shadow and decorative layers while preserving core content and navigation.
+
+
+## v1.4.5 — Load & Runtime Cleanup
+
+- Audited page script loading and found one non-deferred shared UI script on authentication pages plus inconsistent loading across pages.
+- Standardized `ui.js` to deferred loading.
+- Removed the duplicate `.zui-progress` element/runtime because `app.js` already owns the primary scroll progress indicator.
+- Result: less startup DOM work and fewer scroll callbacks without changing core navigation behavior.
