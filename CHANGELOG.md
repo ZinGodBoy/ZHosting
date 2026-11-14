@@ -741,3 +741,8 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### UI
 - Giữ nguyên bố cục Midnight Violet/Indigo và các trạng thái hover/focus cần thiết.
 - Ưu tiên chuyển động theo trạng thái tương tác thay vì giữ GPU promotion liên tục.
+
+## v1.6.2 — Runtime Cleanup & Responsive Footer Hardening
+- Added page-exit cleanup for the adaptive performance resize frame.
+- Consolidated the final low-resource header/footer fallback so constrained devices do not re-enable expensive blur effects.
+- Reduced footer shadows and hover transitions on smaller/constrained devices.
