@@ -247,3 +247,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Đồng bộ font cho heading, brand, CTA, form controls và dữ liệu.
 - Bổ sung baseline metadata `color-scheme` và `robots` cho homepage.
 - Xác định roadmap tiếp theo theo hướng hoàn thiện frontend đủ dùng trước khi triển khai backend production.
+
+
+## Performance & polish pass — 2026-11-14
+
+- Thêm adaptive performance layer tại `assets/js/performance.js`.
+- Tự giảm hiệu ứng nặng trên thiết bị có RAM/CPU thấp, Save-Data hoặc người dùng bật reduced motion.
+- Tắt/pause các hiệu ứng nền không cần thiết khi tab không visible.
+- Giảm chi phí paint/layout bằng `contain`, `content-visibility` và hạn chế `will-change`.
+- Tối ưu Admin Center theo hướng ưu tiên độ mượt: analytics/workspace lazy-paint, giảm backdrop-filter và ambient effects trên thiết bị yếu.
+- Giữ nguyên trusted-device gate và không thay đổi ranh giới authorization hiện tại.
