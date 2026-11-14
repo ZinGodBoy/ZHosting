@@ -1,3 +1,7 @@
+## v1.8.4 — Interaction Rendering Optimization
+
+The Command Palette previously rendered its action list for every input event. This pass schedules the render at a short 60 ms boundary and cancels the pending timer on page teardown. The change reduces unnecessary DOM replacement while keeping typing responsive and preserving keyboard navigation.
+
 ## v1.8.3 — Constrained Rendering & Visual Hardening
 
 This pass targets the remaining visual workload rather than adding new effects. Constrained mode now suppresses decorative Admin layers and repeated glow/animation work, while Dashboard cards avoid expensive hover transforms and large shadows. The normal visual treatment remains unchanged. Support surfaces were also consolidated back to the project's navy/cyan brand language so later cascade overrides do not visually drift toward violet.
