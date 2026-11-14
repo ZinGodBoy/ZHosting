@@ -1,4 +1,12 @@
 # Changelog
+## Admin Center refinement — 2026-11-14
+
+- Nâng User Directory với sắp xếp theo hoạt động gần nhất, tên, số login và ngày đăng ký.
+- Nút Làm mới không còn reload toàn trang; Admin Center đọc lại browser storage và cập nhật dữ liệu trực tiếp.
+- Giữ trạng thái tài khoản đang chọn sau khi refresh khi dữ liệu còn hợp lệ.
+- Highlight dòng user đang được xem và cải thiện keyboard/accessibility label cho thao tác xem.
+- Tiếp tục đồng bộ responsive toolbar và table interaction với design system ZHosting.
+
 ## 2026-11-14 — Security & UX Hardening
 
 - Hardened browser storage reads so malformed JSON is cleared instead of breaking authentication flows.
