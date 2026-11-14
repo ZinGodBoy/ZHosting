@@ -150,3 +150,5 @@ Không gọi một tính năng là “production” cho đến khi phần backen
 - [x] Responsive Admin table hardening.
 - [ ] Backend RBAC and server-side sessions.
 - [ ] Real IP/session audit pipeline.
+
+\n## v1.4.3 — Regression & Cross-page Hardening\n**Status: Implemented / release candidate**\n\n- [x] Fix shared UI runtime syntax regression.\n- [x] Remove duplicate logout event ownership.\n- [x] Add browser fallback for reveal animations.\n- [x] Harden responsive focus and disabled states across core surfaces.\n- [x] Preserve reduced-motion behavior after hardening.\n- [ ] Backend RBAC, real IP/session audit and server-side authorization remain production work.\n\n
