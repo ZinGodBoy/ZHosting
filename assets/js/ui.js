@@ -249,3 +249,8 @@
     form.addEventListener("input",event=>{event.target.classList.remove("field-invalid");},{capture:true});
   });
 })();
+
+/* ===== SMALL UX FEEDBACK v1.4.4 ===== */
+(()=>{"use strict";
+ document.querySelectorAll("button,.btn").forEach(btn=>btn.addEventListener("click",()=>{if(btn.disabled)return;btn.classList.remove("zui-clicked");requestAnimationFrame(()=>btn.classList.add("zui-clicked"))},{passive:true}));
+})();
