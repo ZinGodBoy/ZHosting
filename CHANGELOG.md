@@ -438,3 +438,19 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ### Validation note
 - This release remains a static/frontend prototype. Real account security, IP collection, RBAC, billing and hosting control require a backend.
+
+
+## v1.4.2 — Performance Optimization — 2026-11-14
+
+### Performance
+- Reduced main-thread work in the adaptive performance runtime.
+- Added passive scroll scheduling with requestAnimationFrame.
+- Added network-aware degradation for Save-Data and 2G connections.
+- Paused non-essential visual activity when the page is hidden.
+- Added mobile content-visibility/containment for large sections.
+- Reduced expensive blur, glow and pseudo-element effects on constrained devices.
+
+### UX
+- Preserved the full visual system on capable devices.
+- Kept reduced-motion and accessibility behavior intact.
+- No new runtime dependency was introduced.
