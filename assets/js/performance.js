@@ -10,6 +10,7 @@ const lowCpu=typeof navigator.hardwareConcurrency==="number"&&navigator.hardware
 const saveData=!!connection?.saveData;
 const slowNetwork=connection?.effectiveType==="slow-2g"||connection?.effectiveType==="2g";
 if(reduced||lowMemory||lowCpu||saveData||slowNetwork)body?.classList.add("zperf-lite");
+if(lowMemory||lowCpu||saveData||slowNetwork)root.classList.add("zperf-constrained");
 if(reduced)body?.classList.add("zperf-reduced");
 if(saveData||slowNetwork)body?.classList.add("zperf-data-saver");
 let raf=0;
