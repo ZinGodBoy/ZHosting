@@ -1087,3 +1087,56 @@ p,.hero-desc,.footer-brand>p,.footer-contact-copy span{
 .metrics>div{color:#8ea4bb}
 .metrics b{color:#dff3ff}
 .trust-row span{color:#687f97}
+
+
+/* ===== PERFORMANCE & VISUAL CONSOLIDATION v1.7.5 ===== */
+/* Final cascade: preserve the original blue/cyan identity while reducing paint cost on constrained screens. */
+:root{
+  --violet:var(--cyan,#43d9ff);
+  --z-custom-bg:#050b14;
+  --z-custom-bg-2:#0d1a2b;
+}
+body{
+  background:var(--z-custom-background-image,var(--z-custom-bg));
+  color:var(--text,#eef6ff);
+}
+.gradient-text{
+  background:linear-gradient(100deg,#fff 5%,var(--cyan,#43d9ff) 55%,var(--blue,#5c7cff));
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--cyan,#43d9ff),var(--blue,#5c7cff));
+}
+.brand-mark{
+  background:linear-gradient(135deg,var(--cyan,#43d9ff),var(--blue,#5c7cff));
+}
+main>section:not(:first-child)::before{
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--line,#263247) 82%,var(--cyan,#43d9ff) 18%),transparent);
+}
+@media(max-width:900px){
+  .hero-grid{gap:42px;padding:70px 0}
+  .hero-visual{min-height:390px}
+  .server-card{transform:none!important}
+  .orb{filter:none!important}
+  .hero-grid-lines{opacity:.55}
+}
+@media(max-width:700px){
+  .hero{min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:28px;padding:56px 0 64px}
+  .hero h1{font-size:clamp(42px,13vw,62px)}
+  .hero-desc{font-size:15px}
+  .hero-visual{min-height:330px}
+  .server-card{width:100%;padding:20px;border-radius:20px}
+  .hero-grid-lines{display:none}
+  .orb-one,.orb-two{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .server-card,.btn,.nav-links a{transition:none!important}
+}
+body.zperf-lite .hero-grid-lines,
+body.zperf-lite .orb,
+body.zperf-lite .noise{display:none!important}
+body.zperf-lite .server-card{transform:none!important;box-shadow:none!important}
+body.zperf-constrained .hero-grid-lines{display:none!important}
+body.zperf-constrained .orb{display:none!important}
