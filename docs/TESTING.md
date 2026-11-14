@@ -447,3 +447,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify scroll progress remains accurate after resize/layout changes.
 - Verify tablet/mobile pages do not use non-essential backdrop filters.
 - Verify desktop retains the intended visual atmosphere.
+
+
+## v1.7.1 — Observer & Visual Verification
+- Verify counters animate once and do not restart after repeated visibility changes.
+- Verify homepage reveal and active navigation continue working after resize and navigation.
+- Verify page exit disconnects homepage observers.
+- Verify auth pages and footer use lighter effects on constrained/mobile modes.
+- Verify the server card remains static in constrained mode.
