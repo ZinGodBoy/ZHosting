@@ -1,4 +1,11 @@
 # Changelog
+## Shared ZHosting branding — 2026-11-14
+
+- Thêm logo ZHosting SVG dùng chung tại `assets/brand/zhosting-mark.svg`.
+- Đồng bộ logo trên Homepage, Login, Register, Account Center, Admin Center và 404.
+- Thêm favicon SVG để logo hiển thị trên browser tab cho toàn bộ các trang HTML hiện có.
+- Admin Center tiếp tục được nâng cấp với keyboard shortcut `/` và `Ctrl/Cmd + K`, toast feedback cho thao tác, cùng hệ thống logo chung.
+
 ## Admin Center homepage synchronization — 2026-11-14
 
 - Đồng bộ Admin Center với design tokens của trang chủ: background, panel, border, typography, cyan/blue accent và glass surface.
