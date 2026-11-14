@@ -196,3 +196,10 @@ Tối ưu theo hướng progressive enhancement: máy mạnh giữ giao diện �
 - Active navigation is now driven by IntersectionObserver.
 - Scroll progress uses a transform scale update, matching the existing performance CSS.
 - Kept the existing header and back-to-top interactions unchanged.
+
+
+## v1.4.10 — Admin Device Gate Runtime Optimization
+
+- Audited the trusted-device path used by Account Center and Admin Center.
+- Added lifecycle-local caching for the IndexedDB key pair and its SHA-256 fingerprint.
+- No authorization behavior was relaxed; the same fingerprint comparison remains authoritative for this frontend gate.
