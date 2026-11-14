@@ -171,3 +171,13 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [x] Security Audit Log hiển thị event gần đây.
 - [x] Không render password/hash/salt.
 - [ ] Production audit phải được chuyển sang backend/server-side.
+
+
+### Authentication hardening — 2026-11-14
+
+- [ ] Register với mật khẩu 11 ký tự phải bị từ chối.
+- [ ] Register với mật khẩu 12 ký tự phải thành công.
+- [ ] Change password với mật khẩu mới dưới 12 ký tự phải bị từ chối.
+- [ ] Storage JSON hỏng không được tạo uncaught exception.
+- [ ] Tài khoản locked không thực hiện password verification trước khi bị từ chối.
+- [ ] Admin CSV mở trong spreadsheet không tạo formula từ các giá trị bắt đầu bằng =, +, -, @.
