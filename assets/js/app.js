@@ -423,3 +423,13 @@ counters.forEach(el=>counterObserver.observe(el));
     }
   });
 })();
+
+/* ===== ZHOSTING RUNTIME QUALITY API v1.4.1 ===== */
+(()=>{
+  if(window.ZHostingUI)return;
+  const debounce=(fn,wait=180)=>{let timer=0;return(...args)=>{clearTimeout(timer);timer=setTimeout(()=>fn(...args),wait)}};
+  const setBusy=(node,busy=true)=>{if(!node)return;node.setAttribute("aria-busy",String(busy));node.classList.toggle("is-loading",busy)};
+  const safeText=value=>String(value??"").replace(/[<>]/g,"");
+  const onPageShow=fn=>window.addEventListener("pageshow",fn,{passive:true});
+  window.ZHostingUI={debounce,setBusy,safeText,onPageShow,version:"1.4.1"};
+})();
