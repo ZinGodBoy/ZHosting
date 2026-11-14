@@ -919,7 +919,7 @@ main>section:not(:first-child)::before{
   position:absolute;
   top:0;
   left:50%;
-  width:min(100% - 48px,1120px);
+  width:min(calc(100% - 48px),1120px);
   height:1px;
   transform:translateX(-50%);
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--line,#263247) 82%,var(--violet,#7C6CFF) 18%),transparent);
