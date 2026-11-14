@@ -27,7 +27,8 @@ const stats=()=>{
  text("total",users.length);
  text("active",users.filter(u=>normalize(u).status==="active").length);
  text("admins",users.filter(u=>normalize(u).role==="admin").length);
- text("logins",users.reduce((n,u)=>n+normalize(u).loginCount,0));\n text("locked",users.filter(u=>normalize(u).status==="locked").length);
+ text("logins",users.reduce((n,u)=>n+normalize(u).loginCount,0));
+ text("locked",users.filter(u=>normalize(u).status==="locked").length);
 };
 
 const show=raw=>{
@@ -209,13 +210,16 @@ $("exportUsers")?.addEventListener("click",()=>{
 $("lock")?.addEventListener("click",()=>{
  const u=users.find(x=>x.id===selectedId);
  if(!u||u.email===me.email)return;
- u.status=normalize(u).status==="locked"?"active":"locked";
+ const nextStatus=normalize(u).status==="locked"?"active":"locked";
+ u.status=nextStatus;
+ auth.recordAudit?.(nextStatus==="locked"?"admin_lock":"admin_unlock",{adminId:me.id,adminEmail:me.email,targetId:u.id,targetEmail:u.email});
  save();render();show(u.id);
 });
 $("revoke")?.addEventListener("click",()=>{
  const u=users.find(x=>x.id===selectedId);
  if(!u||u.email===me.email)return;
  u.sessionRevokedAt=new Date().toISOString();
+ auth.recordAudit?.("admin_revoke_session",{adminId:me.id,adminEmail:me.email,targetId:u.id,targetEmail:u.email});
  save();show(u.id);
 });
 render();
