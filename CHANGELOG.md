@@ -549,3 +549,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Khôi phục 2 bong bóng Zalo/Discord dạng tròn với logo thương hiệu.
 - Thêm chuyển động nổi nhẹ liên tục, hover/focus nâng bóng và tooltip.
 - Tự thu nhỏ trên mobile và tắt animation khi người dùng giảm chuyển động.
+
+
+## v1.4.12 — Theme Color Customization
+- Added a lightweight browser-side theme tool for accent/background customization.
+- Supports HEX and RGB editing plus preset palettes.
+- Persists user theme preferences locally and provides reset-to-default.
