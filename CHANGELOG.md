@@ -624,3 +624,15 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### Fixed
 - Giảm nguy cơ duplicate runtime work khi có nhiều thành phần UI hoạt động cùng trang.
 - Không thay đổi auth/session, Admin Center, trusted-device gate hoặc dữ liệu người dùng.
+
+## v1.5.5 — Duplicate Listener & Render Write Fixes — 2026-11-14
+
+### Fixed
+- Gộp validation form về event delegation, loại bỏ listener `input` riêng trên từng form.
+- Giữ xử lý `invalid` ở cấp document để không phát sinh listener lặp theo số lượng form.
+- Giảm nguy cơ duplicate UI feedback khi trang có nhiều form/component.
+
+### Performance
+- Performance layer không ghi lại `--z-viewport-height` nếu chiều cao viewport không thực sự thay đổi.
+- Giảm các style write không cần thiết trong resize lifecycle.
+- Không thay đổi chức năng đăng nhập, dashboard, Admin Center hoặc cấu hình hosting.
