@@ -18,7 +18,6 @@ const header=document.querySelector('.header');
 const progress=document.createElement('div');progress.className='scroll-progress';document.body.appendChild(progress);
 const backTop=document.createElement('button');backTop.className='back-top';backTop.type='button';backTop.setAttribute('aria-label','Về đầu trang');backTop.textContent='↑';document.body.appendChild(backTop);
 const toast=(message)=>{let el=document.querySelector('.toast');if(!el){el=document.createElement('div');el.className='toast';document.body.appendChild(el)}el.textContent=message;el.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.classList.remove('show'),2600)};
-const sections=[...document.querySelectorAll('main section[id]')];
 const nav=[...document.querySelectorAll('.nav-links a[href^="#"]')];
 let scrollFrame=0;
 const onScroll=()=>{
@@ -26,17 +25,39 @@ const onScroll=()=>{
   scrollFrame=requestAnimationFrame(()=>{
     const y=window.scrollY;
     const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-    progress.style.width=((y/max)*100)+'%';
+    progress.style.transform='scaleX('+Math.min(1,Math.max(0,y/max))+')';
     header?.classList.toggle('scrolled',y>12);
     backTop.classList.toggle('show',y>550);
-    let current='';
-    sections.forEach(s=>{if(y+120>=s.offsetTop)current=s.id});
-    nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
     scrollFrame=0;
   });
 };
 addEventListener('scroll',onScroll,{passive:true});
 onScroll();
+
+/* Active navigation uses IntersectionObserver instead of scanning every section
+   and reading offsetTop on every scroll frame. */
+const navTargets=[...document.querySelectorAll('main section[id]')];
+if(navTargets.length&&nav.length&&'IntersectionObserver' in window){
+  const visible=new Map();
+  const syncActive=()=>{
+    let current='';
+    let best=-Infinity;
+    visible.forEach((ratio,id)=>{
+      if(ratio>best){best=ratio;current=id}
+    });
+    nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+  };
+  const navObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting)visible.set(entry.target.id,entry.intersectionRatio);
+      else visible.delete(entry.target.id);
+    });
+    syncActive();
+  },{threshold:[0,.12,.25,.5,.75,1],rootMargin:'-18% 0px -58% 0px'});
+  navTargets.forEach(section=>navObserver.observe(section));
+}else{
+  nav.forEach(a=>a.classList.remove('active'));
+}
 backTop.addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
 
 document.querySelectorAll('.price-card .btn,.service-card a').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')==='#contact')setTimeout(()=>toast('Đã mở khu vực liên hệ — hãy gửi yêu cầu của bạn.'),300)}));
