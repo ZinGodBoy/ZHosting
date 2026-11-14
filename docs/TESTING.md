@@ -181,3 +181,13 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [ ] Storage JSON hỏng không được tạo uncaught exception.
 - [ ] Tài khoản locked không thực hiện password verification trước khi bị từ chối.
 - [ ] Admin CSV mở trong spreadsheet không tạo formula từ các giá trị bắt đầu bằng =, +, -, @.
+
+
+### Performance regression — 2026-11-14
+
+- [ ] Homepage không có animation loop liên tục khi tab bị ẩn.
+- [ ] Admin Center không tạo console error khi chuyển tab, refresh hoặc resize.
+- [ ] Thiết bị reduced-motion không còn animation không cần thiết.
+- [ ] Thiết bị tài nguyên thấp vẫn thao tác được với navigation, filters và user directory.
+- [ ] Admin analytics/workspace không gây layout jump đáng kể khi xuất hiện.
+- [ ] Kiểm tra 360px, 480px, 768px, 1024px và 1440px.
