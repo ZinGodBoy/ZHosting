@@ -3,7 +3,8 @@
 if(window.__ZHostingPerformanceInitialized)return;
 window.__ZHostingPerformanceInitialized=true;
 const root=document.documentElement,body=document.body;
-const reduced=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+const reducedQuery=window.matchMedia?.("(prefers-reduced-motion: reduce)");
+const reduced=!!reducedQuery?.matches;
 const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
 const lowMemory=typeof navigator.deviceMemory==="number"&&navigator.deviceMemory<=4;
 const lowCpu=typeof navigator.hardwareConcurrency==="number"&&navigator.hardwareConcurrency<=4;
@@ -12,6 +13,7 @@ const slowNetwork=connection?.effectiveType==="slow-2g"||connection?.effectiveTy
 if(reduced||lowMemory||lowCpu||saveData||slowNetwork)body?.classList.add("zperf-lite");
 if(lowMemory||lowCpu||saveData||slowNetwork)root.classList.add("zperf-constrained");
 if(reduced)body?.classList.add("zperf-reduced");
+reducedQuery?.addEventListener?.("change",event=>{body?.classList.toggle("zperf-reduced",event.matches);body?.classList.toggle("zperf-lite",event.matches)});
 if(saveData||slowNetwork)body?.classList.add("zperf-data-saver");
 let raf=0,lastViewportHeight=0;
 const syncViewport=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;const h=window.innerHeight;if(h!==lastViewportHeight){lastViewportHeight=h;root.style.setProperty("--z-viewport-height",h+"px")}})};
