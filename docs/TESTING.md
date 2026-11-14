@@ -462,3 +462,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify the navigation observer is disconnected on `pagehide`.
 - Verify counter observer cleanup occurs on `pagehide`.
 - Verify no continuous polling or pointer-follow runtime is introduced.
+
+
+## v1.7.3 — Navigation Verification
+- Verify all same-page navigation anchors still scroll smoothly using the CSS scroll system.
+- Verify the sticky-header offset remains correct through `scroll-padding-top`.
+- Verify active navigation and back-to-top continue working independently.
+- Verify no duplicate `scrollIntoView()` anchor handler remains in `app.js`.
