@@ -46,7 +46,7 @@ syncViewport();
 document.addEventListener("visibilitychange",()=>{body?.classList.toggle("zperf-paused",document.hidden);if(document.hidden)root.classList.remove("z-scroll-active")},{passive:true});
 const revealObservers=[];
 const reveal=selector=>{const nodes=document.querySelectorAll(selector);if(!nodes.length||!("IntersectionObserver"in window))return;const io=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){entry.target.classList.add("zperf-visible");io.unobserve(entry.target)}},{rootMargin:"0px 0px -6% 0px",threshold:.01});nodes.forEach(node=>io.observe(node));revealObservers.push(io)};
-if(!reduced)reveal(".service-card,.price-card,.node-card,.review,.feature,.step,.launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list,.admin-kpi,.admin-panel,.admin-workspace");
+if(!reduced)reveal(".launch-card,.compare-wrap,.config-panel,.config-result,.status-main,.status-list,.admin-kpi,.admin-panel,.admin-workspace");
 let idleHandle=0;
 const markIdle=()=>{idleHandle=0;root.classList.add("z-idle-ready")};
 if("requestIdleCallback"in window)idleHandle=requestIdleCallback(markIdle,{timeout:1200});else idleHandle=window.setTimeout(markIdle,600);
