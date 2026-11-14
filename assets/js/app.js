@@ -5,7 +5,7 @@ const zSafeText=value=>String(value??"").replace(/[<>]/g,"");
 const zPageReady=()=>{document.documentElement.classList.add("z-ready")};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",zPageReady,{once:true});else zPageReady();
 
-const zSetInterval=(()=>{const jobs=new Set();let bound=false;const pause=()=>jobs.forEach(job=>job.pause());const resume=()=>jobs.forEach(job=>job.schedule());const bind=()=>{if(bound)return;bound=true;document.addEventListener("visibilitychange",()=>document.hidden?pause():resume(),{passive:true});window.addEventListener("pagehide",pause,{passive:true});window.addEventListener("pageshow",resume,{passive:true});};return(fn,ms)=>{bind();let timer=0,stopped=false;const schedule=()=>{window.clearTimeout(timer);if(stopped||document.hidden)return;timer=window.setTimeout(()=>{if(stopped||document.hidden)return;try{fn()}catch{}finally{schedule()}},ms)};const pause=()=>window.clearTimeout(timer);const job={schedule,pause,stop:()=>{stopped=true;window.clearTimeout(timer);jobs.delete(job)}};jobs.add(job);schedule();return job.stop}})();
+const zSetInterval=(()=>{const jobs=new Set();let bound=false;const pause=()=>jobs.forEach(job=>job.pause());const resume=()=>jobs.forEach(job=>job.schedule());const bind=()=>{if(bound)return;bound=true;document.addEventListener("visibilitychange",()=>document.hidden?pause():resume(),{passive:true});window.addEventListener("pagehide",pause,{passive:true});window.addEventListener("pageshow",resume,{passive:true});};return(fn,ms)=>{bind();let timer=0,stopped=false;const schedule=()=>{window.clearTimeout(timer);if(stopped||document.hidden)return;timer=window.setTimeout(()=>{if(stopped||document.hidden)return;try{fn()}catch(error){if(window.ZHostingDebug)console.error("[ZHosting runtime]",error)}finally{schedule()}},ms)};const pause=()=>window.clearTimeout(timer);const job={schedule,pause,stop:()=>{stopped=true;window.clearTimeout(timer);jobs.delete(job)}};jobs.add(job);schedule();return job.stop}})();
 const menuBtn=document.querySelector('#menuBtn');const navLinks=document.querySelector('#navLinks');menuBtn?.setAttribute('aria-expanded','false');menuBtn?.addEventListener('click',()=>{const open=navLinks?.classList.toggle('open')??false;menuBtn?.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{navLinks?.classList.remove('open');menuBtn?.setAttribute('aria-expanded','false')}));
 const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches??false;
 const revealNodes=[...document.querySelectorAll('.reveal')];
@@ -164,7 +164,7 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     });
     empty.hidden=found!==0;
   };
-  input.addEventListener('input',run);
+  input.addEventListener('input',zDebounce(run,120));
 })();
 
 /* ===== V6 PROFESSIONAL CONTACT FLOW ===== */
