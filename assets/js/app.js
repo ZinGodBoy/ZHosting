@@ -456,7 +456,12 @@ window.addEventListener('pagehide',()=>{
 
   document.querySelectorAll('[data-command-open]').forEach(button => button.addEventListener('click', openPalette));
   palette.querySelectorAll('[data-palette-close]').forEach(button => button.addEventListener('click', closePalette));
-  input.addEventListener('input', () => render(input.value));
+  let paletteRenderTimer=0;
+const schedulePaletteRender=()=>{
+  window.clearTimeout(paletteRenderTimer);
+  paletteRenderTimer=window.setTimeout(()=>{paletteRenderTimer=0;render(input.value)},60);
+};
+input.addEventListener('input',schedulePaletteRender);
   input.addEventListener('keydown', event => {
     const items = visibleActions();
     if (event.key === 'ArrowDown' && items.length) {
@@ -474,7 +479,8 @@ window.addEventListener('pagehide',()=>{
     }
   });
 
-  document.addEventListener('keydown', event => {
+  window.addEventListener("pagehide",()=>{window.clearTimeout(paletteRenderTimer);paletteRenderTimer=0},{once:true});
+document.addEventListener('keydown', event => {
     const target = event.target;
     const typing = target && (target.matches('input, textarea, select') || target.isContentEditable);
     if (event.key === 'Escape' && !palette.hidden) {
