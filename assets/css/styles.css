@@ -329,12 +329,10 @@ img,svg{max-width:100%;height:auto}.btn[disabled],button[disabled]{opacity:.55;c
 
 
 /* ===== PERFORMANCE OPTIMIZATION v1.4.2 ===== */
-body{contain:paint}
 img,svg{content-visibility:auto}
 .zperf-lite .server-card{animation:none!important}
 .zperf-lite .orb,.zperf-lite .hero:after{filter:none;opacity:.5}
 .zperf-lite .service-card:after,.zperf-lite .price-card.popular:before,.zperf-lite .cta:after{display:none}
-.zperf-lite .header{backdrop-filter:blur(10px)}
 .zperf-data-saver .noise{display:none}
 .zperf-data-saver .support-dock-item::before{display:none}
 .zperf-paused .server-card,.zperf-paused .support-dock-title span{animation-play-state:paused!important}
