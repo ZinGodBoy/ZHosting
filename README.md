@@ -374,3 +374,5 @@ The project remains intentionally framework-free. These improvements are fronten
 - `v1.4.7` — Support Dock Scrollbar Alignment
 
 - `v1.4.8` — Support Dock Polish
+
+- `v1.4.9` — Scroll Navigation Optimization
