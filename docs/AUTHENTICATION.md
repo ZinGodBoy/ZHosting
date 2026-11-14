@@ -137,3 +137,13 @@ Admin Center chuẩn hóa role/status/login metadata trước khi hiển thị v
 - Tài khoản bị khóa được từ chối trước bước verify password để tránh thực hiện xử lý mật khẩu không cần thiết.
 - Login failure do tài khoản bị khóa vẫn dùng thông báo chung, tránh tiết lộ trạng thái account cho người không có quyền.
 - Admin CSV export chống CSV formula injection với các giá trị bắt đầu bằng các ký tự =, +, -, @.
+
+
+## Password and session hardening
+
+- New and changed passwords require at least 12 characters.
+- A password change cannot reuse the current password.
+- Password changes revoke sessions issued before the change timestamp.
+- Session records carry a generated session ID and user ID metadata for local consistency checks.
+- Logout records a local audit event when an active session exists.
+- Browser storage remains a demo boundary: it is not equivalent to HttpOnly/Secure/SameSite server cookies or a server-side session store.
