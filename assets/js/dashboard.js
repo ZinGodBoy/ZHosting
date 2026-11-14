@@ -38,14 +38,15 @@
     return "Browser";
   };
 
-  const syncAdminEntry=()=>{
-    const link=document.querySelector("#adminCenterLink");
+  const syncAdminEntry=async()=>{
+    const link=$("#adminCenterLink");
     if(!link)return;
     const isAdmin=user.role==="admin"&&user.status==="active";
-    link.hidden=!isAdmin;
-    if(isAdmin&&!link.dataset.bound){
+    const trusted=isAdmin && Boolean(await window.ZAdminAccess?.isTrusted?.(user));
+    link.hidden=!trusted;
+    if(trusted&&!link.dataset.bound){
       link.dataset.bound="1";
-      link.addEventListener("click",()=>{ window.location.href="../admin/index.html"; });
+      link.addEventListener("click",event=>{event.preventDefault();location.href="../admin/index.html";});
     }
   };
 
@@ -78,16 +79,6 @@
     set("#sessionStarted",formatDate(session.issuedAt));
     set("#sessionActivity",formatDate(session.lastActivity));
     set("#sessionDevice",deviceName());
-  };
-
-  const syncAdminEntry=()=>{
-    const link=$("#adminCenterLink");
-    if(!link)return;
-    link.hidden=user.role!=="admin";
-    link.addEventListener("click",event=>{
-      event.preventDefault();
-      location.href="../admin/index.html";
-    });
   };
 
   const updateSecurity=()=>{
@@ -124,7 +115,6 @@
     if(prefs.toast)window.ZUI?.toast("Đã lưu tùy chọn","Preferences đã được cập nhật.","success");
   };
 
-  syncAdminEntry();
   syncProfile();
   syncAdminEntry();
   updateSessionView();
@@ -243,7 +233,7 @@
     const next=$("#newPassword")?.value||"";
     const confirm=$("#confirmPassword")?.value||"";
     const message=$("#passwordMessage");
-    if(next.length<8){if(message){message.textContent="Mật khẩu mới cần ít nhất 8 ký tự.";message.className="form-note error";}return;}
+    if(next.length<12){if(message){message.textContent="Mật khẩu mới cần ít nhất 12 ký tự.";message.className="form-note error";}return;}
     if(next!==confirm){if(message){message.textContent="Mật khẩu xác nhận chưa khớp.";message.className="form-note error";}return;}
     const result=await window.ZAuth?.changePassword?.(user.email,current,next);
     if(!result?.ok){
