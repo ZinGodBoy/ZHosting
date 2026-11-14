@@ -305,3 +305,10 @@ The performance audit found duplicate/contradictory low-resource CSS rules, incl
 - Root CSS was re-audited against the original palette and restored to the prior blue/cyan ZHosting identity.
 - The theme tool had independent violet defaults, so its reset state was also aligned with the restored palette.
 - No performance runtime was removed while correcting the visual regression.
+
+
+## v1.7.5 — Runtime Hardening
+- Audited core runtime files for timers, animation frames and observers.
+- Corrected an adaptive-performance state issue where motion/network state could retain stale initial connection values.
+- Added explicit resize-listener cleanup on page exit.
+- Added a final CSS cascade that restores the blue/cyan visual identity while reducing hero paint cost on constrained devices.
