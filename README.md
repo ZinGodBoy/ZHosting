@@ -378,3 +378,5 @@ The project remains intentionally framework-free. These improvements are fronten
 - `v1.4.9` — Scroll Navigation Optimization
 
 - `v1.4.10` — Admin Device Gate Runtime Optimization
+
+- `v1.4.11` — Runtime Smoothness Pass: lighter Admin Center interactions, batched config updates, and reduced compositor overhead.
