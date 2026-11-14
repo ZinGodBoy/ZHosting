@@ -1,4 +1,13 @@
 # Changelog
+## 2026-11-14 — Security & UX Hardening
+
+- Hardened browser storage reads so malformed JSON is cleared instead of breaking authentication flows.
+- Added session user binding metadata and explicit logout audit events.
+- Password changes now require at least 12 characters, reject reusing the current password, and revoke older sessions.
+- Hardened the legacy dashboard controller with null-safe navigation and the shared authentication/session layer.
+- Added accessible mobile navigation state via `aria-expanded`.
+- Continued unified Inter + Space Grotesk typography across the product surfaces.
+
 
 Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
