@@ -720,3 +720,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 ### Quality
 - Live Status vẫn cập nhật Load, Latency và timestamp trong cùng một luồng runtime.
 - Không thay đổi dữ liệu cấu hình, đăng nhập hoặc giao diện điều khiển tài khoản.
+
+## v1.6.2 — Runtime Cleanup & Responsive Footer Hardening
+- Added page-exit cleanup for the adaptive performance resize frame.
+- Consolidated the final low-resource header/footer fallback so constrained devices do not re-enable expensive blur effects.
+- Reduced footer shadows and hover transitions on smaller/constrained devices.
+- Preserved the full footer visual hierarchy on normal desktop hardware.
