@@ -202,3 +202,12 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [ ] Admin Center trên mobile không có backdrop/ambient effect nặng gây giảm FPS rõ rệt.
 - [ ] Bật prefers-reduced-motion và xác nhận animation được giảm/tắt phù hợp.
 - [ ] Kiểm tra thiết bị yếu/Save-Data: visual effects được hạ cấp nhưng chức năng vẫn đầy đủ.
+
+
+### Frontend navigation hardening — 2026-11-14
+
+- [ ] Click anchor `#section` hợp lệ không tạo console error.
+- [ ] Anchor rỗng hoặc `#` không làm hỏng navigation runtime.
+- [ ] Admin Global Search không render liên tục khi nhập nhanh.
+- [ ] Admin Directory Search và Global Search cùng cập nhật đúng filter.
+- [ ] Nạp lại runtime không tạo duplicate performance listeners.
