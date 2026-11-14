@@ -413,3 +413,7 @@ body{background:radial-gradient(circle at 78% -8%,rgba(139,92,246,.18),transpare
 @keyframes zLivePulse{50%{opacity:.45;transform:scale(.78)}}
 @media(max-width:700px){.site-live-pill{right:12px;bottom:12px;padding:8px 10px}.site-live-pill span:nth-child(2){display:none}}
 @media(prefers-reduced-motion:reduce){.site-live-dot{animation:none}}
+
+/* ===== ACCESSIBLE LIVE PILL v1.4.5 ===== */
+.site-live-pill:focus-within{outline:2px solid rgba(167,139,250,.7);outline-offset:3px}
+@media(prefers-reduced-transparency:reduce){.site-live-pill{backdrop-filter:none;background:#120b22}}
