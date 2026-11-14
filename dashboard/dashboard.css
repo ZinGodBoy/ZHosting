@@ -594,3 +594,8 @@ input,select,textarea,button{font-family:var(--font-ui)}
   .health-item{padding:11px 12px;min-height:60px}
   .health-item small{font-size:8px}
 }
+
+/* ===== ACCOUNT QUALITY LAYER v1.4.1 ===== */
+.account-page :where(a,button,input,select,textarea):focus-visible{outline:2px solid rgba(67,217,255,.78);outline-offset:3px}.account-page .panel{overflow:clip}.account-page .account-activity,.account-page .account-health{scroll-margin-top:90px}
+@media(max-width:520px){.account-page .panel{border-radius:18px}.account-page .panel-actions,.account-page .quick-actions{flex-wrap:wrap}.account-page .panel-actions>*{min-width:0}}
+@media(prefers-reduced-motion:reduce){.account-page *{scroll-behavior:auto}}
