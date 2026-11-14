@@ -469,3 +469,11 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify the sticky-header offset remains correct through `scroll-padding-top`.
 - Verify active navigation and back-to-top continue working independently.
 - Verify no duplicate `scrollIntoView()` anchor handler remains in `app.js`.
+
+
+## v1.7.4 — Palette Verification
+- Verify default background is dark navy `#050B14` with panel tones `#0A1422` / `#0D1A2B`.
+- Verify primary accent is cyan `#43D9FF` and secondary blue is `#5C7CFF`.
+- Verify body text remains `#EEF6FF` and muted text `#8EA4BB`.
+- Verify theme reset restores the same blue/cyan palette instead of violet.
+- Verify desktop/mobile performance hardening remains active.
