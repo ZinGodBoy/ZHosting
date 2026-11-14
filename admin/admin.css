@@ -899,3 +899,7 @@ td{color:#b9c9d7;font-size:10px}
  background:radial-gradient(circle at 82% 0,rgba(139,92,246,.18),transparent 32%),linear-gradient(180deg,#0b0716,#0f0a1f 58%,#090611);
 }
 .admin-page .admin-card,.admin-page .admin-panel,.admin-page .admin-table-wrap{border-color:rgba(205,184,255,.15)}
+
+/* ===== ADMIN LIVE STATUS v1.4.5 ===== */
+.admin-live-bar{margin-left:auto}
+@media(max-width:700px){.admin-live-bar{margin-left:0;width:max-content;max-width:100%}}
