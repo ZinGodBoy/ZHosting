@@ -619,3 +619,7 @@ input,select,textarea,button{font-family:var(--font-ui)}
 /* ===== ACCOUNT LIVE STATUS v1.4.5 ===== */
 .account-live-bar{margin-left:auto}
 @media(max-width:700px){.account-live-bar{margin-left:0;width:max-content;max-width:100%}}
+
+/* ===== ACCOUNT PERFORMANCE v1.4.6 ===== */
+body.zperf-lite .dashboard-page .dash-card,body.zperf-lite .dashboard-page .panel{backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 8px 24px rgba(0,0,0,.14)}
+body.zperf-paused .dashboard-page *{animation-play-state:paused!important}
