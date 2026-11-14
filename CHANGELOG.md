@@ -1,3 +1,20 @@
+## v1.8.2 — Observer & Compositing Optimization — 2026-11-14
+
+### Performance
+- Loại bỏ ResizeObserver liên tục trên toàn bộ main của Homepage; layout bounds chỉ được tính khi resize.
+- Loại bỏ các selector reveal trùng với IntersectionObserver của Homepage.
+- Giảm một lớp compositing thường trực của nút Theme bằng cách bỏ backdrop-filter.
+- Giảm shadow của Theme trigger nhưng giữ nguyên hierarchy và thẩm mỹ.
+- Giữ nguyên adaptive performance, reduced-motion và lifecycle cleanup.
+
+### Fixed
+- Tránh việc thay đổi kích thước/nội dung Homepage kích hoạt thêm một chu kỳ đo layout không cần thiết.
+- Tránh quan sát cùng một nhóm card bằng hai IntersectionObserver khác nhau.
+
+### Quality
+- Không thay đổi dữ liệu tài khoản, authentication hoặc quyền Admin.
+- Không thêm dependency, polling hoặc background timer.
+
 ## v1.8.1 — Runtime & Rendering Hardening — 2026-11-14
 
 ### Fixed
