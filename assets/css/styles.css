@@ -13,9 +13,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 .hero{isolation:isolate}.hero:after{content:"";position:absolute;width:520px;height:520px;right:-260px;top:10%;background:rgba(67,217,255,.07);filter:blur(90px);border-radius:50%;pointer-events:none}
 .btn{position:relative;overflow:hidden}.btn:before{content:"";position:absolute;inset:0;transform:translateX(-110%);background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transition:transform .65s var(--ease)}.btn:hover:before{transform:translateX(110%)}
 .btn-primary{box-shadow:0 10px 35px rgba(67,217,255,.16),inset 0 1px rgba(255,255,255,.35)}
-.server-card{animation:floatCard 6s ease-in-out infinite;will-change:transform}.server-card:hover{animation-play-state:paused;box-shadow:0 35px 110px rgba(0,0,0,.5),0 0 55px rgba(67,217,255,.1)}
+.server-card{animation:floatCard 6s ease-in-out infinite}.server-card:hover{animation-play-state:paused;box-shadow:0 35px 110px rgba(0,0,0,.5),0 0 55px rgba(67,217,255,.1)}
 @keyframes floatCard{0%,100%{transform:perspective(1000px) rotateY(-7deg) rotateX(3deg) translateY(0)}50%{transform:perspective(1000px) rotateY(-5deg) rotateX(2deg) translateY(-10px)}}
-.service-card,.price-card,.feature,.step{will-change:transform}.service-card{overflow:hidden}.service-card:after{content:"";position:absolute;width:130px;height:130px;right:-70px;bottom:-75px;background:rgba(67,217,255,.09);filter:blur(25px);border-radius:50%;transition:.35s}.service-card:hover:after{transform:scale(1.7)}
+.service-card,.price-card,.feature,.step{will-change:auto}.service-card{overflow:hidden}.service-card:after{content:"";position:absolute;width:130px;height:130px;right:-70px;bottom:-75px;background:rgba(67,217,255,.09);filter:blur(25px);border-radius:50%;transition:.35s}.service-card:hover:after{transform:scale(1.7)}
 .service-card:hover,.price-card:hover{box-shadow:var(--glow)}
 .price-card{overflow:hidden}.price-card.popular:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 25%,rgba(67,217,255,.06),transparent 75%);transform:translateX(-100%);transition:1s}.price-card.popular:hover:before{transform:translateX(100%)}
 .billing-toggle button{transition:.25s var(--ease)}.billing-toggle button.active{box-shadow:0 4px 18px rgba(67,217,255,.08)}
@@ -361,7 +361,7 @@ img,svg{max-width:100%}
 
 /* ===== PERFORMANCE PASS v1.4.4 ===== */
 .zui-spotlight{display:none!important}
-.zui-progress{transform-origin:left center;will-change:transform;width:100%!important}
+.zui-progress{transform-origin:left center;width:100%!important}
 .zui-tilt{transform:none!important}
 @media(pointer:fine) and (min-width:900px){
  .zui-tilt{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
@@ -439,7 +439,7 @@ body.zperf-paused *{animation-play-state:paused!important}
 
 /* ===== SUPPORT DOCK POLISH v1.4.8 ===== */
 .support-dock{position:fixed;right:var(--support-scrollbar-offset,24px);bottom:max(18px,env(safe-area-inset-bottom));z-index:120;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
-.support-dock-item{pointer-events:auto;will-change:transform}
+.support-dock-item{pointer-events:auto}
 @media(max-width:700px){
  .support-dock{right:var(--support-scrollbar-offset,14px);bottom:max(12px,env(safe-area-inset-bottom));gap:6px}
  .support-dock-item{box-shadow:0 8px 24px rgba(0,0,0,.26)}
@@ -502,7 +502,7 @@ body.zperf-lite .brand-mark{box-shadow:none}
 @media(prefers-reduced-motion:reduce){.theme-tools-trigger{transition:none}.theme-tools{backdrop-filter:none}}
 
 /* ===== SUPPORT BUBBLES UNIFIED RUNTIME v1.5.1 ===== */
-.support-bubbles{right:var(--support-scrollbar-offset,24px);will-change:auto}
+.support-bubbles{right:var(--support-right,24px)}
 .support-bubble{will-change:auto}
 @media(max-width:700px){
   .support-bubbles{right:var(--support-scrollbar-offset,10px)}
@@ -623,3 +623,11 @@ body.zperf-paused .support-bubble{animation-play-state:paused}
  .footer-contact-link i,.footer-column a:after,.footer-bottom-links a{transition:none}
 }
 .zperf-lite .footer-contact-inner{box-shadow:none}
+
+
+/* ===== RENDERING HARDENING v1.6.0 ===== */
+/* Avoid permanent GPU promotion; promote only during active transforms. */
+.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:transform}
+body.zperf-lite .server-card{animation:none}
+body.zperf-lite .noise{display:none}
+@media(prefers-reduced-motion:reduce){.server-card{animation:none!important}.service-card:hover,.price-card:hover,.btn-primary:hover,.btn-ghost:hover,.support-bubble:hover,.support-bubble:focus-visible{will-change:auto}}
