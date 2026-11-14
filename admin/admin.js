@@ -1,3 +1,4 @@
+const zSetInterval=(fn,ms)=>window.setInterval(()=>{if(!document.hidden)fn();},ms);
 (async()=>{"use strict";
 const auth=window.ZAuth;
 if(!auth)return;
@@ -328,7 +329,7 @@ if(!reduceMotion){
   },{passive:true});
 }
 const updateClock=()=>{const node=$("adminClock");if(node)node.textContent=new Date().toLocaleTimeString("vi-VN",{hour12:false});};
-setInterval(updateClock,1000);updateClock();
+zSetInterval(updateClock,1000);updateClock();
 
 $("focusSearch")?.addEventListener("click",()=>{$("search")?.focus();$("search")?.select();notify("Search","Đã đưa con trỏ tới bộ lọc User Directory.");});
 $("focusLocked")?.addEventListener("click",()=>{const status=$("status");if(status){status.value="locked";render();notify("Filter","Đang hiển thị tài khoản bị khóa.");}});
