@@ -137,3 +137,20 @@ input,select,textarea,button{font-family:var(--font-ui)}
 /* Shared ZHosting brand asset */
 .brand-mark{overflow:hidden;display:grid;place-items:center;flex:0 0 auto}
 .brand-mark img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* =========================================================
+   ZHosting global performance pass
+   ========================================================= */
+:root{--motion-fast:180ms;--motion-base:240ms;--motion-slow:500ms}
+img{content-visibility:auto}
+.reveal{will-change:auto}
+.server-card{will-change:auto}
+.header,.dash-header{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.toast,.back-top,.modal{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+@media(max-width:700px){
+  .header,.dash-header{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .toast,.back-top,.modal{backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .server-card{will-change:auto}
+}
