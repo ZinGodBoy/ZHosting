@@ -1,3 +1,12 @@
+## Admin Center motion upgrade — 2026-11-14
+
+- Nâng cấp Admin Center với motion suite đồng bộ visual language của Homepage.
+- Thêm animated spotlight theo con trỏ, scanline, ambient glow, border flow và shimmer.
+- Thêm tilt interaction cho panel/KPI/privacy card và ripple feedback cho button.
+- Thêm animated KPI counters, chart stagger, health sweep và activity transitions.
+- Thêm header shrink khi scroll và trạng thái detail panel khi chọn user.
+- Giữ reduced-motion fallback cho toàn bộ animation mới.
+
 # Changelog
 ## Shared ZHosting branding — 2026-11-14
 
