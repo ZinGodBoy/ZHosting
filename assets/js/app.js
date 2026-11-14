@@ -106,7 +106,7 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     const config='ZHosting '+services[service].name+' · '+(ram?.value||4)+'GB RAM · '+(cpu?.value||2)+' vCPU · '+addons.filter(x=>x.checked).map(x=>x.closest('.config-check')?.querySelector('b')?.textContent||'Addon').join(', ');
     const subject=encodeURIComponent('Tư vấn cấu hình ZHosting');
     const body=encodeURIComponent('Xin tư vấn cấu hình:\n'+config);
-    location.href='mailto:contact@zhosting.vn?subject='+subject+'&body='+body;
+    location.href='mailto:dangkhoita2@gmail.com?subject='+subject+'&body='+body;
   });
 
   calc();
@@ -179,7 +179,7 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     note.textContent="Đang mở ứng dụng email...";
     note.style.color="";
     window.ZUI?.toast("Đã tạo project brief","Đang mở ứng dụng email của bạn.","success");
-    setTimeout(()=>{location.href="mailto:contact@zhosting.vn?subject="+subject+"&body="+body},220);
+    setTimeout(()=>{location.href="mailto:dangkhoita2@gmail.com?subject="+subject+"&body="+body},220);
   });
 })();
 
