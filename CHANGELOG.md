@@ -577,3 +577,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Scroll-follow được xử lý tập trung trong assets/js/support.js bằng requestAnimationFrame.
 - Loại bỏ scroll listener trùng trong app.js để giảm main-thread work.
 - Giữ responsive, reduced-motion, scrollbar alignment và Performance Lite Mode.
+
+
+## v1.5.2 — Support Dock Follow Refinement — 2026-11-14
+
+- Sửa offset để 2 bong bóng bám đúng mép phải, có tính scrollbar.
+- Đồng bộ lại vị trí khi pageshow/orientation change.
+- Hủy RAF khi pagehide để tránh giữ animation task khi rời trang.
