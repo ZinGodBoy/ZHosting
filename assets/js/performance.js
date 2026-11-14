@@ -39,9 +39,10 @@ window.addEventListener("resize",syncViewport,{passive:true});
 const onPageHide=()=>{
  if(raf)cancelAnimationFrame(raf);
  raf=0;
- window.removeEventListener("resize",syncViewport);
 };
-window.addEventListener("pagehide",onPageHide,{once:true});
+const onPageShow=()=>syncViewport();
+window.addEventListener("pagehide",onPageHide,{passive:true});
+window.addEventListener("pageshow",onPageShow,{passive:true});
 syncViewport();
 const syncVisibility=()=>{const hidden=document.hidden;body?.classList.toggle("zperf-paused",hidden);if(hidden)root.classList.remove("z-scroll-active")};
 document.addEventListener("visibilitychange",syncVisibility,{passive:true});
@@ -54,8 +55,6 @@ if("requestIdleCallback"in window)idleHandle=requestIdleCallback(markIdle,{timeo
 window.addEventListener("pagehide",()=>{
   revealObservers.forEach(io=>io.disconnect());
   revealObservers.length=0;
-  network?.removeEventListener?.("change",syncNetworkMode);
-  reducedQuery?.removeEventListener?.("change",syncMotionMode);
   if(idleHandle){if("cancelIdleCallback"in window)cancelIdleCallback(idleHandle);else clearTimeout(idleHandle);idleHandle=0}
-},{once:true});
+},{passive:true});
 })();
