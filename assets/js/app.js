@@ -296,16 +296,6 @@ counters.forEach(el=>counterObserver.observe(el));
     };
     syncAdminLink();
 
-    const logout = account.querySelector('#navLogout');
-    logout?.addEventListener('click', event => {
-      event.preventDefault();
-      try {
-        localStorage.removeItem('zhosting_session_v1');
-        sessionStorage.removeItem('zhosting_temp_session_v1');
-      } finally {
-        location.href = 'auth/login.html?logout=1';
-      }
-    });
   }
 
   const palette = document.createElement('div');
