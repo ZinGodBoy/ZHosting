@@ -231,3 +231,6 @@ Audited the v1.4.13 theme tool and found two consistency issues: the background 
 
 ## 2026-11-14 — v1.5.3 Bugfix Hardening
 Found a regression introduced during support-runtime consolidation: `support.js` wrote `--support-right` while the stylesheet consumed `--support-scrollbar-offset`, so the calculated scrollbar offset was ignored. Corrected the shared variable contract and hardened mobile rendering by avoiding fixed background attachment and disabling decorative support effects on constrained devices.
+
+## 2026-11-14 — v1.5.4 Runtime Performance
+Audited the shared runtime for scroll-driven work. The support dock was recalculating `document.documentElement.scrollHeight` and `window.innerHeight` on every rAF while scrolling. Metrics are now cached and refreshed only on resize/orientation/layout changes, while scroll frames only calculate normalized progress. Mobile decorative effects were also reduced to lower compositor and paint cost.
