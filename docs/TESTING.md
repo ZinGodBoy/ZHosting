@@ -414,3 +414,9 @@ Release completion requires browser smoke testing plus passing CI/security check
 - Verify support bubbles continue to follow scroll and align with the scrollbar offset.
 - Verify page navigation does not retain pending support animation frames or `ResizeObserver` work.
 - Verify `prefers-reduced-motion` and `zperf-lite` remove non-essential effects.
+
+
+## v1.6.5 — Support Runtime Verification
+- Verify support bubbles remain functional after resize/orientation changes.
+- Verify `ResizeObserver` is disconnected during `pagehide`.
+- Verify no support animation frame remains scheduled after page exit.
