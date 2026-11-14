@@ -66,7 +66,6 @@
   const refreshAccountRuntime=()=>{
     if(document.hidden)return;
     syncHealth();
-    try{if(typeof auth?.touchSession==="function")auth.touchSession()}catch{}
   };
   refreshAccountRuntime();
   window.addEventListener("pageshow",refreshAccountRuntime,{passive:true});
