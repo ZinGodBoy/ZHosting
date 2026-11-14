@@ -107,39 +107,44 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
   };
   const recommendation=document.querySelector('#configRecommendationText');
   let service=serviceButtons.find(x=>x.classList.contains('active'))?.dataset.service||'minecraft';
+  const serviceById=new Map(serviceButtons.map(button=>[button.dataset.service,button]));
+  const addonItems=[...document.querySelectorAll('.config-check')];
 
-  const calc=()=>{
-    const active=serviceButtons.find(x=>x.dataset.service===service);
+  const calc=(animate=false)=>{
+    const active=serviceById.get(service);
     const base=Number(active?.dataset.base||39);
     const ramNum=Number(ram?.value||4);
     const cpuNum=Number(cpu?.value||2);
     const ramExtra=Math.max(0,Math.ceil((ramNum-4)/4))*12;
     const cpuExtra=Math.max(0,cpuNum-2)*7;
-    const addonTotal=addons.filter(x=>x.checked).reduce((sum,x)=>sum+Number(x.dataset.price||0),0);
+    let addonTotal=0,addonCount=0;
+    addonItems.forEach(item=>{
+      const input=item.querySelector('input');
+      const checked=!!input?.checked;
+      item.classList.toggle('is-selected',checked);
+      if(checked){addonCount++;addonTotal+=Number(input?.dataset.price||0);}
+    });
     const result=base+ramExtra+cpuExtra+addonTotal;
 
     if(ramValue)ramValue.value=ramNum+' GB',ramValue.textContent=ramNum+' GB';
     if(cpuValue)cpuValue.value=cpuNum+' vCPU',cpuValue.textContent=cpuNum+' vCPU';
     if(summaryRam)summaryRam.textContent=ramNum+' GB';
     if(summaryCpu)summaryCpu.textContent=cpuNum+' vCPU';
-    if(summaryAddons)summaryAddons.textContent=String(addons.filter(x=>x.checked).length);
+    if(summaryAddons)summaryAddons.textContent=String(addonCount);
     if(total)total.textContent=result+'K';
     if(title)title.textContent=services[service].name;
     if(description)description.textContent=services[service].desc;
     if(recommendation)recommendation.textContent=services[service].recommend;
-    document.querySelectorAll('.config-check').forEach(item=>item.classList.toggle('is-selected',item.querySelector('input')?.checked));
-    if(reduceMotion){document.body.classList.remove('config-active');return;}
-    requestAnimationFrame(()=>{
-      document.body.classList.remove('config-active');
-      requestAnimationFrame(()=>document.body.classList.add('config-active'));
-    });
+    if(reduceMotion||!animate){document.body.classList.remove('config-active');return;}
+    document.body.classList.remove('config-active');
+    requestAnimationFrame(()=>document.body.classList.add('config-active'));
   };
 
   serviceButtons.forEach(button=>button.addEventListener('click',()=>{
     serviceButtons.forEach(item=>item.classList.remove('active'));
     button.classList.add('active');
     service=button.dataset.service;
-    calc();
+    calc(true);
   }));
   let calcFrame=0;
   const scheduleCalc=()=>{
@@ -156,7 +161,7 @@ document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',()=>
     if(ram)ram.value='4';
     if(cpu)cpu.value='2';
     addons.forEach(x=>x.checked=false);
-    calc();
+    calc(true);
     window.ZUI?.toast('Đã đặt lại','Cấu hình đã trở về mức cơ bản.','success');
   });
 
