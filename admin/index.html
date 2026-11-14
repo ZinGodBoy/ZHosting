@@ -19,7 +19,7 @@
     </a>
     <div class="admin-header-search"><span aria-hidden="true">⌕</span><input id="adminGlobalSearch" type="search" placeholder="Tìm user, tính năng..." autocomplete="off" aria-label="Tìm kiếm Admin Center"></div>
     <div class="admin-header-actions">
-      <span class="admin-status"><i></i>ADMIN SESSION</span><button id="jumpDirectory" type="button">User Directory</button>
+      <span class="admin-status"><i></i>TRUSTED DEVICE</span><button id="jumpDirectory" type="button">User Directory</button>
       <a href="../dashboard/index.html">Account</a>
       <button id="logout" type="button">Đăng xuất</button>
     </div>
@@ -29,13 +29,13 @@
 <main class="admin-main" data-admin-reveal-root>
   <section class="admin-hero admin-reveal-group">
     <div>
-      <div class="admin-eyebrow"><i></i>Admin User Management</div>
+      <div class="admin-eyebrow"><i></i>Admin User Management <span class="admin-security-chip">DEVICE BOUND</span></div>
       <h1>Control Center.</h1>
       <p>Quản lý tài khoản, theo dõi hoạt động và kiểm soát session trong một giao diện quản trị thống nhất với hệ thống ZHosting.</p>
     </div>
     <aside class="admin-privacy">
       <strong>Privacy-first administration</strong>
-      <span>Password không được hiển thị. Chỉ sử dụng metadata, trạng thái, audit event và login history cần thiết.</span>
+      <span>Password không được hiển thị. Admin Center chỉ mở trên thiết bị trình duyệt đã được đăng ký cho tài khoản quản trị.</span>
     </aside>
   </section>
 
@@ -48,7 +48,7 @@
   </section>
 
   <section class="admin-commandbar" aria-label="Admin commands">
-    <span>Command Bar</span>
+    <span>Command Bar</span><span class="admin-command-security">LOCAL TRUST ACTIVE</span>
     <button type="button" id="focusSearch">Tìm người dùng</button>
     <button type="button" id="focusLocked">Tài khoản bị khóa</button>
     <button type="button" id="clearFilters">Reset bộ lọc</button>
