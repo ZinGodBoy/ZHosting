@@ -904,3 +904,9 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Fixed homepage navigation observer scope so the actual observer is retained and disconnected on page exit.
 - Added explicit counter observer cleanup on `pagehide`.
 - Kept the runtime event-driven without adding continuous polling or pointer effects.
+
+
+## v1.7.3 — Navigation Runtime Simplification
+- Removed the duplicate JavaScript smooth-scroll handler from `app.js`.
+- Native CSS `scroll-behavior` and `scroll-padding-top` now own in-page navigation, avoiding duplicate scroll animations and layout reads.
+- Kept active navigation and back-to-top behavior event-driven.
