@@ -1,3 +1,18 @@
+## v1.7.0 — Performance Finishing & Runtime Cleanup — 2026-11-14
+
+### Fixed
+- Loại bỏ `ResizeObserver` khỏi support dock vì chiều cao tài liệu đã được đo qua lifecycle resize/pageshow; tránh callback layout không cần thiết khi DOM thay đổi.
+- Giữ cleanup RAF/resize đầy đủ khi rời trang.
+
+### Performance
+- Tắt các decorative pulse trên constrained-device và reduced-motion.
+- Loại bỏ backdrop-filter khỏi theme tools trên thiết bị/network bị giới hạn.
+- Không thay đổi hành vi điều hướng, authentication hoặc dữ liệu tài khoản.
+
+### UI
+- Giữ hiệu ứng desktop đầy đủ.
+- Thiết bị yếu vẫn giữ hierarchy, màu sắc và trạng thái tương tác nhưng giảm hiệu ứng gây tốn paint/compositing.
+
 ## v1.6.9 — Runtime Stability & Interaction Polish — 2026-11-14
 
 ### Fixed
