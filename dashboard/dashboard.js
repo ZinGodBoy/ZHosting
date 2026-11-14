@@ -47,6 +47,7 @@
   }));
 
   // Keep legacy dashboard pages compatible while the Account Center uses its richer controller.
+  let healthSignature="";
   const syncHealth=()=>{
     const sessionNow=auth.getSession?.();
     const loginAt=sessionNow?.createdAt||sessionNow?.issuedAt||sessionNow?.loginAt;
@@ -54,6 +55,9 @@
     const sessionOk=!!sessionNow && (!age||age<8*60*60*1000);
     const securityOk=typeof auth.changePassword==="function" && !!user.password;
     const activityOk=Array.isArray(user.loginHistory);
+    const signature=[sessionOk,securityOk,activityOk].join("|");
+    if(signature===healthSignature)return;
+    healthSignature=signature;
     const setHealth=(dot,textSelector,okText,badText,ok)=>{
       const dotNode=$(dot),textNode=$(textSelector);
       dotNode?.classList.toggle("is-good",ok); dotNode?.classList.toggle("is-warn",!ok);
