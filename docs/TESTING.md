@@ -407,3 +407,10 @@ Release completion requires browser smoke testing plus passing CI/security check
 - [ ] Footer remains visually complete on desktop.
 - [ ] Footer shadow/transition load is reduced below 900px and on constrained devices.
 - [ ] Performance resize frame is cancelled on pagehide.
+
+
+## v1.6.3 — Footer & Runtime Checks
+- Verify footer contact links at desktop, tablet and mobile widths.
+- Verify support bubbles continue to follow scroll and align with the scrollbar offset.
+- Verify page navigation does not retain pending support animation frames or `ResizeObserver` work.
+- Verify `prefers-reduced-motion` and `zperf-lite` remove non-essential effects.
