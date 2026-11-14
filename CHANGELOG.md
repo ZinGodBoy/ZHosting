@@ -474,3 +474,10 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 
 ### Performance
 - Không thêm dependency hoặc request mạng mới.
+
+## v1.4.5 — Runtime Micro-UX Hardening — 2026-11-14
+
+### Fixed
+- Chặn việc gắn lặp event click feedback khi shared UI được khởi tạo nhiều lần.
+- Clipboard micro-UX kiểm tra khả năng hỗ trợ Clipboard API trước khi gọi.
+- Live status pill có focus treatment và fallback khi giảm transparency.
