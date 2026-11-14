@@ -1,3 +1,17 @@
+## v1.7.4 — Runtime Integrity & Support Dock Optimization — 2026-11-14
+
+### Fixed
+- Sửa ký tự newline bị escape ở cuối index.html, tránh làm hỏng cấu trúc script trên Homepage.
+- Kiểm tra lại runtime sau khi sửa để bảo đảm không còn literal \\n ở vị trí script cuối trang.
+
+### Performance
+- Support Dock bỏ qua các lần ghi CSS trùng khi scrollY không thay đổi.
+- Giữ nguyên RAF scheduling, pause khi tab ẩn và cleanup khi rời trang.
+
+### Quality
+- Không thêm dependency, polling hoặc background timer mới.
+- Không thay đổi auth/session semantics, navigation hoặc dữ liệu tài khoản.
+
 ## v1.7.2 — Lifecycle Deduplication & CSS Integrity — 2026-11-14
 
 ### Fixed
