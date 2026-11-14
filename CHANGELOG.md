@@ -1066,3 +1066,13 @@ Tất cả thay đổi đáng chú ý của ZHosting được ghi tại đây.
 - Thêm fallback `prefers-reduced-transparency` để tắt backdrop blur khi người dùng yêu cầu giảm hiệu ứng trong suốt.
 - Thiết bị bị đánh dấu `zperf-constrained` luôn dùng surface ổn định, tránh cascade cũ vô tình bật lại compositing blur.
 - Giữ nguyên reduced-motion, adaptive performance và visual identity blue/cyan.
+## v1.8.1 — Return-State Render Optimization
+
+### Fixed
+- Admin Center không còn render lại toàn bộ User Directory và analytics chỉ vì người dùng chuyển tab rồi quay lại khi dữ liệu user không thay đổi.
+- Dashboard health panel bỏ qua DOM update khi trạng thái health thực tế không đổi.
+
+### Performance
+- Admin runtime dùng snapshot zhosting_users_v1 để chỉ refresh khi dữ liệu user thực sự thay đổi.
+- Dashboard dùng health signature để tránh ghi lại class/text không cần thiết trong các lifecycle event.
+- Giữ nguyên palette dark navy/cyan/blue và các cơ chế reduced-motion, adaptive performance.
