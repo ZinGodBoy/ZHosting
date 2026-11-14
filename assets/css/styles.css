@@ -213,3 +213,24 @@ body{contain:paint}
 @media(max-width:900px){.start-grid{grid-template-columns:1fr 1fr}.start-card:last-child{grid-column:1/-1}}
 @media(max-width:620px){.start-grid{grid-template-columns:1fr}.start-card:last-child{grid-column:auto}.start-card{min-height:0;padding:22px}.start-note{align-items:flex-start;font-size:13px}}
 @media(prefers-reduced-motion:reduce){.start-card,.start-card a span{transition:none}.start-card:hover{transform:none}.start-card a:hover span{transform:none}}
+
+
+/* ===== PRICING + CONFIG DECISION UX ===== */
+.plan-fit{display:block;margin:9px 0 0;color:#6f8ba4;font:700 8px var(--font-ui);letter-spacing:.1em;text-transform:uppercase}
+.plan-tip{display:grid;gap:5px;margin:15px 0 18px;padding:12px 13px;border:1px solid rgba(67,217,255,.1);border-radius:12px;background:rgba(67,217,255,.035);font-size:9px;line-height:1.55}
+.plan-tip b{color:#cfeeff;font-size:9px}
+.plan-tip span{color:#728ba1}
+.config-recommendation{display:grid;gap:5px;margin:12px 0 17px;padding:11px 13px;border:1px solid rgba(85,230,165,.14);border-radius:12px;background:rgba(85,230,165,.035)}
+.config-recommendation span{font:700 8px var(--font-ui);letter-spacing:.12em;color:var(--green)}
+.config-recommendation b{font-size:10px;line-height:1.55;color:#cce0ef;font-weight:600}
+.config-disclaimer{margin:10px 0 0!important;color:#566f85!important;font-size:8px!important;line-height:1.55!important}
+.config-check{transition:border-color .2s ease,background .2s ease,transform .2s ease}
+.config-check.is-selected{border-color:rgba(67,217,255,.28)!important;background:rgba(67,217,255,.055)!important}
+.config-check.is-selected strong{color:var(--cyan)}
+@media(max-width:700px){
+  .plan-tip{font-size:8.5px}
+  .config-recommendation{margin-top:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .config-check{transition:none}
+}
