@@ -67,3 +67,10 @@
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)syncHealth()},{passive:true});
 
 })();
+
+/* ===== ACCOUNT RUNTIME QUALITY v1.4.1 ===== */
+(()=>{
+  const refresh=()=>{try{if(typeof auth?.touchSession==="function")auth.touchSession()}catch{}};
+  window.addEventListener("pageshow",refresh,{passive:true});
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()},{passive:true});
+})();
