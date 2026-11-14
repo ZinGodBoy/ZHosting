@@ -69,7 +69,12 @@ const render=()=>{
   const wrap=document.createElement("span");const b=document.createElement("b");b.textContent=u.name||"—";const s=document.createElement("span");s.textContent=u.email||"—";wrap.append(b,s);user.append(avatar,wrap);
   tr.append(user);
   [u.role,u.status,u.loginCount,fmt(u.lastLogin)].forEach((v,i)=>{const td=document.createElement("td");td.textContent=String(v);if(i===0||i===1)td.className=String(v);tr.append(td);});
-  const action=document.createElement("td");const btn=document.createElement("button");btn.className="view";btn.type="button";btn.textContent="Xem";btn.addEventListener("click",()=>show(u.id));action.append(btn);tr.append(action);rows.append(tr);
+  const action=document.createElement("td");
+  const btn=document.createElement("button");
+  btn.className="view";btn.type="button";btn.textContent="Xem";
+  btn.setAttribute("aria-label","Xem tài khoản "+(u.name||u.email||"người dùng"));
+  btn.addEventListener("click",()=>show(u.id));
+  action.append(btn);tr.append(action);rows.append(tr);
  });
  stats();
  if(selectedId&&!list.some(u=>u.id===selectedId))show(null);
