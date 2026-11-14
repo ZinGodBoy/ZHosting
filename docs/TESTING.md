@@ -211,3 +211,12 @@ Browser testing không thể chứng minh backend security vì repository hiện
 - [ ] Admin Global Search không render liên tục khi nhập nhanh.
 - [ ] Admin Directory Search và Global Search cùng cập nhật đúng filter.
 - [ ] Nạp lại runtime không tạo duplicate performance listeners.
+
+### Regression pass — 2026-11-14
+
+- [ ] 404 chỉ tải assets/js/performance.js một lần.
+- [ ] Đăng ký tài khoản mới luôn nhận role user; không có first-user admin promotion.
+- [ ] Anchor # rỗng và selector lỗi không làm crash navigation.
+- [ ] Session guard không tạo interval chạy nền liên tục.
+- [ ] Admin clock dừng khi tab hidden và được cleanup khi pagehide.
+- [ ] Existing admin account vẫn giữ role admin và trusted-device gate hoạt động bình thường.
