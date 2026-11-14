@@ -43,3 +43,12 @@ jobs:
 
       - name: Run security audit
         run: node scripts/security-audit.mjs
+
+
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            node --check "$file"
+          done < <(find . -type f \( -name '*.js' -o -name '*.mjs' \) -not -path './.git/*' -not -path './node_modules/*' -print0)
